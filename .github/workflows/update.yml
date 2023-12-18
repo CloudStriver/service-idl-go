@@ -41,7 +41,7 @@ jobs:
 
       - name: Update
         run: |
-          rm -rf go-zero_gen
+          rm -rf go-zero-gen
           export IDL_DIR=./service-idl
           export REPO_NAME=${{ github.event.client_payload.repository }}
           chmod 755 /home/runner/go/bin/protoc
