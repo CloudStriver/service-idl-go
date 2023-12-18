@@ -1,9 +1,7 @@
 name: Update
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# 此工作流程使用未经 GitHub 认证的操作。
+# 这些操作由第三方提供，并受单独的服务条款、隐私政策和支持文档的约束。
 
 on:
   repository_dispatch:
@@ -14,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
     steps:
@@ -42,10 +38,12 @@ jobs:
         run: |
           go install github.com/zeromicro/go-zero/tools/goctl@latest
           goctl env check --install --verbose --force
+
       - name: Update
         run: |
           rm -rf go-zero_gen
           export IDL_DIR=./service-idl
+          export REPO_NAME=${{ github.event.client_payload.repository }}
           chmod 755 /home/runner/go/bin/protoc
           sh build.sh
 

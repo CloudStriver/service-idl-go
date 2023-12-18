@@ -27,11 +27,11 @@ type (
 	UserAuth                 = pb.UserAuth
 
 	Usercenter interface {
+		AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
+		AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		FindUserByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
 		SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
-		AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
-		AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
 	}
 
@@ -46,6 +46,16 @@ func NewUsercenter(cli zrpc.Client) Usercenter {
 	}
 }
 
+func (m *defaultUsercenter) AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.AddUserRemainder(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.AddUserRemainderRollBack(ctx, in, opts...)
+}
+
 func (m *defaultUsercenter) FindUserByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.FindUserByUserIdList(ctx, in, opts...)
@@ -56,19 +66,9 @@ func (m *defaultUsercenter) SendEmailCode(ctx context.Context, in *SendEmailCode
 	return client.SendEmailCode(ctx, in, opts...)
 }
 
-func (m *defaultUsercenter) AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error) {
-	client := pb.NewUsercenterClient(m.cli.Conn())
-	return client.AddUserRemainder(ctx, in, opts...)
-}
-
 func (m *defaultUsercenter) UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.UpdateUserInfo(ctx, in, opts...)
-}
-
-func (m *defaultUsercenter) AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error) {
-	client := pb.NewUsercenterClient(m.cli.Conn())
-	return client.AddUserRemainderRollBack(ctx, in, opts...)
 }
 
 func (m *defaultUsercenter) FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error) {
