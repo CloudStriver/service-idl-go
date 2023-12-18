@@ -1,0 +1,58 @@
+name: Update
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  repository_dispatch:
+    types: [ idl_update ]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Checkout Branch
+        run: git checkout ${{ github.event.client_payload.ref }} || git checkout -b ${{ github.event.client_payload.ref }}
+
+      - name: Checkout IDL repository
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.client_payload.repository }}
+          ref: ${{ github.event.client_payload.ref }}
+          path: service-idl
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Setup Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+
+      - name: Install Protobuf Compiler
+        run: |
+          go install github.com/zeromicro/go-zero/tools/goctl@latest
+          goctl env check --install --verbose --force
+      - name: Update
+        run: |
+          rm -rf go-zero_gen
+          export IDL_DIR=./service-idl
+          chmod 755 /home/runner/go/bin/protoc
+          sh build.sh
+
+      - name: Commit And Push
+        run: |
+          git config --global user.email "bot@CloudStriver.com"
+          git config --global user.name "${{ github.actor }}"
+          git add go-zero_gen
+          git commit -m "${{ github.event.client_payload.commit_msg }}"
+          git push origin ${{ github.event.client_payload.ref }}
