@@ -112,6 +112,7 @@ message RegisterResp{
   string AccessToken = 2;
   string RefreshToken = 3;
   string ChatToken = 4;
+  string Error = 5;
 }
 service usercenter {
  rpc FindUserByUserIdList(FindUserByUserIdListReq) returns(FindUserByUserIdListResp);
