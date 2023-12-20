@@ -1,0 +1,110 @@
+syntax = "proto3";
+option go_package = "./pb";
+package pb;
+
+message User {
+  string Email = 2;
+  string Name =3;
+  int32  Sex = 4;
+  string FullName = 5;
+  string IdCard = 6;
+  int64 CreatedAt = 7;
+  int64 UpdatedAt = 8;
+  int64 Money = 9;
+  int64 Flow = 10;
+  int64 Memory = 11;
+  string Description = 12;
+  string Url = 13;
+  string UserId = 14;
+}
+
+message UserInfo {
+  string Email = 2;
+  string Name =3;
+  int32  Sex = 4;
+  string FullName = 5;
+  string IdCard = 6;
+  int64 CreatedAt = 7;
+  int64 UpdatedAt = 8;
+  int64 Money = 9;
+  int64 Flow = 10;
+  int64 Memory = 11;
+  string Description = 12;
+  string Url = 13;
+  string UserId = 14;
+}
+
+
+message UserAuth {
+  string  Id = 1;
+  int64  UserId = 2;
+  string AuthType = 3;
+  string AuthKey = 4;
+}
+
+message SendEmailReq {
+   string Email = 1;
+}
+
+message SendEmailResp {
+  string Error = 2;
+}
+
+
+message SendEmailCodeReq{
+   string Email = 1;
+   string Subject = 2;
+}
+
+message SendEmailCodeResp{
+  string Error = 1;
+}
+
+message AddUserRemainderReq{
+  string UserId = 1;
+  int64 Num = 2;
+  int64 Type = 3;
+}
+
+message AddUserRemainderResp{
+  string Error = 1;
+}
+
+message UpdateUserInfoReq{
+  string Email = 1;
+  string Name = 2;
+  int64  Sex = 3;
+  string FullName = 4;
+  string IdCard = 5;
+  string Description = 6;
+  string Url = 7;
+  string PassWord = 8;
+  string UserId = 9;
+
+}
+message UpdateUserInfoResp{
+}
+
+message FindUserByUserIdListReq{
+ repeated string  UserIdList = 1;
+}
+
+message FindUserByUserIdListResp{
+  repeated User UserList = 1;
+}
+
+message FindUserInfoByUserIdListReq{
+  repeated string  UserIdList = 1;
+}
+
+message FindUserInfoByUserIdListResp{
+  repeated UserInfo UserInfoList = 1;
+}
+service usercenter {
+ rpc FindUserByUserIdList(FindUserByUserIdListReq) returns(FindUserByUserIdListResp);
+ rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
+ rpc AddUserRemainder(AddUserRemainderReq) returns(AddUserRemainderResp);
+ rpc UpdateUserInfo(UpdateUserInfoReq) returns(UpdateUserInfoResp);
+ rpc AddUserRemainderRollBack(AddUserRemainderReq) returns(AddUserRemainderResp);
+ rpc FindUserInfoByUserIdList(FindUserInfoByUserIdListReq) returns(FindUserInfoByUserIdListResp);
+}

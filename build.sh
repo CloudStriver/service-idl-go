@@ -1,5 +1,4 @@
-name=$(basename $REPO_NAME)
-idl_dir=${IDL_DIR:=../$name}
+idl_dir=${IDL_DIR:=.}
 files=$(find $idl_dir -type f -name '*.proto')
 if [ $? != 0 ];then
   exit 1

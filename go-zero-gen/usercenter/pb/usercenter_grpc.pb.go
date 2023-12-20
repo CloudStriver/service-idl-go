@@ -36,7 +36,7 @@ type UsercenterClient interface {
 	AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 	UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
 	AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
-	FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
+	FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 }
 
 type usercenterClient struct {
@@ -92,8 +92,8 @@ func (c *usercenterClient) AddUserRemainderRollBack(ctx context.Context, in *Add
 	return out, nil
 }
 
-func (c *usercenterClient) FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error) {
-	out := new(FindUserByUserIdListResp)
+func (c *usercenterClient) FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error) {
+	out := new(FindUserInfoByUserIdListResp)
 	err := c.cc.Invoke(ctx, Usercenter_FindUserInfoByUserIdList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -110,7 +110,7 @@ type UsercenterServer interface {
 	AddUserRemainder(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error)
 	UpdateUserInfo(context.Context, *UpdateUserInfoReq) (*UpdateUserInfoResp, error)
 	AddUserRemainderRollBack(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error)
-	FindUserInfoByUserIdList(context.Context, *FindUserByUserIdListReq) (*FindUserByUserIdListResp, error)
+	FindUserInfoByUserIdList(context.Context, *FindUserInfoByUserIdListReq) (*FindUserInfoByUserIdListResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -133,7 +133,7 @@ func (UnimplementedUsercenterServer) UpdateUserInfo(context.Context, *UpdateUser
 func (UnimplementedUsercenterServer) AddUserRemainderRollBack(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUserRemainderRollBack not implemented")
 }
-func (UnimplementedUsercenterServer) FindUserInfoByUserIdList(context.Context, *FindUserByUserIdListReq) (*FindUserByUserIdListResp, error) {
+func (UnimplementedUsercenterServer) FindUserInfoByUserIdList(context.Context, *FindUserInfoByUserIdListReq) (*FindUserInfoByUserIdListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindUserInfoByUserIdList not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}
@@ -240,7 +240,7 @@ func _Usercenter_AddUserRemainderRollBack_Handler(srv interface{}, ctx context.C
 }
 
 func _Usercenter_FindUserInfoByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindUserByUserIdListReq)
+	in := new(FindUserInfoByUserIdListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -252,7 +252,7 @@ func _Usercenter_FindUserInfoByUserIdList_Handler(srv interface{}, ctx context.C
 		FullMethod: Usercenter_FindUserInfoByUserIdList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsercenterServer).FindUserInfoByUserIdList(ctx, req.(*FindUserByUserIdListReq))
+		return srv.(UsercenterServer).FindUserInfoByUserIdList(ctx, req.(*FindUserInfoByUserIdListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

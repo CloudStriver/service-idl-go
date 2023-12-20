@@ -13,18 +13,21 @@ import (
 )
 
 type (
-	AddUserRemainderReq      = pb.AddUserRemainderReq
-	AddUserRemainderResp     = pb.AddUserRemainderResp
-	FindUserByUserIdListReq  = pb.FindUserByUserIdListReq
-	FindUserByUserIdListResp = pb.FindUserByUserIdListResp
-	SendEmailCodeReq         = pb.SendEmailCodeReq
-	SendEmailCodeResp        = pb.SendEmailCodeResp
-	SendEmailReq             = pb.SendEmailReq
-	SendEmailResp            = pb.SendEmailResp
-	UpdateUserInfoReq        = pb.UpdateUserInfoReq
-	UpdateUserInfoResp       = pb.UpdateUserInfoResp
-	User                     = pb.User
-	UserAuth                 = pb.UserAuth
+	AddUserRemainderReq          = pb.AddUserRemainderReq
+	AddUserRemainderResp         = pb.AddUserRemainderResp
+	FindUserByUserIdListReq      = pb.FindUserByUserIdListReq
+	FindUserByUserIdListResp     = pb.FindUserByUserIdListResp
+	FindUserInfoByUserIdListReq  = pb.FindUserInfoByUserIdListReq
+	FindUserInfoByUserIdListResp = pb.FindUserInfoByUserIdListResp
+	SendEmailCodeReq             = pb.SendEmailCodeReq
+	SendEmailCodeResp            = pb.SendEmailCodeResp
+	SendEmailReq                 = pb.SendEmailReq
+	SendEmailResp                = pb.SendEmailResp
+	UpdateUserInfoReq            = pb.UpdateUserInfoReq
+	UpdateUserInfoResp           = pb.UpdateUserInfoResp
+	User                         = pb.User
+	UserAuth                     = pb.UserAuth
+	UserInfo                     = pb.UserInfo
 
 	Usercenter interface {
 		FindUserByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
@@ -32,7 +35,7 @@ type (
 		AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
 		AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
-		FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
+		FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -71,7 +74,7 @@ func (m *defaultUsercenter) AddUserRemainderRollBack(ctx context.Context, in *Ad
 	return client.AddUserRemainderRollBack(ctx, in, opts...)
 }
 
-func (m *defaultUsercenter) FindUserInfoByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error) {
+func (m *defaultUsercenter) FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.FindUserInfoByUserIdList(ctx, in, opts...)
 }
