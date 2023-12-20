@@ -100,6 +100,19 @@ message FindUserInfoByUserIdListReq{
 message FindUserInfoByUserIdListResp{
   repeated UserInfo UserInfoList = 1;
 }
+
+message RegisterReq{
+ string Name = 1;
+ int32 Sex = 2;
+ string  Email = 3;
+ string  PassWord = 4;
+}
+message RegisterResp{
+  string UserId = 1;
+  string AccessToken = 2;
+  string RefreshToken = 3;
+  string ChatToken = 4;
+}
 service usercenter {
  rpc FindUserByUserIdList(FindUserByUserIdListReq) returns(FindUserByUserIdListResp);
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
@@ -107,4 +120,5 @@ service usercenter {
  rpc UpdateUserInfo(UpdateUserInfoReq) returns(UpdateUserInfoResp);
  rpc AddUserRemainderRollBack(AddUserRemainderReq) returns(AddUserRemainderResp);
  rpc FindUserInfoByUserIdList(FindUserInfoByUserIdListReq) returns(FindUserInfoByUserIdListResp);
+ rpc Register(RegisterReq) returns(RegisterResp);
 }
