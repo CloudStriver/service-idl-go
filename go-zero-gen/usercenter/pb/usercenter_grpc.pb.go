@@ -26,6 +26,7 @@ const (
 	Usercenter_AddUserRemainderRollBack_FullMethodName = "/pb.usercenter/AddUserRemainderRollBack"
 	Usercenter_FindUserInfoByUserIdList_FullMethodName = "/pb.usercenter/FindUserInfoByUserIdList"
 	Usercenter_Register_FullMethodName                 = "/pb.usercenter/Register"
+	Usercenter_GenerateToken_FullMethodName            = "/pb.usercenter/GenerateToken"
 )
 
 // UsercenterClient is the client API for Usercenter service.
@@ -39,6 +40,7 @@ type UsercenterClient interface {
 	AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 	FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
+	GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
 }
 
 type usercenterClient struct {
@@ -112,6 +114,15 @@ func (c *usercenterClient) Register(ctx context.Context, in *RegisterReq, opts .
 	return out, nil
 }
 
+func (c *usercenterClient) GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error) {
+	out := new(GenerateTokenResp)
+	err := c.cc.Invoke(ctx, Usercenter_GenerateToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsercenterServer is the server API for Usercenter service.
 // All implementations must embed UnimplementedUsercenterServer
 // for forward compatibility
@@ -123,6 +134,7 @@ type UsercenterServer interface {
 	AddUserRemainderRollBack(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error)
 	FindUserInfoByUserIdList(context.Context, *FindUserInfoByUserIdListReq) (*FindUserInfoByUserIdListResp, error)
 	Register(context.Context, *RegisterReq) (*RegisterResp, error)
+	GenerateToken(context.Context, *GenerateTokenReq) (*GenerateTokenResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -150,6 +162,9 @@ func (UnimplementedUsercenterServer) FindUserInfoByUserIdList(context.Context, *
 }
 func (UnimplementedUsercenterServer) Register(context.Context, *RegisterReq) (*RegisterResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (UnimplementedUsercenterServer) GenerateToken(context.Context, *GenerateTokenReq) (*GenerateTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateToken not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}
 
@@ -290,6 +305,24 @@ func _Usercenter_Register_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Usercenter_GenerateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsercenterServer).GenerateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Usercenter_GenerateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsercenterServer).GenerateToken(ctx, req.(*GenerateTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Usercenter_ServiceDesc is the grpc.ServiceDesc for Usercenter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -324,6 +357,10 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Register",
 			Handler:    _Usercenter_Register_Handler,
+		},
+		{
+			MethodName: "GenerateToken",
+			Handler:    _Usercenter_GenerateToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

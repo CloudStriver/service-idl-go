@@ -19,6 +19,8 @@ type (
 	FindUserByUserIdListResp     = pb.FindUserByUserIdListResp
 	FindUserInfoByUserIdListReq  = pb.FindUserInfoByUserIdListReq
 	FindUserInfoByUserIdListResp = pb.FindUserInfoByUserIdListResp
+	GenerateTokenReq             = pb.GenerateTokenReq
+	GenerateTokenResp            = pb.GenerateTokenResp
 	RegisterReq                  = pb.RegisterReq
 	RegisterResp                 = pb.RegisterResp
 	SendEmailCodeReq             = pb.SendEmailCodeReq
@@ -39,6 +41,7 @@ type (
 		AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
+		GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -85,4 +88,9 @@ func (m *defaultUsercenter) FindUserInfoByUserIdList(ctx context.Context, in *Fi
 func (m *defaultUsercenter) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.Register(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.GenerateToken(ctx, in, opts...)
 }
