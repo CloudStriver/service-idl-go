@@ -30,13 +30,6 @@ message User {
   string UserId = 13;
 }
 
-message UserAuth {
-  string  Id = 1;
-  int64  UserId = 2;
-  string AuthType = 3;
-  string AuthKey = 4;
-}
-
 message SendEmailReq {
    string Email = 1;
 }
@@ -55,16 +48,6 @@ message SendEmailCodeResp{
   string Error = 1;
 }
 
-message AddUserRemainderReq{
-  string UserId = 1;
-  int64 Num = 2;
-  int64 Type = 3;
-}
-
-message AddUserRemainderResp{
-  string Error = 1;
-}
-
 message UpdateUserReq{
    string Email = 1; // 邮箱号
    string Name = 2; // 用户名
@@ -80,24 +63,6 @@ message UpdateUserReq{
 message UpdateUserResp{
   string Error = 1;
 }
-
-message FindUserByUserIdListReq{
- repeated string  UserIdList = 1; // 用户ID列表
-}
-
-message FindUserByUserIdListResp{
-  repeated User UserList = 1;
-  string Error = 2;
-}
-
-message FindUserInfoByUserIdListReq{
-  repeated string  UserIdList = 1;
-}
-
-message FindUserInfoByUserIdListResp{
-  repeated User UserInfoList = 1;
-}
-
 
 message RegisterReq{
  string Name = 1; // 用户名
@@ -121,13 +86,18 @@ message GenerateTokenResp{
   string Error = 2;
 }
 
+message FindUserReq{
+    string UserId = 1;
+}
+message FindUserResp{
+  User User = 1;
+  string Error = 2;
+}
+
 service usercenter {
- rpc FindUserByUserIdList(FindUserByUserIdListReq) returns(FindUserByUserIdListResp);
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
- rpc AddUserRemainder(AddUserRemainderReq) returns(AddUserRemainderResp);
  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
- rpc AddUserRemainderRollBack(AddUserRemainderReq) returns(AddUserRemainderResp);
- rpc FindUserInfoByUserIdList(FindUserInfoByUserIdListReq) returns(FindUserInfoByUserIdListResp);
+ rpc FindUser(FindUserReq) returns(FindUserResp);
  rpc Register(RegisterReq) returns(RegisterResp);
  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
 }
