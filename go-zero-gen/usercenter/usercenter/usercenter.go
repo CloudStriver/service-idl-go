@@ -13,26 +13,31 @@ import (
 )
 
 type (
-	GenerateTokenReq  = pb.GenerateTokenReq
-	GenerateTokenResp = pb.GenerateTokenResp
-	GetCaptchaReq     = pb.GetCaptchaReq
-	GetCaptchaResp    = pb.GetCaptchaResp
-	GetUserReq        = pb.GetUserReq
-	GetUserResp       = pb.GetUserResp
-	LoginReq          = pb.LoginReq
-	LoginResp         = pb.LoginResp
-	RefreshTokenReq   = pb.RefreshTokenReq
-	RefreshTokenResp  = pb.RefreshTokenResp
-	RegisterReq       = pb.RegisterReq
-	RegisterResp      = pb.RegisterResp
-	SendEmailCodeReq  = pb.SendEmailCodeReq
-	SendEmailCodeResp = pb.SendEmailCodeResp
-	SendEmailReq      = pb.SendEmailReq
-	SendEmailResp     = pb.SendEmailResp
-	Token             = pb.Token
-	UpdateUserReq     = pb.UpdateUserReq
-	UpdateUserResp    = pb.UpdateUserResp
-	User              = pb.User
+	ConfirmCaptchaReq    = pb.ConfirmCaptchaReq
+	ConfirmCaptchaResp   = pb.ConfirmCaptchaResp
+	ConfirmEmailCodeReq  = pb.ConfirmEmailCodeReq
+	ConfirmEmailCodeResp = pb.ConfirmEmailCodeResp
+	GenerateTokenReq     = pb.GenerateTokenReq
+	GenerateTokenResp    = pb.GenerateTokenResp
+	GetCaptchaReq        = pb.GetCaptchaReq
+	GetCaptchaResp       = pb.GetCaptchaResp
+	GetUserReq           = pb.GetUserReq
+	GetUserResp          = pb.GetUserResp
+	LoginReq             = pb.LoginReq
+	LoginResp            = pb.LoginResp
+	Point                = pb.Point
+	RefreshTokenReq      = pb.RefreshTokenReq
+	RefreshTokenResp     = pb.RefreshTokenResp
+	RegisterReq          = pb.RegisterReq
+	RegisterResp         = pb.RegisterResp
+	SendEmailCodeReq     = pb.SendEmailCodeReq
+	SendEmailCodeResp    = pb.SendEmailCodeResp
+	SendEmailReq         = pb.SendEmailReq
+	SendEmailResp        = pb.SendEmailResp
+	Token                = pb.Token
+	UpdateUserReq        = pb.UpdateUserReq
+	UpdateUserResp       = pb.UpdateUserResp
+	User                 = pb.User
 
 	Usercenter interface {
 		SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
@@ -43,6 +48,8 @@ type (
 		GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
 		RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
 		GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error)
+		ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error)
+		ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -94,4 +101,14 @@ func (m *defaultUsercenter) RefreshToken(ctx context.Context, in *RefreshTokenRe
 func (m *defaultUsercenter) GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.GetCaptcha(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.ConfirmCaptcha(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.ConfirmEmailCode(ctx, in, opts...)
 }

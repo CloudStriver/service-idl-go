@@ -8,6 +8,10 @@ enum Sex {
   Women = 2; // 女
 }
 
+message Point {
+  int32 X = 1;
+  int32 Y = 2;
+}
 message Token {
   string AccessToken = 1;  // 用户ID
   string RefreshToken = 2;  // 用户ID
@@ -120,6 +124,26 @@ message GetCaptchaResp{
   string Key = 3;
   string Error = 4;
 }
+
+message ConfirmCaptchaReq{
+  string Key = 1;
+  Point Point = 2;
+}
+
+message ConfirmCaptchaResp{
+  string Error = 1;
+}
+
+message ConfirmEmailCodeReq{
+  string Email = 1;
+  string Code = 2;
+}
+
+message ConfirmEmailCodeResp{
+  string Error = 1;
+}
+
+
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
@@ -129,4 +153,6 @@ service usercenter {
  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
  rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
+ rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
+ rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
 }
