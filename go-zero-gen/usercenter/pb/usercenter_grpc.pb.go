@@ -25,6 +25,7 @@ const (
 	Usercenter_FindUser_FullMethodName      = "/pb.usercenter/FindUser"
 	Usercenter_Register_FullMethodName      = "/pb.usercenter/Register"
 	Usercenter_GenerateToken_FullMethodName = "/pb.usercenter/GenerateToken"
+	Usercenter_RefreshToken_FullMethodName  = "/pb.usercenter/RefreshToken"
 )
 
 // UsercenterClient is the client API for Usercenter service.
@@ -37,6 +38,7 @@ type UsercenterClient interface {
 	FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error)
 	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 	GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
+	RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
 }
 
 type usercenterClient struct {
@@ -101,6 +103,15 @@ func (c *usercenterClient) GenerateToken(ctx context.Context, in *GenerateTokenR
 	return out, nil
 }
 
+func (c *usercenterClient) RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error) {
+	out := new(RefreshTokenResp)
+	err := c.cc.Invoke(ctx, Usercenter_RefreshToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsercenterServer is the server API for Usercenter service.
 // All implementations must embed UnimplementedUsercenterServer
 // for forward compatibility
@@ -111,6 +122,7 @@ type UsercenterServer interface {
 	FindUser(context.Context, *FindUserReq) (*FindUserResp, error)
 	Register(context.Context, *RegisterReq) (*RegisterResp, error)
 	GenerateToken(context.Context, *GenerateTokenReq) (*GenerateTokenResp, error)
+	RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -135,6 +147,9 @@ func (UnimplementedUsercenterServer) Register(context.Context, *RegisterReq) (*R
 }
 func (UnimplementedUsercenterServer) GenerateToken(context.Context, *GenerateTokenReq) (*GenerateTokenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateToken not implemented")
+}
+func (UnimplementedUsercenterServer) RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}
 
@@ -257,6 +272,24 @@ func _Usercenter_GenerateToken_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Usercenter_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsercenterServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Usercenter_RefreshToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsercenterServer).RefreshToken(ctx, req.(*RefreshTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Usercenter_ServiceDesc is the grpc.ServiceDesc for Usercenter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -287,6 +320,10 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateToken",
 			Handler:    _Usercenter_GenerateToken_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _Usercenter_RefreshToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

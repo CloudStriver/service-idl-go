@@ -19,6 +19,8 @@ type (
 	GenerateTokenResp = pb.GenerateTokenResp
 	LoginReq          = pb.LoginReq
 	LoginResp         = pb.LoginResp
+	RefreshTokenReq   = pb.RefreshTokenReq
+	RefreshTokenResp  = pb.RefreshTokenResp
 	RegisterReq       = pb.RegisterReq
 	RegisterResp      = pb.RegisterResp
 	SendEmailCodeReq  = pb.SendEmailCodeReq
@@ -37,6 +39,7 @@ type (
 		FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error)
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 		GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
+		RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -78,4 +81,9 @@ func (m *defaultUsercenter) Register(ctx context.Context, in *RegisterReq, opts 
 func (m *defaultUsercenter) GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.GenerateToken(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.RefreshToken(ctx, in, opts...)
 }

@@ -102,6 +102,14 @@ message LoginResp{
   string Error = 1;
 }
 
+message RefreshTokenReq{
+  string RefreshToken = 1;
+}
+
+message RefreshTokenResp{
+  Token Token = 1;
+  string Error = 2;
+}
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
@@ -109,4 +117,5 @@ service usercenter {
  rpc FindUser(FindUserReq) returns(FindUserResp);
  rpc Register(RegisterReq) returns(RegisterResp);
  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
+ rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
 }
