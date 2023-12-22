@@ -68,7 +68,7 @@ message AddUserRemainderResp{
 message UpdateUserReq{
    string Email = 1; // 邮箱号
    string Name = 2; // 用户名
-  optional int64  Sex = 3; // 用户性别
+  optional Sex  Sex = 3; // 用户性别
    string FullName = 4; // 用户真实姓名
    string IdCard = 5; // 用户身份证号
    string Description = 6; // 用户描述信息
