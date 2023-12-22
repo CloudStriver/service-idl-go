@@ -6,7 +6,7 @@ package usercenter
 import (
 	"context"
 
-	"usercenter/pb"
+	"github.com/CloudStriver/service-idl-go/go-zero-gen/usercenter/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
