@@ -66,16 +66,16 @@ message AddUserRemainderResp{
 }
 
 message UpdateUserReq{
-  optional string Email = 1; // 邮箱号
-  optional string Name = 2; // 用户名
+   string Email = 1; // 邮箱号
+   string Name = 2; // 用户名
   optional int64  Sex = 3; // 用户性别
-  optional string FullName = 4; // 用户真实姓名
-  optional string IdCard = 5; // 用户身份证号
-  optional string Description = 6; // 用户描述信息
-  optional string Url = 7; // 头像Url
-  optional string PassWord = 8; // 密码
+   string FullName = 4; // 用户真实姓名
+   string IdCard = 5; // 用户身份证号
+   string Description = 6; // 用户描述信息
+   string Url = 7; // 头像Url
+   string PassWord = 8; // 密码
   string UserId = 9; // 用户ID
-  optional string Code = 10; // 邮箱验证码 修改邮箱号需要填邮箱验证码
+   string Code = 10; // 邮箱验证码 修改邮箱号需要填邮箱验证码
 }
 message UpdateUserResp{
   string Error = 1;
