@@ -103,7 +103,7 @@ message LoginResp{
 }
 
 message RefreshTokenReq{
-  string RefreshToken = 1;
+  string UserId = 1;
 }
 
 message RefreshTokenResp{
