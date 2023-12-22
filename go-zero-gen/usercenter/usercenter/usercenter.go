@@ -17,6 +17,8 @@ type (
 	FindUserResp      = pb.FindUserResp
 	GenerateTokenReq  = pb.GenerateTokenReq
 	GenerateTokenResp = pb.GenerateTokenResp
+	LoginReq          = pb.LoginReq
+	LoginResp         = pb.LoginResp
 	RegisterReq       = pb.RegisterReq
 	RegisterResp      = pb.RegisterResp
 	SendEmailCodeReq  = pb.SendEmailCodeReq
@@ -30,6 +32,7 @@ type (
 
 	Usercenter interface {
 		SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
+		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 		UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
 		FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error)
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
@@ -50,6 +53,11 @@ func NewUsercenter(cli zrpc.Client) Usercenter {
 func (m *defaultUsercenter) SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.SendEmailCode(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.Login(ctx, in, opts...)
 }
 
 func (m *defaultUsercenter) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error) {

@@ -94,8 +94,17 @@ message FindUserResp{
   string Error = 2;
 }
 
+message LoginReq{
+  string Email = 1;
+  string PassWord = 2;
+}
+message LoginResp{
+  string Error = 1;
+}
+
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
+ rpc Login(LoginReq) returns(LoginResp);
  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
  rpc FindUser(FindUserReq) returns(FindUserResp);
  rpc Register(RegisterReq) returns(RegisterResp);
