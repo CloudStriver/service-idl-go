@@ -22,7 +22,7 @@ const (
 	Usercenter_FindUserByUserIdList_FullMethodName     = "/pb.usercenter/FindUserByUserIdList"
 	Usercenter_SendEmailCode_FullMethodName            = "/pb.usercenter/SendEmailCode"
 	Usercenter_AddUserRemainder_FullMethodName         = "/pb.usercenter/AddUserRemainder"
-	Usercenter_UpdateUserInfo_FullMethodName           = "/pb.usercenter/UpdateUserInfo"
+	Usercenter_UpdateUser_FullMethodName               = "/pb.usercenter/UpdateUser"
 	Usercenter_AddUserRemainderRollBack_FullMethodName = "/pb.usercenter/AddUserRemainderRollBack"
 	Usercenter_FindUserInfoByUserIdList_FullMethodName = "/pb.usercenter/FindUserInfoByUserIdList"
 	Usercenter_Register_FullMethodName                 = "/pb.usercenter/Register"
@@ -36,7 +36,7 @@ type UsercenterClient interface {
 	FindUserByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
 	SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
 	AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
-	UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
+	UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
 	AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 	FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
@@ -78,9 +78,9 @@ func (c *usercenterClient) AddUserRemainder(ctx context.Context, in *AddUserRema
 	return out, nil
 }
 
-func (c *usercenterClient) UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error) {
-	out := new(UpdateUserInfoResp)
-	err := c.cc.Invoke(ctx, Usercenter_UpdateUserInfo_FullMethodName, in, out, opts...)
+func (c *usercenterClient) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error) {
+	out := new(UpdateUserResp)
+	err := c.cc.Invoke(ctx, Usercenter_UpdateUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +130,7 @@ type UsercenterServer interface {
 	FindUserByUserIdList(context.Context, *FindUserByUserIdListReq) (*FindUserByUserIdListResp, error)
 	SendEmailCode(context.Context, *SendEmailCodeReq) (*SendEmailCodeResp, error)
 	AddUserRemainder(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error)
-	UpdateUserInfo(context.Context, *UpdateUserInfoReq) (*UpdateUserInfoResp, error)
+	UpdateUser(context.Context, *UpdateUserReq) (*UpdateUserResp, error)
 	AddUserRemainderRollBack(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error)
 	FindUserInfoByUserIdList(context.Context, *FindUserInfoByUserIdListReq) (*FindUserInfoByUserIdListResp, error)
 	Register(context.Context, *RegisterReq) (*RegisterResp, error)
@@ -151,8 +151,8 @@ func (UnimplementedUsercenterServer) SendEmailCode(context.Context, *SendEmailCo
 func (UnimplementedUsercenterServer) AddUserRemainder(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUserRemainder not implemented")
 }
-func (UnimplementedUsercenterServer) UpdateUserInfo(context.Context, *UpdateUserInfoReq) (*UpdateUserInfoResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserInfo not implemented")
+func (UnimplementedUsercenterServer) UpdateUser(context.Context, *UpdateUserReq) (*UpdateUserResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
 func (UnimplementedUsercenterServer) AddUserRemainderRollBack(context.Context, *AddUserRemainderReq) (*AddUserRemainderResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUserRemainderRollBack not implemented")
@@ -233,20 +233,20 @@ func _Usercenter_AddUserRemainder_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Usercenter_UpdateUserInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserInfoReq)
+func _Usercenter_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsercenterServer).UpdateUserInfo(ctx, in)
+		return srv.(UsercenterServer).UpdateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Usercenter_UpdateUserInfo_FullMethodName,
+		FullMethod: Usercenter_UpdateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsercenterServer).UpdateUserInfo(ctx, req.(*UpdateUserInfoReq))
+		return srv.(UsercenterServer).UpdateUser(ctx, req.(*UpdateUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -343,8 +343,8 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Usercenter_AddUserRemainder_Handler,
 		},
 		{
-			MethodName: "UpdateUserInfo",
-			Handler:    _Usercenter_UpdateUserInfo_Handler,
+			MethodName: "UpdateUser",
+			Handler:    _Usercenter_UpdateUser_Handler,
 		},
 		{
 			MethodName: "AddUserRemainderRollBack",

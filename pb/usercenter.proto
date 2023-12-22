@@ -2,6 +2,18 @@ syntax = "proto3";
 option go_package = "./pb";
 package pb;
 
+enum Sex {
+  UnKnown = 0; // 未知
+  Man = 1; // 男
+  Women = 2; // 女
+}
+
+message Token {
+  string AccessToken = 1;  // 用户ID
+  string RefreshToken = 2;  // 用户ID
+  string ChatToken = 3;  // 用户ID
+}
+
 message User {
   string Email = 2;
   string Name =3;
@@ -17,23 +29,6 @@ message User {
   string Url = 13;
   string UserId = 14;
 }
-
-message UserInfo {
-  string Email = 2;
-  string Name =3;
-  int32  Sex = 4;
-  string FullName = 5;
-  string IdCard = 6;
-  int64 CreatedAt = 7;
-  int64 UpdatedAt = 8;
-  int64 Money = 9;
-  int64 Flow = 10;
-  int64 Memory = 11;
-  string Description = 12;
-  string Url = 13;
-  string UserId = 14;
-}
-
 
 message UserAuth {
   string  Id = 1;
@@ -70,19 +65,20 @@ message AddUserRemainderResp{
   string Error = 1;
 }
 
-message UpdateUserInfoReq{
-  string Email = 1;
-  string Name = 2;
-  int64  Sex = 3;
-  string FullName = 4;
-  string IdCard = 5;
-  string Description = 6;
-  string Url = 7;
-  string PassWord = 8;
-  string UserId = 9;
-
+message UpdateUserReq{
+  optional string Email = 1; // 邮箱号
+  optional string Name = 2; // 用户名
+  optional int64  Sex = 3; // 用户性别
+  optional string FullName = 4; // 用户真实姓名
+  optional string IdCard = 5; // 用户身份证号
+  optional string Description = 6; // 用户描述信息
+  optional string Url = 7; // 头像Url
+  optional string PassWord = 8; // 密码
+  string UserId = 9; // 用户ID
+  optional string Code = 10; // 邮箱验证码 修改邮箱号需要填邮箱验证码
 }
-message UpdateUserInfoResp{
+message UpdateUserResp{
+  string Error = 1;
 }
 
 message FindUserByUserIdListReq{
@@ -98,38 +94,37 @@ message FindUserInfoByUserIdListReq{
 }
 
 message FindUserInfoByUserIdListResp{
-  repeated UserInfo UserInfoList = 1;
+  repeated User UserInfoList = 1;
 }
 
+
 message RegisterReq{
- string Name = 1;
- optional int32 Sex = 2;
- string  Email = 3;
- string  PassWord = 4;
+ string Name = 1; // 用户名
+ optional Sex Sex = 2; // 性别
+ string  Email = 3; // 邮箱
+ string  PassWord = 4; // 密码
 }
 
 message RegisterResp{
-  string UserId = 1;
-  string AccessToken = 2;
-  string RefreshToken = 3;
-  string ChatToken = 4;
-  string Error = 5;
+  string UserId = 1; // 用户ID
+  Token Token = 2;
+  string Error = 3;
 }
 
 message GenerateTokenReq{
-  string UserId = 1;
+  string UserId = 1; // 用户ID
 }
+
 message GenerateTokenResp{
-  string AccessToken = 1;
-  string RefreshToken = 2;
-  string ChatToken = 3;
-  string Error = 4;
+  Token Token = 1;
+  string Error = 2;
 }
+
 service usercenter {
  rpc FindUserByUserIdList(FindUserByUserIdListReq) returns(FindUserByUserIdListResp);
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc AddUserRemainder(AddUserRemainderReq) returns(AddUserRemainderResp);
- rpc UpdateUserInfo(UpdateUserInfoReq) returns(UpdateUserInfoResp);
+ rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
  rpc AddUserRemainderRollBack(AddUserRemainderReq) returns(AddUserRemainderResp);
  rpc FindUserInfoByUserIdList(FindUserInfoByUserIdListReq) returns(FindUserInfoByUserIdListResp);
  rpc Register(RegisterReq) returns(RegisterResp);

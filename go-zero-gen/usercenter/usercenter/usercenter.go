@@ -6,7 +6,7 @@ package usercenter
 import (
 	"context"
 
-	"github.com/CloudStriver/service-idl-go/go-zero-gen/usercenter/pb"
+	"usercenter/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
@@ -27,17 +27,17 @@ type (
 	SendEmailCodeResp            = pb.SendEmailCodeResp
 	SendEmailReq                 = pb.SendEmailReq
 	SendEmailResp                = pb.SendEmailResp
-	UpdateUserInfoReq            = pb.UpdateUserInfoReq
-	UpdateUserInfoResp           = pb.UpdateUserInfoResp
+	Token                        = pb.Token
+	UpdateUserReq                = pb.UpdateUserReq
+	UpdateUserResp               = pb.UpdateUserResp
 	User                         = pb.User
 	UserAuth                     = pb.UserAuth
-	UserInfo                     = pb.UserInfo
 
 	Usercenter interface {
 		FindUserByUserIdList(ctx context.Context, in *FindUserByUserIdListReq, opts ...grpc.CallOption) (*FindUserByUserIdListResp, error)
 		SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
 		AddUserRemainder(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
-		UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
+		UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
 		AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error)
 		FindUserInfoByUserIdList(ctx context.Context, in *FindUserInfoByUserIdListReq, opts ...grpc.CallOption) (*FindUserInfoByUserIdListResp, error)
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
@@ -70,9 +70,9 @@ func (m *defaultUsercenter) AddUserRemainder(ctx context.Context, in *AddUserRem
 	return client.AddUserRemainder(ctx, in, opts...)
 }
 
-func (m *defaultUsercenter) UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error) {
+func (m *defaultUsercenter) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
-	return client.UpdateUserInfo(ctx, in, opts...)
+	return client.UpdateUser(ctx, in, opts...)
 }
 
 func (m *defaultUsercenter) AddUserRemainderRollBack(ctx context.Context, in *AddUserRemainderReq, opts ...grpc.CallOption) (*AddUserRemainderResp, error) {
