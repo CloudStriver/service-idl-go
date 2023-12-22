@@ -22,10 +22,11 @@ const (
 	Usercenter_SendEmailCode_FullMethodName = "/pb.usercenter/SendEmailCode"
 	Usercenter_Login_FullMethodName         = "/pb.usercenter/Login"
 	Usercenter_UpdateUser_FullMethodName    = "/pb.usercenter/UpdateUser"
-	Usercenter_FindUser_FullMethodName      = "/pb.usercenter/FindUser"
+	Usercenter_GetUser_FullMethodName       = "/pb.usercenter/GetUser"
 	Usercenter_Register_FullMethodName      = "/pb.usercenter/Register"
 	Usercenter_GenerateToken_FullMethodName = "/pb.usercenter/GenerateToken"
 	Usercenter_RefreshToken_FullMethodName  = "/pb.usercenter/RefreshToken"
+	Usercenter_GetCaptcha_FullMethodName    = "/pb.usercenter/GetCaptcha"
 )
 
 // UsercenterClient is the client API for Usercenter service.
@@ -35,10 +36,11 @@ type UsercenterClient interface {
 	SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
 	Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 	UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
-	FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error)
+	GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error)
 	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 	GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
+	GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error)
 }
 
 type usercenterClient struct {
@@ -76,9 +78,9 @@ func (c *usercenterClient) UpdateUser(ctx context.Context, in *UpdateUserReq, op
 	return out, nil
 }
 
-func (c *usercenterClient) FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error) {
-	out := new(FindUserResp)
-	err := c.cc.Invoke(ctx, Usercenter_FindUser_FullMethodName, in, out, opts...)
+func (c *usercenterClient) GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error) {
+	out := new(GetUserResp)
+	err := c.cc.Invoke(ctx, Usercenter_GetUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,6 +114,15 @@ func (c *usercenterClient) RefreshToken(ctx context.Context, in *RefreshTokenReq
 	return out, nil
 }
 
+func (c *usercenterClient) GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error) {
+	out := new(GetCaptchaResp)
+	err := c.cc.Invoke(ctx, Usercenter_GetCaptcha_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsercenterServer is the server API for Usercenter service.
 // All implementations must embed UnimplementedUsercenterServer
 // for forward compatibility
@@ -119,10 +130,11 @@ type UsercenterServer interface {
 	SendEmailCode(context.Context, *SendEmailCodeReq) (*SendEmailCodeResp, error)
 	Login(context.Context, *LoginReq) (*LoginResp, error)
 	UpdateUser(context.Context, *UpdateUserReq) (*UpdateUserResp, error)
-	FindUser(context.Context, *FindUserReq) (*FindUserResp, error)
+	GetUser(context.Context, *GetUserReq) (*GetUserResp, error)
 	Register(context.Context, *RegisterReq) (*RegisterResp, error)
 	GenerateToken(context.Context, *GenerateTokenReq) (*GenerateTokenResp, error)
 	RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error)
+	GetCaptcha(context.Context, *GetCaptchaReq) (*GetCaptchaResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -139,8 +151,8 @@ func (UnimplementedUsercenterServer) Login(context.Context, *LoginReq) (*LoginRe
 func (UnimplementedUsercenterServer) UpdateUser(context.Context, *UpdateUserReq) (*UpdateUserResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedUsercenterServer) FindUser(context.Context, *FindUserReq) (*FindUserResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindUser not implemented")
+func (UnimplementedUsercenterServer) GetUser(context.Context, *GetUserReq) (*GetUserResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
 func (UnimplementedUsercenterServer) Register(context.Context, *RegisterReq) (*RegisterResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
@@ -150,6 +162,9 @@ func (UnimplementedUsercenterServer) GenerateToken(context.Context, *GenerateTok
 }
 func (UnimplementedUsercenterServer) RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
+}
+func (UnimplementedUsercenterServer) GetCaptcha(context.Context, *GetCaptchaReq) (*GetCaptchaResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCaptcha not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}
 
@@ -218,20 +233,20 @@ func _Usercenter_UpdateUser_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Usercenter_FindUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindUserReq)
+func _Usercenter_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsercenterServer).FindUser(ctx, in)
+		return srv.(UsercenterServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Usercenter_FindUser_FullMethodName,
+		FullMethod: Usercenter_GetUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsercenterServer).FindUser(ctx, req.(*FindUserReq))
+		return srv.(UsercenterServer).GetUser(ctx, req.(*GetUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,6 +305,24 @@ func _Usercenter_RefreshToken_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Usercenter_GetCaptcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCaptchaReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsercenterServer).GetCaptcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Usercenter_GetCaptcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsercenterServer).GetCaptcha(ctx, req.(*GetCaptchaReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Usercenter_ServiceDesc is the grpc.ServiceDesc for Usercenter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -310,8 +343,8 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Usercenter_UpdateUser_Handler,
 		},
 		{
-			MethodName: "FindUser",
-			Handler:    _Usercenter_FindUser_Handler,
+			MethodName: "GetUser",
+			Handler:    _Usercenter_GetUser_Handler,
 		},
 		{
 			MethodName: "Register",
@@ -324,6 +357,10 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RefreshToken",
 			Handler:    _Usercenter_RefreshToken_Handler,
+		},
+		{
+			MethodName: "GetCaptcha",
+			Handler:    _Usercenter_GetCaptcha_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

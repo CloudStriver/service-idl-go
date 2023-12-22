@@ -86,10 +86,10 @@ message GenerateTokenResp{
   string Error = 2;
 }
 
-message FindUserReq{
+message GetUserReq{
     string UserId = 1;
 }
-message FindUserResp{
+message GetUserResp{
   User User = 1;
   string Error = 2;
 }
@@ -110,12 +110,23 @@ message RefreshTokenResp{
   Token Token = 1;
   string Error = 2;
 }
+
+message GetCaptchaReq{
+}
+
+message GetCaptchaResp{
+  string OriginalImageBase64 = 1;
+  string JigsawImageBase64 = 2;
+  string Key = 3;
+  string Error = 4;
+}
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
- rpc FindUser(FindUserReq) returns(FindUserResp);
+ rpc GetUser(GetUserReq) returns(GetUserResp);
  rpc Register(RegisterReq) returns(RegisterResp);
  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
  rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
+ rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
 }

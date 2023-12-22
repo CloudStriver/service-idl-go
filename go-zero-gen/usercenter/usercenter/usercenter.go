@@ -13,10 +13,12 @@ import (
 )
 
 type (
-	FindUserReq       = pb.FindUserReq
-	FindUserResp      = pb.FindUserResp
 	GenerateTokenReq  = pb.GenerateTokenReq
 	GenerateTokenResp = pb.GenerateTokenResp
+	GetCaptchaReq     = pb.GetCaptchaReq
+	GetCaptchaResp    = pb.GetCaptchaResp
+	GetUserReq        = pb.GetUserReq
+	GetUserResp       = pb.GetUserResp
 	LoginReq          = pb.LoginReq
 	LoginResp         = pb.LoginResp
 	RefreshTokenReq   = pb.RefreshTokenReq
@@ -36,10 +38,11 @@ type (
 		SendEmailCode(ctx context.Context, in *SendEmailCodeReq, opts ...grpc.CallOption) (*SendEmailCodeResp, error)
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 		UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*UpdateUserResp, error)
-		FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error)
+		GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error)
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 		GenerateToken(ctx context.Context, in *GenerateTokenReq, opts ...grpc.CallOption) (*GenerateTokenResp, error)
 		RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
+		GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -68,9 +71,9 @@ func (m *defaultUsercenter) UpdateUser(ctx context.Context, in *UpdateUserReq, o
 	return client.UpdateUser(ctx, in, opts...)
 }
 
-func (m *defaultUsercenter) FindUser(ctx context.Context, in *FindUserReq, opts ...grpc.CallOption) (*FindUserResp, error) {
+func (m *defaultUsercenter) GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
-	return client.FindUser(ctx, in, opts...)
+	return client.GetUser(ctx, in, opts...)
 }
 
 func (m *defaultUsercenter) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
@@ -86,4 +89,9 @@ func (m *defaultUsercenter) GenerateToken(ctx context.Context, in *GenerateToken
 func (m *defaultUsercenter) RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.RefreshToken(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.GetCaptcha(ctx, in, opts...)
 }
