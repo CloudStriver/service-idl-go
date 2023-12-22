@@ -15,19 +15,19 @@ message Token {
 }
 
 message User {
-  string Email = 2;
-  string Name =3;
-  int32  Sex = 4;
-  string FullName = 5;
-  string IdCard = 6;
-  int64 CreatedAt = 7;
-  int64 UpdatedAt = 8;
-  int64 Money = 9;
-  int64 Flow = 10;
-  int64 Memory = 11;
-  string Description = 12;
-  string Url = 13;
-  string UserId = 14;
+  string Email = 1;
+  string Name = 2;
+  Sex  Sex = 3;
+  string FullName = 4;
+  string IdCard = 5;
+  int64 CreatedAt = 6;
+  int64 UpdatedAt = 7;
+  int64 Money = 8;
+  int64 Flow = 9;
+  int64 Memory = 10;
+  string Description = 11;
+  string Url = 12;
+  string UserId = 13;
 }
 
 message UserAuth {
@@ -82,11 +82,12 @@ message UpdateUserResp{
 }
 
 message FindUserByUserIdListReq{
- repeated string  UserIdList = 1;
+ repeated string  UserIdList = 1; // 用户ID列表
 }
 
 message FindUserByUserIdListResp{
   repeated User UserList = 1;
+  string Error = 2;
 }
 
 message FindUserInfoByUserIdListReq{
