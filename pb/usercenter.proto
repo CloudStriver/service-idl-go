@@ -183,5 +183,4 @@ service usercenter {
  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
  rpc SearchUser(SearchUserReq) returns(SearchUserReq);
- xxxx
 }
