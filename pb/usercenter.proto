@@ -146,6 +146,7 @@ message ConfirmEmailCodeResp{
 message RetrievePasswordReq{
   string Email = 1;
   string Code = 2;
+  string PassWord = 3;
 }
 
 message RetrievePasswordResp{
