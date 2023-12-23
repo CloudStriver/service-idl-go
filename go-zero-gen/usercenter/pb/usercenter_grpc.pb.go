@@ -48,7 +48,7 @@ type UsercenterClient interface {
 	ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error)
 	ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error)
 	RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error)
-	SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserReq, error)
+	SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error)
 }
 
 type usercenterClient struct {
@@ -158,8 +158,8 @@ func (c *usercenterClient) RetrievePassword(ctx context.Context, in *RetrievePas
 	return out, nil
 }
 
-func (c *usercenterClient) SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserReq, error) {
-	out := new(SearchUserReq)
+func (c *usercenterClient) SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error) {
+	out := new(SearchUserResp)
 	err := c.cc.Invoke(ctx, Usercenter_SearchUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -182,7 +182,7 @@ type UsercenterServer interface {
 	ConfirmCaptcha(context.Context, *ConfirmCaptchaReq) (*ConfirmCaptchaResp, error)
 	ConfirmEmailCode(context.Context, *ConfirmEmailCodeReq) (*ConfirmEmailCodeResp, error)
 	RetrievePassword(context.Context, *RetrievePasswordReq) (*RetrievePasswordResp, error)
-	SearchUser(context.Context, *SearchUserReq) (*SearchUserReq, error)
+	SearchUser(context.Context, *SearchUserReq) (*SearchUserResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -223,7 +223,7 @@ func (UnimplementedUsercenterServer) ConfirmEmailCode(context.Context, *ConfirmE
 func (UnimplementedUsercenterServer) RetrievePassword(context.Context, *RetrievePasswordReq) (*RetrievePasswordResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RetrievePassword not implemented")
 }
-func (UnimplementedUsercenterServer) SearchUser(context.Context, *SearchUserReq) (*SearchUserReq, error) {
+func (UnimplementedUsercenterServer) SearchUser(context.Context, *SearchUserReq) (*SearchUserResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchUser not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}

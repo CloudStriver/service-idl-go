@@ -55,7 +55,7 @@ type (
 		ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error)
 		ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error)
 		RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error)
-		SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserReq, error)
+		SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -124,7 +124,7 @@ func (m *defaultUsercenter) RetrievePassword(ctx context.Context, in *RetrievePa
 	return client.RetrievePassword(ctx, in, opts...)
 }
 
-func (m *defaultUsercenter) SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserReq, error) {
+func (m *defaultUsercenter) SearchUser(ctx context.Context, in *SearchUserReq, opts ...grpc.CallOption) (*SearchUserResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.SearchUser(ctx, in, opts...)
 }

@@ -172,5 +172,5 @@ service usercenter {
  rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
- rpc SearchUser(SearchUserReq) returns(SearchUserReq);
+ rpc SearchUser(SearchUserReq) returns(SearchUserResp);
 }
