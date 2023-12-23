@@ -168,6 +168,8 @@ message SearchUserResp{
   string Error = 3;
 }
 
+
+
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
@@ -181,4 +183,5 @@ service usercenter {
  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
  rpc SearchUser(SearchUserReq) returns(SearchUserReq);
+ xxxx
 }
