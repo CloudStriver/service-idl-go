@@ -152,6 +152,21 @@ message RetrievePasswordReq{
 message RetrievePasswordResp{
   string Error = 1;
 }
+
+message SearchUserReq{
+  oneof SearchOption {
+    string Name = 1;
+    string UserId = 2;
+  }
+  int32 Offset = 3;
+  int32 Size = 4;
+}
+
+message SearchUserResp{
+  repeated User Users = 1;
+  int32 Total = 2;
+  string Error = 3;
+}
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
@@ -164,4 +179,5 @@ service usercenter {
  rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
+ rpc SearchUser(SearchUserReq) returns(SearchUserReq);
 }
