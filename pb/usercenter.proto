@@ -167,6 +167,7 @@ message SearchUserResp{
   int32 Total = 2;
   string Error = 3;
 }
+
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
