@@ -143,7 +143,14 @@ message ConfirmEmailCodeResp{
   string Error = 1;
 }
 
+message RetrievePasswordReq{
+  string Email = 1;
+  string Code = 2;
+}
 
+message RetrievePasswordResp{
+  string Error = 1;
+}
 service usercenter {
  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
  rpc Login(LoginReq) returns(LoginResp);
@@ -155,4 +162,5 @@ service usercenter {
  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
  rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
+ rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
 }

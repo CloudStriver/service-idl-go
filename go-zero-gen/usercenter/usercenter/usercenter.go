@@ -30,6 +30,8 @@ type (
 	RefreshTokenResp     = pb.RefreshTokenResp
 	RegisterReq          = pb.RegisterReq
 	RegisterResp         = pb.RegisterResp
+	RetrievePasswordReq  = pb.RetrievePasswordReq
+	RetrievePasswordResp = pb.RetrievePasswordResp
 	SendEmailCodeReq     = pb.SendEmailCodeReq
 	SendEmailCodeResp    = pb.SendEmailCodeResp
 	SendEmailReq         = pb.SendEmailReq
@@ -50,6 +52,7 @@ type (
 		GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error)
 		ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error)
 		ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error)
+		RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error)
 	}
 
 	defaultUsercenter struct {
@@ -111,4 +114,9 @@ func (m *defaultUsercenter) ConfirmCaptcha(ctx context.Context, in *ConfirmCaptc
 func (m *defaultUsercenter) ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error) {
 	client := pb.NewUsercenterClient(m.cli.Conn())
 	return client.ConfirmEmailCode(ctx, in, opts...)
+}
+
+func (m *defaultUsercenter) RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error) {
+	client := pb.NewUsercenterClient(m.cli.Conn())
+	return client.RetrievePassword(ctx, in, opts...)
 }

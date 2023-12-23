@@ -29,6 +29,7 @@ const (
 	Usercenter_GetCaptcha_FullMethodName       = "/pb.usercenter/GetCaptcha"
 	Usercenter_ConfirmCaptcha_FullMethodName   = "/pb.usercenter/ConfirmCaptcha"
 	Usercenter_ConfirmEmailCode_FullMethodName = "/pb.usercenter/ConfirmEmailCode"
+	Usercenter_RetrievePassword_FullMethodName = "/pb.usercenter/RetrievePassword"
 )
 
 // UsercenterClient is the client API for Usercenter service.
@@ -45,6 +46,7 @@ type UsercenterClient interface {
 	GetCaptcha(ctx context.Context, in *GetCaptchaReq, opts ...grpc.CallOption) (*GetCaptchaResp, error)
 	ConfirmCaptcha(ctx context.Context, in *ConfirmCaptchaReq, opts ...grpc.CallOption) (*ConfirmCaptchaResp, error)
 	ConfirmEmailCode(ctx context.Context, in *ConfirmEmailCodeReq, opts ...grpc.CallOption) (*ConfirmEmailCodeResp, error)
+	RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error)
 }
 
 type usercenterClient struct {
@@ -145,6 +147,15 @@ func (c *usercenterClient) ConfirmEmailCode(ctx context.Context, in *ConfirmEmai
 	return out, nil
 }
 
+func (c *usercenterClient) RetrievePassword(ctx context.Context, in *RetrievePasswordReq, opts ...grpc.CallOption) (*RetrievePasswordResp, error) {
+	out := new(RetrievePasswordResp)
+	err := c.cc.Invoke(ctx, Usercenter_RetrievePassword_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsercenterServer is the server API for Usercenter service.
 // All implementations must embed UnimplementedUsercenterServer
 // for forward compatibility
@@ -159,6 +170,7 @@ type UsercenterServer interface {
 	GetCaptcha(context.Context, *GetCaptchaReq) (*GetCaptchaResp, error)
 	ConfirmCaptcha(context.Context, *ConfirmCaptchaReq) (*ConfirmCaptchaResp, error)
 	ConfirmEmailCode(context.Context, *ConfirmEmailCodeReq) (*ConfirmEmailCodeResp, error)
+	RetrievePassword(context.Context, *RetrievePasswordReq) (*RetrievePasswordResp, error)
 	mustEmbedUnimplementedUsercenterServer()
 }
 
@@ -195,6 +207,9 @@ func (UnimplementedUsercenterServer) ConfirmCaptcha(context.Context, *ConfirmCap
 }
 func (UnimplementedUsercenterServer) ConfirmEmailCode(context.Context, *ConfirmEmailCodeReq) (*ConfirmEmailCodeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmailCode not implemented")
+}
+func (UnimplementedUsercenterServer) RetrievePassword(context.Context, *RetrievePasswordReq) (*RetrievePasswordResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RetrievePassword not implemented")
 }
 func (UnimplementedUsercenterServer) mustEmbedUnimplementedUsercenterServer() {}
 
@@ -389,6 +404,24 @@ func _Usercenter_ConfirmEmailCode_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Usercenter_RetrievePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RetrievePasswordReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsercenterServer).RetrievePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Usercenter_RetrievePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsercenterServer).RetrievePassword(ctx, req.(*RetrievePasswordReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Usercenter_ServiceDesc is the grpc.ServiceDesc for Usercenter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -435,6 +468,10 @@ var Usercenter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmEmailCode",
 			Handler:    _Usercenter_ConfirmEmailCode_Handler,
+		},
+		{
+			MethodName: "RetrievePassword",
+			Handler:    _Usercenter_RetrievePassword_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
