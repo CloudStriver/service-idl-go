@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+package pb;
+
+message File {
+  string Name = 1;
+  string Path = 2;
+  string Id = 3;
+  string FatherId = 4;
+  string Type = 5;
+  int64 UpdateTime = 6;
+  int64 Size = 7;
+  string Md5 = 8;
+  string UserId = 9;
+}
+
+message PublicFile {
+  string Name = 1;
+  string Path = 2;
+  string Id = 3;
+  string FatherId = 4;
+  string Type = 5;
+  int64 UpdateTime = 6;
+  int64 Size = 7;
+  string Md5 = 8;
+  string UserId = 9;
+}
+
+message FileInfo {
+  string Id = 1;
+  string Name = 2;
+  string UserId = 3;
+  int64 Score = 4;
+  int64 Pos = 5;
+}
+
+message OldFileInfo {
+  string FileId = 1;
+  string OldPath = 2;
+  string NewPath = 3;
+  bool IsFolder = 4;
+  string Name = 5;
+}
+
+message OssInfo {
+  string AccessKeyId = 1;
+  string AccessKeySecret = 2;
+  string StsToken = 3;
+  string Bucket = 4;
+}
+
+message FindOssInfoReq{
+  string UserId = 1;
+}
+
+message FindOssInfoResp{
+  OssInfo Oss = 1;
+  string Error = 2;
+}
+
+message FindFileInfoByFileIdReq{
+  repeated string FileIdList = 1;
+  string UserId = 2;
+}
+
+message FindFileInfoByFileIdResp{
+  repeated File FileList = 1;
+}
+
+message FindFileInfoInPublicByFileIdReq{
+  repeated string FileIdList = 1;
+}
+
+message FindFileInfoInPublicByFileIdResp{
+  repeated PublicFile FileList = 1;
+}
+
+message DeleteExpiredFilesReq{
+}
+
+message DeleteExpiredFilesResp{
+}
+
+message DeleteExpiredShareCodesReq{
+}
+
+message DeleteExpiredShareCodesResp{
+}
+
+message UploadFileReq {
+  repeated bytes File = 1;
+  repeated string Name = 2;
+}
+
+message UploadFileResp {
+}
+
+message AskUploadFileReq {
+  int64 Size = 1;
+  string UserId = 2;
+  string Name = 3;
+  string Type = 4;
+  string Md5 = 5;
+  string FatherId = 6;
+  string FileId = 7;
+  bool Ok = 8;
+}
+
+message AskUploadFileResp {
+}
+
+//service
+service filecenter {
+  rpc FindOssInfo (FindOssInfoReq) returns(FindOssInfoResp);
+  rpc FindFileInfoInPublicByFileId (FindFileInfoInPublicByFileIdReq) returns(FindFileInfoInPublicByFileIdResp);
+  rpc FindFileInfoByFileId (FindFileInfoByFileIdReq) returns(FindFileInfoByFileIdResp);
+  rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
+  rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
+  rpc UploadFile (UploadFileReq) returns(UploadFileResp);
+  rpc AskUploadFile (AskUploadFileReq) returns(AskUploadFileResp);
+  rpc AskUploadFileRollback (AskUploadFileReq) returns(AskUploadFileResp);
+}
