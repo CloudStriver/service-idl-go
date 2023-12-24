@@ -13,35 +13,84 @@ import (
 )
 
 type (
-	AskUploadFileReq                 = pb.AskUploadFileReq
-	AskUploadFileResp                = pb.AskUploadFileResp
-	DeleteExpiredFilesReq            = pb.DeleteExpiredFilesReq
-	DeleteExpiredFilesResp           = pb.DeleteExpiredFilesResp
-	DeleteExpiredShareCodesReq       = pb.DeleteExpiredShareCodesReq
-	DeleteExpiredShareCodesResp      = pb.DeleteExpiredShareCodesResp
-	File                             = pb.File
-	FileInfo                         = pb.FileInfo
-	FindFileInfoByFileIdReq          = pb.FindFileInfoByFileIdReq
-	FindFileInfoByFileIdResp         = pb.FindFileInfoByFileIdResp
-	FindFileInfoInPublicByFileIdReq  = pb.FindFileInfoInPublicByFileIdReq
-	FindFileInfoInPublicByFileIdResp = pb.FindFileInfoInPublicByFileIdResp
-	FindOssInfoReq                   = pb.FindOssInfoReq
-	FindOssInfoResp                  = pb.FindOssInfoResp
-	OldFileInfo                      = pb.OldFileInfo
-	OssInfo                          = pb.OssInfo
-	PublicFile                       = pb.PublicFile
-	UploadFileReq                    = pb.UploadFileReq
-	UploadFileResp                   = pb.UploadFileResp
+	AskUploadFileReq                       = pb.AskUploadFileReq
+	AskUploadFileResp                      = pb.AskUploadFileResp
+	CalFileSizeReq                         = pb.CalFileSizeReq
+	CalFileSizeResp                        = pb.CalFileSizeResp
+	CalPublicFileSizeReq                   = pb.CalPublicFileSizeReq
+	CalPublicFileSizeResp                  = pb.CalPublicFileSizeResp
+	CosInfo                                = pb.CosInfo
+	DeleteExpiredFilesReq                  = pb.DeleteExpiredFilesReq
+	DeleteExpiredFilesResp                 = pb.DeleteExpiredFilesResp
+	DeleteExpiredShareCodesReq             = pb.DeleteExpiredShareCodesReq
+	DeleteExpiredShareCodesResp            = pb.DeleteExpiredShareCodesResp
+	File                                   = pb.File
+	FindAllFileByFatherIdReq               = pb.FindAllFileByFatherIdReq
+	FindAllFileByFatherIdResp              = pb.FindAllFileByFatherIdResp
+	FindAllPublicFileByFatherIdReq         = pb.FindAllPublicFileByFatherIdReq
+	FindAllPublicFileByFatherIdResp        = pb.FindAllPublicFileByFatherIdResp
+	FindCosInfoReq                         = pb.FindCosInfoReq
+	FindCosInfoResp                        = pb.FindCosInfoResp
+	FindFileByFileIdWithUserIdReq          = pb.FindFileByFileIdWithUserIdReq
+	FindFileByFileIdWithUserIdResp         = pb.FindFileByFileIdWithUserIdResp
+	FindFileByMd5Req                       = pb.FindFileByMd5Req
+	FindFileByMd5Resp                      = pb.FindFileByMd5Resp
+	FindFileBySharingCodeReq               = pb.FindFileBySharingCodeReq
+	FindFileBySharingCodeResp              = pb.FindFileBySharingCodeResp
+	FindFileCountReq                       = pb.FindFileCountReq
+	FindFileCountResp                      = pb.FindFileCountResp
+	FindFileInfoByFileIdListReq            = pb.FindFileInfoByFileIdListReq
+	FindFileInfoByFileIdListResp           = pb.FindFileInfoByFileIdListResp
+	FindFileInfoByFileIdListWithUserIdReq  = pb.FindFileInfoByFileIdListWithUserIdReq
+	FindFileInfoByFileIdListWithUserIdResp = pb.FindFileInfoByFileIdListWithUserIdResp
+	FindFileInfoByFileIdReq                = pb.FindFileInfoByFileIdReq
+	FindFileInfoByFileIdResp               = pb.FindFileInfoByFileIdResp
+	FindFileInfoInPublicByFileIdReq        = pb.FindFileInfoInPublicByFileIdReq
+	FindFileInfoInPublicByFileIdResp       = pb.FindFileInfoInPublicByFileIdResp
+	FindFileListByFatherIdReq              = pb.FindFileListByFatherIdReq
+	FindFileListByFatherIdResp             = pb.FindFileListByFatherIdResp
+	FindFileListByFatherIdWithUserIdReq    = pb.FindFileListByFatherIdWithUserIdReq
+	FindFileListByFatherIdWithUserIdResp   = pb.FindFileListByFatherIdWithUserIdResp
+	FindFileTypeReq                        = pb.FindFileTypeReq
+	FindFileTypeResp                       = pb.FindFileTypeResp
+	FindPublicByFileIdListReq              = pb.FindPublicByFileIdListReq
+	FindPublicByFileIdListResp             = pb.FindPublicByFileIdListResp
+	FindPublicFileByFileIdWithUserIdReq    = pb.FindPublicFileByFileIdWithUserIdReq
+	FindPublicFileByFileIdWithUserIdResp   = pb.FindPublicFileByFileIdWithUserIdResp
+	FindPublicFileListByFatherIdReq        = pb.FindPublicFileListByFatherIdReq
+	FindPublicFileListByFatherIdResp       = pb.FindPublicFileListByFatherIdResp
+	FindPublicFileListByUserIdReq          = pb.FindPublicFileListByUserIdReq
+	FindPublicFileListByUserIdResp         = pb.FindPublicFileListByUserIdResp
+	PublicFile                             = pb.PublicFile
+	UploadFileReq                          = pb.UploadFileReq
+	UploadFileResp                         = pb.UploadFileResp
 
 	Filecenter interface {
-		FindOssInfo(ctx context.Context, in *FindOssInfoReq, opts ...grpc.CallOption) (*FindOssInfoResp, error)
-		FindFileInfoInPublicByFileId(ctx context.Context, in *FindFileInfoInPublicByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoInPublicByFileIdResp, error)
+		FindCosInfo(ctx context.Context, in *FindCosInfoReq, opts ...grpc.CallOption) (*FindCosInfoResp, error)
+		FindFileByMd5(ctx context.Context, in *FindFileByMd5Req, opts ...grpc.CallOption) (*FindFileByMd5Resp, error)
 		FindFileInfoByFileId(ctx context.Context, in *FindFileInfoByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdResp, error)
-		DeleteExpiredFiles(ctx context.Context, in *DeleteExpiredFilesReq, opts ...grpc.CallOption) (*DeleteExpiredFilesResp, error)
-		DeleteExpiredShareCodes(ctx context.Context, in *DeleteExpiredShareCodesReq, opts ...grpc.CallOption) (*DeleteExpiredShareCodesResp, error)
+		FindFileByFileIdWithUserId(ctx context.Context, in *FindFileByFileIdWithUserIdReq, opts ...grpc.CallOption) (*FindFileByFileIdWithUserIdResp, error)
+		FindFileInfoByFileIdList(ctx context.Context, in *FindFileInfoByFileIdListReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdListResp, error)
+		FindFileInfoByFileIdListWithUserId(ctx context.Context, in *FindFileInfoByFileIdListWithUserIdReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdListWithUserIdResp, error)
+		FindFileListByFatherId(ctx context.Context, in *FindFileListByFatherIdReq, opts ...grpc.CallOption) (*FindFileListByFatherIdResp, error)
+		FindFileListByFatherIdWithUserId(ctx context.Context, in *FindFileListByFatherIdWithUserIdReq, opts ...grpc.CallOption) (*FindFileListByFatherIdWithUserIdResp, error)
+		FindAllFileByFatherId(ctx context.Context, in *FindAllFileByFatherIdReq, opts ...grpc.CallOption) (*FindAllFileByFatherIdResp, error)
+		CalFileSize(ctx context.Context, in *CalFileSizeReq, opts ...grpc.CallOption) (*CalFileSizeResp, error)
+		FindFileCount(ctx context.Context, in *FindFileCountReq, opts ...grpc.CallOption) (*FindFileCountResp, error)
+		FindFileType(ctx context.Context, in *FindFileTypeReq, opts ...grpc.CallOption) (*FindFileTypeReq, error)
+		FindFileInfoInPublicByFileId(ctx context.Context, in *FindFileInfoInPublicByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoInPublicByFileIdResp, error)
+		FindPublicFileByFileIdWithUserId(ctx context.Context, in *FindPublicFileByFileIdWithUserIdReq, opts ...grpc.CallOption) (*FindPublicFileByFileIdWithUserIdResp, error)
+		FindPublicByFileIdList(ctx context.Context, in *FindPublicByFileIdListReq, opts ...grpc.CallOption) (*FindPublicByFileIdListResp, error)
+		CalPublicFileSize(ctx context.Context, in *CalPublicFileSizeReq, opts ...grpc.CallOption) (*CalPublicFileSizeResp, error)
+		FindPublicFileListByUserId(ctx context.Context, in *FindPublicFileListByUserIdReq, opts ...grpc.CallOption) (*FindPublicFileListByUserIdResp, error)
+		FindPublicFileListByFatherId(ctx context.Context, in *FindPublicFileListByFatherIdReq, opts ...grpc.CallOption) (*FindPublicFileListByFatherIdResp, error)
+		FindAllPublicFileByFatherId(ctx context.Context, in *FindAllPublicFileByFatherIdReq, opts ...grpc.CallOption) (*FindAllPublicFileByFatherIdResp, error)
+		FindFileBySharingCode(ctx context.Context, in *FindFileBySharingCodeReq, opts ...grpc.CallOption) (*FindFileBySharingCodeResp, error)
 		UploadFile(ctx context.Context, in *UploadFileReq, opts ...grpc.CallOption) (*UploadFileResp, error)
 		AskUploadFile(ctx context.Context, in *AskUploadFileReq, opts ...grpc.CallOption) (*AskUploadFileResp, error)
 		AskUploadFileRollback(ctx context.Context, in *AskUploadFileReq, opts ...grpc.CallOption) (*AskUploadFileResp, error)
+		DeleteExpiredFiles(ctx context.Context, in *DeleteExpiredFilesReq, opts ...grpc.CallOption) (*DeleteExpiredFilesResp, error)
+		DeleteExpiredShareCodes(ctx context.Context, in *DeleteExpiredShareCodesReq, opts ...grpc.CallOption) (*DeleteExpiredShareCodesResp, error)
 	}
 
 	defaultFilecenter struct {
@@ -55,14 +104,14 @@ func NewFilecenter(cli zrpc.Client) Filecenter {
 	}
 }
 
-func (m *defaultFilecenter) FindOssInfo(ctx context.Context, in *FindOssInfoReq, opts ...grpc.CallOption) (*FindOssInfoResp, error) {
+func (m *defaultFilecenter) FindCosInfo(ctx context.Context, in *FindCosInfoReq, opts ...grpc.CallOption) (*FindCosInfoResp, error) {
 	client := pb.NewFilecenterClient(m.cli.Conn())
-	return client.FindOssInfo(ctx, in, opts...)
+	return client.FindCosInfo(ctx, in, opts...)
 }
 
-func (m *defaultFilecenter) FindFileInfoInPublicByFileId(ctx context.Context, in *FindFileInfoInPublicByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoInPublicByFileIdResp, error) {
+func (m *defaultFilecenter) FindFileByMd5(ctx context.Context, in *FindFileByMd5Req, opts ...grpc.CallOption) (*FindFileByMd5Resp, error) {
 	client := pb.NewFilecenterClient(m.cli.Conn())
-	return client.FindFileInfoInPublicByFileId(ctx, in, opts...)
+	return client.FindFileByMd5(ctx, in, opts...)
 }
 
 func (m *defaultFilecenter) FindFileInfoByFileId(ctx context.Context, in *FindFileInfoByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdResp, error) {
@@ -70,14 +119,89 @@ func (m *defaultFilecenter) FindFileInfoByFileId(ctx context.Context, in *FindFi
 	return client.FindFileInfoByFileId(ctx, in, opts...)
 }
 
-func (m *defaultFilecenter) DeleteExpiredFiles(ctx context.Context, in *DeleteExpiredFilesReq, opts ...grpc.CallOption) (*DeleteExpiredFilesResp, error) {
+func (m *defaultFilecenter) FindFileByFileIdWithUserId(ctx context.Context, in *FindFileByFileIdWithUserIdReq, opts ...grpc.CallOption) (*FindFileByFileIdWithUserIdResp, error) {
 	client := pb.NewFilecenterClient(m.cli.Conn())
-	return client.DeleteExpiredFiles(ctx, in, opts...)
+	return client.FindFileByFileIdWithUserId(ctx, in, opts...)
 }
 
-func (m *defaultFilecenter) DeleteExpiredShareCodes(ctx context.Context, in *DeleteExpiredShareCodesReq, opts ...grpc.CallOption) (*DeleteExpiredShareCodesResp, error) {
+func (m *defaultFilecenter) FindFileInfoByFileIdList(ctx context.Context, in *FindFileInfoByFileIdListReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdListResp, error) {
 	client := pb.NewFilecenterClient(m.cli.Conn())
-	return client.DeleteExpiredShareCodes(ctx, in, opts...)
+	return client.FindFileInfoByFileIdList(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileInfoByFileIdListWithUserId(ctx context.Context, in *FindFileInfoByFileIdListWithUserIdReq, opts ...grpc.CallOption) (*FindFileInfoByFileIdListWithUserIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileInfoByFileIdListWithUserId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileListByFatherId(ctx context.Context, in *FindFileListByFatherIdReq, opts ...grpc.CallOption) (*FindFileListByFatherIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileListByFatherId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileListByFatherIdWithUserId(ctx context.Context, in *FindFileListByFatherIdWithUserIdReq, opts ...grpc.CallOption) (*FindFileListByFatherIdWithUserIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileListByFatherIdWithUserId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindAllFileByFatherId(ctx context.Context, in *FindAllFileByFatherIdReq, opts ...grpc.CallOption) (*FindAllFileByFatherIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindAllFileByFatherId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) CalFileSize(ctx context.Context, in *CalFileSizeReq, opts ...grpc.CallOption) (*CalFileSizeResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.CalFileSize(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileCount(ctx context.Context, in *FindFileCountReq, opts ...grpc.CallOption) (*FindFileCountResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileCount(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileType(ctx context.Context, in *FindFileTypeReq, opts ...grpc.CallOption) (*FindFileTypeReq, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileType(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileInfoInPublicByFileId(ctx context.Context, in *FindFileInfoInPublicByFileIdReq, opts ...grpc.CallOption) (*FindFileInfoInPublicByFileIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileInfoInPublicByFileId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindPublicFileByFileIdWithUserId(ctx context.Context, in *FindPublicFileByFileIdWithUserIdReq, opts ...grpc.CallOption) (*FindPublicFileByFileIdWithUserIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindPublicFileByFileIdWithUserId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindPublicByFileIdList(ctx context.Context, in *FindPublicByFileIdListReq, opts ...grpc.CallOption) (*FindPublicByFileIdListResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindPublicByFileIdList(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) CalPublicFileSize(ctx context.Context, in *CalPublicFileSizeReq, opts ...grpc.CallOption) (*CalPublicFileSizeResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.CalPublicFileSize(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindPublicFileListByUserId(ctx context.Context, in *FindPublicFileListByUserIdReq, opts ...grpc.CallOption) (*FindPublicFileListByUserIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindPublicFileListByUserId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindPublicFileListByFatherId(ctx context.Context, in *FindPublicFileListByFatherIdReq, opts ...grpc.CallOption) (*FindPublicFileListByFatherIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindPublicFileListByFatherId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindAllPublicFileByFatherId(ctx context.Context, in *FindAllPublicFileByFatherIdReq, opts ...grpc.CallOption) (*FindAllPublicFileByFatherIdResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindAllPublicFileByFatherId(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) FindFileBySharingCode(ctx context.Context, in *FindFileBySharingCodeReq, opts ...grpc.CallOption) (*FindFileBySharingCodeResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.FindFileBySharingCode(ctx, in, opts...)
 }
 
 func (m *defaultFilecenter) UploadFile(ctx context.Context, in *UploadFileReq, opts ...grpc.CallOption) (*UploadFileResp, error) {
@@ -93,4 +217,14 @@ func (m *defaultFilecenter) AskUploadFile(ctx context.Context, in *AskUploadFile
 func (m *defaultFilecenter) AskUploadFileRollback(ctx context.Context, in *AskUploadFileReq, opts ...grpc.CallOption) (*AskUploadFileResp, error) {
 	client := pb.NewFilecenterClient(m.cli.Conn())
 	return client.AskUploadFileRollback(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) DeleteExpiredFiles(ctx context.Context, in *DeleteExpiredFilesReq, opts ...grpc.CallOption) (*DeleteExpiredFilesResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.DeleteExpiredFiles(ctx, in, opts...)
+}
+
+func (m *defaultFilecenter) DeleteExpiredShareCodes(ctx context.Context, in *DeleteExpiredShareCodesReq, opts ...grpc.CallOption) (*DeleteExpiredShareCodesResp, error) {
+	client := pb.NewFilecenterClient(m.cli.Conn())
+	return client.DeleteExpiredShareCodes(ctx, in, opts...)
 }
