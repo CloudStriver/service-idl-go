@@ -3,77 +3,239 @@ syntax = "proto3";
 option go_package = "./pb";
 package pb;
 
+enum Type {
+  Type_folder = 0;
+  Type_audio = 1;
+  Type_video = 2;
+  Type_photo = 3;
+  Type_word = 4;
+  Type_ppt = 5;
+  Type_zip = 6;
+  Type_excel = 7;
+  Type_pdf = 8;
+  Type_unknown = 9;
+  Type_file = 10;
+  Type_code = 11;
+}
+
 message File {
-  string Name = 1;
-  string Path = 2;
-  string Id = 3;
-  string FatherId = 4;
-  string Type = 5;
-  int64 UpdateTime = 6;
-  int64 Size = 7;
-  string Md5 = 8;
-  string UserId = 9;
+  string fileId = 1;
+  string name = 2;
+  Type type = 3;
+  string path = 4;
+  string userId = 5;
+  string fatherId = 6;
+  int64 size = 7;
+  string md5 = 8;
+  int64 updateTime = 9;
 }
 
 message PublicFile {
-  string Name = 1;
-  string Path = 2;
-  string Id = 3;
-  string FatherId = 4;
-  string Type = 5;
-  int64 UpdateTime = 6;
-  int64 Size = 7;
-  string Md5 = 8;
-  string UserId = 9;
+  string fileId = 1;
+  string name = 2;
+  Type type = 3;
+  string path = 4;
+  string userId = 5;
+  string fatherId = 6;
+  int64 size = 7;
+  string md5 = 8;
+  int64 updateTime = 9;
+  string description = 10;
 }
 
-message FileInfo {
-  string Id = 1;
-  string Name = 2;
-  string UserId = 3;
-  int64 Score = 4;
-  int64 Pos = 5;
+message CosInfo {
+  string secretId = 1;
+  string secretKey = 2;
+  string sessionToken = 3;
+  string bucketName = 4;
 }
 
-message OldFileInfo {
-  string FileId = 1;
-  string OldPath = 2;
-  string NewPath = 3;
-  bool IsFolder = 4;
-  string Name = 5;
+message GetCosInfoReq{
+  string userId = 1;
 }
 
-message OssInfo {
-  string AccessKeyId = 1;
-  string AccessKeySecret = 2;
-  string StsToken = 3;
-  string Bucket = 4;
+message GetCosInfoResp{
+  CosInfo cos = 1;
+  string error = 2;
 }
 
-message FindOssInfoReq{
-  string UserId = 1;
+message GetFileByMd5Req {
+  string md5 = 1;
 }
 
-message FindOssInfoResp{
-  OssInfo Oss = 1;
-  string Error = 2;
+message GetFileByMd5Resp {
+  bool ok = 1;
+  string error = 2;
 }
 
-message FindFileInfoByFileIdReq{
-  repeated string FileIdList = 1;
-  string UserId = 2;
+message GetFileInfoByFileIdReq{
+  string fileId = 1;
 }
 
-message FindFileInfoByFileIdResp{
-  repeated File FileList = 1;
+message GetFileInfoByFileIdResp{
+  File file = 1;
+  string error = 2;
 }
 
-message FindFileInfoInPublicByFileIdReq{
-  repeated string FileIdList = 1;
+message GetFileByFileIdWithUserIdReq {
+  string fileId = 1;
+  string userId = 2;
 }
 
-message FindFileInfoInPublicByFileIdResp{
-  repeated PublicFile FileList = 1;
+message GetFileByFileIdWithUserIdResp {
+  File file = 1;
+  string error = 2;
+}
+
+message GetFileInfoByFileIdsReq{
+  repeated string fileIds = 1;
+  string userId = 2;
+}
+
+message GetFileInfoByFileIdsResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message GetFileInfoByFileIdsWithUserIdReq{
+  repeated string fileIds = 1;
+  string userId = 2;
+}
+
+message GetFileInfoByFileIdsWithUserIdResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message GetFilesByFatherIdReq{
+  string fatherId = 1;
+}
+
+message GetFilesByFatherIdResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message GetFilesByFatherIdWithUserIdReq{
+  string fatherId = 1;
+  string userId = 2;
+}
+
+message GetFilesByFatherIdWithUserIdResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message GetAllFileByFatherIdReq{
+  string fatherId = 1;
+  string userId = 2;
+}
+
+message GetAllFileByFatherIdResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message CalFileSizeReq{
+  string userId = 1;
+  optional int64 size = 2;
+  string path = 3;
+  bool op = 4;
+}
+
+message CalFileSizeResp{
+  string error = 1;
+}
+
+message GetFileCountReq{
+
+}
+
+message GetFileCountResp{
+
+}
+
+message GetFileTypeReq{
+
+}
+
+message GetFileTypeResp{
+
+}
+
+message GetFileInfoInPublicByFileIdReq{
+  string fileId = 1;
+}
+
+message GetFileInfoInPublicByFileIdResp{
+  PublicFile file = 1;
+  string error = 2;
+}
+
+message GetPublicFileByFileIdWithUserIdReq{
+  string fileId = 1;
+  string userId = 2;
+}
+
+message GetPublicFileByFileIdWithUserIdResp{
+  PublicFile file = 1;
+  string error = 2;
+}
+
+message GetPublicByFileIdsReq{
+  repeated string fileIds = 1;
+  string error = 2;
+}
+
+message GetPublicByFileIdsResp{
+  repeated PublicFile fileIds = 1;
+  string error = 2;
+}
+
+message CalPublicFileSizeReq{
+  string userId = 1;
+  optional int64 size = 2;
+  string path = 3;
+  bool op = 4;
+}
+
+message CalPublicFileSizeResp{
+  string error = 1;
+}
+
+message GetPublicFilesByUserIdReq{
+  string userId = 1;
+}
+
+message GetPublicFilesByUserIdResp{
+  repeated PublicFile files = 1;
+}
+
+message GetPublicFilesByFatherIdReq{
+  string fatherId = 1;
+}
+
+message GetPublicFilesByFatherIdResp{
+  repeated PublicFile files = 1;
+  string error = 2;
+}
+
+message GetAllPublicFileByFatherIdReq{
+  string fatherId = 1;
+}
+
+message GetAllPublicFileByFatherIdResp{
+  repeated PublicFile files = 1;
+  string error = 2;
+}
+
+message GetFileBySharingCodeReq{
+  string sharingCode = 1;
+}
+
+message GetFileBySharingCodeResp{
+  repeated File files = 1;
+  string error = 2;
 }
 
 message DeleteExpiredFilesReq{
@@ -89,22 +251,22 @@ message DeleteExpiredShareCodesResp{
 }
 
 message UploadFileReq {
-  repeated bytes File = 1;
-  repeated string Name = 2;
+  repeated bytes file = 1;
+  repeated string name = 2;
 }
 
 message UploadFileResp {
 }
 
 message AskUploadFileReq {
-  int64 Size = 1;
-  string UserId = 2;
-  string Name = 3;
-  string Type = 4;
-  string Md5 = 5;
-  string FatherId = 6;
-  string FileId = 7;
-  bool Ok = 8;
+  int64 size = 1;
+  string userId = 2;
+  string name = 3;
+  Type type = 4;
+  string md5 = 5;
+  string fatherId = 6;
+  string fileId = 7;
+  bool ok = 8;
 }
 
 message AskUploadFileResp {
@@ -112,12 +274,29 @@ message AskUploadFileResp {
 
 //service
 service filecenter {
-  rpc FindOssInfo (FindOssInfoReq) returns(FindOssInfoResp);
-  rpc FindFileInfoInPublicByFileId (FindFileInfoInPublicByFileIdReq) returns(FindFileInfoInPublicByFileIdResp);
-  rpc FindFileInfoByFileId (FindFileInfoByFileIdReq) returns(FindFileInfoByFileIdResp);
-  rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
-  rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
+  rpc GetCosInfo (GetCosInfoReq) returns(GetCosInfoResp);
+  rpc GetFileByMd5(GetFileByMd5Req) returns(GetFileByMd5Resp);
+  rpc GetFileInfoByFileId(GetFileInfoByFileIdReq) returns(GetFileInfoByFileIdResp);
+  rpc GetFileByFileIdWithUserId(GetFileByFileIdWithUserIdReq) returns(GetFileByFileIdWithUserIdResp);
+  rpc GetFileInfoByFileIds(GetFileInfoByFileIdsReq) returns(GetFileInfoByFileIdsResp);
+  rpc GetFileInfoByFileIdsWithUserId(GetFileInfoByFileIdsWithUserIdReq) returns(GetFileInfoByFileIdsWithUserIdResp);
+  rpc GetFilesByFatherId(GetFilesByFatherIdReq) returns(GetFilesByFatherIdResp);
+  rpc GetFilesByFatherIdWithUserId(GetFilesByFatherIdWithUserIdReq) returns(GetFilesByFatherIdWithUserIdResp);
+  rpc GetAllFileByFatherId(GetAllFileByFatherIdReq) returns(GetAllFileByFatherIdResp);
+  rpc CalFileSize(CalFileSizeReq) returns(CalFileSizeResp);
+  rpc GetFileCount(GetFileCountReq) returns(GetFileCountResp);
+  rpc GetFileType(GetFileTypeReq) returns(GetFileTypeReq);
+  rpc GetFileInfoInPublicByFileId (GetFileInfoInPublicByFileIdReq) returns(GetFileInfoInPublicByFileIdResp);
+  rpc GetPublicFileByFileIdWithUserId(GetPublicFileByFileIdWithUserIdReq) returns(GetPublicFileByFileIdWithUserIdResp);
+  rpc GetPublicByFileIds(GetPublicByFileIdsReq) returns(GetPublicByFileIdsResp);
+  rpc CalPublicFileSize(CalPublicFileSizeReq) returns(CalPublicFileSizeResp);
+  rpc GetPublicFilesByUserId(GetPublicFilesByUserIdReq) returns(GetPublicFilesByUserIdResp);
+  rpc GetPublicFilesByFatherId(GetPublicFilesByFatherIdReq) returns(GetPublicFilesByFatherIdResp);
+  rpc GetAllPublicFileByFatherId(GetAllPublicFileByFatherIdReq) returns(GetAllPublicFileByFatherIdResp);
+  rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
   rpc UploadFile (UploadFileReq) returns(UploadFileResp);
   rpc AskUploadFile (AskUploadFileReq) returns(AskUploadFileResp);
   rpc AskUploadFileRollback (AskUploadFileReq) returns(AskUploadFileResp);
+  rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
+  rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
 }
