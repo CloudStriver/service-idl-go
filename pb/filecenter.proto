@@ -4,132 +4,132 @@ option go_package = "./pb";
 package pb;
 
 message File {
-  string FileId = 1;
-  string Name = 2;
-  string Type = 3;
-  string Path = 4;
-  string UserId = 5;
-  string FatherId = 6;
-  int64 Size = 7;
-  string Md5 = 8;
-  int64 UpdateTime = 9;
+  string fileId = 1;
+  string name = 2;
+  string type = 3;
+  string path = 4;
+  string userId = 5;
+  string fatherId = 6;
+  int64 size = 7;
+  string md5 = 8;
+  int64 updateTime = 9;
 }
 
 message PublicFile {
-  string FileId = 1;
-  string Name = 2;
-  string Type = 3;
-  string Path = 4;
-  string UserId = 5;
-  string FatherId = 6;
-  int64 Size = 7;
-  string Md5 = 8;
-  int64 UpdateTime = 9;
-  string Description = 10;
+  string fileId = 1;
+  string name = 2;
+  string type = 3;
+  string path = 4;
+  string userId = 5;
+  string fatherId = 6;
+  int64 size = 7;
+  string md5 = 8;
+  int64 updateTime = 9;
+  string description = 10;
 }
 
 message CosInfo {
-  string SecretId = 1;
-  string SecretKey = 2;
-  string SessionToken = 3;
-  string BucketName = 4;
+  string secretId = 1;
+  string secretKey = 2;
+  string sessionToken = 3;
+  string bucketName = 4;
 }
 
 message FindCosInfoReq{
-  string UserId = 1;
+  string userId = 1;
 }
 
 message FindCosInfoResp{
-  CosInfo COS = 1;
-  string Error = 2;
+  CosInfo cos = 1;
+  string error = 2;
 }
 
 message FindFileByMd5Req {
-  string Md5 = 1;
+  string md5 = 1;
 }
 
 message FindFileByMd5Resp {
-  bool Ok = 1;
-  string Error = 2;
+  bool ok = 1;
+  string error = 2;
 }
 
 message FindFileInfoByFileIdReq{
-  string FileId = 1;
+  string fileId = 1;
 }
 
 message FindFileInfoByFileIdResp{
-  File File = 1;
-  string Error = 2;
+  File file = 1;
+  string error = 2;
 }
 
 message FindFileByFileIdWithUserIdReq {
-  string FileId = 1;
-  string UserId = 2;
+  string fileId = 1;
+  string userId = 2;
 }
 
 message FindFileByFileIdWithUserIdResp {
-  File File = 1;
-  string Error = 2;
+  File file = 1;
+  string error = 2;
 }
 
 message FindFileInfoByFileIdListReq{
-  repeated string FileIdList = 1;
-  string UserId = 2;
+  repeated string fileIdList = 1;
+  string userId = 2;
 }
 
 message FindFileInfoByFileIdListResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message FindFileInfoByFileIdListWithUserIdReq{
-  repeated string FileIdList = 1;
-  string UserId = 2;
+  repeated string fileIdList = 1;
+  string userId = 2;
 }
 
 message FindFileInfoByFileIdListWithUserIdResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message FindFileListByFatherIdReq{
-  string FatherId = 1;
+  string fatherId = 1;
 }
 
 message FindFileListByFatherIdResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message FindFileListByFatherIdWithUserIdReq{
-  string FatherId = 1;
-  string UserId = 2;
+  string fatherId = 1;
+  string userId = 2;
 }
 
 message FindFileListByFatherIdWithUserIdResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message FindAllFileByFatherIdReq{
-  string FatherId = 1;
-  string UserId = 2;
+  string fatherId = 1;
+  string userId = 2;
 }
 
 message FindAllFileByFatherIdResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message CalFileSizeReq{
-  string UserId = 1;
-  optional int64 Size = 2;
-  string Path = 3;
-  bool Op = 4;
+  string userId = 1;
+  optional int64 size = 2;
+  string path = 3;
+  bool op = 4;
 }
 
 message CalFileSizeResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message FindFileCountReq{
@@ -149,78 +149,78 @@ message FindFileTypeResp{
 }
 
 message FindFileInfoInPublicByFileIdReq{
-  string FileId = 1;
+  string fileId = 1;
 }
 
 message FindFileInfoInPublicByFileIdResp{
-  PublicFile File = 1;
-  string Error = 2;
+  PublicFile file = 1;
+  string error = 2;
 }
 
 message FindPublicFileByFileIdWithUserIdReq{
-  string FileId = 1;
-  string UserId = 2;
+  string fileId = 1;
+  string userId = 2;
 }
 
 message FindPublicFileByFileIdWithUserIdResp{
-  PublicFile File = 1;
-  string Error = 2;
+  PublicFile file = 1;
+  string error = 2;
 }
 
 message FindPublicByFileIdListReq{
-  repeated string FileIdList = 1;
-  string Error = 2;
+  repeated string fileIdList = 1;
+  string error = 2;
 }
 
 message FindPublicByFileIdListResp{
-  repeated PublicFile FileIdList = 1;
-  string Error = 2;
+  repeated PublicFile fileIdList = 1;
+  string error = 2;
 }
 
 message CalPublicFileSizeReq{
-  string UserId = 1;
-  optional int64 Size = 2;
-  string Path = 3;
-  bool Op = 4;
+  string userId = 1;
+  optional int64 size = 2;
+  string path = 3;
+  bool op = 4;
 }
 
 message CalPublicFileSizeResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message FindPublicFileListByUserIdReq{
-  string UserId = 1;
+  string userId = 1;
 }
 
 message FindPublicFileListByUserIdResp{
-  repeated PublicFile FileList = 1;
+  repeated PublicFile fileList = 1;
 }
 
 message FindPublicFileListByFatherIdReq{
-  string FatherId = 1;
+  string fatherId = 1;
 }
 
 message FindPublicFileListByFatherIdResp{
-  repeated PublicFile FileList = 1;
-  string Error = 2;
+  repeated PublicFile fileList = 1;
+  string error = 2;
 }
 
 message FindAllPublicFileByFatherIdReq{
-  string FatherId = 1;
+  string fatherId = 1;
 }
 
 message FindAllPublicFileByFatherIdResp{
-  repeated PublicFile FileList = 1;
-  string Error = 2;
+  repeated PublicFile fileList = 1;
+  string error = 2;
 }
 
 message FindFileBySharingCodeReq{
-  string SharingCode = 1;
+  string sharingCode = 1;
 }
 
 message FindFileBySharingCodeResp{
-  repeated File FileList = 1;
-  string Error = 2;
+  repeated File fileList = 1;
+  string error = 2;
 }
 
 message DeleteExpiredFilesReq{
@@ -236,22 +236,22 @@ message DeleteExpiredShareCodesResp{
 }
 
 message UploadFileReq {
-  repeated bytes File = 1;
-  repeated string Name = 2;
+  repeated bytes file = 1;
+  repeated string name = 2;
 }
 
 message UploadFileResp {
 }
 
 message AskUploadFileReq {
-  int64 Size = 1;
-  string UserId = 2;
-  string Name = 3;
-  string Type = 4;
-  string Md5 = 5;
-  string FatherId = 6;
-  string FileId = 7;
-  bool Ok = 8;
+  int64 size = 1;
+  string userId = 2;
+  string name = 3;
+  string type = 4;
+  string md5 = 5;
+  string fatherId = 6;
+  string fileId = 7;
+  bool ok = 8;
 }
 
 message AskUploadFileResp {
