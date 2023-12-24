@@ -1,0 +1,26 @@
+name: Trigger Golang Code Generate
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Golang
+        run: |
+          branch=$(echo ${{ github.event.ref }} | awk -F '/' '{print $3}')
+          curl -L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/CloudStriver/service-idl-gen-go/dispatches \
+          -d '{"event_type":"idl_update","client_payload":{"repository":"${{ github.repository }}","ref":"'$branch'","commit_msg":"${{ github.event.head_commit.message }}"}}'
