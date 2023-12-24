@@ -3,10 +3,25 @@ syntax = "proto3";
 option go_package = "./pb";
 package pb;
 
+enum Type {
+  Type_folder = 0;
+  Type_audio = 1;
+  Type_video = 2;
+  Type_photo = 3;
+  Type_word = 4;
+  Type_ppt = 5;
+  Type_zip = 6;
+  Type_excel = 7;
+  Type_pdf = 8;
+  Type_unknown = 9;
+  Type_file = 10;
+  Type_code = 11;
+}
+
 message File {
   string fileId = 1;
   string name = 2;
-  string type = 3;
+  Type type = 3;
   string path = 4;
   string userId = 5;
   string fatherId = 6;
@@ -18,7 +33,7 @@ message File {
 message PublicFile {
   string fileId = 1;
   string name = 2;
-  string type = 3;
+  Type type = 3;
   string path = 4;
   string userId = 5;
   string fatherId = 6;
@@ -35,89 +50,89 @@ message CosInfo {
   string bucketName = 4;
 }
 
-message FindCosInfoReq{
+message GetCosInfoReq{
   string userId = 1;
 }
 
-message FindCosInfoResp{
+message GetCosInfoResp{
   CosInfo cos = 1;
   string error = 2;
 }
 
-message FindFileByMd5Req {
+message GetFileByMd5Req {
   string md5 = 1;
 }
 
-message FindFileByMd5Resp {
+message GetFileByMd5Resp {
   bool ok = 1;
   string error = 2;
 }
 
-message FindFileInfoByFileIdReq{
+message GetFileInfoByFileIdReq{
   string fileId = 1;
 }
 
-message FindFileInfoByFileIdResp{
+message GetFileInfoByFileIdResp{
   File file = 1;
   string error = 2;
 }
 
-message FindFileByFileIdWithUserIdReq {
+message GetFileByFileIdWithUserIdReq {
   string fileId = 1;
   string userId = 2;
 }
 
-message FindFileByFileIdWithUserIdResp {
+message GetFileByFileIdWithUserIdResp {
   File file = 1;
   string error = 2;
 }
 
-message FindFileInfoByFileIdListReq{
-  repeated string fileIdList = 1;
+message GetFileInfoByFileIdsReq{
+  repeated string fileIds = 1;
   string userId = 2;
 }
 
-message FindFileInfoByFileIdListResp{
-  repeated File fileList = 1;
+message GetFileInfoByFileIdsResp{
+  repeated File files = 1;
   string error = 2;
 }
 
-message FindFileInfoByFileIdListWithUserIdReq{
-  repeated string fileIdList = 1;
+message GetFileInfoByFileIdsWithUserIdReq{
+  repeated string fileIds = 1;
   string userId = 2;
 }
 
-message FindFileInfoByFileIdListWithUserIdResp{
-  repeated File fileList = 1;
+message GetFileInfoByFileIdsWithUserIdResp{
+  repeated File files = 1;
   string error = 2;
 }
 
-message FindFileListByFatherIdReq{
+message GetFilesByFatherIdReq{
   string fatherId = 1;
 }
 
-message FindFileListByFatherIdResp{
-  repeated File fileList = 1;
+message GetFilesByFatherIdResp{
+  repeated File files = 1;
   string error = 2;
 }
 
-message FindFileListByFatherIdWithUserIdReq{
-  string fatherId = 1;
-  string userId = 2;
-}
-
-message FindFileListByFatherIdWithUserIdResp{
-  repeated File fileList = 1;
-  string error = 2;
-}
-
-message FindAllFileByFatherIdReq{
+message GetFilesByFatherIdWithUserIdReq{
   string fatherId = 1;
   string userId = 2;
 }
 
-message FindAllFileByFatherIdResp{
-  repeated File fileList = 1;
+message GetFilesByFatherIdWithUserIdResp{
+  repeated File files = 1;
+  string error = 2;
+}
+
+message GetAllFileByFatherIdReq{
+  string fatherId = 1;
+  string userId = 2;
+}
+
+message GetAllFileByFatherIdResp{
+  repeated File files = 1;
   string error = 2;
 }
 
@@ -132,48 +147,48 @@ message CalFileSizeResp{
   string error = 1;
 }
 
-message FindFileCountReq{
+message GetFileCountReq{
 
 }
 
-message FindFileCountResp{
+message GetFileCountResp{
 
 }
 
-message FindFileTypeReq{
+message GetFileTypeReq{
 
 }
 
-message FindFileTypeResp{
+message GetFileTypeResp{
 
 }
 
-message FindFileInfoInPublicByFileIdReq{
+message GetFileInfoInPublicByFileIdReq{
   string fileId = 1;
 }
 
-message FindFileInfoInPublicByFileIdResp{
+message GetFileInfoInPublicByFileIdResp{
   PublicFile file = 1;
   string error = 2;
 }
 
-message FindPublicFileByFileIdWithUserIdReq{
+message GetPublicFileByFileIdWithUserIdReq{
   string fileId = 1;
   string userId = 2;
 }
 
-message FindPublicFileByFileIdWithUserIdResp{
+message GetPublicFileByFileIdWithUserIdResp{
   PublicFile file = 1;
   string error = 2;
 }
 
-message FindPublicByFileIdListReq{
-  repeated string fileIdList = 1;
+message GetPublicByFileIdsReq{
+  repeated string fileIds = 1;
   string error = 2;
 }
 
-message FindPublicByFileIdListResp{
-  repeated PublicFile fileIdList = 1;
+message GetPublicByFileIdsResp{
+  repeated PublicFile fileIds = 1;
   string error = 2;
 }
 
@@ -188,38 +203,38 @@ message CalPublicFileSizeResp{
   string error = 1;
 }
 
-message FindPublicFileListByUserIdReq{
+message GetPublicFilesByUserIdReq{
   string userId = 1;
 }
 
-message FindPublicFileListByUserIdResp{
-  repeated PublicFile fileList = 1;
+message GetPublicFilesByUserIdResp{
+  repeated PublicFile files = 1;
 }
 
-message FindPublicFileListByFatherIdReq{
+message GetPublicFilesByFatherIdReq{
   string fatherId = 1;
 }
 
-message FindPublicFileListByFatherIdResp{
-  repeated PublicFile fileList = 1;
+message GetPublicFilesByFatherIdResp{
+  repeated PublicFile files = 1;
   string error = 2;
 }
 
-message FindAllPublicFileByFatherIdReq{
+message GetAllPublicFileByFatherIdReq{
   string fatherId = 1;
 }
 
-message FindAllPublicFileByFatherIdResp{
-  repeated PublicFile fileList = 1;
+message GetAllPublicFileByFatherIdResp{
+  repeated PublicFile files = 1;
   string error = 2;
 }
 
-message FindFileBySharingCodeReq{
+message GetFileBySharingCodeReq{
   string sharingCode = 1;
 }
 
-message FindFileBySharingCodeResp{
-  repeated File fileList = 1;
+message GetFileBySharingCodeResp{
+  repeated File files = 1;
   string error = 2;
 }
 
@@ -247,7 +262,7 @@ message AskUploadFileReq {
   int64 size = 1;
   string userId = 2;
   string name = 3;
-  string type = 4;
+  Type type = 4;
   string md5 = 5;
   string fatherId = 6;
   string fileId = 7;
@@ -259,26 +274,26 @@ message AskUploadFileResp {
 
 //service
 service filecenter {
-  rpc FindCosInfo (FindCosInfoReq) returns(FindCosInfoResp);
-  rpc FindFileByMd5(FindFileByMd5Req) returns(FindFileByMd5Resp);
-  rpc FindFileInfoByFileId(FindFileInfoByFileIdReq) returns(FindFileInfoByFileIdResp);
-  rpc FindFileByFileIdWithUserId(FindFileByFileIdWithUserIdReq) returns(FindFileByFileIdWithUserIdResp);
-  rpc FindFileInfoByFileIdList(FindFileInfoByFileIdListReq) returns(FindFileInfoByFileIdListResp);
-  rpc FindFileInfoByFileIdListWithUserId(FindFileInfoByFileIdListWithUserIdReq) returns(FindFileInfoByFileIdListWithUserIdResp);
-  rpc FindFileListByFatherId(FindFileListByFatherIdReq) returns(FindFileListByFatherIdResp);
-  rpc FindFileListByFatherIdWithUserId(FindFileListByFatherIdWithUserIdReq) returns(FindFileListByFatherIdWithUserIdResp);
-  rpc FindAllFileByFatherId(FindAllFileByFatherIdReq) returns(FindAllFileByFatherIdResp);
+  rpc GetCosInfo (GetCosInfoReq) returns(GetCosInfoResp);
+  rpc GetFileByMd5(GetFileByMd5Req) returns(GetFileByMd5Resp);
+  rpc GetFileInfoByFileId(GetFileInfoByFileIdReq) returns(GetFileInfoByFileIdResp);
+  rpc GetFileByFileIdWithUserId(GetFileByFileIdWithUserIdReq) returns(GetFileByFileIdWithUserIdResp);
+  rpc GetFileInfoByFileIds(GetFileInfoByFileIdsReq) returns(GetFileInfoByFileIdsResp);
+  rpc GetFileInfoByFileIdsWithUserId(GetFileInfoByFileIdsWithUserIdReq) returns(GetFileInfoByFileIdsWithUserIdResp);
+  rpc GetFilesByFatherId(GetFilesByFatherIdReq) returns(GetFilesByFatherIdResp);
+  rpc GetFilesByFatherIdWithUserId(GetFilesByFatherIdWithUserIdReq) returns(GetFilesByFatherIdWithUserIdResp);
+  rpc GetAllFileByFatherId(GetAllFileByFatherIdReq) returns(GetAllFileByFatherIdResp);
   rpc CalFileSize(CalFileSizeReq) returns(CalFileSizeResp);
-  rpc FindFileCount(FindFileCountReq) returns(FindFileCountResp);
-  rpc FindFileType(FindFileTypeReq) returns(FindFileTypeReq);
-  rpc FindFileInfoInPublicByFileId (FindFileInfoInPublicByFileIdReq) returns(FindFileInfoInPublicByFileIdResp);
-  rpc FindPublicFileByFileIdWithUserId(FindPublicFileByFileIdWithUserIdReq) returns(FindPublicFileByFileIdWithUserIdResp);
-  rpc FindPublicByFileIdList(FindPublicByFileIdListReq) returns(FindPublicByFileIdListResp);
+  rpc GetFileCount(GetFileCountReq) returns(GetFileCountResp);
+  rpc GetFileType(GetFileTypeReq) returns(GetFileTypeReq);
+  rpc GetFileInfoInPublicByFileId (GetFileInfoInPublicByFileIdReq) returns(GetFileInfoInPublicByFileIdResp);
+  rpc GetPublicFileByFileIdWithUserId(GetPublicFileByFileIdWithUserIdReq) returns(GetPublicFileByFileIdWithUserIdResp);
+  rpc GetPublicByFileIds(GetPublicByFileIdsReq) returns(GetPublicByFileIdsResp);
   rpc CalPublicFileSize(CalPublicFileSizeReq) returns(CalPublicFileSizeResp);
-  rpc FindPublicFileListByUserId(FindPublicFileListByUserIdReq) returns(FindPublicFileListByUserIdResp);
-  rpc FindPublicFileListByFatherId(FindPublicFileListByFatherIdReq) returns(FindPublicFileListByFatherIdResp);
-  rpc FindAllPublicFileByFatherId(FindAllPublicFileByFatherIdReq) returns(FindAllPublicFileByFatherIdResp);
-  rpc FindFileBySharingCode(FindFileBySharingCodeReq) returns(FindFileBySharingCodeResp);
+  rpc GetPublicFilesByUserId(GetPublicFilesByUserIdReq) returns(GetPublicFilesByUserIdResp);
+  rpc GetPublicFilesByFatherId(GetPublicFilesByFatherIdReq) returns(GetPublicFilesByFatherIdResp);
+  rpc GetAllPublicFileByFatherId(GetAllPublicFileByFatherIdReq) returns(GetAllPublicFileByFatherIdResp);
+  rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
   rpc UploadFile (UploadFileReq) returns(UploadFileResp);
   rpc AskUploadFile (AskUploadFileReq) returns(AskUploadFileResp);
   rpc AskUploadFileRollback (AskUploadFileReq) returns(AskUploadFileResp);
