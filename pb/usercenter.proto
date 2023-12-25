@@ -9,178 +9,168 @@ enum Sex {
 }
 
 message Point {
-  int32 X = 1;
-  int32 Y = 2;
+  int32 x = 1;
+  int32 y = 2;
 }
 message Token {
-  string AccessToken = 1;  // 用户ID
-  string RefreshToken = 2;  // 用户ID
-  string ChatToken = 3;  // 用户ID
+  string accessToken = 1;  // 用户ID
+  string refreshToken = 2;  // 用户ID
+  string chatToken = 3;  // 用户ID
 }
 
 message User {
-  string Email = 1;
-  string Name = 2;
-  Sex  Sex = 3;
-  string FullName = 4;
-  string IdCard = 5;
-  int64 CreatedAt = 6;
-  int64 UpdatedAt = 7;
-  int64 Money = 8;
-  int64 Flow = 9;
-  int64 Memory = 10;
-  string Description = 11;
-  string Url = 12;
-  string UserId = 13;
+  string email = 1;
+  string name = 2;
+  int32  sex = 3;
+  string fullName = 4;
+  string idCard = 5;
+  int64 createdAt = 6;
+  int64 updatedAt = 7;
+  int64 money = 8;
+  int64 flow = 9;
+  int64 memory = 10;
+  string description = 11;
+  string url = 12;
+  string userId = 13;
 }
 
 message SendEmailReq {
-   string Email = 1;
+  string email = 1;
 }
 
 message SendEmailResp {
-  string Error = 2;
+  string error = 2;
 }
 
 
 message SendEmailCodeReq{
-   string Email = 1;
-   string Subject = 2;
+  string email = 1;
+  string subject = 2;
 }
 
 message SendEmailCodeResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message UpdateUserReq{
-   string Email = 1; // 邮箱号
-   string Name = 2; // 用户名
-  optional Sex  Sex = 3; // 用户性别
-   string FullName = 4; // 用户真实姓名
-   string IdCard = 5; // 用户身份证号
-   string Description = 6; // 用户描述信息
-   string Url = 7; // 头像Url
-   string PassWord = 8; // 密码
-  string UserId = 9; // 用户ID
-   string Code = 10; // 邮箱验证码 修改邮箱号需要填邮箱验证码
+  User user = 1;
+  string Code = 2; // 邮箱验证码 修改邮箱号需要填邮箱验证码
 }
 message UpdateUserResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message RegisterReq{
- string Name = 1; // 用户名
- optional Sex Sex = 2; // 性别
- string  Email = 3; // 邮箱
- string  PassWord = 4; // 密码
+  string name = 1; // 用户名
+  optional Sex sex = 2; // 性别
+  string  email = 3; // 邮箱
+  string  passWord = 4; // 密码
 }
 
 message RegisterResp{
-  string UserId = 1; // 用户ID
-  Token Token = 2;
-  string Error = 3;
+  string userId = 1; // 用户ID
+  Token token = 2;
+  string error = 3;
 }
 
 message GenerateTokenReq{
-  string UserId = 1; // 用户ID
+  string userId = 1; // 用户ID
 }
 
 message GenerateTokenResp{
-  Token Token = 1;
-  string Error = 2;
+  Token token = 1;
+  string error = 2;
 }
 
 message GetUserReq{
-    string UserId = 1;
+  string userId = 1;
 }
 message GetUserResp{
-  User User = 1;
-  string Error = 2;
+  User user = 1;
+  string error = 2;
 }
 
 message LoginReq{
-  string Email = 1;
-  string PassWord = 2;
+  string email = 1;
+  string passWord = 2;
 }
 message LoginResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message RefreshTokenReq{
-  string UserId = 1;
+  string userId = 1;
 }
 
 message RefreshTokenResp{
-  Token Token = 1;
-  string Error = 2;
+  Token token = 1;
+  string error = 2;
 }
 
 message GetCaptchaReq{
 }
 
 message GetCaptchaResp{
-  string OriginalImageBase64 = 1;
-  string JigsawImageBase64 = 2;
-  string Key = 3;
-  string Error = 4;
+  string originalImageBase64 = 1;
+  string jigsawImageBase64 = 2;
+  string key = 3;
+  string error = 4;
 }
 
 message ConfirmCaptchaReq{
-  string Key = 1;
-  Point Point = 2;
+  string key = 1;
+  Point point = 2;
 }
 
 message ConfirmCaptchaResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message ConfirmEmailCodeReq{
-  string Email = 1;
-  string Code = 2;
+  string email = 1;
+  string code = 2;
 }
 
 message ConfirmEmailCodeResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message RetrievePasswordReq{
-  string Email = 1;
-  string Code = 2;
-  string PassWord = 3;
+  string email = 1;
+  string code = 2;
+  string passWord = 3;
 }
 
 message RetrievePasswordResp{
-  string Error = 1;
+  string error = 1;
 }
 
 message SearchUserReq{
-  oneof SearchOption {
-    string Name = 1;
-    string UserId = 2;
+  oneof searchOption {
+    string name = 1;
+    string userId = 2;
   }
-  int32 Offset = 3;
-  int32 Size = 4;
+  int32 offset = 3;
+  int32 size = 4;
 }
 
 message SearchUserResp{
-  repeated User Users = 1;
-  int32 Total = 2;
-  string Error = 3;
+  repeated User users = 1;
+  int32 total = 2;
+  string error = 3;
 }
 
-
-
 service usercenter {
- rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
- rpc Login(LoginReq) returns(LoginResp);
- rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
- rpc GetUser(GetUserReq) returns(GetUserResp);
- rpc Register(RegisterReq) returns(RegisterResp);
- rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
- rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
- rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
- rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
- rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
- rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
- rpc SearchUser(SearchUserReq) returns(SearchUserReq);
+  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
+  rpc Login(LoginReq) returns(LoginResp);
+  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
+  rpc GetUser(GetUserReq) returns(GetUserResp);
+  rpc Register(RegisterReq) returns(RegisterResp);
+  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
+  rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
+  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
+  rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
+  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
+  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
+  rpc SearchUser(SearchUserReq) returns(SearchUserResp);
 }
