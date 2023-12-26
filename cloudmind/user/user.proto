@@ -1,6 +1,6 @@
 syntax = "proto3";
-option go_package = "./pb";
-package pb;
+package user;
+option go_package = "user";
 
 enum Sex {
   UnKnown = 0; // 未知
@@ -160,7 +160,7 @@ message SearchUserResp{
   string error = 3;
 }
 
-service usercenter {
+service user {
   rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
   rpc Login(LoginReq) returns(LoginResp);
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
