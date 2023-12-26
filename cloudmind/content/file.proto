@@ -1,7 +1,8 @@
 syntax = "proto3";
 
-option go_package = "./pb";
-package pb;
+package content;
+
+option go_package = "content";
 
 enum Type {
   Type_folder = 0;
@@ -273,7 +274,7 @@ message AskUploadFileResp {
 }
 
 //service
-service filecenter {
+service file {
   rpc GetCosInfo (GetCosInfoReq) returns(GetCosInfoResp);
   rpc GetFileByMd5(GetFileByMd5Req) returns(GetFileByMd5Resp);
   rpc GetFileInfoByFileId(GetFileInfoByFileIdReq) returns(GetFileInfoByFileIdResp);
