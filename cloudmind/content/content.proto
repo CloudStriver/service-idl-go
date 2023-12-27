@@ -26,7 +26,7 @@ message File {
   string path = 4;
   string userId = 5;
   string fatherId = 6;
-  int64 size = 7;
+  int64 spaceSize = 7;
   string md5 = 8;
   int64 updateTime = 9;
 }
@@ -38,7 +38,7 @@ message PublicFile {
   string path = 4;
   string userId = 5;
   string fatherId = 6;
-  int64 size = 7;
+  int64 spaceSize = 7;
   string md5 = 8;
   int64 updateTime = 9;
   string description = 10;
@@ -139,7 +139,7 @@ message GetAllFileByFatherIdResp{
 
 message CalFileSizeReq{
   string userId = 1;
-  optional int64 size = 2;
+  optional int64 spaceSize = 2;
   string path = 3;
   bool op = 4;
 }
@@ -195,7 +195,7 @@ message GetPublicByFileIdsResp{
 
 message CalPublicFileSizeReq{
   string userId = 1;
-  optional int64 size = 2;
+  optional int64 spaceSize = 2;
   string path = 3;
   bool op = 4;
 }
@@ -260,7 +260,7 @@ message UploadFileResp {
 }
 
 message AskUploadFileReq {
-  int64 size = 1;
+  optional int64 spaceSize = 1;
   string userId = 2;
   string name = 3;
   Type type = 4;
