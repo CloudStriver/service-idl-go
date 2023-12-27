@@ -274,7 +274,7 @@ message AskUploadFileResp {
 }
 
 //service
-service file {
+service ContentService {
   rpc GetCosInfo (GetCosInfoReq) returns(GetCosInfoResp);
   rpc GetFileByMd5(GetFileByMd5Req) returns(GetFileByMd5Resp);
   rpc GetFileInfoByFileId(GetFileInfoByFileIdReq) returns(GetFileInfoByFileIdResp);

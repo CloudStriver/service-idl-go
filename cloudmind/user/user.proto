@@ -160,7 +160,7 @@ message SearchUserResp{
   string error = 3;
 }
 
-service user {
+service UserService {
   rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
   rpc Login(LoginReq) returns(LoginResp);
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
