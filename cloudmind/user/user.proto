@@ -1,8 +1,9 @@
 syntax = "proto3";
-package user;
-option go_package = "user";
+package cloudmind.user;
+option go_package = "cloudmind/user";
 
 import "basic/pagination.proto";
+import "cloudmind/user/common.proto";
 
 enum Sex {
   UnKnown = 0; // 未知
@@ -13,34 +14,6 @@ enum Sex {
 message Point {
   int32 x = 1;
   int32 y = 2;
-}
-message Token {
-  string accessToken = 1;
-  string refreshToken = 2;
-  string chatToken = 3;
-}
-
-message UserDetail {
-  string userId = 1;
-  string email = 2;
-  string name = 3;
-  int32  sex = 4;
-  string fullName = 5;
-  string idCard = 6;
-  int64 createdAt = 7;
-  int64 updatedAt = 8;
-  optional int64 money = 9;
-  optional int64 flow = 10;
-  optional int64 memory = 11;
-  string description = 12;
-  string url = 13;
-  string passWord = 14;
-}
-
-message User {
-  string userId = 1;
-  string name = 2;
-  string url = 3;
 }
 
 message SendEmailReq {
@@ -54,7 +27,6 @@ message SendEmailResp {
 
 message UpdateUserReq{
   UserDetail user = 1;
-  string Code = 2; // 邮箱验证码 修改邮箱号需要填邮箱验证码
 }
 message UpdateUserResp{
   string error = 1;
@@ -98,7 +70,8 @@ message SearchUserReq{
 message SearchUserResp{
   repeated User users = 1;
   int32 total = 2;
-  string error = 3;
+  string lastToken = 3;
+  string error = 4;
 }
 
 message CreateUserReq{
@@ -110,10 +83,7 @@ message CreateUserResp{
 }
 
 message GetUserDetailReq{
-  oneof UserKey {
     string userId = 1;
-    string email = 2;
-  }
 }
 
 message GetUserDetailResp {
@@ -122,11 +92,15 @@ message GetUserDetailResp {
 }
 
 service UserService {
+  // 用户
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
-  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
-  rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
+//  // 鉴权
+//  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
+//  rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
+//  rpc SetPassWord(SetPassWordReq) returns(SetPassWordResp);
+
 }
