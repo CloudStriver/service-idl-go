@@ -37,6 +37,22 @@ message UserDetail {
   string passWord = 14;
 }
 
+message UserDetail {
+  string userId = 1;
+  string email = 2;
+  string name = 3;
+  int32  sex = 4;
+  string fullName = 5;
+  string idCard = 6;
+  int64 createdAt = 7;
+  int64 updatedAt = 8;
+  int64 money = 9;
+  int64 flow = 10;
+  int64 memory = 11;
+  string description = 12;
+  string url = 13;
+}
+
 message User {
   string userId = 1;
   string name = 2;
@@ -120,7 +136,6 @@ message GetUserDetailResp {
   UserDetail user = 1;
   string Error = 2;
 }
-
 service UserService {
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
