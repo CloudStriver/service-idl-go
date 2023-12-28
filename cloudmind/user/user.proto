@@ -15,9 +15,9 @@ message Point {
   int32 y = 2;
 }
 message Token {
-  string accessToken = 1;  // 用户ID
-  string refreshToken = 2;  // 用户ID
-  string chatToken = 3;  // 用户ID
+  string accessToken = 1;
+  string refreshToken = 2;
+  string chatToken = 3;
 }
 
 message UserDetail {
@@ -29,11 +29,12 @@ message UserDetail {
   string idCard = 6;
   int64 createdAt = 7;
   int64 updatedAt = 8;
-  int64 money = 9;
-  int64 flow = 10;
-  int64 memory = 11;
+  optional int64 money = 9;
+  optional int64 flow = 10;
+  optional int64 memory = 11;
   string description = 12;
   string url = 13;
+  string passWord = 14;
 }
 
 message User {
@@ -119,6 +120,7 @@ message GetUserDetailResp {
   UserDetail user = 1;
   string Error = 2;
 }
+
 service UserService {
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
