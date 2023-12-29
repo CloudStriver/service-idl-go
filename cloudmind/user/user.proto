@@ -1,6 +1,9 @@
 syntax = "proto3";
-package user;
-option go_package = "user";
+package cloudmind.user;
+option go_package = "cloudmind/user";
+
+import "basic/pagination.proto";
+import "cloudmind/user/common.proto";
 
 enum Sex {
   UnKnown = 0; // 未知
@@ -12,137 +15,48 @@ message Point {
   int32 x = 1;
   int32 y = 2;
 }
-message Token {
-  string accessToken = 1;  // 用户ID
-  string refreshToken = 2;  // 用户ID
-  string chatToken = 3;  // 用户ID
-}
-
-message User {
-  string email = 1;
-  string name = 2;
-  int32  sex = 3;
-  string fullName = 4;
-  string idCard = 5;
-  int64 createdAt = 6;
-  int64 updatedAt = 7;
-  int64 money = 8;
-  int64 flow = 9;
-  int64 memory = 10;
-  string description = 11;
-  string url = 12;
-  string userId = 13;
-}
 
 message SendEmailReq {
   string email = 1;
+  string subject = 2;
 }
 
 message SendEmailResp {
   string error = 2;
 }
 
-
-message SendEmailCodeReq{
-  string email = 1;
-  string subject = 2;
-}
-
-message SendEmailCodeResp{
-  string error = 1;
-}
-
 message UpdateUserReq{
-  User user = 1;
-  string Code = 2; // 邮箱验证码 修改邮箱号需要填邮箱验证码
+  UserDetail user = 1;
 }
 message UpdateUserResp{
   string error = 1;
 }
 
-message RegisterReq{
-  string name = 1; // 用户名
-  optional Sex sex = 2; // 性别
-  string  email = 3; // 邮箱
-  string  passWord = 4; // 密码
-}
-
-message RegisterResp{
-  string userId = 1; // 用户ID
-  Token token = 2;
-  string error = 3;
-}
-
-message GenerateTokenReq{
-  string userId = 1; // 用户ID
-}
-
-message GenerateTokenResp{
-  Token token = 1;
-  string error = 2;
-}
-
 message GetUserReq{
-  string userId = 1;
+   string userId = 1;
 }
 message GetUserResp{
   User user = 1;
   string error = 2;
 }
 
-message LoginReq{
-  string email = 1;
-  string passWord = 2;
-}
-message LoginResp{
-  string error = 1;
+message CreateCaptchaReq{
 }
 
-message RefreshTokenReq{
-  string userId = 1;
-}
-
-message RefreshTokenResp{
-  Token token = 1;
-  string error = 2;
-}
-
-message GetCaptchaReq{
-}
-
-message GetCaptchaResp{
+message CreateCaptchaResp{
   string originalImageBase64 = 1;
   string jigsawImageBase64 = 2;
   string key = 3;
   string error = 4;
 }
 
-message ConfirmCaptchaReq{
-  string key = 1;
-  Point point = 2;
+message GetCaptchaReq{
+   string key = 1;
 }
 
-message ConfirmCaptchaResp{
-  string error = 1;
-}
-
-message ConfirmEmailCodeReq{
-  string email = 1;
-  string code = 2;
-}
-
-message ConfirmEmailCodeResp{
-  string error = 1;
-}
-
-message RetrievePasswordReq{
-  string email = 1;
-  string code = 2;
-  string passWord = 3;
-}
-
-message RetrievePasswordResp{
-  string error = 1;
+message GetCaptchaResp{
+  Point point = 1;
+  string error = 2;
 }
 
 message SearchUserReq{
@@ -150,27 +64,43 @@ message SearchUserReq{
     string name = 1;
     string userId = 2;
   }
-  int32 offset = 3;
-  int32 size = 4;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message SearchUserResp{
   repeated User users = 1;
   int32 total = 2;
-  string error = 3;
+  string lastToken = 3;
+  string error = 4;
+}
+
+message CreateUserReq{
+  UserDetail user = 1;
+}
+
+message CreateUserResp{
+  string userId = 1;
+}
+
+message GetUserDetailReq{
+    string userId = 1;
+}
+
+message GetUserDetailResp {
+  UserDetail user = 1;
+  string Error = 2;
 }
 
 service UserService {
-  rpc SendEmailCode(SendEmailCodeReq) returns(SendEmailCodeResp);
-  rpc Login(LoginReq) returns(LoginResp);
+  // 用户
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
-  rpc Register(RegisterReq) returns(RegisterResp);
-  rpc GenerateToken(GenerateTokenReq) returns(GenerateTokenResp);
-  rpc RefreshToken(RefreshTokenReq) returns(RefreshTokenResp);
-  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
-  rpc ConfirmCaptcha(ConfirmCaptchaReq) returns(ConfirmCaptchaResp);
-  rpc ConfirmEmailCode(ConfirmEmailCodeReq) returns(ConfirmEmailCodeResp);
-  rpc RetrievePassword(RetrievePasswordReq) returns(RetrievePasswordResp);
+  rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
+  rpc CreateUser(CreateUserReq) returns(CreateUserResp);
+//  // 鉴权
+//  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
+//  rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
+//  rpc SetPassWord(SetPassWordReq) returns(SetPassWordResp);
+
 }

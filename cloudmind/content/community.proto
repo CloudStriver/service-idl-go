@@ -14,7 +14,7 @@ message CreateLabelReq {
 
 message CreateLabelResp {
   string id = 1;
-  string Error = 2;
+  string error = 2;
 }
 
 message GetLabelReq {
@@ -23,7 +23,7 @@ message GetLabelReq {
 
 message GetLabelResp {
   string name = 1;
-  string Error = 2;
+  string error = 2;
 }
 
 message UpdateLabelReq {
@@ -31,6 +31,7 @@ message UpdateLabelReq {
 }
 
 message UpdateLabelResp {
+  string error = 1;
 }
 
 message DeleteLabelReq {
@@ -38,5 +39,5 @@ message DeleteLabelReq {
 }
 
 message DeleteLabelResp {
-  string Error = 1;
+  string error = 1;
 }
