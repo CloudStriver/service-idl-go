@@ -3,6 +3,7 @@ syntax = "proto3";
 package basic;
 
 option go_package = "basic";
+
 message PaginationOptions {
   optional int64 page = 1;
   optional int64 limit = 2;

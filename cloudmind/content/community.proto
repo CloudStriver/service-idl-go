@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package cloudmind.content;
+option go_package = "cloudmind/content";
+
+message Label {
+  string id = 1;
+  string value = 2;
+}
+
+message CreateLabelReq {
+  Label label = 1;
+}
+
+message CreateLabelResp {
+  string id = 1;
+  string Error = 2;
+}
+
+message GetLabelReq {
+  string id = 1;
+}
+
+message GetLabelResp {
+  string name = 1;
+  string Error = 2;
+}
+
+message UpdateLabelReq {
+  Label label = 1;
+}
+
+message UpdateLabelResp {
+}
+
+message DeleteLabelReq {
+  string id = 1;
+}
+
+message DeleteLabelResp {
+  string Error = 1;
+}
