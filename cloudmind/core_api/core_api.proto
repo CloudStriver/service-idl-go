@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cloudmind.core_api;
+
+option go_package = "cloudmind/core_api";
+import "http/http.proto";
+import "cloudmind/core_api/content.proto";
+import "cloudmind/core_api/auth.proto";
+import "cloudmind/core_api/relation.proto";
+
+service content {
+//  rpc Register(RegisterReq) returns (RegisterResp){
+//    option (http.post) = "/content/register";
+//  }
+}
+
+service auth {
+  rpc Register(RegisterReq) returns (RegisterResp){
+    option (http.post) = "/auth/register";
+  }
+  rpc Login(LoginReq) returns (LoginResp){
+    option (http.post) = "/auth/login";
+  }
+  rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
+    option (http.post) = "/auth/refresh";
+  }
+}
