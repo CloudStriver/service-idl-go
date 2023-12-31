@@ -1,0 +1,6 @@
+syntax = "proto3";
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
+import "cloudmind/user/common.proto";
+import "basic/pagination.proto";
+

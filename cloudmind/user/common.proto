@@ -2,6 +2,30 @@ syntax = "proto3";
 package cloudmind.user;
 option go_package = "cloudmind/user";
 
+
+enum Sex {
+  unKnownSex = 0; // 未知
+  man = 1; // 男
+  women = 2; // 女
+}
+
+enum TargetType {
+  unKnownTargetType = 0;
+  file = 1;
+  flow = 2;
+  memory = 3;
+  post = 4;
+  user = 5;
+}
+
+enum RelationType{
+  unKnownRelationType = 0;
+  like = 1; // 点赞
+  follow = 2; // 关注
+  star = 3; // 收藏
+}
+
+
 message User {
   string userId = 1;
   string name = 2;
@@ -19,4 +43,14 @@ message UserDetail {
   int64 updatedAt = 8;
   string description = 9;
   string url = 10;
+}
+
+message Relation{
+  string Id = 1;
+  string userId = 2;
+  string targetId = 3;
+  int32 targetType = 4;
+  int32  relationType = 5;
+  int64 createdAt = 6;
+  int64 updatedAt = 7;
 }

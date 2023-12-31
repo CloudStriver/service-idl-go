@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package basic;
+
+option go_package = "basic";
+
+import "basic/app.proto";
+
+message UserMeta {
+  string userId = 1;
+  APP appId = 2;
+  string deviceId = 3;
+  string sessionUserId = 4;
+  APP sessionAppId = 5;
+  string sessionDeviceId = 6;
+  bool isLogin = 7;
+}
+
+message Extra {
+  string clientIP = 1;
+  string language = 2;
+  string resolution = 3; // 像素比
+  string devicePlatform = 4; // 设备平台
+  string deviceBrand = 5; // 设备品牌
+  string deviceId = 6;
+  string operateSystem = 7;
+}
+
+
