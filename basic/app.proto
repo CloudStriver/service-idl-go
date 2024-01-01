@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package basic;
+
+option go_package = "basic";
+
+enum APP {
+  Unknown = 0;
+  CloudMind = 1;
+  CloudMindManager = 2;
+}

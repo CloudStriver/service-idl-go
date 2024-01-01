@@ -5,11 +5,6 @@ option go_package = "cloudmind/user";
 import "basic/pagination.proto";
 import "cloudmind/user/common.proto";
 
-enum Sex {
-  UnKnown = 0; // 未知
-  Man = 1; // 男
-  Women = 2; // 女
-}
 
 message Point {
   int32 x = 1;
@@ -60,10 +55,7 @@ message GetCaptchaResp{
 }
 
 message SearchUserReq{
-  oneof searchOption {
-    string name = 1;
-    string userId = 2;
-  }
+  string keyword = 1; // 可以是name,userId等等
   optional basic.PaginationOptions paginationOptions = 3;
 }
 
@@ -75,11 +67,13 @@ message SearchUserResp{
 }
 
 message CreateUserReq{
-  UserDetail user = 1;
+  string name = 1;
+  Sex  sex = 2;
 }
 
 message CreateUserResp{
   string userId = 1;
+  string error = 2;
 }
 
 message GetUserDetailReq{
@@ -91,6 +85,38 @@ message GetUserDetailResp {
   string Error = 2;
 }
 
+
+message DeleteUserReq{
+    string userId = 1;
+}
+
+message DeleteUserResp{
+   string error = 1;
+}
+
+message CreateRelationReq{
+  string targetId = 1;
+  TargetType targetType = 2;
+  string userId = 3;
+  RelationType relationType = 4;
+}
+message CreateRelationResp{
+  string error = 1;
+}
+
+message GetRelationReq{
+  optional string targetId = 1;
+  optional TargetType targetType = 2;
+  optional string userId = 3;
+  optional RelationType relationType = 4;
+  optional basic.PaginationOptions paginationOptions = 5;
+}
+message GetRelationResp{
+  repeated Relation relations = 1;
+  int32 total = 2;
+  string lastToken = 3;
+  string error = 4;
+}
 service UserService {
   // 用户
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
@@ -98,9 +124,8 @@ service UserService {
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
-//  // 鉴权
-//  rpc GetCaptcha(GetCaptchaReq) returns(GetCaptchaResp);
-//  rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
-//  rpc SetPassWord(SetPassWordReq) returns(SetPassWordResp);
-
+  rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
+  //  关系
+  rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
+  rpc GetRelation(GetRelationReq) returns(GetRelationResp);
 }

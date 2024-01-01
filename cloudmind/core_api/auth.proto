@@ -1,0 +1,45 @@
+syntax = "proto3";
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
+import "cloudmind/user/common.proto";
+import "basic/pagination.proto";
+
+enum RegisterType {
+  unKnownRegisterType = 0;
+  email = 1;
+  qq = 2;
+  wx = 3;
+}
+
+message RegisterReq{
+  string name = 1;
+  user.Sex sex = 2;
+  RegisterType registerType = 3;
+  string authKey = 4;
+  string password = 5;
+}
+message RegisterResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+message LoginReq{
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+message RefreshTokenReq {
+  string longToken = 1;
+}
+
+message RefreshTokenResp{
+  string shortToken = 1;
+  string longToken = 2;
+}
