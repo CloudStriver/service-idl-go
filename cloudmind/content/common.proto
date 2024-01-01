@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package cloudmind.content;
+option go_package = "cloudmind/content";
+
+enum Type {
+  Type_null = 0;
+  Type_audio = 1;
+  Type_video = 2;
+  Type_photo = 3;
+  Type_word = 4;
+  Type_ppt = 5;
+  Type_zip = 6;
+  Type_excel = 7;
+  Type_pdf = 8;
+  Type_folder = 9;
+  Type_file = 10;
+  Type_code = 11;
+  Type_unknown = 12;
+}
+
+enum IsDel {
+  Is_null = 0;
+  Is_no = 1;
+  Is_soft = 2;
+  Is_hard = 3;
+}
+
+enum DocumentType {
+  DocumentType_null = 0;
+  DocumentType_personal = 1;
+  DocumentType_public = 2;
+}
+
+message File {
+  string fileId = 1;
+  string userId = 2;
+  string name = 3;
+  Type type = 4;
+  string path = 5;
+  string fatherId = 6;
+  optional int64 spaceSize = 7;
+  string md5 = 8;
+  int32 isDel = 9;
+  repeated string tag = 10;
+  string description = 11;
+  int64 updateAt = 12;
+}
+
+message FileInfo {
+  string fileId = 1;
+  string userId = 2;
+  string name = 3;
+  Type type = 4;
+  string path = 5;
+  string fatherId = 6;
+  int64 spaceSize = 7;
+  string md5 = 8;
+  int32 isDel = 9;
+  repeated string tag = 10;
+  string description = 11;
+  int64 updateAt = 12;
+}
+
+message Label {
+  string id = 1;
+  string value = 2;
+}
+
+message SearchField {
+  optional string text = 1;
+  optional string title = 2;
+  optional string tag = 3; // 仅限Post
+}
+
+message SearchOptions {
+  oneof Type {
+    string allFieldsKey = 1;
+    SearchField multiFieldsKey = 2;
+  }
+}
+
+message FileFilterOptions {
+  optional string onlyUserId = 1;
+  optional string onlyFileId = 2;
+  optional string onlyFatherId = 3;
+  optional int32  onlyFileType = 4; // 文件类型
+  int32 isDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  int32 documentType = 6; // 操作类型 1：个人空间文件 2：公共空间文件
+}
