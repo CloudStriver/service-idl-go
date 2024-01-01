@@ -1,7 +1,7 @@
 syntax = "proto3";
 package cloudmind.sts;
 option go_package = "cloudmind/sts";
-
+import "cloudmind/sts/common.proto";
 message Auth {
   string id = 1;
   int32 type = 2;
@@ -35,10 +35,7 @@ message UserIdOptions{
 }
 
 
-message Point {
-  int32 x = 1;
-  int32 y = 2;
-}
+
 
 message SendEmailReq {
   string email = 1;
@@ -93,7 +90,8 @@ message CreateAuthReq{
   string key = 2;
   string userId = 3;
   Role role = 4;
-  string Password = 5;
+  string password = 5;
+  optional string code = 6;
 }
 
 message CreateAuthResp{
@@ -103,6 +101,8 @@ message CreateAuthResp{
 message LoginReq{
   string email = 1;
   string password = 2;
+  Point point = 3;
+  string key = 4;
 }
 
 message LoginResp{

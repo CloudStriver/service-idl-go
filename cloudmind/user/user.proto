@@ -93,39 +93,11 @@ message DeleteUserReq{
 message DeleteUserResp{
    string error = 1;
 }
-
-message CreateRelationReq{
-  string targetId = 1;
-  TargetType targetType = 2;
-  string userId = 3;
-  RelationType relationType = 4;
-}
-message CreateRelationResp{
-  string error = 1;
-}
-
-message GetRelationReq{
-  optional string targetId = 1;
-  optional TargetType targetType = 2;
-  optional string userId = 3;
-  optional RelationType relationType = 4;
-  optional basic.PaginationOptions paginationOptions = 5;
-}
-message GetRelationResp{
-  repeated Relation relations = 1;
-  int32 total = 2;
-  string lastToken = 3;
-  string error = 4;
-}
 service UserService {
-  // 用户
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
   rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
-  //  关系
-  rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
-  rpc GetRelation(GetRelationReq) returns(GetRelationResp);
 }

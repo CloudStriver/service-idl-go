@@ -9,23 +9,6 @@ enum Sex {
   women = 2; // 女
 }
 
-enum TargetType {
-  unKnownTargetType = 0;
-  file = 1;
-  flow = 2;
-  memory = 3;
-  post = 4;
-  user = 5;
-}
-
-enum RelationType{
-  unKnownRelationType = 0;
-  like = 1; // 点赞
-  follow = 2; // 关注
-  star = 3; // 收藏
-}
-
-
 message User {
   string userId = 1;
   string name = 2;

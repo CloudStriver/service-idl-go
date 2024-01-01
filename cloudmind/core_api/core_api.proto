@@ -24,4 +24,16 @@ service auth {
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
     option (http.post) = "/auth/refresh";
   }
+  rpc SendEmail(SendEmailReq) returns (SendEmailResp){
+    option (http.post) = "/auth/send";
+  }
+  rpc GetCaptcha(GetCaptchaReq) returns (GetCaptchaResp){
+    option (http.get) = "/auth/captcha";
+  }
+  rpc SetPasswordByEmail(SetPasswordByEmailReq) returns (SetPasswordByEmailResp){
+    option (http.post) = "/auth/reset/email";
+  }
+  rpc SetPasswordByPassword(SetPasswordByPasswordReq) returns (SetPasswordByPasswordReq){
+    option (http.post) = "/auth/reset/password";
+  }
 }
