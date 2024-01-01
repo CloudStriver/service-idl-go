@@ -4,193 +4,53 @@ package cloudmind.content;
 option go_package = "cloudmind/content";
 
 import "basic/pagination.proto";
-import "cloudmind/content/community.proto";
+import "cloudmind/content/common.proto";
 
-enum Type {
-  Type_unknown = 0;
-  Type_audio = 1;
-  Type_video = 2;
-  Type_photo = 3;
-  Type_word = 4;
-  Type_ppt = 5;
-  Type_zip = 6;
-  Type_excel = 7;
-  Type_pdf = 8;
-  Type_folder = 9;
-  Type_file = 10;
-  Type_code = 11;
-}
-
-message File {
-  string fileId = 1;
-  string name = 2;
-  int32 type = 3;
-  string path = 4;
-  string userId = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  string md5 = 8;
-  int64 updateAt = 9;
-}
-
-message PublicFile {
-  string fileId = 1;
-  string name = 2;
-  int32 type = 3;
-  string path = 4;
-  string userId = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  string md5 = 8;
-  int64 updateAt = 9;
-  string description = 10;
-  repeated string tag = 11;
-}
-
-message CosInfo {
-  string secretId = 1;
-  string secretKey = 2;
-  string sessionToken = 3;
-  string bucketName = 4;
-}
-
-message GetCosInfoReq{
-  string userId = 1;
-}
-
-message GetCosInfoResp{
-  CosInfo cos = 1;
-  string error = 2;
-}
-
-message GetFileByMd5Req {
+message GetFileIsExistReq {
   string md5 = 1;
 }
 
-message GetFileByMd5Resp {
+message GetFileIsExistResp {
   bool ok = 1;
-  string error = 2;
 }
 
-message GetFileByFileIdReq{
-  string fileId = 1;
+message GetFileReq{
+  optional FileFilterOptions filterOptions = 1;
+  bool IsGetSize = 2;
 }
 
-message GetFileByFileIdResp{
-  File file = 1;
-  string error = 2;
+message GetFileResp{
+  FileInfo file = 1;
 }
 
-message GetFileByFileIdWithUserIdReq {
-  string fileId = 1;
-  string userId = 2;
+message GetFileListReq{
+  optional SearchOptions searchOptions = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
-message GetFileByFileIdWithUserIdResp {
-  File file = 1;
-  string error = 2;
+message GetFileListResp{
+  repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
 }
 
-message GetFilesByFatherIdReq{
-  string fatherId = 1;
+message GetFolderSizeReq{
+  optional FileFilterOptions filterOptions = 1;
 }
 
-message GetFilesByFatherIdResp{
-  repeated File files = 1;
-  string error = 2;
-}
-
-message GetFilesByFatherIdWithUserIdReq{
-  string fatherId = 1;
-  string userId = 2;
-}
-
-message GetFilesByFatherIdWithUserIdResp{
-  repeated File files = 1;
-  string error = 2;
-}
-
-message GetAllFileByFatherIdReq{
-  string fatherId = 1;
-  string userId = 2;
-}
-
-message GetAllFileByFatherIdResp{
-  repeated File files = 1;
-  string error = 2;
-}
-
-message GetFileSizeReq{
-  string fileId = 1;
-}
-
-message GetFileSizeResp{
+message GetFolderSizeResp{
   int64 spaceSize = 1;
-  string error = 2;
 }
 
 message GetFileCountReq{
-  string userId = 1;
-  string fatherId = 2;
+  optional SearchOptions searchOptions = 1;
+  optional FileFilterOptions filterOptions = 2;
 }
 
 message GetFileCountResp{
   int64 count = 1;
-  string error = 2;
-}
 
-message GetFileTypeReq{
-  Type type = 1;
-}
-
-message GetFileTypeResp{
-  string error = 1;
-}
-
-message GetPublicFileByFileIdReq{
-  string fileId = 1;
-}
-
-message GetPublicFileByFileIdResp{
-  PublicFile file = 1;
-  string error = 2;
-}
-
-message GetPublicFileByFileIdWithUserIdReq{
-  string fileId = 1;
-  string userId = 2;
-}
-
-message GetPublicFileByFileIdWithUserIdResp{
-  PublicFile file = 1;
-  string error = 2;
-}
-
-message GetPublicFilesByUserIdReq{
-  string userId = 1;
-}
-
-message GetPublicFilesByUserIdResp{
-  repeated PublicFile files = 1;
-  string error = 2;
-}
-
-message GetPublicFilesByFatherIdReq{
-  string fatherId = 1;
-}
-
-message GetPublicFilesByFatherIdResp{
-  repeated PublicFile files = 1;
-  string error = 2;
-}
-
-message GetAllPublicFileByFatherIdReq{
-  string fatherId = 1;
-}
-
-message GetAllPublicFileByFatherIdResp{
-  repeated PublicFile files = 1;
-  string error = 2;
 }
 
 message GetFileBySharingCodeReq{
@@ -198,39 +58,44 @@ message GetFileBySharingCodeReq{
 }
 
 message GetFileBySharingCodeResp{
-  repeated File files = 1;
-  string error = 2;
+  repeated FileInfo files = 1;
+
 }
 
 message CreateFolderReq{
-  string userId = 1;
-  string name = 2;
-  string fatherId = 3;
+  File file = 1;
 }
 
 message CreateFolderResp{
   string fileId = 1;
-  string error = 2;
+
+}
+
+message UpdateFileReq{
+  File file = 1;
+}
+
+message UpdateFileResp{
+
+}
+
+message MoveFileReq{
+  optional FileFilterOptions filterOptions = 1;
+}
+
+message MoveFileResp{
+
 }
 
 message DeleteFileReq{
   string fileId = 1;
   string userId = 2;
+  bool clearUpload = 3;
 }
 
 message DeleteFileResp{
-  bool Ok = 1;
-  string error = 2;
-}
+  bool ok = 1;
 
-message DeletePublicFileReq{
-  string fileId = 1;
-  string userId = 2;
-}
-
-message DeletePublicFileResp{
-  bool Ok = 1;
-  string error = 2;
 }
 
 message DeleteShareFileReq{
@@ -239,8 +104,8 @@ message DeleteShareFileReq{
 }
 
 message DeleteShareFileResp{
-  bool Ok = 1;
-  string error = 2;
+  bool ok = 1;
+
 }
 
 message DeleteExpiredFilesReq{
@@ -255,52 +120,68 @@ message DeleteExpiredShareCodesReq{
 message DeleteExpiredShareCodesResp{
 }
 
-message UploadFileReq {
-  repeated bytes file = 1;
-  repeated string name = 2;
-}
+//message UploadFileReq {
+//  repeated bytes file = 1;
+//  repeated string name = 2;
+//}
 
-message UploadFileResp {
-  string error = 1;
-}
+//message UploadFileResp {
+//
+//}
 
 message AskUploadFileReq {
-  optional int64 spaceSize = 1;
-  string userId = 2;
-  string name = 3;
-  Type type = 4;
-  string md5 = 5;
-  string fatherId = 6;
-  string fileId = 7;
-  bool ok = 8;
+  File file = 1;
+  bool ok = 2;
 }
 
 message AskUploadFileResp {
-  string error = 1;
+}
+
+message CreateLabelReq {
+  Label label = 1;
+}
+
+message CreateLabelResp {
+  string id = 1;
+}
+
+message GetLabelReq {
+  string id = 1;
+}
+
+message GetLabelResp {
+  Label label = 1;
+}
+
+message UpdateLabelReq {
+  Label label = 1;
+}
+
+message UpdateLabelResp {
+}
+
+message DeleteLabelReq {
+  string id = 1;
+}
+
+message DeleteLabelResp {
 }
 
 //service
 service ContentService {
-  rpc GetCosInfo (GetCosInfoReq) returns(GetCosInfoResp);
-  rpc GetFileByMd5(GetFileByMd5Req) returns(GetFileByMd5Resp);
-  rpc GetFileByFileIdWithUserId(GetFileByFileIdWithUserIdReq) returns(GetFileByFileIdWithUserIdResp);
-  rpc GetFilesByFatherId(GetFilesByFatherIdReq) returns(GetFilesByFatherIdResp);
-  rpc GetFilesByFatherIdWithUserId(GetFilesByFatherIdWithUserIdReq) returns(GetFilesByFatherIdWithUserIdResp);
-  rpc GetAllFileByFatherId(GetAllFileByFatherIdReq) returns(GetAllFileByFatherIdResp);
+  rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
+  rpc GetFile(GetFileReq) returns(GetFileResp);
+  rpc GetFileList(GetFileListReq) returns(GetFileListResp);
   rpc GetFileCount(GetFileCountReq) returns(GetFileCountResp);
-  rpc GetFileType(GetFileTypeReq) returns(GetFileTypeReq);
-  rpc GetPublicFileByFileIdWithUserId(GetPublicFileByFileIdWithUserIdReq) returns(GetPublicFileByFileIdWithUserIdResp);
-  rpc GetPublicFilesByUserId(GetPublicFilesByUserIdReq) returns(GetPublicFilesByUserIdResp);
-  rpc GetPublicFilesByFatherId(GetPublicFilesByFatherIdReq) returns(GetPublicFilesByFatherIdResp);
-  rpc GetAllPublicFileByFatherId(GetAllPublicFileByFatherIdReq) returns(GetAllPublicFileByFatherIdResp);
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
-  rpc GetFileSize(GetFileSizeReq) returns(GetFileSizeResp);
+  rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp);
   rpc CreateFolder(CreateFolderReq) returns(CreateFolderResp);
-  rpc UploadFile (UploadFileReq) returns(UploadFileResp);
+  rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
+  rpc MoveFile(MoveFileReq) returns(MoveFileResp);
+//  rpc UploadFile (UploadFileReq) returns(UploadFileResp);
   rpc AskUploadFile (AskUploadFileReq) returns(AskUploadFileResp);
   rpc AskUploadFileRollback (AskUploadFileReq) returns(AskUploadFileResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
-  rpc DeletePublicFile(DeletePublicFileReq) returns(DeletePublicFileResp);
   rpc DeleteShareFile(DeleteShareFileReq) returns(DeleteShareFileResp);
   rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
   rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
