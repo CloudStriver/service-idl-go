@@ -15,7 +15,7 @@ message UserInfo {
 
 message Auth {
   int32 authType = 1;
-  string AppId = 2;
+  string appId = 2;
   string unionId = 3;
 }
 message AuthInfo {
