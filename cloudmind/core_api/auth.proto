@@ -1,25 +1,18 @@
 syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
-import "cloudmind/user/common.proto";
 import "cloudmind/sts/common.proto";
+import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
-enum RegisterType {
-  unKnownRegisterType = 0;
-  email = 1;
-  qq = 2;
-  wx = 3;
-}
 
 message RegisterReq{
   string name = 1;
-  user.Sex sex = 2;
-  RegisterType registerType = 3;
-  string authKey = 4;
-  string password = 5;
-  optional string code = 6;
+  content.Sex sex = 2;
+  string email = 3;
+  string password = 4;
+  optional string code = 5;
 }
 message RegisterResp{
   string shortToken = 1;
@@ -27,18 +20,40 @@ message RegisterResp{
   string userId = 3;
 }
 
-message LoginReq{
+message EmailLoginReq{
   string email = 1;
   string password = 2;
   sts.Point point = 3;
   string key = 4;
 }
 
-message LoginResp{
+message EmailLoginResp{
   string shortToken = 1;
   string longToken = 2;
   string userId = 3;
 }
+
+message GithubLoginReq{
+  string code = 1;
+}
+
+message GithubLoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+message GiteeLoginReq{
+  string code = 1;
+}
+
+message GiteeLoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+
 
 message RefreshTokenReq {
   string longToken = 1;
