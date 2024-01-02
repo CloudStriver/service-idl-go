@@ -20,7 +20,7 @@ message Auth {
 }
 message AuthInfo {
   AuthType authType = 1;
-  string AppId = 2;
+  string appId = 2;
   string unionId = 3;
 }
 
