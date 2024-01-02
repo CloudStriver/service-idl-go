@@ -167,6 +167,58 @@ message DeleteLabelReq {
 message DeleteLabelResp {
 }
 
+
+// ---------------用户-----------------
+
+message UpdateUserReq{
+  UserDetailInfo userDetailInfo = 1;
+}
+message UpdateUserResp{
+}
+
+message GetUserReq{
+  string userId = 1;
+}
+message GetUserResp{
+  User user = 1;
+}
+
+message SearchUserReq{
+  string keyword = 1; // 可以是name,userId等等
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message SearchUserResp{
+  repeated User users = 1;
+  int32 total = 2;
+  string lastToken = 3;
+}
+
+message CreateUserReq{
+  UserInfo userInfo = 1;
+}
+
+message CreateUserResp{
+}
+
+message GetUserDetailReq{
+  string userId = 1;
+}
+
+message GetUserDetailResp {
+  UserDetail userDetail = 1;
+}
+
+
+message DeleteUserReq{
+  string userId = 1;
+}
+
+message DeleteUserResp{
+}
+
+// ---------------用户-----------------
+
 //service
 service ContentService {
   rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
@@ -190,4 +242,12 @@ service ContentService {
   rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp);
   rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp);
   rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp);
+
+  // 用户
+  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
+  rpc GetUser(GetUserReq) returns(GetUserResp);
+  rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
+  rpc SearchUser(SearchUserReq) returns(SearchUserResp);
+  rpc CreateUser(CreateUserReq) returns(CreateUserResp);
+  rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
 }

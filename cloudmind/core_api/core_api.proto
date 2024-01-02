@@ -9,19 +9,35 @@ import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
 
 service content {
-//  rpc Register(RegisterReq) returns (RegisterResp){
-//    option (http.post) = "/content/register";
-//  }
+
 }
 
 service auth {
   rpc Register(RegisterReq) returns (RegisterResp){
     option (http.post) = "/auth/register";
   }
-  rpc Login(LoginReq) returns (LoginResp){
-    option (http.post) = "/auth/login";
+  rpc EmailLogin(EmailLoginReq) returns (EmailLoginResp){
+    option (http.post) = "/auth/login/email";
+  }
+  rpc GithubLogin(GithubLoginReq) returns (GithubLoginResp){
+    option (http.get) = "/auth/login/github";
+  }
+  rpc GiteeLogin(GiteeLoginReq) returns (GiteeLoginResp){
+    option (http.get) = "/auth/login/gitee";
   }
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
     option (http.post) = "/auth/refresh";
+  }
+  rpc SendEmail(SendEmailReq) returns (SendEmailResp){
+    option (http.post) = "/auth/send";
+  }
+  rpc GetCaptcha(GetCaptchaReq) returns (GetCaptchaResp){
+    option (http.get) = "/auth/captcha";
+  }
+  rpc SetPasswordByEmail(SetPasswordByEmailReq) returns (SetPasswordByEmailResp){
+    option (http.post) = "/auth/reset/email";
+  }
+  rpc SetPasswordByPassword(SetPasswordByPasswordReq) returns (SetPasswordByPasswordReq){
+    option (http.post) = "/auth/reset/password";
   }
 }
