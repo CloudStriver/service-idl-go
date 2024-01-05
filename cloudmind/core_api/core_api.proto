@@ -9,7 +9,14 @@ import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
 
 service content {
-
+  // ------------------ 用户 --------------------
+  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
+    option (http.post) = "/content/user/update";
+  }
+  rpc SearchUser(SearchUserReq) returns(SearchUserResp){
+    option (http.get) = "/content/user/search";
+  }
+  // ------------------ 用户 --------------------
 }
 
 service auth {
@@ -39,5 +46,23 @@ service auth {
   }
   rpc SetPasswordByPassword(SetPasswordByPasswordReq) returns (SetPasswordByPasswordReq){
     option (http.post) = "/auth/reset/password";
+  }
+}
+
+service relation {
+  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
+    option (http.post) = "/relation/create";
+  }
+  rpc GetRelationWithUser(GetRelationWithUserReq) returns(GetRelationWithUserResp){
+    option (http.get) = "/relation/with-user";
+  }
+  rpc GetRelationsWithUser(GetRelationsWithUserReq) returns(GetRelationsWithUserResp){
+    option (http.get) = "/relations/with-user";
+  }
+  rpc GetUserWithRelation(GetUserWithRelationReq) returns(GetUserWithRelationResp){
+    option (http.get) = "/relation/user-with";
+  }
+  rpc GetUserWithRelations(GetUserWithRelationsReq) returns(GetUserWithRelationsResp){
+    option (http.get) = "/relations/user-with";
   }
 }

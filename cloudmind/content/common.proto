@@ -118,7 +118,7 @@ message UserDetail {
 message UserDetailInfo{
   string userId = 1;
   string name = 2;
-  Sex  sex = 3;
+  int32  sex = 3;
   string fullName = 4;
   string idCard = 5;
   string description = 6;
@@ -129,5 +129,5 @@ message UserDetailInfo{
 message UserInfo {
   string userId = 1;
   string name = 2;
-  Sex sex = 3;
+  int32 sex = 3;
 }

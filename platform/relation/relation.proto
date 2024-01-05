@@ -51,7 +51,7 @@ message GetRelationReq{
 }
 
 message GetRelationResp{
-  Relation relation = 1;
+  bool ok = 1;
 }
 
 message DeleteRelationReq{
