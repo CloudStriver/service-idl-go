@@ -1,0 +1,44 @@
+syntax = "proto3";
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
+import "cloudmind/sts/common.proto";
+import "cloudmind/content/common.proto";
+import "basic/pagination.proto";
+import "http/http.proto";
+
+
+message User {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+}
+
+message UserDetail {
+  string name = 1;
+  int32  sex = 2;
+  string fullName = 3;
+  string idCard = 4;
+  string description = 5;
+}
+
+message RelationInfo {
+  int32 toType = 1;
+  string toId = 2;
+  int32 relationType = 3;
+}
+
+message RelationFilterOptions{
+  optional int32 onlyFromType = 1;
+  optional string onlyFromId = 2;
+  optional int32 onlyToType = 3;
+  optional string onlyToId = 4;
+  optional int32 onlyRelationType = 5;
+}
+
+message UserRelation{
+  User user = 1;
+  int64 createTime = 2;
+  int64 updateTime = 3;
+  int32 RelationType = 4;
+  bool IsToMe = 5;
+}

@@ -1,44 +1,7 @@
 syntax = "proto3";
 package cloudmind.sts;
 option go_package = "cloudmind/sts";
-
-message Auth {
-  string id = 1;
-  int32 type = 2;
-  string key = 3;
-  string userId = 4;
-  int32 role = 5;
-  string Password = 6;
-}
-
-enum AuthType {
-  UnKnownType = 0;
-  email = 1;
-  qq = 2;
-  wechat = 3;
-}
-
-enum Role {
-  UnKnownRole = 0;
-  System = 1;
-  User = 2;
-  Test = 3;
-}
-message EmailOptions {
-  string email = 1;
-  string code = 2;
-}
-
-message UserIdOptions{
-  string userId = 1;
-  string password = 2;
-}
-
-
-message Point {
-  int32 x = 1;
-  int32 y = 2;
-}
+import "cloudmind/sts/common.proto";
 
 message SendEmailReq {
   string email = 1;
@@ -46,26 +9,6 @@ message SendEmailReq {
 }
 
 message SendEmailResp {
-  string error = 2;
-}
-
-message CreateCaptchaReq{
-}
-
-message CreateCaptchaResp{
-  string originalImageBase64 = 1;
-  string jigsawImageBase64 = 2;
-  string key = 3;
-  string error = 4;
-}
-
-message CheckCaptchaReq{
-  Point point = 1;
-  string key = 2;
-}
-
-message CheckCaptchaResp{
-  string error = 1;
 }
 
 message SetPasswordReq{
@@ -76,7 +19,6 @@ message SetPasswordReq{
   string password = 3;
 }
 message SetPasswordResp{
-  string error = 1;
 }
 
 message CheckEmailReq{
@@ -85,36 +27,39 @@ message CheckEmailReq{
 }
 
 message CheckEmailResp{
-  string error = 1;
 }
 
 message CreateAuthReq{
-  AuthType type = 1;
-  string key = 2;
-  string userId = 3;
-  Role role = 4;
-  string Password = 5;
+  AuthInfo authInfo = 1;
+  UserInfo userInfo = 2;
+  optional string code = 3;
 }
 
 message CreateAuthResp{
-  string error = 1;
+  string userId = 1;
 }
 
 message LoginReq{
-  string email = 1;
+  AuthInfo auth = 1;
   string password = 2;
 }
-
-message LoginResp{
+message LoginResp {
   string userId = 1;
-  string error = 2;
+}
+
+message AppendAuthReq{
+  string userId = 1;
+  AuthInfo authInfo = 2;
+  optional string code = 3;
+}
+
+message AppendAuthResp{
 }
 service StsService {
-    rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
-    rpc CheckCaptcha(CheckCaptchaReq) returns(CheckCaptchaResp);
     rpc SetPassword(SetPasswordReq) returns(SetPasswordResp);
     rpc SendEmail(SendEmailReq) returns(SendEmailResp);
     rpc CheckEmail(CheckEmailReq) returns(CheckEmailResp);
     rpc CreateAuth(CreateAuthReq) returns(CreateAuthResp);
     rpc Login(LoginReq) returns(LoginResp);
+    rpc AppendAuth(AppendAuthReq) returns(AppendAuthResp);
 }

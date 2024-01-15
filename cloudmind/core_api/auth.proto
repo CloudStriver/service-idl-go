@@ -1,22 +1,18 @@
 syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
-import "cloudmind/user/common.proto";
+import "cloudmind/sts/common.proto";
+import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
+import "http/http.proto";
 
-enum RegisterType {
-  unKnownRegisterType = 0;
-  email = 1;
-  qq = 2;
-  wx = 3;
-}
 
 message RegisterReq{
   string name = 1;
-  user.Sex sex = 2;
-  RegisterType registerType = 3;
-  string authKey = 4;
-  string password = 5;
+  int32 sex = 2;
+  string email = 3;
+  string password = 4;
+  string code = 5;
 }
 message RegisterResp{
   string shortToken = 1;
@@ -24,16 +20,41 @@ message RegisterResp{
   string userId = 3;
 }
 
-message LoginReq{
+message EmailLoginReq{
   string email = 1;
   string password = 2;
+  int32 x = 3;
+  int32 y = 4;
+  string key = 5;
 }
 
-message LoginResp{
+message EmailLoginResp{
   string shortToken = 1;
   string longToken = 2;
   string userId = 3;
 }
+
+message GithubLoginReq{
+  string code = 1;
+}
+
+message GithubLoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+message GiteeLoginReq{
+  string code = 1;
+}
+
+message GiteeLoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
+
+
 
 message RefreshTokenReq {
   string longToken = 1;
@@ -42,4 +63,38 @@ message RefreshTokenReq {
 message RefreshTokenResp{
   string shortToken = 1;
   string longToken = 2;
+}
+
+message SendEmailReq {
+  string email = 1;
+  string subject = 2;
+}
+
+message SendEmailResp {
+}
+
+message GetCaptchaReq{
+}
+
+message GetCaptchaResp{
+  string originalImageBase64 = 1;
+  string jigsawImageBase64 = 2;
+  string key = 3;
+}
+
+
+message SetPasswordByEmailReq{
+  string email = 1;
+  string code = 2;
+  string password = 3;
+}
+message SetPasswordByEmailResp{
+}
+
+
+message SetPasswordByPasswordReq{
+  string oldPassword = 1;
+  string password = 2;
+}
+message SetPasswordByPasswordResp{
 }

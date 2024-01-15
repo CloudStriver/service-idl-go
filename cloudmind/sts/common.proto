@@ -1,0 +1,51 @@
+syntax = "proto3";
+package cloudmind.sts;
+option go_package = "cloudmind/sts";
+
+message User {
+  string userId = 1;
+  int32 role = 2;
+  string Password = 3;
+}
+
+message UserInfo {
+  Role role = 1;
+  optional string password = 2;
+}
+
+message Auth {
+  int32 authType = 1;
+  string appId = 2;
+  string unionId = 3;
+}
+message AuthInfo {
+  AuthType authType = 1;
+  string appId = 2;
+  string unionId = 3;
+}
+
+message EmailOptions {
+  string email = 1;
+  string code = 2;
+}
+
+message UserIdOptions{
+  string userId = 1;
+  string password = 2;
+}
+
+enum AuthType {
+  UnKnownType = 0;
+  email = 1;
+  qq = 2;
+  wechat = 3;
+  github = 4;
+  gitee = 5;
+}
+
+enum Role {
+  UnKnownRole = 0;
+  system = 1;
+  user = 2;
+  test = 3;
+}

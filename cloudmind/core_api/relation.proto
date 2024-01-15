@@ -1,6 +1,36 @@
 syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
-import "cloudmind/user/common.proto";
 import "basic/pagination.proto";
+import "cloudmind/core_api/common.proto";
 
+
+
+message CreateRelationReq{
+  RelationInfo relation = 1;
+  bool isOnly = 2; // 是否唯一
+}
+message CreateRelationResp{
+
+}
+
+message GetRelationsReq{
+   RelationFilterOptions relationFilterOptions = 1;
+   basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetRelationsResp{
+  repeated UserRelation userRelations = 1;
+  string lastToken = 2;
+  int32 total = 3;
+}
+
+message GetRelationReq{
+   int32 toType = 1;
+   string toId = 2;
+   int32 relationType = 3;
+}
+
+message GetRelationResp{
+  bool Ok = 1;
+}

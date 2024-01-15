@@ -1,0 +1,67 @@
+syntax = "proto3";
+package platform.relation;
+option go_package = "platform/relation";
+
+import "basic/pagination.proto";
+
+message Relation {
+    int32 fromType = 1;
+    string fromId = 2;
+    int32 toType = 3;
+    string toId = 4;
+    int32 relationType = 5;
+    int64 createTime = 6;
+    int64 updateTime = 7;
+}
+
+message RelationInfo {
+  int32 fromType = 1;
+  string fromId = 2;
+  int32 toType = 3;
+  string toId = 4;
+  int32 relationType = 5;
+}
+
+message CreateRelationReq{
+  RelationInfo relation = 1;
+  bool isOnly = 2; // 是否唯一
+}
+message CreateRelationResp{
+}
+
+message RelationFilterOptions{
+  optional int32 onlyFromType = 1;
+  optional string onlyFromId = 2;
+  optional int32 onlyToType = 3;
+  optional string onlyToId = 4;
+  optional int32 onlyRelationType = 5;
+}
+message GetRelationsReq{
+  RelationFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+message GetRelationsResp{
+  repeated Relation relations = 1;
+  int32 total = 2;
+  string lastToken = 3;
+}
+
+message GetRelationReq{
+  RelationInfo relationInfo = 1;
+}
+
+message GetRelationResp{
+  bool ok = 1;
+}
+
+message DeleteRelationReq{
+  string id = 1;
+}
+message DeleteRelationResp{
+}
+service RelationService {
+  rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
+  rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);
+  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp);
+  rpc GetRelation(GetRelationReq) returns(GetRelationResp);
+}

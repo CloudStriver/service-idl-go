@@ -121,3 +121,42 @@ message ShareFileFilterOptions {
   optional string onlyUserId = 2;
 }
 
+enum Sex {
+  unKnownSex = 0; // 未知
+  man = 1; // 男
+  women = 2; // 女
+}
+
+message User {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+}
+
+message UserDetail {
+  string userId = 1;
+  string name = 2;
+  int32  sex = 3;
+  string fullName = 4;
+  string idCard = 5;
+  int64 createdAt = 6;
+  int64 updatedAt = 7;
+  string description = 8;
+  string url = 9;
+}
+
+message UserDetailInfo{
+  string userId = 1;
+  string name = 2;
+  int32  sex = 3;
+  string fullName = 4;
+  string idCard = 5;
+  string description = 6;
+  string url = 7;
+}
+
+message UserInfo {
+  string userId = 1;
+  string name = 2;
+  int32 sex = 3;
+}

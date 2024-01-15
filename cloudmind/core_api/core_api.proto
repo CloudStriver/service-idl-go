@@ -9,19 +9,60 @@ import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
 
 service content {
-//  rpc Register(RegisterReq) returns (RegisterResp){
-//    option (http.post) = "/content/register";
-//  }
+  // ------------------ 用户 --------------------
+  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
+    option (http.post) = "/content/user/update";
+  }
+  rpc SearchUser(SearchUserReq) returns(SearchUserResp){
+    option (http.get) = "/content/user/search";
+  }
+  // ------------------ 用户 --------------------
 }
 
 service auth {
   rpc Register(RegisterReq) returns (RegisterResp){
     option (http.post) = "/auth/register";
   }
-  rpc Login(LoginReq) returns (LoginResp){
-    option (http.post) = "/auth/login";
+  rpc EmailLogin(EmailLoginReq) returns (EmailLoginResp){
+    option (http.post) = "/auth/login/email";
+  }
+  rpc GithubLogin(GithubLoginReq) returns (GithubLoginResp){
+    option (http.get) = "/auth/login/github";
+  }
+  rpc GiteeLogin(GiteeLoginReq) returns (GiteeLoginResp){
+    option (http.get) = "/auth/login/gitee";
   }
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
     option (http.post) = "/auth/refresh";
   }
+  rpc SendEmail(SendEmailReq) returns (SendEmailResp){
+    option (http.post) = "/auth/send";
+  }
+  rpc GetCaptcha(GetCaptchaReq) returns (GetCaptchaResp){
+    option (http.get) = "/auth/captcha";
+  }
+  rpc SetPasswordByEmail(SetPasswordByEmailReq) returns (SetPasswordByEmailResp){
+    option (http.post) = "/auth/reset/email";
+  }
+  rpc SetPasswordByPassword(SetPasswordByPasswordReq) returns (SetPasswordByPasswordReq){
+    option (http.post) = "/auth/reset/password";
+  }
+}
+
+service relation {
+//  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
+//    option (http.post) = "/relation/create";
+//  }
+//  rpc GetRelationWithUser(GetRelationWithUserReq) returns(GetRelationWithUserResp){
+//    option (http.get) = "/relation/with-user";
+//  }
+//  rpc GetRelationsWithUser(GetRelationsWithUserReq) returns(GetRelationsWithUserResp){
+//    option (http.get) = "/relations/with-user";
+//  }
+//  rpc GetUserWithRelation(GetUserWithRelationReq) returns(GetUserWithRelationResp){
+//    option (http.get) = "/relation/user-with";
+//  }
+//  rpc GetUserWithRelations(GetUserWithRelationsReq) returns(GetUserWithRelationsResp){
+//    option (http.get) = "/relations/user-with";
+//  }
 }
