@@ -50,19 +50,19 @@ service auth {
 }
 
 service relation {
-  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
-    option (http.post) = "/relation/create";
-  }
-  rpc GetRelationWithUser(GetRelationWithUserReq) returns(GetRelationWithUserResp){
-    option (http.get) = "/relation/with-user";
-  }
-  rpc GetRelationsWithUser(GetRelationsWithUserReq) returns(GetRelationsWithUserResp){
-    option (http.get) = "/relations/with-user";
-  }
-  rpc GetUserWithRelation(GetUserWithRelationReq) returns(GetUserWithRelationResp){
-    option (http.get) = "/relation/user-with";
-  }
-  rpc GetUserWithRelations(GetUserWithRelationsReq) returns(GetUserWithRelationsResp){
-    option (http.get) = "/relations/user-with";
-  }
+//  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
+//    option (http.post) = "/relation/create";
+//  }
+//  rpc GetRelationWithUser(GetRelationWithUserReq) returns(GetRelationWithUserResp){
+//    option (http.get) = "/relation/with-user";
+//  }
+//  rpc GetRelationsWithUser(GetRelationsWithUserReq) returns(GetRelationsWithUserResp){
+//    option (http.get) = "/relations/with-user";
+//  }
+//  rpc GetUserWithRelation(GetUserWithRelationReq) returns(GetUserWithRelationResp){
+//    option (http.get) = "/relation/user-with";
+//  }
+//  rpc GetUserWithRelations(GetUserWithRelationsReq) returns(GetUserWithRelationsResp){
+//    option (http.get) = "/relations/user-with";
+//  }
 }
