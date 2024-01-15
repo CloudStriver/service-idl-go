@@ -32,6 +32,12 @@ enum DocumentType {
   DocumentType_public = 2;
 }
 
+enum Status {
+  Status_null = 0;
+  Status_normal = 1;
+  Status_invalid = 2;
+}
+
 message File {
   string fileId = 1;
   string userId = 2;
@@ -67,6 +73,27 @@ message Label {
   string value = 2;
 }
 
+message ShareFile {
+  string code = 1;
+  string userId = 2;
+  string name = 3;
+  Status  status = 4;
+  int32 limit = 5;
+  repeated string persons = 6;
+  int32 effectiveTime = 7;
+  int64 browseNumber = 8;
+  int64 createAt = 9;
+  repeated string fileList = 10;
+}
+
+message ShareCode {
+  string code = 1;
+  string name = 3;
+  Status status = 4;
+  int64 browseNumber = 8;
+  int64 createAt = 9;
+}
+
 message SearchField {
   optional string text = 1;
   optional string title = 2;
@@ -88,3 +115,9 @@ message FileFilterOptions {
   int32 isDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
   int32 documentType = 6; // 操作类型 1：个人空间文件 2：公共空间文件
 }
+
+message ShareFileFilterOptions {
+  optional string onlyCode = 1;
+  optional string onlyUserId = 2;
+}
+
