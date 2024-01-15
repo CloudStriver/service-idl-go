@@ -2,4 +2,23 @@ syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
 import "basic/pagination.proto";
+import "cloudmind/core_api/common.proto";
+import "http/http.proto";
 
+message UpdateUserReq{
+  UserDetail userDetail = 1;
+}
+
+message UpdateUserResp{
+}
+
+message SearchUserReq{
+  string keyword = 1;
+  basic.PaginationOptions paginationOptions = 2;
+}
+
+message SearchUserResp{
+  repeated User users = 1;
+  string lastToken = 2;
+  int32 total = 3;
+}
