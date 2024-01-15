@@ -282,9 +282,6 @@ service ContentService {
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
-  rpc AskUploadFile (AskUploadFileReq) returns(AskUploadFileResp);
-  rpc AskUploadFileRollback (AskUploadFileReq) returns(AskUploadFileResp);
-  rpc DeleteShareFile(DeleteShareFileReq) returns(DeleteShareFileResp);
   rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
   rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
 
@@ -300,7 +297,7 @@ service ContentService {
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp);
 
   // ---------------用户-----------------
-      rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
+  rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
