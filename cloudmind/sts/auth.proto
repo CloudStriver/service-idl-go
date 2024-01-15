@@ -11,23 +11,6 @@ message SendEmailReq {
 message SendEmailResp {
 }
 
-message CreateCaptchaReq{
-}
-
-message CreateCaptchaResp{
-  string originalImageBase64 = 1;
-  string jigsawImageBase64 = 2;
-  string key = 3;
-}
-
-message CheckCaptchaReq{
-  Point point = 1;
-  string key = 2;
-}
-
-message CheckCaptchaResp{
-}
-
 message SetPasswordReq{
   oneof Key {
     UserIdOptions userIdOptions = 1;
@@ -59,7 +42,6 @@ message CreateAuthResp{
 message LoginReq{
   AuthInfo auth = 1;
   string password = 2;
-  optional Captcha captcha = 5;
 }
 message LoginResp {
   string userId = 1;
@@ -74,8 +56,6 @@ message AppendAuthReq{
 message AppendAuthResp{
 }
 service StsService {
-    rpc CreateCaptcha(CreateCaptchaReq) returns(CreateCaptchaResp);
-    rpc CheckCaptcha(CheckCaptchaReq) returns(CheckCaptchaResp);
     rpc SetPassword(SetPasswordReq) returns(SetPasswordResp);
     rpc SendEmail(SendEmailReq) returns(SendEmailResp);
     rpc CheckEmail(CheckEmailReq) returns(CheckEmailResp);

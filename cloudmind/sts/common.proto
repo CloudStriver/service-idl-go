@@ -34,11 +34,6 @@ message UserIdOptions{
   string password = 2;
 }
 
-message Point {
-  int32 x = 1;
-  int32 y = 2;
-}
-
 enum AuthType {
   UnKnownType = 0;
   email = 1;
@@ -53,9 +48,4 @@ enum Role {
   system = 1;
   user = 2;
   test = 3;
-}
-
-message Captcha{
-   Point point = 1;
-   string key = 2;
 }
