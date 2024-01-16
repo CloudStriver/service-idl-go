@@ -4,7 +4,7 @@ option go_package = "cloudmind/sts";
 
 message User {
   string userId = 1;
-  int32 role = 2;
+  int64 role = 2;
   string Password = 3;
 }
 
@@ -14,7 +14,7 @@ message UserInfo {
 }
 
 message Auth {
-  int32 authType = 1;
+  int64 authType = 1;
   string appId = 2;
   string unionId = 3;
 }
