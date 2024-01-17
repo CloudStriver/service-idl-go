@@ -19,6 +19,7 @@ message UserDetail {
   string fullName = 3;
   string idCard = 4;
   string description = 5;
+  string url = 6;
 }
 
 message RelationInfo{
@@ -26,7 +27,7 @@ message RelationInfo{
   int64 FromType = 2;
   string ToId = 3;
   int64 ToType = 4;
-  int32 RelationType = 5;
+  int64 RelationType = 5;
 }
 enum TargetType {
   UnKnowTargetType = 0;
