@@ -50,16 +50,16 @@ service relation {
   rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
     option (http.post) = "/relation/create";
   }
-//  rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
-//    option (http.get) = "/relations/from";
-//  }
-//  rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
-//    option (http.get) = "/relations/to";
-//  }
-//  rpc GetRelation(GetRelationReq) returns(GetRelationResp){
-//    option (http.get) = "/relation";
-//  }
-//  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
-//    option (http.post) = "/relation/delete";
-//  }
+  rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
+    option (http.get) = "/relations/from";
+  }
+  rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
+    option (http.get) = "/relations/to";
+  }
+  rpc GetRelation(GetRelationReq) returns(GetRelationResp){
+    option (http.get) = "/relation";
+  }
+  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
+    option (http.post) = "/relation/delete";
+  }
 }
