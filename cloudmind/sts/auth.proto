@@ -55,6 +55,38 @@ message AppendAuthReq{
 
 message AppendAuthResp{
 }
+
+
+message GenCosStsReq {
+  string path = 1;
+}
+
+message GenCosStsResp {
+  string secretId = 1;
+  string secretKey = 2;
+  string sessionToken = 3;
+  int64 expiredTime = 4;
+  int64 startTime = 5;
+}
+
+message GenSignedUrlReq {
+  string secretId = 1;
+  string secretKey = 2;
+  string method = 3;
+  string path = 4;
+}
+
+message GenSignedUrlResp {
+  string signedUrl = 1;
+}
+
+message DeleteObjectReq {
+  string path = 1;
+}
+
+message DeleteObjectResp {
+}
+
 service StsService {
     rpc SetPassword(SetPasswordReq) returns(SetPasswordResp);
     rpc SendEmail(SendEmailReq) returns(SendEmailResp);
@@ -62,4 +94,7 @@ service StsService {
     rpc CreateAuth(CreateAuthReq) returns(CreateAuthResp);
     rpc Login(LoginReq) returns(LoginResp);
     rpc AppendAuth(AppendAuthReq) returns(AppendAuthResp);
+    rpc genCosSts(GenCosStsReq) returns (GenCosStsResp);
+    rpc genSignedUrl(GenSignedUrlReq) returns (GenSignedUrlResp);
+    rpc deleteObject(DeleteObjectReq) returns (DeleteObjectResp);
 }
