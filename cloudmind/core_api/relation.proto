@@ -14,8 +14,9 @@ message GetFromRelationsReq{
    string fromId = 1;
    int64 fromType = 2;
    TargetType toType = 3;
-   int32 relationType = 4;
-   basic.PaginationOptions paginationOptions = 5;
+   int64 relationType = 4;
+   optional int64 limit = 5;
+   optional int64 offset = 6;
 }
 message GetFromRelationsResp{
   repeated User users = 1;
@@ -26,11 +27,12 @@ message GetFromRelationsResp{
 }
 
 message GetToRelationsReq{
-   int32 toType = 1;
+   int64 toType = 1;
    string toId = 2;
   TargetType fromType = 3;
-  int32 relationType = 4;
-  basic.PaginationOptions paginationOptions = 5;
+  int64 relationType = 4;
+  optional int64 limit = 5;
+  optional int64 offset = 6;
 }
 
 message GetToRelationsResp{
@@ -42,7 +44,11 @@ message GetToRelationsResp{
 }
 
 message GetRelationReq{
-  RelationInfo relationInfo = 1;
+  string FromId = 1;
+  int64 FromType = 2;
+  string ToId = 3;
+  int64 ToType = 4;
+  int64 RelationType = 5;
 }
 
 message GetRelationResp{

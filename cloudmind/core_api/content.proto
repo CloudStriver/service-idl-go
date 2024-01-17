@@ -20,5 +20,5 @@ message SearchUserReq{
 message SearchUserResp{
   repeated User users = 1;
   string lastToken = 2;
-  int32 total = 3;
+  int64 total = 3;
 }
