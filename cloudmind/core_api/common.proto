@@ -21,24 +21,17 @@ message UserDetail {
   string description = 5;
 }
 
-message RelationInfo {
-  int32 toType = 1;
-  string toId = 2;
-  int32 relationType = 3;
+message RelationInfo{
+  string FromId = 1;
+  int64 FromType = 2;
+  string ToId = 3;
+  int64 ToType = 4;
+  int32 RelationType = 5;
 }
-
-message RelationFilterOptions{
-  optional int32 onlyFromType = 1;
-  optional string onlyFromId = 2;
-  optional int32 onlyToType = 3;
-  optional string onlyToId = 4;
-  optional int32 onlyRelationType = 5;
-}
-
-message UserRelation{
-  User user = 1;
-  int64 createTime = 2;
-  int64 updateTime = 3;
-  int32 RelationType = 4;
-  bool IsToMe = 5;
+enum TargetType {
+  UnKnowTargetType = 0;
+  UserType = 1;
+  FileType = 2;
+  ProductType = 3;
+  PostType = 4;
 }
