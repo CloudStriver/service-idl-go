@@ -15,7 +15,6 @@ message CreateRelationResp{
 message GetRelationReq{
   RelationInfo relationInfo = 1 ;
 }
-
 message GetRelationResp{
   bool ok = 1;
 }
@@ -27,12 +26,14 @@ message DeleteRelationResp{
 }
 
 message FromFilterOptions{
-   int64 onlyFromType = 1;
-   string onlyFromId = 2;
+   int64 fromType = 1;
+   string fromId = 2;
+   int64 toType = 3;
 }
 message ToFilterOptions{
-  int64 onlyToType = 3;
-  string onlyToId = 4;
+  int64 toType = 1;
+  string toId = 2;
+  int64 fromType = 3;
 }
 
 message GetRelationsReq{
@@ -40,7 +41,6 @@ message GetRelationsReq{
       FromFilterOptions fromFilterOptions = 1;
       ToFilterOptions toFilterOptions = 2;
   }
-  optional int64  onlyRelationType = 3;
   optional basic.PaginationOptions paginationOptions = 4;
 }
 message GetRelationsResp{
@@ -53,7 +53,6 @@ message GetRelationCountReq{
     FromFilterOptions fromFilterOptions = 1;
     ToFilterOptions toFilterOptions = 2;
   }
-  optional int64  onlyRelationType = 3;
 }
 message GetRelationCountResp{
   int64 total = 1;
