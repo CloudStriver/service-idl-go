@@ -41,6 +41,7 @@ message GetRelationsReq{
       FromFilterOptions fromFilterOptions = 1;
       ToFilterOptions toFilterOptions = 2;
   }
+  int64 relationType = 3;
   optional basic.PaginationOptions paginationOptions = 4;
 }
 message GetRelationsResp{
@@ -53,6 +54,7 @@ message GetRelationCountReq{
     FromFilterOptions fromFilterOptions = 1;
     ToFilterOptions toFilterOptions = 2;
   }
+  int64 relationType = 3;
 }
 message GetRelationCountResp{
   int64 total = 1;
