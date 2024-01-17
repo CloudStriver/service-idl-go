@@ -38,9 +38,6 @@ service auth {
   rpc SendEmail(SendEmailReq) returns (SendEmailResp){
     option (http.post) = "/auth/send";
   }
-  rpc GetCaptcha(GetCaptchaReq) returns (GetCaptchaResp){
-    option (http.get) = "/auth/captcha";
-  }
   rpc SetPasswordByEmail(SetPasswordByEmailReq) returns (SetPasswordByEmailResp){
     option (http.post) = "/auth/reset/email";
   }
@@ -50,19 +47,19 @@ service auth {
 }
 
 service relation {
-//  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
-//    option (http.post) = "/relation/create";
+  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
+    option (http.post) = "/relation/create";
+  }
+//  rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
+//    option (http.get) = "/relations/from";
 //  }
-//  rpc GetRelationWithUser(GetRelationWithUserReq) returns(GetRelationWithUserResp){
-//    option (http.get) = "/relation/with-user";
+//  rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
+//    option (http.get) = "/relations/to";
 //  }
-//  rpc GetRelationsWithUser(GetRelationsWithUserReq) returns(GetRelationsWithUserResp){
-//    option (http.get) = "/relations/with-user";
+//  rpc GetRelation(GetRelationReq) returns(GetRelationResp){
+//    option (http.get) = "/relation";
 //  }
-//  rpc GetUserWithRelation(GetUserWithRelationReq) returns(GetUserWithRelationResp){
-//    option (http.get) = "/relation/user-with";
-//  }
-//  rpc GetUserWithRelations(GetUserWithRelationsReq) returns(GetUserWithRelationsResp){
-//    option (http.get) = "/relations/user-with";
+//  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
+//    option (http.post) = "/relation/delete";
 //  }
 }
