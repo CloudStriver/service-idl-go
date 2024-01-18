@@ -54,10 +54,14 @@ message GetFileCountResp{
 
 message GetFileBySharingCodeReq{
   string sharingCode = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetFileBySharingCodeResp{
   repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
 }
 
 message CreateFolderReq{
@@ -89,7 +93,6 @@ message SaveFileToPrivateSpaceReq{
   string fileId = 2;
   string fatherId = 3;
   DocumentType documentType = 4;
-}
 
 message SaveFileToPrivateSpaceResp{
   string fileId = 1;
@@ -103,7 +106,6 @@ message AddFileToPublicSpaceResp{
 }
 
 message DeleteFileReq{
-  string fileId = 1;
   string userId = 2;
   IsDel deleteType = 3;
   bool clearCommunity = 4;
@@ -116,21 +118,11 @@ message DeleteFileResp{
 message RecoverRecycleBinFileReq{
   string fileId = 1;
   string userId = 2;
+  IsDel deleteType = 3;
+  bool clearCommunity = 4;
 }
 
 message RecoverRecycleBinFileResp{
-}
-
-message DeleteExpiredFilesReq{
-}
-
-message DeleteExpiredFilesResp{
-}
-
-message DeleteExpiredShareCodesReq{
-}
-
-message DeleteExpiredShareCodesResp{
 }
 
 message CreateLabelReq {
@@ -213,16 +205,6 @@ message DeleteShareFileResp{
   bool ok = 1;
 }
 
-message AskUploadFileReq {
-  File file = 1;
-  bool ok = 2;
-}
-
-message AskUploadFileResp {
-}
-
-
-// ---------------用户-----------------
 message UpdateUserReq{
   UserDetailInfo userDetailInfo = 1;
 }
@@ -268,9 +250,7 @@ message DeleteUserReq{
 
 message DeleteUserResp{
 }
-// ---------------用户-----------------
 
-// ---------------帖子-----------------
 message CreatePostReq{
   PostInfo postInfo = 1;
 }
@@ -312,7 +292,6 @@ message GetPostsResp{
   int64 total = 2;
   string token = 3;
 }
-// ---------------帖子-----------------
 
 //service
 service ContentService {
@@ -329,8 +308,6 @@ service ContentService {
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
-  rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
-  rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
 
   rpc GetLabel(GetLabelReq) returns(GetLabelResp);
   rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp);

@@ -77,26 +77,24 @@ message ShareFile {
   string code = 1;
   string userId = 2;
   string name = 3;
-  Status  status = 4;
-  int64 limit = 5;
-  repeated string persons = 6;
-  int64 effectiveTime = 7;
-  int64 browseNumber = 8;
-  int64 createAt = 9;
-  repeated string fileList = 10;
+  int64  status = 4;
+  int64 effectiveTime = 5;
+  int64 browseNumber = 6;
+  int64 createAt = 7;
+  repeated string fileList = 8;
 }
 
 message ShareCode {
   string code = 1;
-  string name = 3;
-  Status status = 4;
-  int64 browseNumber = 8;
-  int64 createAt = 9;
+  string name = 2;
+  int64 status = 3;
+  int64 browseNumber = 4;
+  int64 createAt = 5;
 }
 
 message SearchField {
-  optional string text = 1;
-  optional string title = 2;
+  optional string name = 1;
+  optional string id = 2;
   optional string tag = 3; // 仅限Post
 }
 
