@@ -32,6 +32,12 @@ enum DocumentType {
   DocumentType_public = 2;
 }
 
+enum Status {
+  Status_null = 0;
+  Status_normal = 1;
+  Status_invalid = 2;
+}
+
 message File {
   string fileId = 1;
   string userId = 2;
@@ -152,4 +158,35 @@ message UserInfo {
   string userId = 1;
   string name = 2;
   int64 sex = 3;
+}
+
+message Post {
+  string postId = 1;
+  string userId = 2;
+  string title = 3;
+  string text = 4;
+  repeated string tags = 5;
+  int64 status = 6;
+  string url = 7;
+  int64 createTime = 8;
+  int64 updateTime = 9;
+}
+
+message PostInfo {
+  string postId = 1;
+  string userId = 2;
+  string title = 3;
+  string text = 4;
+  repeated string tags = 5;
+  int64 status = 6;
+  string url = 7;
+}
+
+message PostFilterOptions{
+  optional string onlyUserId = 1;
+  optional string onlyPostId = 2;
+  optional string onlyTitle = 3;
+  optional string onlyText = 4;
+  optional string  onlyTag = 5;
+  optional int64 status = 6;
 }

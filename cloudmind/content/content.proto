@@ -95,6 +95,13 @@ message SaveFileToPrivateSpaceReq{
   DocumentType documentType = 4;
 }
 
+message SaveFileToPrivateSpaceReq{
+  string userId = 1;
+  string fileId = 2;
+  string fatherId = 3;
+  DocumentType documentType = 4;
+}
+
 message SaveFileToPrivateSpaceResp{
   string fileId = 1;
 }
@@ -120,6 +127,8 @@ message DeleteFileResp{
 message RecoverRecycleBinFileReq{
   string fileId = 1;
   string userId = 2;
+  IsDel deleteType = 3;
+  bool clearCommunity = 4;
 }
 
 message RecoverRecycleBinFileResp{
@@ -205,12 +214,46 @@ message DeleteShareFileResp{
   bool ok = 1;
 }
 
-message AskUploadFileReq {
-  File file = 1;
-  bool ok = 2;
+message GetShareListReq {
+  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
 }
 
-message AskUploadFileResp {
+message GetShareListResp {
+  repeated ShareCode shareCodes = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message UpdateShareCodeReq {
+  ShareFile shareFile = 1;
+}
+
+message UpdateShareCodeResp {
+}
+
+message DeleteShareCodeReq {
+  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+}
+
+message DeleteShareCodeResp {
+}
+
+message ParsingShareCodeReq {
+  string code = 1;
+}
+
+message ParsingShareCodeResp {
+  ShareFile shareFile = 1;
+}
+
+message DeleteShareFileReq{
+  string shareId = 1;
+  string userId = 2;
+}
+
+message DeleteShareFileResp{
+  bool ok = 1;
 }
 
 message UpdateUserReq{
@@ -259,6 +302,47 @@ message DeleteUserReq{
 message DeleteUserResp{
 }
 
+message CreatePostReq{
+  PostInfo postInfo = 1;
+}
+
+message CreatePostResp{
+}
+
+message DeletePostReq{
+  string postId = 1;
+}
+
+message DeletePostResp{
+}
+
+message UpdatePostReq{
+  PostInfo postInfo = 1;
+}
+
+message UpdatePostResp{
+}
+
+message GetPostReq{
+  string postId = 1;
+}
+
+message GetPostResp{
+  Post post = 1;
+}
+
+message GetPostsReq{
+  optional SearchOptions searchOptions = 1;
+  optional PostFilterOptions postFilterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message GetPostsResp{
+  repeated Post posts = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
 //service
 service ContentService {
   rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
@@ -293,4 +377,11 @@ service ContentService {
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
   rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
+
+  // ---------------帖子-----------------
+  rpc CreatePost(CreatePostReq) returns(CreatePostResp);
+  rpc DeletePost(DeletePostReq) returns(DeletePostResp);
+  rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp);
+  rpc GetPost(GetPostReq)  returns(GetPostResp);
+  rpc GetPosts(GetPostsReq) returns(GetPostsResp);
 }

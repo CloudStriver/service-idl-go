@@ -4,33 +4,59 @@ option go_package = "cloudmind/core_api";
 import "basic/pagination.proto";
 import "cloudmind/core_api/common.proto";
 
-
-
 message CreateRelationReq{
   RelationInfo relation = 1;
-  bool isOnly = 2; // 是否唯一
 }
 message CreateRelationResp{
-
 }
 
-message GetRelationsReq{
-   RelationFilterOptions relationFilterOptions = 1;
-   basic.PaginationOptions paginationOptions = 2;
+message GetFromRelationsReq{
+   string fromId = 1;
+   int64 fromType = 2;
+   TargetType toType = 3;
+   int64 relationType = 4;
+   optional int64 limit = 5;
+   optional int64 offset = 6;
+}
+message GetFromRelationsResp{
+  repeated User users = 1;
+  // 用户信息
+  // 文件信息
+  // 商品信息
+  // 帖子信息
 }
 
-message GetRelationsResp{
-  repeated UserRelation userRelations = 1;
-  string lastToken = 2;
-  int32 total = 3;
+message GetToRelationsReq{
+   int64 toType = 1;
+   string toId = 2;
+  TargetType fromType = 3;
+  int64 relationType = 4;
+  optional int64 limit = 5;
+  optional int64 offset = 6;
+}
+
+message GetToRelationsResp{
+  repeated User users = 1;
+  // 用户信息
+  // 文件信息
+  // 商品信息
+  // 帖子信息
 }
 
 message GetRelationReq{
-   int32 toType = 1;
-   string toId = 2;
-   int32 relationType = 3;
+  string FromId = 1;
+  int64 FromType = 2;
+  string ToId = 3;
+  int64 ToType = 4;
+  int64 RelationType = 5;
 }
 
 message GetRelationResp{
-  bool Ok = 1;
+  bool ok = 1;
+}
+
+message DeleteRelationReq{
+  RelationInfo relationInfo = 1;
+}
+message DeleteRelationResp{
 }
