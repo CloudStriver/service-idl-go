@@ -7,7 +7,7 @@ import "http/http.proto";
 import "cloudmind/core_api/content.proto";
 import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
-
+import "cloudmind/core_api/sts.proto";
 service content {
   // ------------------ 用户 --------------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
@@ -61,5 +61,11 @@ service relation {
   }
   rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
     option (http.post) = "/relation/delete";
+  }
+}
+
+service sts {
+  rpc ApplySignedUrl(ApplySignedUrlReq) returns(ApplySignedUrlResp){
+    option (http.post) = "/sts";
   }
 }
