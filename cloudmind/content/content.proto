@@ -94,6 +94,14 @@ message SaveFileToPrivateSpaceReq{
   string fatherId = 3;
   DocumentType documentType = 4;
 }
+
+message SaveFileToPrivateSpaceReq{
+  string userId = 1;
+  string fileId = 2;
+  string fatherId = 3;
+  DocumentType documentType = 4;
+}
+
 message SaveFileToPrivateSpaceResp{
   string fileId = 1;
 }
@@ -106,6 +114,7 @@ message AddFileToPublicSpaceResp{
 }
 
 message DeleteFileReq{
+  string fileId = 1;
   string userId = 2;
   IsDel deleteType = 3;
   bool clearCommunity = 4;
@@ -161,6 +170,48 @@ message CreateShareCodeReq {
 
 message CreateShareCodeResp {
   string code = 1;
+}
+
+message GetShareListReq {
+  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetShareListResp {
+  repeated ShareCode shareCodes = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message UpdateShareCodeReq {
+  ShareFile shareFile = 1;
+}
+
+message UpdateShareCodeResp {
+}
+
+message DeleteShareCodeReq {
+  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+}
+
+message DeleteShareCodeResp {
+}
+
+message ParsingShareCodeReq {
+  string code = 1;
+}
+
+message ParsingShareCodeResp {
+  ShareFile shareFile = 1;
+}
+
+message DeleteShareFileReq{
+  string shareId = 1;
+  string userId = 2;
+}
+
+message DeleteShareFileResp{
+  bool ok = 1;
 }
 
 message GetShareListReq {
