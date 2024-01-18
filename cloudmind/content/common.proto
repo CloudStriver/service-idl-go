@@ -90,6 +90,8 @@ message SearchField {
   optional string name = 1;
   optional string id = 2;
   optional string tag = 3; // 仅限Post
+  optional string text = 4;
+  optional string title = 5;
 }
 
 message SearchOptions {
@@ -182,6 +184,6 @@ message PostFilterOptions{
   optional string onlyTitle = 3;
   optional string onlyText = 4;
   optional string  onlyTag = 5;
-  optional int64 status = 6;
+  optional int64 onlyStatus = 6;
 }
 
