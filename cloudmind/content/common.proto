@@ -32,12 +32,6 @@ enum DocumentType {
   DocumentType_public = 2;
 }
 
-enum Status {
-  Status_null = 0;
-  Status_normal = 1;
-  Status_invalid = 2;
-}
-
 message File {
   string fileId = 1;
   string userId = 2;
@@ -47,7 +41,7 @@ message File {
   string fatherId = 6;
   optional int64 spaceSize = 7;
   string md5 = 8;
-  int32 isDel = 9;
+  int64 isDel = 9;
   repeated string tag = 10;
   string description = 11;
   int64 updateAt = 12;
@@ -62,7 +56,7 @@ message FileInfo {
   string fatherId = 6;
   int64 spaceSize = 7;
   string md5 = 8;
-  int32 isDel = 9;
+  int64 isDel = 9;
   repeated string tag = 10;
   string description = 11;
   int64 updateAt = 12;
@@ -77,26 +71,24 @@ message ShareFile {
   string code = 1;
   string userId = 2;
   string name = 3;
-  Status  status = 4;
-  int32 limit = 5;
-  repeated string persons = 6;
-  int32 effectiveTime = 7;
-  int64 browseNumber = 8;
-  int64 createAt = 9;
-  repeated string fileList = 10;
+  int64  status = 4;
+  int64 effectiveTime = 5;
+  int64 browseNumber = 6;
+  int64 createAt = 7;
+  repeated string fileList = 8;
 }
 
 message ShareCode {
   string code = 1;
-  string name = 3;
-  Status status = 4;
-  int64 browseNumber = 8;
-  int64 createAt = 9;
+  string name = 2;
+  int64 status = 3;
+  int64 browseNumber = 4;
+  int64 createAt = 5;
 }
 
 message SearchField {
-  optional string text = 1;
-  optional string title = 2;
+  optional string name = 1;
+  optional string id = 2;
   optional string tag = 3; // 仅限Post
 }
 
@@ -111,9 +103,9 @@ message FileFilterOptions {
   optional string onlyUserId = 1;
   optional string onlyFileId = 2;
   optional string onlyFatherId = 3;
-  optional int32  onlyFileType = 4; // 文件类型
-  int32 isDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
-  int32 documentType = 6; // 操作类型 1：个人空间文件 2：公共空间文件
+  optional int64  onlyFileType = 4; // 文件类型
+  int64 isDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  int64 documentType = 6; // 操作类型 1：个人空间文件 2：公共空间文件
 }
 
 message ShareFileFilterOptions {
@@ -136,7 +128,7 @@ message User {
 message UserDetail {
   string userId = 1;
   string name = 2;
-  int32  sex = 3;
+  int64  sex = 3;
   string fullName = 4;
   string idCard = 5;
   int64 createdAt = 6;
@@ -148,7 +140,7 @@ message UserDetail {
 message UserDetailInfo{
   string userId = 1;
   string name = 2;
-  int32  sex = 3;
+  int64  sex = 3;
   string fullName = 4;
   string idCard = 5;
   string description = 6;
@@ -158,5 +150,5 @@ message UserDetailInfo{
 message UserInfo {
   string userId = 1;
   string name = 2;
-  int32 sex = 3;
+  int64 sex = 3;
 }

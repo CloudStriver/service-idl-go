@@ -54,10 +54,14 @@ message GetFileCountResp{
 
 message GetFileBySharingCodeReq{
   string sharingCode = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetFileBySharingCodeResp{
   repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
 }
 
 message CreateFolderReq{
@@ -119,18 +123,6 @@ message RecoverRecycleBinFileReq{
 }
 
 message RecoverRecycleBinFileResp{
-}
-
-message DeleteExpiredFilesReq{
-}
-
-message DeleteExpiredFilesResp{
-}
-
-message DeleteExpiredShareCodesReq{
-}
-
-message DeleteExpiredShareCodesResp{
 }
 
 message CreateLabelReq {
@@ -241,7 +233,7 @@ message SearchUserReq{
 
 message SearchUserResp{
   repeated User users = 1;
-  int32 total = 2;
+  int64 total = 2;
   string lastToken = 3;
 }
 
@@ -282,8 +274,6 @@ service ContentService {
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
-  rpc DeleteExpiredFiles(DeleteExpiredFilesReq) returns(DeleteExpiredFilesResp);
-  rpc DeleteExpiredShareCodes(DeleteExpiredShareCodesReq) returns(DeleteExpiredShareCodesResp);
 
   rpc GetLabel(GetLabelReq) returns(GetLabelResp);
   rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp);
