@@ -266,8 +266,7 @@ message DeletePostResp{
 }
 
 message UpdatePostReq{
-  string postId = 1;
-  PostInfo post = 2;
+  PostInfo post = 1;
 }
 
 message UpdatePostResp{
