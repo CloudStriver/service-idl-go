@@ -164,7 +164,7 @@ message Post {
   string userId = 2;
   string title = 3;
   string text = 4;
-  repeated string tag = 5;
+  repeated string tags = 5;
   int64 status = 6;
   string url = 7;
   int64 createTime = 8;
