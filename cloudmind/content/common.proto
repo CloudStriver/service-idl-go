@@ -32,12 +32,6 @@ enum DocumentType {
   DocumentType_public = 2;
 }
 
-enum Status {
-  Status_null = 0;
-  Status_normal = 1;
-  Status_invalid = 2;
-}
-
 message File {
   string fileId = 1;
   string userId = 2;
@@ -190,3 +184,4 @@ message PostFilterOptions{
   optional string  onlyTag = 5;
   optional int64 status = 6;
 }
+
