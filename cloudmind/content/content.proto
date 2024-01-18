@@ -93,7 +93,7 @@ message SaveFileToPrivateSpaceReq{
   string fileId = 2;
   string fatherId = 3;
   DocumentType documentType = 4;
-
+}
 message SaveFileToPrivateSpaceResp{
   string fileId = 1;
 }
