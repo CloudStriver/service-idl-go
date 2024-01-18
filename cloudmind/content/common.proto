@@ -177,7 +177,7 @@ message PostInfo {
   string userId = 1;
   string title = 2;
   string text = 3;
-  repeated int64 tag = 4;
+  repeated int64 tags = 4;
   int64 status = 5;
   string url = 6;
 }
