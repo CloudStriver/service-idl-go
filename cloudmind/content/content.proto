@@ -120,8 +120,6 @@ message DeleteFileResp{
 message RecoverRecycleBinFileReq{
   string fileId = 1;
   string userId = 2;
-  IsDel deleteType = 3;
-  bool clearCommunity = 4;
 }
 
 message RecoverRecycleBinFileResp{
@@ -204,7 +202,6 @@ message DeleteShareFileReq{
 }
 
 message DeleteShareFileResp{
-  bool ok = 1;
 }
 
 message UpdateUserReq{
