@@ -107,8 +107,10 @@ message FileFilterOptions {
   optional string onlyFatherId = 3;
   optional int64  onlyFileType = 4; // 文件类型
   repeated string onlyTags = 5;
-  int64 isDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  optional int64 isDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
   int64 documentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
+  optional int64 OnlySetRelation = 8;
+  optional string onlyMd5 = 9;
 }
 
 message ShareFileFilterOptions {
