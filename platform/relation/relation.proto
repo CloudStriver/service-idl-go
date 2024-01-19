@@ -7,20 +7,20 @@ import "platform/relation/common.proto";
 
 
 message CreateRelationReq{
-  RelationInfo relationInfo = 1;
+  Relation relation = 1;
 }
 message CreateRelationResp{
 }
 
 message GetRelationReq{
-  RelationInfo relationInfo = 1 ;
+  Relation relation = 1 ;
 }
 message GetRelationResp{
   bool ok = 1;
 }
 
 message DeleteRelationReq{
-  RelationInfo relationInfo = 1;
+  Relation relation = 1;
 }
 message DeleteRelationResp{
 }
