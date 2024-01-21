@@ -11,12 +11,111 @@ import "cloudmind/core_api/sts.proto";
 service content {
   // ------------------ 用户 --------------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
-    option (http.post) = "/content/user/update";
+    option (http.post) = "/content/updateUser";
   }
   rpc SearchUser(SearchUserReq) returns(SearchUserResp){
-    option (http.get) = "/content/user/search";
+    option (http.get) = "/content/searchUser";
+  }
+  rpc GetUser(GetUserReq) returns(GetUserResp){
+    option (http.get) = "/content/getUser";
+  }
+  rpc CreateUser(CreateUserReq) returns(CreateUserResp){
+    option (http.post) = "/content/createUser";
+  }
+  rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp){
+    option (http.get) = "/content/getUserDetail";
+  }
+  rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp){
+    option (http.post) = "/content/deleteUser";
   }
   // ------------------ 用户 --------------------
+
+  // ------------------ 文件 --------------------
+  rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp){
+    option (http.get) = "/content/getFileIsExist";
+  }
+  rpc GetFile(GetFileReq) returns(GetFileResp){
+    option (http.get) = "/content/getFile";
+  }
+  rpc GetFileList(GetFileListReq) returns(GetFileListResp){
+    option (http.get) = "/content/getFileList";
+  }
+  rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp){
+    option (http.get) = "/content/getFolderSize";
+  }
+  rpc GetFileBySharingCode(GetFileIsExistReq) returns(GetFileIsExistResp){
+    option (http.get) = "/content/getFileBySharingCode";
+  }
+  rpc CreateFolder(CreateFolderReq) returns(GetFileIsExistResp){
+    option (http.post) = "/content/createFolder";
+  }
+  rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp){
+    option (http.post) = "/content/updateFile";
+  }
+  rpc MoveFile(MoveFileReq) returns(MoveFileResp){
+    option (http.post) = "/content/moveFile";
+  }
+  rpc SaveFileToPrivateSpace(SaveFileToPrivateSpaceReq) returns(SaveFileToPrivateSpaceResp){
+    option (http.post) = "/content/saveFileToPrivateSpace";
+  }
+  rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp){
+    option (http.post) = "/content/addFileToPublicSpace";
+  }
+  rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp){
+    option (http.post) = "/content/deleteFile";
+  }
+  rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp){
+    option (http.post) = "/content/recoverRecycleBinFile";
+  }
+  rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp){
+    option (http.post) = "/content/createLabel";
+  }
+  rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp){
+    option (http.post) = "/content/updateLabel";
+  }
+  rpc GetLabel(GetLabelReq) returns(GetLabelResp){
+    option (http.get) = "/content/getLabel";
+  }
+  rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp){
+    option (http.post) = "/content/deleteLabel";
+  }
+  rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp){
+    option (http.post) = "/content/createShareCode";
+  }
+  rpc GetShareList(GetShareListReq) returns(GetShareListResp){
+    option (http.get) = "/content/getShareList";
+  }
+  rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp){
+    option (http.post) = "/content/updateShareCode";
+  }
+  rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp){
+    option (http.post) = "/content/deleteShareCode";
+  }
+  rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp){
+    option (http.get) = "/content/parsingShareCode";
+  }
+  rpc DeleteShareFile(DeleteShareFileReq) returns(DeleteShareFileResp){
+    option (http.post) = "/content/deleteShareFile";
+  }
+  // ------------------ 文件 --------------------
+
+  // ------------------ 帖子 --------------------
+  rpc CreatePost(CreatePostReq) returns(CreatePostResp){
+    option (http.post) = "/content/createPost";
+  }
+  rpc DeletePost(DeletePostReq) returns(DeletePostResp){
+    option (http.post) = "/content/deletePost";
+  }
+  rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp){
+    option (http.post) = "/content/updatePost";
+  }
+  rpc GetPost(GetPostReq) returns(GetPostResp){
+    option (http.get) = "/content/getPost";
+  }
+  rpc GetPosts(GetPostsReq) returns(GetPostsResp){
+    option (http.get) = "/content/getPosts";
+  }
+  // ------------------ 帖子 --------------------
 }
 
 service auth {
@@ -24,48 +123,48 @@ service auth {
     option (http.post) = "/auth/register";
   }
   rpc EmailLogin(EmailLoginReq) returns (EmailLoginResp){
-    option (http.post) = "/auth/login/email";
+    option (http.post) = "/auth/emailLogin";
   }
   rpc GithubLogin(GithubLoginReq) returns (GithubLoginResp){
-    option (http.get) = "/auth/login/github";
+    option (http.get) = "/auth/githubLogin";
   }
   rpc GiteeLogin(GiteeLoginReq) returns (GiteeLoginResp){
-    option (http.get) = "/auth/login/gitee";
+    option (http.get) = "/auth/giteeLogin";
   }
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
-    option (http.post) = "/auth/refresh";
+    option (http.post) = "/auth/refreshToken";
   }
   rpc SendEmail(SendEmailReq) returns (SendEmailResp){
-    option (http.post) = "/auth/send";
+    option (http.post) = "/auth/sendEmail";
   }
   rpc SetPasswordByEmail(SetPasswordByEmailReq) returns (SetPasswordByEmailResp){
-    option (http.post) = "/auth/reset/email";
+    option (http.post) = "/auth/setPasswordByEmail";
   }
   rpc SetPasswordByPassword(SetPasswordByPasswordReq) returns (SetPasswordByPasswordReq){
-    option (http.post) = "/auth/reset/password";
+    option (http.post) = "/auth/setPasswordByPassword";
   }
 }
 
 service relation {
   rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
-    option (http.post) = "/relation/create";
+    option (http.post) = "/relation/createRelation";
   }
   rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
-    option (http.get) = "/relations/from";
+    option (http.get) = "/relations/getFromRelations";
   }
   rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
-    option (http.get) = "/relations/to";
+    option (http.get) = "/relations/getToRelations";
   }
   rpc GetRelation(GetRelationReq) returns(GetRelationResp){
-    option (http.get) = "/relation";
+    option (http.get) = "/relation/getRelation";
   }
   rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
-    option (http.post) = "/relation/delete";
+    option (http.post) = "/relation/deleteRelation";
   }
 }
 
 service sts {
   rpc ApplySignedUrl(ApplySignedUrlReq) returns(ApplySignedUrlResp){
-    option (http.post) = "/sts";
+    option (http.post) = "/sts/applySignedUrl";
   }
 }
