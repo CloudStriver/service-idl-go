@@ -1,0 +1,16 @@
+syntax = "proto3";
+package cloudmind.trade;
+option go_package = "cloudmind/trade";
+import "cloudmind/trade/common.proto";
+
+service TradeService {
+  // 扣减用户余额
+  rpc UpdateBalance(UpdateBalanceReq) returns (UpdateBalanceResp);
+  rpc GetBalance(GetBalanceReq) returns(GetBalanceResp);
+  rpc CreateBalance(CreateBalanceReq) returns(CreateBalanceResp);
+  // 商品
+  rpc UpdateStock(UpdateStockReq) returns(UpdateStockResp);
+  rpc GetStock(GetStockReq) returns(GetStockResp);
+  rpc GetStocks(GetStocksReq) returns(GetStocksResp);
+  rpc CreateStock(CreateStockReq) returns(CreateStockResp);
+}

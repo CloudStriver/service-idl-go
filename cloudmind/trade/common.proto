@@ -1,0 +1,71 @@
+syntax = "proto3";
+package cloudmind.trade;
+option go_package = "cloudmind/trade";
+
+message Balance{
+  optional int64 flow = 1;
+  optional int64 memory = 2;
+  optional int64 point = 3;
+}
+
+message UpdateBalanceReq{
+  string userId = 1;
+  Balance oldBalance = 2;
+  Balance balance = 3;
+}
+
+message UpdateBalanceResp{
+}
+
+
+message GetBalanceReq{
+  string userId = 1;
+}
+
+message GetBalanceResp{
+  Balance balance = 1;
+}
+
+message CreateBalanceReq{
+  string userId = 1;
+  Balance balance = 2;
+}
+
+message CreateBalanceResp{
+}
+
+
+
+message UpdateStockReq{
+  string productId = 1;
+  int64 oldAmount = 2;
+  int64 amount = 3;
+}
+
+message UpdateStockResp{
+}
+
+
+message GetStockReq{
+  string productId = 1;
+}
+
+message GetStockResp{
+  int64 stock = 1;
+}
+
+message GetStocksReq{
+  repeated string productIds = 1;
+}
+
+message GetStocksResp{
+  repeated int64 stocks = 1;
+}
+
+message CreateStockReq{
+  string productId = 1;
+  int64 stock = 2;
+}
+
+message CreateStockResp{
+}
