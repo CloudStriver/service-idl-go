@@ -205,7 +205,7 @@ message DeleteShareFileResp{
 }
 
 message UpdateUserReq{
-  UserDetailInfo userDetailInfo = 1;
+  User user = 1;
 }
 message UpdateUserResp{
 }
@@ -229,19 +229,12 @@ message SearchUserResp{
 }
 
 message CreateUserReq{
-  UserInfo userInfo = 1;
+  User user = 1;
 }
 
 message CreateUserResp{
 }
 
-message GetUserDetailReq{
-  string userId = 1;
-}
-
-message GetUserDetailResp {
-  UserDetail userDetail = 1;
-}
 
 message DeleteUserReq{
   string userId = 1;
@@ -251,7 +244,7 @@ message DeleteUserResp{
 }
 
 message CreatePostReq{
-  PostInfo postInfo = 1;
+  Post post = 1;
 }
 
 message CreatePostResp{
@@ -265,14 +258,15 @@ message DeletePostResp{
 }
 
 message UpdatePostReq{
-  PostInfo postInfo = 1;
+  Post post = 1;
 }
 
 message UpdatePostResp{
 }
 
 message GetPostReq{
-  string postId = 1;
+  optional PostFilterOptions postFilterOptions = 1;
+
 }
 
 message GetPostResp{
@@ -290,6 +284,133 @@ message GetPostsResp{
   int64 total = 2;
   string token = 3;
 }
+
+message CreateProductReq{
+  Product product = 1;
+}
+
+message CreateProductResp{
+}
+
+message DeleteProductReq{
+  string productId = 1;
+}
+
+message DeleteProductResp{
+}
+
+message UpdateProductReq{
+  Product product = 1;
+}
+
+message UpdateProductResp{
+}
+
+message GetProductReq{
+  optional ProductFilterOptions productFilterOptions = 1;
+
+}
+
+message GetProductResp{
+  Product product = 1;
+}
+
+message GetProductsReq{
+  optional SearchOptions searchOptions = 1;
+  optional ProductFilterOptions productFilterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message GetProductsResp{
+  repeated Product products = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message CreateCouponReq{
+  Coupon coupon = 1;
+}
+
+message CreateCouponResp{
+}
+
+message DeleteCouponReq{
+  string couponId = 1;
+}
+
+message DeleteCouponResp{
+}
+
+message UpdateCouponReq{
+  Coupon coupon = 1;
+}
+
+message UpdateCouponResp{
+}
+
+message GetCouponReq{
+  optional CouponFilterOptions couponFilterOptions = 1;
+
+}
+
+message GetCouponResp{
+  Coupon coupon = 1;
+}
+
+message GetCouponsReq{
+  optional SearchOptions searchOptions = 1;
+  optional CouponFilterOptions couponFilterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message GetCouponsResp{
+  repeated Coupon coupons = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message CreateOrderReq{
+  Order order = 1;
+}
+
+message CreateOrderResp{
+}
+
+message DeleteOrderReq{
+  string orderId = 1;
+}
+
+message DeleteOrderResp{
+}
+
+message UpdateOrderReq{
+  Order order = 1;
+}
+
+message UpdateOrderResp{
+}
+
+message GetOrderReq{
+  optional OrderFilterOptions orderFilterOptions = 1;
+}
+
+message GetOrderResp{
+  Order order = 1;
+}
+
+message GetOrdersReq{
+  optional SearchOptions searchOptions = 1;
+  optional OrderFilterOptions orderFilterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message GetOrdersResp{
+  repeated Order orders = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+
 
 //service
 service ContentService {
@@ -320,7 +441,6 @@ service ContentService {
   // ---------------用户-----------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
-  rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp);
   rpc SearchUser(SearchUserReq) returns(SearchUserResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
   rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
@@ -331,4 +451,69 @@ service ContentService {
   rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp);
   rpc GetPost(GetPostReq)  returns(GetPostResp);
   rpc GetPosts(GetPostsReq) returns(GetPostsResp);
+
+  // ---------------商品-----------------
+  rpc CreateProduct(CreateProductReq) returns(CreateProductResp);
+  rpc DeleteProduct(DeleteProductReq) returns(DeleteProductResp);
+  rpc UpdateProduct(UpdateProductReq) returns(UpdateProductResp);
+  rpc GetProduct(GetProductReq)  returns(GetProductResp);
+  rpc GetProducts(GetProductsReq) returns(GetProductsResp);
+
+  // ---------------优惠券-----------------
+  rpc CreateCoupon(CreateCouponReq) returns(CreateCouponResp);
+  rpc DeleteCoupon(DeleteCouponReq) returns(DeleteCouponResp);
+  rpc UpdateCoupon(UpdateCouponReq) returns(UpdateCouponResp);
+  rpc GetCoupon(GetCouponReq)  returns(GetCouponResp);
+  rpc GetCoupons(GetCouponsReq) returns(GetCouponsResp);
+
+  // ---------------订单-----------------
+  rpc CreateOrder(CreateOrderReq) returns(CreateOrderResp);
+  rpc DeleteOrder(DeleteOrderReq) returns(DeleteOrderResp);
+  rpc UpdateOrder(UpdateOrderReq) returns(UpdateOrderResp);
+  rpc GetOrder(GetOrderReq)  returns(GetOrderResp);
+  rpc GetOrders(GetOrdersReq) returns(GetOrdersResp);
+
+//  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
+//  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
+//  rpc UpdateCart(UpdateCartReq) returns(UpdateCartResp);
+//  rpc GetCart(GetCartReq)  returns(GetCartResp);
+//  rpc CreateProductCart(CreateProductCartReq) returns(CreateProductCartResp);
 }
+
+//message CreateCartReq{
+//  Cart cart = 1;
+//}
+//
+//message CreateCartResp{
+//}
+//
+//message DeleteCartReq{
+//  string productId = 1;
+//}
+//message DeleteCartResp{
+//}
+//
+//
+//message UpdateCartReq{
+//  Cart cart = 1;
+//}
+//
+//message UpdateCartResp{
+//}
+//
+//message GetCartReq{
+//  optional CartFilterOptions cartFilterOptions = 1;
+//  optional SearchOptions searchOptions = 2;
+//}
+//
+//message GetCartResp{
+//  Cart cart = 1;
+//}
+//
+//message CreateProductCartReq{
+//  string userId = 1;
+//  ProductCart productCart = 2;
+//}
+//
+//message CreateProductCartResp{
+//}

@@ -92,6 +92,8 @@ message SearchField {
   optional string tag = 3; // 仅限Post
   optional string text = 4;
   optional string title = 5;
+  optional string description = 6;
+  optional string productName = 7;
 }
 
 message SearchOptions {
@@ -107,9 +109,9 @@ message FileFilterOptions {
   optional string onlyFatherId = 3;
   optional int64  onlyFileType = 4; // 文件类型
   repeated string onlyTags = 5;
-  optional int64 isDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
-  int64 documentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
-  optional int64 OnlySetRelation = 8;
+  optional int64 onlyIsDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
+  optional int64 onlySetRelation = 8;
   optional string onlyMd5 = 9;
 }
 
@@ -127,37 +129,14 @@ enum Sex {
 message User {
   string userId = 1;
   string name = 2;
-  string url = 3;
-}
-
-message UserDetail {
-  string userId = 1;
-  string name = 2;
   int64  sex = 3;
   string fullName = 4;
   string idCard = 5;
-  int64 createdAt = 6;
-  int64 updatedAt = 7;
+  int64 createTime = 6;
+  int64 updateTime = 7;
   string description = 8;
   string url = 9;
 }
-
-message UserDetailInfo{
-  string userId = 1;
-  string name = 2;
-  int64  sex = 3;
-  string fullName = 4;
-  string idCard = 5;
-  string description = 6;
-  string url = 7;
-}
-
-message UserInfo {
-  string userId = 1;
-  string name = 2;
-  int64 sex = 3;
-}
-
 message Post {
   string postId = 1;
   string userId = 2;
@@ -170,22 +149,97 @@ message Post {
   int64 updateTime = 9;
 }
 
-message PostInfo {
-  string postId = 1;
-  string userId = 2;
-  string title = 3;
-  string text = 4;
-  repeated string tags = 5;
-  int64 status = 6;
-  string url = 7;
-}
-
 message PostFilterOptions{
   optional string onlyUserId = 1;
   optional string onlyPostId = 2;
-  optional string onlyTitle = 3;
-  optional string onlyText = 4;
-  optional string  onlyTag = 5;
-  optional int64 onlyStatus = 6;
+  repeated string onlyPostIds = 3;
+  optional string onlyTitle = 4;
+  optional string onlyText = 5;
+  repeated string  onlyTags = 6;
+  optional int64 onlySetRelation = 7;
+  optional int64 onlyStatus = 8;
 }
 
+message Product{
+  string productId = 1;
+  string userId = 2;
+  string name = 3;
+  string description = 4;
+  int64 status = 5;
+  repeated string urls = 6;
+  repeated string tags = 7;
+  int64 type = 8;
+  int64 price = 9;
+  int64 productSize = 10;
+  int64 createTime = 11;
+  int64 updateTime = 12;
+}
+
+message ProductFilterOptions{
+  optional string onlyUserId = 1;
+  optional string onlyProductId = 2;
+  repeated string onlyProductIds = 3;
+  repeated string onlyTags = 6;
+  optional int64 onlySetRelation = 7;
+  optional int64 onlyStatus = 8;
+  optional int64 onlyType = 9;
+}
+
+
+message Order {
+  string orderId = 1; // 订单ID
+  string userId = 2; // 用户ID
+  string productId = 3; // 商品ID
+  int64 status = 4; // 订单状态
+  int64 sumPrice = 5; // 订单总价
+  string productName = 6; // 用于搜索
+  int64 createTime = 7; // 订单创建时间
+  int64 updateTime = 8; // 订单修改时间
+}
+
+message OrderFilterOptions {
+  optional string onlyUserId = 1; // 用户ID
+  optional string onlyOrderId = 2; // 订单IDs
+  repeated string onlyOrderIds = 3; // 订单IDs
+  optional string onlyProductId = 4; // 订单对应商品ID
+  optional int64 onlyStatus = 5; // 订单状态
+}
+
+message Coupon {
+  string couponId = 1;
+  string userId = 2;
+  int64 status = 4;
+  int64 createTime = 5;
+  int64 expireTime = 6;
+  string name = 7;
+  string desciption = 8;
+  optional int64 lowSumPrice = 9; // 优惠券使用的最低总价格
+  optional int64 productType = 10; // 优惠券使用的商品类型
+  optional int64 discount = 11; // 优惠券折扣 打多少折
+  optional int64 discountPrice = 12; // 优惠券折扣价格 减多少钱
+}
+
+message CouponFilterOptions {
+  optional string onlyUserId = 1;
+  optional string onlyCouponId = 2;
+  repeated string onlyCouponIds = 3;
+  optional int64 onlyProductType = 4;
+  optional int64 onlyStatus = 5;
+}
+
+//message ProductCart {
+//  string productId = 1;
+//  int64 count = 2;
+//  string productName = 3;
+//  string productDescription = 4;
+//}
+//message Cart {
+//  string userId = 1;
+//  repeated ProductCart ProductCarts = 3;
+//}
+//
+//message CartFilterOptions {
+//  optional string onlyUserId = 1;
+//}
+//
+//
