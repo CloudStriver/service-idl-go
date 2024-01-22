@@ -1,7 +1,5 @@
 syntax = "proto3";
-
 package cloudmind.core_api;
-
 option go_package = "cloudmind/core_api";
 import "http/http.proto";
 import "cloudmind/core_api/content.proto";
@@ -19,14 +17,8 @@ service content {
   rpc GetUser(GetUserReq) returns(GetUserResp){
     option (http.get) = "/content/getUser";
   }
-  rpc CreateUser(CreateUserReq) returns(CreateUserResp){
-    option (http.post) = "/content/createUser";
-  }
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp){
     option (http.get) = "/content/getUserDetail";
-  }
-  rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp){
-    option (http.post) = "/content/deleteUser";
   }
   // ------------------ 用户 --------------------
 
@@ -109,11 +101,8 @@ service content {
   rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp){
     option (http.post) = "/content/updatePost";
   }
-  rpc GetPost(GetPostReq) returns(GetPostResp){
-    option (http.get) = "/content/getPost";
-  }
   rpc GetPosts(GetPostsReq) returns(GetPostsResp){
-    option (http.get) = "/content/getPosts";
+    option (http.post) = "/content/getPosts";
   }
   // ------------------ 帖子 --------------------
 }
