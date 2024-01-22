@@ -126,6 +126,8 @@ message SearchField {
   optional string tag = 3; // 仅限Post
   optional string text = 4;
   optional string title = 5;
+  optional string description = 6;
+  optional string productName = 7;
 }
 
 message SearchOptions {
@@ -141,8 +143,8 @@ message FileFilterOptions {
   optional string onlyFatherId = 3;
   optional int64  onlyFileType = 4; // 文件类型
   repeated string onlyTags = 5;
-  optional int64 isDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
-  int64 documentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
+  optional int64 onlyIsDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
   optional int64 OnlySetRelation = 8;
   optional string onlyMd5 = 9;
 }
@@ -174,16 +176,31 @@ message UserInfo {
   int64 sex = 3;
 }
 
+
+message PostCount {
+  int64 viewCount = 1; // 浏览量
+  int64 likeCount = 2; // 点赞量
+  int64 commentCount = 3; // 评论量
+  int64 shareCount = 4; // 分享量
+  int64 collectCount = 5;  // 收藏量
+}
+
+message PostRelation{
+  bool Liked = 1;
+  bool Collected = 2;
+}
 message Post {
   string postId = 1;
-  string userId = 2;
-  string title = 3;
-  string text = 4;
-  repeated string tags = 5;
-  int64 status = 6;
-  string url = 7;
-  int64 createTime = 8;
-  int64 updateTime = 9;
+  string title = 2;
+  string text = 3;
+  repeated string tags = 4;
+  int64 status = 5;
+  string url = 6;
+  User author = 7; // 作者信息
+  PostCount postCount = 8; // 文章统计信息
+  PostRelation postRelation = 9; // 文章关系信息
+  int64 createTime = 10;
+  int64 updateTime = 11 ;
 }
 
 message PostInfo {
@@ -198,9 +215,7 @@ message PostInfo {
 
 message PostFilterOptions{
   optional string onlyUserId = 1;
-  optional string onlyPostId = 2;
-  optional string onlyTitle = 3;
-  optional string onlyText = 4;
-  optional string  onlyTag = 5;
-  optional int64 onlyStatus = 6;
+  repeated string  onlyTags = 2;
+  optional int64 onlyStatus = 3;
+  optional int64 onlySetRelation = 4;
 }
