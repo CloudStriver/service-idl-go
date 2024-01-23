@@ -176,7 +176,6 @@ message UserInfo {
   int64 sex = 3;
 }
 
-
 message PostCount {
   int64 viewCount = 1; // 浏览量
   int64 likeCount = 2; // 点赞量
@@ -189,18 +188,19 @@ message PostRelation{
   bool Liked = 1;
   bool Collected = 2;
 }
+
 message Post {
   string postId = 1;
   string title = 2;
   string text = 3;
-  repeated string tags = 4;
-  int64 status = 5;
-  string url = 6;
-  User author = 7; // 作者信息
+  int64 status = 4;
+  string url = 5;
+  User author = 6; // 作者信息
+  repeated string tags = 7;
   PostCount postCount = 8; // 文章统计信息
-  PostRelation postRelation = 9; // 文章关系信息
+  PostRelation postRelation = 9;
   int64 createTime = 10;
-  int64 updateTime = 11 ;
+  int64 updateTime = 11;
 }
 
 message PostInfo {
