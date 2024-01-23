@@ -23,17 +23,11 @@ service content {
   // ------------------ 用户 --------------------
 
   // ------------------ 文件 --------------------
-  rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp){
-    option (http.get) = "/content/getFileIsExist";
-  }
   rpc GetFile(GetFileReq) returns(GetFileResp){
     option (http.get) = "/content/getFile";
   }
   rpc GetFileList(GetFileListReq) returns(GetFileListResp){
     option (http.get) = "/content/getFileList";
-  }
-  rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp){
-    option (http.get) = "/content/getFolderSize";
   }
   rpc GetFileBySharingCode(GetFileIsExistReq) returns(GetFileIsExistResp){
     option (http.get) = "/content/getFileBySharingCode";
@@ -85,9 +79,6 @@ service content {
   }
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp){
     option (http.get) = "/content/parsingShareCode";
-  }
-  rpc DeleteShareFile(DeleteShareFileReq) returns(DeleteShareFileResp){
-    option (http.post) = "/content/deleteShareFile";
   }
   // ------------------ 文件 --------------------
 

@@ -94,6 +94,9 @@ message FileInfo {
   repeated string tag = 10;
   string description = 11;
   int64 updateAt = 12;
+  User author = 13; // 作者信息
+  PostCount fileCount = 14; // 文章统计信息
+  PostRelation fileRelation = 15; // 文章关系信息
 }
 
 message Label {
@@ -175,7 +178,6 @@ message UserInfo {
   string name = 2;
   int64 sex = 3;
 }
-
 
 message PostCount {
   int64 viewCount = 1; // 浏览量

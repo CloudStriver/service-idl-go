@@ -196,14 +196,6 @@ message ParsingShareCodeResp {
   ShareFile shareFile = 1;
 }
 
-message DeleteShareFileReq{
-  string shareId = 1;
-  string userId = 2;
-}
-
-message DeleteShareFileResp{
-}
-
 message UpdateUserReq{
   User user = 1;
 }

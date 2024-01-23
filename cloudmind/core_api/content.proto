@@ -31,15 +31,6 @@ message GetFileIsExistResp {
   bool ok = 1;
 }
 
-message GetFileReq{
-  optional FileFilterOptions filterOptions = 1;
-  bool IsGetSize = 2;
-}
-
-message GetFileResp{
-  FileInfo file = 1;
-}
-
 message GetFileListReq{
   optional SearchOptions searchOptions = 1;
   optional FileFilterOptions filterOptions = 2;
@@ -50,14 +41,6 @@ message GetFileListResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-}
-
-message GetFolderSizeReq{
-  optional FileFilterOptions filterOptions = 1;
-}
-
-message GetFolderSizeResp{
-  int64 spaceSize = 1;
 }
 
 message GetFileCountReq{
@@ -213,12 +196,13 @@ message ParsingShareCodeResp {
   ShareFile shareFile = 1;
 }
 
-message DeleteShareFileReq{
-  string shareId = 1;
-  string userId = 2;
+message GetFileReq{
+  optional FileFilterOptions filterOptions = 1;
+  bool IsGetSize = 2;
 }
 
-message DeleteShareFileResp{
+message GetFileResp{
+  FileInfo file = 1;
 }
 
 message GetUserReq{
