@@ -95,6 +95,9 @@ service content {
   rpc GetPosts(GetPostsReq) returns(GetPostsResp){
     option (http.post) = "/content/getPosts";
   }
+  rpc GetPost(GetPostReq) returns(GetPostResp) { 
+    option (http.get) = "/content/getPost";
+  }
   // ------------------ 帖子 --------------------
 }
 
