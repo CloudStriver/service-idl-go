@@ -26,7 +26,6 @@ message AuthInfo {
 
 message EmailOptions {
   string email = 1;
-  string code = 2;
 }
 
 message UserIdOptions{

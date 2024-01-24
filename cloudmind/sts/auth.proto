@@ -27,12 +27,12 @@ message CheckEmailReq{
 }
 
 message CheckEmailResp{
+  bool ok = 1;
 }
 
 message CreateAuthReq{
   AuthInfo authInfo = 1;
   UserInfo userInfo = 2;
-  optional string code = 3;
 }
 
 message CreateAuthResp{
