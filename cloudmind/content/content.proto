@@ -114,7 +114,6 @@ message DeleteFileReq{
 }
 
 message DeleteFileResp{
-  bool ok = 1;
 }
 
 message RecoverRecycleBinFileReq{
@@ -161,6 +160,7 @@ message CreateShareCodeReq {
 
 message CreateShareCodeResp {
   string code = 1;
+  string key = 2;
 }
 
 message GetShareListReq {
@@ -190,6 +190,7 @@ message DeleteShareCodeResp {
 
 message ParsingShareCodeReq {
   string code = 1;
+  string key = 2;
 }
 
 message ParsingShareCodeResp {

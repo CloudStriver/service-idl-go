@@ -1,0 +1,127 @@
+syntax = "proto3";
+package platform.comment;
+option go_package = "platform/comment";
+
+enum State {
+  UnknownState = 0;
+  Normal = 1;
+  Deleted = 2;
+}
+
+enum Attrs {
+  UnknownAttrs = 0;
+  None = 1;
+  Pinned = 2;
+  Highlighted = 3;
+  PinnedAndHighlighted = 4;
+}
+
+message Content {
+  string id = 1;
+  string userId = 2; // 评论者
+  string atUserId = 3; // @谁
+  string content = 4; // 内容
+  string meta = 5; // 皮肤，字体等
+  int64 createTime = 6;
+}
+
+/*
+  一级评论：rootId = fatherId = subjectId
+  二级评论：rootId = fatherId != subjectId
+  三级评论：rootId != fatherId != subjectId
+*/
+
+message Index {
+  string id = 1;
+  string subjectId = 2;
+  string rootId = 3;
+  string fatherId = 4;
+  optional int64 count = 5; // 回复数
+  State state = 6; // 1: 正常, 2: 删除
+  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string tags = 8; // 标签：作者点赞，作者回复等
+}
+
+message IndexInfo {
+  string id = 1;
+  string subjectId = 2;
+  string rootId = 3;
+  string fatherId = 4;
+  int64 count = 5; // 回复数
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string tags = 8; // 标签：作者点赞，作者回复等
+}
+
+message Comment {
+  Index index = 1;
+  Content content = 2;
+}
+
+message CommentInfo {
+  IndexInfo index = 1;
+  Content content = 2;
+}
+
+message CommentFilterOptions {
+  optional string onlyUserId = 1;
+  optional string onlyAtUserId = 2;
+  optional string onlyCommentId = 3;
+  optional string onlySubjectId = 4;
+  optional string onlyRootId = 5;
+  optional string onlyFatherId = 6;
+  optional int64 onlyState = 7;
+  optional int64 onlyAttrs = 8;
+}
+
+message SubjectFilterOptions {
+  optional string onlyUserId = 1;
+  optional string onlyItemId = 2;
+  optional string onlySubjectId = 3;
+  optional int64 onlyState = 4;
+  optional int64 onlyAttrs = 5;
+}
+
+message SearchField {
+  optional string name = 1;
+  optional string id = 2;
+  optional string tag = 3; // 仅限Post
+  optional string text = 4;
+  optional string title = 5;
+  optional string description = 6;
+  optional string productName = 7;
+}
+
+message SearchOptions {
+  oneof Type {
+    string allFieldsKey = 1;
+    SearchField multiFieldsKey = 2;
+  }
+}
+
+message Subject {
+  string id = 1;
+  string itemId = 2;
+  string userId = 3;
+  optional int64 rootCount = 4;
+  optional int64 allCount = 5;
+  State state = 6; // 1: 正常, 2: 删除
+  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+}
+
+message SubjectDetails {
+  string id = 1;
+  string itemId = 2;
+  string userId = 3;
+  int64 rootCount = 4;
+  int64 allCount = 5;
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+}
+
+message SubjectInfo {
+  string id = 1;
+  string itemId = 2;
+  string userId = 3;
+  int64 attrs = 4; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+}

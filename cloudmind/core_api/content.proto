@@ -23,12 +23,13 @@ message SearchUserResp{
   int64 total = 3;
 }
 
-message GetFileIsExistReq {
-  string md5 = 1;
+message GetFileReq{
+  optional FileFilterOptions filterOptions = 1;
+  bool IsGetSize = 2;
 }
 
-message GetFileIsExistResp {
-  bool ok = 1;
+message GetFileResp{
+  FileInfo file = 1;
 }
 
 message GetFileListReq{
@@ -41,15 +42,6 @@ message GetFileListResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-}
-
-message GetFileCountReq{
-  optional SearchOptions searchOptions = 1;
-  optional FileFilterOptions filterOptions = 2;
-}
-
-message GetFileCountResp{
-  int64 count = 1;
 }
 
 message GetFileBySharingCodeReq{
@@ -114,7 +106,6 @@ message DeleteFileReq{
 }
 
 message DeleteFileResp{
-  bool ok = 1;
 }
 
 message RecoverRecycleBinFileReq{
@@ -161,6 +152,7 @@ message CreateShareCodeReq {
 
 message CreateShareCodeResp {
   string code = 1;
+  string key = 2;
 }
 
 message GetShareListReq {
@@ -190,19 +182,11 @@ message DeleteShareCodeResp {
 
 message ParsingShareCodeReq {
   string code = 1;
+  string key = 2;
 }
 
 message ParsingShareCodeResp {
   ShareFile shareFile = 1;
-}
-
-message GetFileReq{
-  optional FileFilterOptions filterOptions = 1;
-  bool IsGetSize = 2;
-}
-
-message GetFileResp{
-  FileInfo file = 1;
 }
 
 message GetUserReq{

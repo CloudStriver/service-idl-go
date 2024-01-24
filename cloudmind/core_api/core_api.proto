@@ -24,15 +24,15 @@ service content {
 
   // ------------------ 文件 --------------------
   rpc GetFile(GetFileReq) returns(GetFileResp){
-    option (http.get) = "/content/getFile";
+    option (http.post) = "/content/getFile";
   }
   rpc GetFileList(GetFileListReq) returns(GetFileListResp){
-    option (http.get) = "/content/getFileList";
+    option (http.post) = "/content/getFileList";
   }
-  rpc GetFileBySharingCode(GetFileIsExistReq) returns(GetFileIsExistResp){
-    option (http.get) = "/content/getFileBySharingCode";
+  rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp){
+    option (http.post) = "/content/getFileBySharingCode";
   }
-  rpc CreateFolder(CreateFolderReq) returns(GetFileIsExistResp){
+  rpc CreateFolder(CreateFolderReq) returns(CreateShareCodeResp){
     option (http.post) = "/content/createFolder";
   }
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp){
@@ -69,10 +69,7 @@ service content {
     option (http.post) = "/content/createShareCode";
   }
   rpc GetShareList(GetShareListReq) returns(GetShareListResp){
-    option (http.get) = "/content/getShareList";
-  }
-  rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp){
-    option (http.post) = "/content/updateShareCode";
+    option (http.post) = "/content/getShareList";
   }
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp){
     option (http.post) = "/content/deleteShareCode";
