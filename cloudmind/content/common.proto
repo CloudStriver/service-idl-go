@@ -84,6 +84,7 @@ message ShareCode {
   int64 status = 3;
   int64 browseNumber = 4;
   int64 createAt = 5;
+  string key = 6;
 }
 
 message SearchField {

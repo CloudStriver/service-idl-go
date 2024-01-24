@@ -1,0 +1,133 @@
+syntax = "proto3";
+package platform.comment;
+option go_package = "platform/comment";
+
+import "platform/comment/common.proto";
+import "basic/pagination.proto";
+
+message CreateCommentReq {
+  Comment comment = 1;
+}
+
+message CreateCommentResp {
+  string id = 1;
+}
+
+message GetCommentReq {
+  optional CommentFilterOptions filterOptions = 1;
+}
+
+message GetCommentResp {
+  CommentInfo comment = 1;
+}
+
+message GetCommentListReq {
+  optional SearchOptions searchOptions = 1;
+  optional CommentFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions pagination = 3;
+}
+
+message GetCommentListResp {
+  repeated CommentInfo comments = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message UpdateIndexReq {
+  Index index = 1;
+}
+
+message UpdateIndexResp {
+
+}
+
+message DeleteCommentReq {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteCommentResp {
+}
+
+message SetCommentStateReq {
+  string id = 1;
+  string userId = 2;
+  State state = 3;
+}
+
+message SetCommentStateResp {
+}
+
+message SetCommentAttrsReq {
+  string id = 1;
+  string userId = 2;
+  Attrs attrs = 3;
+}
+
+message SetCommentAttrsResp{
+
+}
+
+message GetCommentSubjectReq {
+  SubjectFilterOptions filterOptions = 1;
+}
+
+message GetCommentSubjectResp {
+  SubjectDetails subject = 1;
+}
+
+
+message GetCommentSubjectListReq {
+  optional SearchOptions searchOptions = 1;
+  optional SubjectFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions pagination = 3;
+}
+
+message GetCommentSubjectListResp {
+  repeated SubjectInfo subjects = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message CreateCommentSubjectReq {
+  Subject subject = 1;
+}
+
+message CreateCommentSubjectResp {
+
+}
+
+message UpdateCommentSubjectReq {
+  Subject subject = 1;
+}
+
+message UpdateCommentSubjectResp {
+
+}
+
+message DeleteCommentSubjectReq {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteCommentSubjectResp {
+}
+
+message SetCommentSubjectStateReq {
+  string id = 1;
+  string userId = 2;
+  State state = 3;
+}
+
+message SetCommentSubjectStateResp {
+}
+
+message SetCommentSubjectAttrsReq {
+
+}
+
+message SetCommentSubjectAttrsResp{
+  string id = 1;
+  string userId = 2;
+  Attrs attrs = 3;
+}
