@@ -31,17 +31,6 @@ message Content {
   三级评论：rootId != fatherId != subjectId
 */
 
-message Index {
-  string id = 1;
-  string subjectId = 2;
-  string rootId = 3;
-  string fatherId = 4;
-  optional int64 count = 5; // 回复数
-  State state = 6; // 1: 正常, 2: 删除
-  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
-}
-
 message IndexInfo {
   string id = 1;
   string subjectId = 2;
@@ -54,13 +43,35 @@ message IndexInfo {
 }
 
 message Comment {
-  Index index = 1;
-  Content content = 2;
+  string id = 1;
+  string subjectId = 2;
+  string rootId = 3;
+  string fatherId = 4;
+  optional int64 count = 5; // 回复数
+  State state = 6; // 1: 正常, 2: 删除
+  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  string userId = 9; // 评论者
+  string atUserId = 10; // @谁
+  string content = 11; // 内容
+  string meta = 12; // 皮肤，字体等
+  int64 createTime = 13;
 }
 
 message CommentInfo {
-  IndexInfo index = 1;
-  Content content = 2;
+  string id = 1;
+  string subjectId = 2;
+  string rootId = 3;
+  string fatherId = 4;
+  int64 count = 5; // 回复数
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  string userId = 9; // 评论者
+  string atUserId = 10; // @谁
+  string content = 11; // 内容
+  string meta = 12; // 皮肤，字体等
+  int64 createTime = 13;
 }
 
 message CommentFilterOptions {
@@ -80,23 +91,6 @@ message SubjectFilterOptions {
   optional string onlySubjectId = 3;
   optional int64 onlyState = 4;
   optional int64 onlyAttrs = 5;
-}
-
-message SearchField {
-  optional string name = 1;
-  optional string id = 2;
-  optional string tag = 3; // 仅限Post
-  optional string text = 4;
-  optional string title = 5;
-  optional string description = 6;
-  optional string productName = 7;
-}
-
-message SearchOptions {
-  oneof Type {
-    string allFieldsKey = 1;
-    SearchField multiFieldsKey = 2;
-  }
 }
 
 message Subject {

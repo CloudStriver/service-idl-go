@@ -32,8 +32,8 @@ service content {
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp){
     option (http.post) = "/content/getFileBySharingCode";
   }
-  rpc CreateFolder(CreateFolderReq) returns(CreateShareCodeResp){
-    option (http.post) = "/content/createFolder";
+  rpc CreateFile(CreateFileReq) returns(CreateFileResp){
+    option (http.post) = "/content/createFile";
   }
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp){
     option (http.post) = "/content/updateFile";

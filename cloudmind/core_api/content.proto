@@ -56,11 +56,11 @@ message GetFileBySharingCodeResp{
   string token = 3;
 }
 
-message CreateFolderReq{
+message CreateFileReq{
   File file = 1;
 }
 
-message CreateFolderResp{
+message CreateFileResp{
   string fileId = 1;
 }
 
