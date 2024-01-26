@@ -54,6 +54,40 @@ message GetNotificationCountResp {
   int64 total = 1;
 }
 
+message GetSlidersReq {
+  optional SliderFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetSlidersResp {
+  repeated Slider sliders = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message CreateSliderReq {
+  Slider slider = 1;
+}
+
+message CreateSliderResp {
+}
+
+message UpdateSliderReq {
+  Slider slider = 1;
+}
+
+message UpdateSliderResp {
+}
+
+message DeleteSliderReq {
+  string sliderId = 1;
+}
+
+message DeleteSliderResp {
+}
+
+
+
 service SystemService {
 //  rpc RetrieveNotice(RetrieveNoticeReq) returns (RetrieveNoticeResp);
 //  rpc ListNotice(ListNoticeReq) returns (ListNoticeResp);
@@ -62,11 +96,10 @@ service SystemService {
 //  rpc DeleteNotice(DeleteNoticeReq) returns (DeleteNoticeResp);
 //
 //  // 轮播图
-//  rpc RetrieveNews(RetrieveNewsReq) returns (RetrieveNewsResp);
-//  rpc ListNews(ListNewsReq) returns (ListNewsResp);
-//  rpc CreateNews(CreateNewsReq) returns (CreateNewsResp);
-//  rpc UpdateNews(UpdateNewsReq) returns (UpdateNewsResp);
-//  rpc DeleteNews(DeleteNewsReq) returns (DeleteNewsResp);
+  rpc GetSliders(GetSlidersReq) returns (GetSlidersResp);
+  rpc CreateSlider(CreateSliderReq) returns (CreateSliderResp);
+  rpc UpdateSlider(UpdateSliderReq) returns (UpdateSliderResp);
+  rpc DeleteSlider(DeleteSliderReq) returns (DeleteSliderResp);
   //通知
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc CleanNotification(CleanNotificationReq) returns (CleanNotificationResp);

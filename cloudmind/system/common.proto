@@ -24,19 +24,17 @@ message NotificationFilterOptions{
 }
 
 
-enum NotificationTargetType {
-  TargetTypeOther = 0;
-  TargetTypePost = 1;
-  TargetTypeFile = 2;
-  TargetTypeComment = 3;
-  TargetTypeUser = 4;
-  TargetTypeProduct = 5;
+message Slider {
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 type = 4;
+  int64 isPublic = 5;
+  int64 createTime = 6;
+  int64 updateTime = 7;
 }
 
-enum NotificationType {
-  TypeOther = 0;
-  TypeFollowed = 1;
-  TypeLiked = 2;
-  TypeCommented = 3;
-  TypeCollectioned = 4;
+message SliderFilterOptions {
+  optional int64 onlyType = 1;
+  optional int64 onlyIsPublic = 2;
 }
