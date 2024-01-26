@@ -1,0 +1,77 @@
+syntax = "proto3";
+package cloudmind.system;
+option go_package = 'cloudmind/system';
+import "basic/pagination.proto";
+import "cloudmind/system/common.proto";
+
+
+message GetNotificationsReq {
+  optional NotificationFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetNotificationsResp {
+  repeated Notification notifications = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message ReadNotificationsReq {
+  optional NotificationFilterOptions filterOptions = 1;
+}
+
+message ReadNotificationsResp {
+  int64 notRead = 1;
+}
+
+
+message CreateNotificationReq {
+  Notification notification = 1;
+}
+
+message CreateNotificationResp {
+}
+
+message CleanNotificationReq {
+  string userId = 1;
+}
+
+message CleanNotificationResp {
+}
+
+message ReadNotificationReq {
+  string notificationId = 1;
+}
+
+message ReadNotificationResp {
+}
+
+message GetNotificationCountReq {
+  optional NotificationFilterOptions filterOptions = 1;
+}
+
+message GetNotificationCountResp {
+  int64 total = 1;
+}
+
+service SystemService {
+//  rpc RetrieveNotice(RetrieveNoticeReq) returns (RetrieveNoticeResp);
+//  rpc ListNotice(ListNoticeReq) returns (ListNoticeResp);
+//  rpc CreateNotice(CreateNoticeReq) returns (CreateNoticeResp);
+//  rpc UpdateNotice(UpdateNoticeReq) returns (UpdateNoticeResp);
+//  rpc DeleteNotice(DeleteNoticeReq) returns (DeleteNoticeResp);
+//
+//  // 轮播图
+//  rpc RetrieveNews(RetrieveNewsReq) returns (RetrieveNewsResp);
+//  rpc ListNews(ListNewsReq) returns (ListNewsResp);
+//  rpc CreateNews(CreateNewsReq) returns (CreateNewsResp);
+//  rpc UpdateNews(UpdateNewsReq) returns (UpdateNewsResp);
+//  rpc DeleteNews(DeleteNewsReq) returns (DeleteNewsResp);
+  //通知
+  rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
+  rpc CleanNotification(CleanNotificationReq) returns (CleanNotificationResp);
+  rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
+  rpc ReadNotification(ReadNotificationReq) returns (ReadNotificationResp);
+  rpc CreateNotification(CreateNotificationReq) returns (CreateNotificationResp);
+  rpc ReadNotifications(ReadNotificationsReq) returns (ReadNotificationsResp);
+}

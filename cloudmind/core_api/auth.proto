@@ -81,8 +81,7 @@ message GetCaptchaResp{
 
 message SetPasswordByEmailReq{
   string email = 1;
-  string code = 2;
-  string password = 3;
+  string password = 2;
 }
 message SetPasswordByEmailResp{
 }
