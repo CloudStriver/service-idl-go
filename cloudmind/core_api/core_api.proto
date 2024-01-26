@@ -102,6 +102,9 @@ service auth {
   rpc Register(RegisterReq) returns (RegisterResp){
     option (http.post) = "/auth/register";
   }
+  rpc CheckEmail(CheckEmailReq) returns (CheckEmailResp){
+    option (http.get) = "/auth/checkEmail";
+  }
   rpc EmailLogin(EmailLoginReq) returns (EmailLoginResp){
     option (http.post) = "/auth/emailLogin";
   }
