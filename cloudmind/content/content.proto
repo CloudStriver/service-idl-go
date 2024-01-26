@@ -412,8 +412,8 @@ service ContentService {
   rpc GetFileCount(GetFileCountReq) returns(GetFileCountResp);
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
   rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp);
-  rpc CreateFile(CreateFileReq) returns(CreateFileResp);
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
+  rpc CreateFile(CreateFileReq) returns(CreateFileResp);
   rpc MoveFile(MoveFileReq) returns(MoveFileResp);
   rpc SaveFileToPrivateSpace(SaveFileToPrivateSpaceReq) returns(SaveFileToPrivateSpaceResp);
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
