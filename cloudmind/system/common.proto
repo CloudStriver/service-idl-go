@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package cloudmind.system;
+option go_package = 'cloudmind/system';
+message Notification {
+  string notificationId = 1;
+  string TargetUserId = 2;
+  string SourceUserId = 3;
+  string SourceContentId = 4;
+  int64 targetType = 5;
+  int64 type = 6;
+  string text = 7;
+  int64 createAt = 8;
+  bool  isRead = 9;
+}
+
+message NotificationFilterOptions{
+  optional string onlyUserId = 1;
+  optional int64 onlyType = 2;
+  optional int64 onlyTargetType = 3;
+  optional string onlyFirstId = 4;
+  optional string onlyLastId = 5;
+  optional bool onlyIsRead = 6;
+}
+
+
+enum NotificationTargetType {
+  TargetTypeOther = 0;
+  TargetTypePost = 1;
+  TargetTypeFile = 2;
+  TargetTypeComment = 3;
+  TargetTypeUser = 4;
+  TargetTypeProduct = 5;
+}
+
+enum NotificationType {
+  TypeOther = 0;
+  TypeFollowed = 1;
+  TypeLiked = 2;
+  TypeCommented = 3;
+  TypeCollectioned = 4;
+}
