@@ -22,9 +22,8 @@ message GetCommentResp {
 }
 
 message GetCommentListReq {
-  optional SearchOptions searchOptions = 1;
-  optional CommentFilterOptions filterOptions = 2;
-  optional basic.PaginationOptions pagination = 3;
+  optional CommentFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions pagination = 2;
 }
 
 message GetCommentListResp {
@@ -33,20 +32,27 @@ message GetCommentListResp {
   string token = 3;
 }
 
-message UpdateIndexReq {
-  Index index = 1;
+message UpdateCommentReq {
+  Comment comment = 1;
 }
 
-message UpdateIndexResp {
+message UpdateCommentResp {
 
 }
 
 message DeleteCommentReq {
   string id = 1;
-  string userId = 2;
 }
 
 message DeleteCommentResp {
+}
+
+message DeleteCommentWithUserIdReq {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteCommentWithUserIdResp {
 }
 
 message SetCommentStateReq {
@@ -76,25 +82,12 @@ message GetCommentSubjectResp {
   SubjectDetails subject = 1;
 }
 
-
-message GetCommentSubjectListReq {
-  optional SearchOptions searchOptions = 1;
-  optional SubjectFilterOptions filterOptions = 2;
-  optional basic.PaginationOptions pagination = 3;
-}
-
-message GetCommentSubjectListResp {
-  repeated SubjectInfo subjects = 1;
-  int64 total = 2;
-  string token = 3;
-}
-
 message CreateCommentSubjectReq {
   Subject subject = 1;
 }
 
 message CreateCommentSubjectResp {
-
+  string id = 1;
 }
 
 message UpdateCommentSubjectReq {
@@ -123,11 +116,27 @@ message SetCommentSubjectStateResp {
 }
 
 message SetCommentSubjectAttrsReq {
-
-}
-
-message SetCommentSubjectAttrsResp{
   string id = 1;
   string userId = 2;
   Attrs attrs = 3;
+}
+
+message SetCommentSubjectAttrsResp{
+}
+
+service CommentService {
+  rpc GetComment(GetCommentReq) returns (GetCommentResp);
+  rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
+  rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
+  rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
+  rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
+  rpc DeleteCommentWithUserId(DeleteCommentWithUserIdReq) returns (DeleteCommentWithUserIdResp);
+  rpc SetCommentState(SetCommentStateReq) returns (SetCommentStateResp);
+  rpc SetCommentAttrs(SetCommentAttrsReq) returns (SetCommentAttrsResp);
+  rpc GetCommentSubject(GetCommentSubjectReq) returns (GetCommentSubjectResp);
+  rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
+  rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns (UpdateCommentSubjectResp);
+  rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns (DeleteCommentSubjectResp);
+  rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns (SetCommentSubjectStateResp);
+  rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns (SetCommentSubjectAttrsResp);
 }

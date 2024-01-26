@@ -403,8 +403,6 @@ message GetOrdersResp{
   string token = 3;
 }
 
-
-
 //service
 service ContentService {
   // ---------------文件-----------------
