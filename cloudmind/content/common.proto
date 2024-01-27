@@ -228,6 +228,10 @@ message CouponFilterOptions {
   optional int64 onlyStatus = 5;
 }
 
+message LabelFilterOptions {
+
+}
+
 //message ProductCart {
 //  string productId = 1;
 //  int64 count = 2;
