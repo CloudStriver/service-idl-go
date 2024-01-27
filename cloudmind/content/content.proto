@@ -140,16 +140,16 @@ message GetLabelResp {
   Label label = 1;
 }
 
-//message GetLabelsReq {
-//  optional LabelFilterOptions labelFilterOptions = 1;
-//  optional basic.PaginationOptions paginationOptions = 2;
-//}
-//
-//message GetLabelsResp {
-//  repeated Label labels = 1;
-//  int64 total = 2;
-//  string token = 3;
-//}
+message GetLabelsReq {
+  optional LabelFilterOptions labelFilterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetLabelsResp {
+  repeated Label labels = 1;
+  int64 total = 2;
+  string token = 3;
+}
 
 message UpdateLabelReq {
   Label label = 1;
@@ -430,7 +430,7 @@ service ContentService {
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
   rpc GetLabel(GetLabelReq) returns(GetLabelResp);
-//  rpc GetLabels(GetLabelsReq) returns(GetLabelsResp);
+  rpc GetLabels(GetLabelsReq) returns(GetLabelsResp);
   rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp);
   rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp);
   rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp);
