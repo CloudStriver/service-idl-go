@@ -97,20 +97,22 @@ message Subject {
   string id = 1;
   string itemId = 2;
   string userId = 3;
-  optional int64 rootCount = 4;
-  optional int64 allCount = 5;
-  State state = 6; // 1: 正常, 2: 删除
-  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string topCommentId = 4;
+  optional int64 rootCount = 5;
+  optional int64 allCount = 6;
+  State state = 7; // 1: 正常, 2: 删除
+  Attrs attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectDetails {
   string id = 1;
   string itemId = 2;
   string userId = 3;
-  int64 rootCount = 4;
-  int64 allCount = 5;
-  int64 state = 6; // 1: 正常, 2: 删除
-  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string TopCommentId = 4;
+  int64 rootCount = 5;
+  int64 allCount = 6;
+  int64 state = 7; // 1: 正常, 2: 删除
+  int64 attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectInfo {

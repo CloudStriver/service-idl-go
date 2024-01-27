@@ -68,6 +68,8 @@ message SetCommentAttrsReq {
   string id = 1;
   string userId = 2;
   Attrs attrs = 3;
+  string subjectId = 4;
+  int64 sortTime = 5;
 }
 
 message SetCommentAttrsResp{
