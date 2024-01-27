@@ -25,11 +25,11 @@ message ReadNotificationsResp {
 }
 
 
-message CreateNotificationReq {
-  Notification notification = 1;
+message CreateNotificationsReq {
+  repeated Notification notifications = 1;
 }
 
-message CreateNotificationResp {
+message CreateNotificationsResp {
 }
 
 message CleanNotificationReq {
@@ -39,12 +39,6 @@ message CleanNotificationReq {
 message CleanNotificationResp {
 }
 
-message ReadNotificationReq {
-  string notificationId = 1;
-}
-
-message ReadNotificationResp {
-}
 
 message GetNotificationCountReq {
   optional NotificationFilterOptions filterOptions = 1;
@@ -104,7 +98,6 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc CleanNotification(CleanNotificationReq) returns (CleanNotificationResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
-  rpc ReadNotification(ReadNotificationReq) returns (ReadNotificationResp);
-  rpc CreateNotification(CreateNotificationReq) returns (CreateNotificationResp);
+  rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
   rpc ReadNotifications(ReadNotificationsReq) returns (ReadNotificationsResp);
 }
