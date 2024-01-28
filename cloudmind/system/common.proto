@@ -4,9 +4,9 @@ package cloudmind.system;
 option go_package = 'cloudmind/system';
 message Notification {
   string notificationId = 1;
-  string TargetUserId = 2;
-  string SourceUserId = 3;
-  string SourceContentId = 4;
+  string targetUserId = 2;
+  string sourceUserId = 3;
+  string sourceContentId = 4;
   int64 targetType = 5;
   int64 type = 6;
   string text = 7;
