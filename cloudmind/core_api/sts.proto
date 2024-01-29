@@ -9,6 +9,9 @@ message ApplySignedUrlReq {
 }
 
 message ApplySignedUrlResp {
-  string url = 1;
-  string sessionToken = 2;
+  string tmpSecretId = 1;
+  string tmpSecretKey = 2;
+  int64 startTime = 3;
+  int64 expiredTime = 4;
+  string sessionToken = 5;
 }
