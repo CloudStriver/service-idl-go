@@ -26,8 +26,14 @@ service content {
   rpc GetFile(GetFileReq) returns(GetFileResp){
     option (http.post) = "/content/getFile";
   }
-  rpc GetFileList(GetFileListReq) returns(GetFileListResp){
-    option (http.post) = "/content/getFileList";
+  rpc GetPrivateFiles(GetPrivateFilesReq) returns(GetPrivateFilesResp){
+    option (http.post) = "/content/getPrivateFiles";
+  }
+  rpc GetPublicFiles(GetPublicFilesReq) returns(GetPublicFilesResp){
+    option (http.post) = "/content/getPublicFiles";
+  }
+  rpc GetRecycleBinFiles(GetRecycleBinFilesReq) returns(GetRecycleBinFilesResp){
+    option (http.post) = "/content/getRecycleBinFiles";
   }
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp){
     option (http.post) = "/content/getFileBySharingCode";
@@ -53,17 +59,17 @@ service content {
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp){
     option (http.post) = "/content/recoverRecycleBinFile";
   }
-  rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp){
-    option (http.post) = "/content/createLabel";
+  rpc CreateZone(CreateZoneReq) returns(CreateZoneResp){
+    option (http.post) = "/content/createZone";
   }
-  rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp){
-    option (http.post) = "/content/updateLabel";
+  rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp){
+    option (http.post) = "/content/updateZone";
   }
-  rpc GetLabel(GetLabelReq) returns(GetLabelResp){
-    option (http.get) = "/content/getLabel";
+  rpc GetZone(GetZoneReq) returns(GetZoneResp){
+    option (http.get) = "/content/getZone";
   }
-  rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp){
-    option (http.post) = "/content/deleteLabel";
+  rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp){
+    option (http.post) = "/content/deleteZone";
   }
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp){
     option (http.post) = "/content/createShareCode";

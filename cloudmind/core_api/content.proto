@@ -32,13 +32,36 @@ message GetFileResp{
   FileInfo file = 1;
 }
 
-message GetFileListReq{
+message GetPrivateFilesReq{
   optional SearchOptions searchOptions = 1;
   optional FileFilterOptions filterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
 }
 
-message GetFileListResp{
+message GetPrivateFilesResp{
+  repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message GetPublicFilesReq{
+  optional SearchOptions searchOptions = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+}
+
+message GetPublicFilesResp{
+  repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message GetRecycleBinFilesReq{
+  optional FileFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetRecycleBinFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
@@ -116,34 +139,34 @@ message RecoverRecycleBinFileReq{
 message RecoverRecycleBinFileResp{
 }
 
-message CreateLabelReq {
-  Label label = 1;
+message CreateZoneReq {
+  Zone zone = 1;
 }
 
-message CreateLabelResp {
+message CreateZoneResp {
   string id = 1;
 }
 
-message GetLabelReq {
+message GetZoneReq {
   string id = 1;
 }
 
-message GetLabelResp {
-  Label label = 1;
+message GetZoneResp {
+  Zone zone = 1;
 }
 
-message UpdateLabelReq {
-  Label label = 1;
+message UpdateZoneReq {
+  Zone zone = 1;
 }
 
-message UpdateLabelResp {
+message UpdateZoneResp {
 }
 
-message DeleteLabelReq {
+message DeleteZoneReq {
   string id = 1;
 }
 
-message DeleteLabelResp {
+message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
