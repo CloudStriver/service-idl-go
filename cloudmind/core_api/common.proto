@@ -76,9 +76,9 @@ message File {
   optional int64 spaceSize = 7;
   string md5 = 8;
   int64 isDel = 9;
-  repeated string tag = 10;
-  string description = 11;
-  int64 updateAt = 12;
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
 }
 
 message FileInfo {
@@ -91,15 +91,16 @@ message FileInfo {
   int64 spaceSize = 7;
   string md5 = 8;
   int64 isDel = 9;
-  repeated string tag = 10;
-  string description = 11;
-  int64 updateAt = 12;
-  User author = 13; // 作者信息
-  PostCount fileCount = 14; // 文章统计信息
-  PostRelation fileRelation = 15; // 文章关系信息
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
+  int64 updateAt = 13;
+  User author = 14; // 作者信息
+  PostCount fileCount = 15; // 文章统计信息
+  PostRelation fileRelation = 16; // 文章关系信息
 }
 
-message Label {
+message Zone {
   string id = 1;
   string value = 2;
 }
@@ -148,8 +149,6 @@ message FileFilterOptions {
   repeated string onlyTags = 5;
   optional int64 onlyIsDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
   optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
-  optional int64 OnlySetRelation = 8;
-  optional string onlyMd5 = 9;
 }
 
 message ShareFileFilterOptions {

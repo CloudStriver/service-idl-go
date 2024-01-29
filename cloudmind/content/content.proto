@@ -124,45 +124,45 @@ message RecoverRecycleBinFileReq{
 message RecoverRecycleBinFileResp{
 }
 
-message CreateLabelReq {
-  Label label = 1;
+message CreateZoneReq {
+  Zone zone = 1;
 }
 
-message CreateLabelResp {
+message CreateZoneResp {
   string id = 1;
 }
 
-message GetLabelReq {
+message GetZoneReq {
   string id = 1;
 }
 
-message GetLabelResp {
-  Label label = 1;
+message GetZoneResp {
+  Zone zone = 1;
 }
 
-message GetLabelsReq {
-  optional LabelFilterOptions labelFilterOptions = 1;
+message GetZonesReq {
+  string fatherId= 1;
   optional basic.PaginationOptions paginationOptions = 2;
 }
 
-message GetLabelsResp {
-  repeated Label labels = 1;
+message GetZonesResp {
+  repeated Zone zones = 1;
   int64 total = 2;
   string token = 3;
 }
 
-message UpdateLabelReq {
-  Label label = 1;
+message UpdateZoneReq {
+  Zone zone = 1;
 }
 
-message UpdateLabelResp {
+message UpdateZoneResp {
 }
 
-message DeleteLabelReq {
+message DeleteZoneReq {
   string id = 1;
 }
 
-message DeleteLabelResp {
+message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
@@ -429,11 +429,11 @@ service ContentService {
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
-  rpc GetLabel(GetLabelReq) returns(GetLabelResp);
-  rpc GetLabels(GetLabelsReq) returns(GetLabelsResp);
-  rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp);
-  rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp);
-  rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp);
+  rpc GetZone(GetZoneReq) returns(GetZoneResp);
+  rpc GetZones(GetZonesReq) returns(GetZonesResp);
+  rpc CreateZone(CreateZoneReq) returns(CreateZoneResp);
+  rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp);
+  rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp);
   rpc GetShareList(GetShareListReq) returns(GetShareListResp);
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp);
   rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp);
