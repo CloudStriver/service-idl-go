@@ -36,13 +36,12 @@ message CreateBalanceResp{
 
 
 
-message UpdateStockReq{
+message AddStockReq{
   string productId = 1;
-  int64 oldAmount = 2;
   int64 amount = 3;
 }
 
-message UpdateStockResp{
+message AddStockResp{
 }
 
 
@@ -60,12 +59,4 @@ message GetStocksReq{
 
 message GetStocksResp{
   repeated int64 stocks = 1;
-}
-
-message CreateStockReq{
-  string productId = 1;
-  int64 stock = 2;
-}
-
-message CreateStockResp{
 }

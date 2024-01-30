@@ -95,9 +95,8 @@ message UpdateFileResp{
 }
 
 message MoveFileReq{
-  string userId = 1;
-  string fileId = 2;
-  string fatherId = 3;
+  string fileId = 1;
+  string fatherId = 2;
 }
 
 message MoveFileResp{

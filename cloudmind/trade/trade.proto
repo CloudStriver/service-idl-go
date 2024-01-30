@@ -9,8 +9,7 @@ service TradeService {
   rpc GetBalance(GetBalanceReq) returns(GetBalanceResp);
   rpc CreateBalance(CreateBalanceReq) returns(CreateBalanceResp);
   // 商品
-  rpc UpdateStock(UpdateStockReq) returns(UpdateStockResp);
+  rpc AddStock(AddStockReq) returns(AddStockResp);
   rpc GetStock(GetStockReq) returns(GetStockResp);
   rpc GetStocks(GetStocksReq) returns(GetStocksResp);
-  rpc CreateStock(CreateStockReq) returns(CreateStockResp);
 }
