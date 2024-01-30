@@ -27,6 +27,7 @@ message GetFileListReq{
   optional SearchOptions searchOptions = 1;
   optional FileFilterOptions filterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
+  optional SortOptions sortOptions = 4;
 }
 
 message GetFileListResp{

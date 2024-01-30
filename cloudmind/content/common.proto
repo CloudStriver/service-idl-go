@@ -5,18 +5,7 @@ option go_package = "cloudmind/content";
 
 enum Type {
   Type_null = 0;
-  Type_audio = 1;
-  Type_video = 2;
-  Type_photo = 3;
-  Type_word = 4;
-  Type_ppt = 5;
-  Type_zip = 6;
-  Type_excel = 7;
-  Type_pdf = 8;
-  Type_folder = 9;
-  Type_file = 10;
-  Type_code = 11;
-  Type_unknown = 12;
+  Type_folder = 1;
 }
 
 enum IsDel {
@@ -36,32 +25,44 @@ message File {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  Type type = 4;
-  string path = 5;
-  string fatherId = 6;
-  optional int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  int64 updateAt = 13;
+  string typeString = 4;
+  Type type = 5;
+  string path = 6;
+  string fatherId = 7;
+  optional int64 spaceSize = 8;
+  string md5 = 9;
+  int64 isDel = 10;
+  string zone = 11;
+  string subZone = 12;
+  string description = 13;
+  string url = 14;
+}
+
+enum SortOptions{
+  SortOptions_null = 0;
+  SortOptions_createAtDesc = 1; // 创建时间排序
+  SortOptions_createAtAsc = 2; // 创建时间排序
+  SortOptions_updateAtDesc = 3; // 修改时间排序
+  SortOptions_updateAtAsc = 4; // 修改时间排序
 }
 
 message FileInfo {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  Type type = 4;
-  string path = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  int64 updateAt = 13;
+  string typeString = 4;
+  Type type = 5;
+  string path = 6;
+  string fatherId = 7;
+  int64 spaceSize = 8;
+  string md5 = 9;
+  int64 isDel = 10;
+  string zone = 11;
+  string subZone = 12;
+  string description = 13;
+  string url = 14;
+  int64 createAt = 15;
+  int64 updateAt = 16;
 }
 
 message Zone {
@@ -116,6 +117,7 @@ message FileFilterOptions {
   optional string onlySubZone = 6; // 子分区
   optional int64 onlyIsDel = 7; // 是否删除 1：未删除 2：软删除 3:彻底删除
   optional int64 onlyDocumentType = 8; // 操作类型 1：个人空间文件 2：公共空间文件
+  repeated string onlyTypeString = 9;
 }
 
 message ShareFileFilterOptions {
@@ -123,11 +125,6 @@ message ShareFileFilterOptions {
   optional string onlyUserId = 2;
 }
 
-enum Sex {
-  unKnownSex = 0; // 未知
-  man = 1; // 男
-  women = 2; // 女
-}
 
 message User {
   string userId = 1;
