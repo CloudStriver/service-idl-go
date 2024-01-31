@@ -3,10 +3,6 @@ syntax = "proto3";
 package cloudmind.content;
 option go_package = "cloudmind/content";
 
-enum Type {
-  Type_null = 0;
-  Type_folder = 1;
-}
 
 enum IsDel {
   Is_null = 0;
@@ -25,11 +21,10 @@ message File {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  string typeString = 4;
-  Type type = 5;
+  string type = 4;
   string path = 6;
   string fatherId = 7;
-  optional int64 spaceSize = 8;
+  int64 spaceSize = 8;
   string md5 = 9;
   int64 isDel = 10;
   string zone = 11;
@@ -50,8 +45,7 @@ message FileInfo {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  string typeString = 4;
-  Type type = 5;
+  string type = 4;
   string path = 6;
   string fatherId = 7;
   int64 spaceSize = 8;
@@ -112,12 +106,11 @@ message FileFilterOptions {
   optional string onlyUserId = 1;
   optional string onlyFileId = 2;
   optional string onlyFatherId = 3;
-  optional int64  onlyFileType = 4; // 文件类型
   optional string onlyZone = 5; // 分区
   optional string onlySubZone = 6; // 子分区
   optional int64 onlyIsDel = 7; // 是否删除 1：未删除 2：软删除 3:彻底删除
   optional int64 onlyDocumentType = 8; // 操作类型 1：个人空间文件 2：公共空间文件
-  repeated string onlyTypeString = 9;
+  repeated string onlyType = 9;
 }
 
 message ShareFileFilterOptions {
