@@ -37,22 +37,6 @@ enum TargetType {
   PostType = 4;
 }
 
-enum Type {
-  Type_null = 0;
-  Type_audio = 1;
-  Type_video = 2;
-  Type_photo = 3;
-  Type_word = 4;
-  Type_ppt = 5;
-  Type_zip = 6;
-  Type_excel = 7;
-  Type_pdf = 8;
-  Type_folder = 9;
-  Type_file = 10;
-  Type_code = 11;
-  Type_unknown = 12;
-}
-
 enum IsDel {
   Is_null = 0;
   Is_no = 1;
@@ -70,39 +54,37 @@ message File {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  string typeString = 4;
-  Type type = 5;
-  string path = 6;
-  string fatherId = 7;
-  optional int64 spaceSize = 8;
-  string md5 = 9;
-  int64 isDel = 10;
-  string zone = 11;
-  string subZone = 12;
-  string description = 13;
-  string url = 14;
+  string type = 4;
+  string path = 5;
+  string fatherId = 6;
+  optional int64 spaceSize = 7;
+  string md5 = 8;
+  int64 isDel = 9;
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
+  string url = 13;
 }
 
 message FileInfo {
   string fileId = 1;
   string userId = 2;
   string name = 3;
-  string typeString = 4;
-  Type type = 5;
-  string path = 6;
-  string fatherId = 7;
-  int64 spaceSize = 8;
-  string md5 = 9;
-  int64 isDel = 10;
-  string zone = 11;
-  string subZone = 12;
-  string description = 13;
-  string url = 14;
-  int64 createAt = 15;
-  int64 updateAt = 16;
-  User author = 17; // 作者信息
-  PostCount fileCount = 18; // 文章统计信息
-  PostRelation fileRelation = 19; // 文章关系信息
+  string type = 4;
+  string path = 5;
+  string fatherId = 6;
+  int64 spaceSize = 7;
+  string md5 = 8;
+  int64 isDel = 9;
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
+  string url = 13;
+  int64 createAt = 14;
+  int64 updateAt = 15;
+  User author = 16; // 作者信息
+  PostCount fileCount = 17; // 文章统计信息
+  PostRelation fileRelation = 18; // 文章关系信息
 }
 
 message Zone {

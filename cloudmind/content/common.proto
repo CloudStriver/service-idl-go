@@ -24,7 +24,7 @@ message File {
   string type = 4;
   string path = 6;
   string fatherId = 7;
-  int64 spaceSize = 8;
+  optional int64 spaceSize = 8;
   string md5 = 9;
   int64 isDel = 10;
   string zone = 11;
