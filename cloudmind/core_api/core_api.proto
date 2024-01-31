@@ -23,8 +23,11 @@ service content {
   // ------------------ 用户 --------------------
 
   // ------------------ 文件 --------------------
-  rpc GetFile(GetFileReq) returns(GetFileResp){
-    option (http.post) = "/content/getFile";
+  rpc GetPublicFile(GetFileReq) returns(GetFileResp){
+    option (http.post) = "/content/getPublicFile";
+  }
+  rpc GetPrivateFile(GetFileReq) returns(GetFileResp){
+    option (http.post) = "/content/getPrivateFile";
   }
   rpc GetPrivateFiles(GetPrivateFilesReq) returns(GetPrivateFilesResp){
     option (http.post) = "/content/getPrivateFiles";
