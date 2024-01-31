@@ -121,3 +121,20 @@ message SubjectInfo {
   string userId = 3;
   int64 attrs = 4; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
+
+message Label {
+  string labelId = 1;
+  string value = 2;
+}
+
+message LabelEntity {
+  string objectId = 1;
+  string userId = 2;
+  int64 objectType = 3;
+  repeated string labels = 4;
+}
+
+message ObjectFilterOptions {
+  optional string onlyLabelId = 1;
+  optional int64 onlyObjectType = 2;
+}

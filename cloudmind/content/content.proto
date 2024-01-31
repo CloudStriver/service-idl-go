@@ -106,6 +106,14 @@ message AddFileToPublicSpaceReq{
 message AddFileToPublicSpaceResp{
 }
 
+message CompletelyRemoveFileReq {
+  string fileId = 1;
+  string userId = 2;
+}
+
+message CompletelyRemoveFileResp {
+}
+
 message DeleteFileReq{
   string fileId = 1;
   string userId = 2;
@@ -427,6 +435,7 @@ service ContentService {
   rpc MoveFile(MoveFileReq) returns(MoveFileResp);
   rpc SaveFileToPrivateSpace(SaveFileToPrivateSpaceReq) returns(SaveFileToPrivateSpaceResp);
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
+  rpc CompletelyRemoveFile(CompletelyRemoveFileReq) returns(CompletelyRemoveFileResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
   rpc GetZone(GetZoneReq) returns(GetZoneResp);
