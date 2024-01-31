@@ -126,6 +126,70 @@ message SetCommentSubjectAttrsReq {
 message SetCommentSubjectAttrsResp{
 }
 
+message CreateLabelReq {
+  Label label = 1;
+}
+message CreateLabelResp {
+  string id = 1;
+}
+message DeleteLabelReq {
+  string id = 1;
+}
+message DeleteLabelResp {
+}
+message GetLabelReq {
+  string id = 1;
+}
+message GetLabelResp {
+  Label label = 1;
+}
+message UpdateLabelReq {
+  Label label = 1;
+}
+message UpdateLabelResp {
+}
+message GetLabelsReq {
+  string key = 1; // 用于匹配标签的key
+  basic.PaginationOptions pagination = 2;
+}
+message GetLabelsResp {
+  repeated Label labels = 1;
+  int64 total = 2;
+  string token = 3;
+}
+message GetLabelsInBatchReq {
+  repeated string labelIds = 1;
+}
+message GetLabelsInBatchResp {
+  repeated Label labels = 1;
+}
+message CreateObjectReq{
+  LabelEntity object = 1;
+}
+message CreateObjectResp{
+  string id = 1;
+}
+message DeleteObjectReq{
+  string objectId = 1;
+  string userId = 2;
+}
+message DeleteObjectResp{
+}
+message GetObjectsReq{
+  ObjectFilterOptions filterOptions = 1;
+  basic.PaginationOptions pagination = 2;
+}
+message GetObjectsResp{
+  repeated string objectIds = 1;
+  int64 total = 2;
+  string token = 3;
+}
+message UpdateObjectReq{
+  LabelEntity object = 1;
+}
+message UpdateObjectResp{
+}
+
 service CommentService {
   rpc GetComment(GetCommentReq) returns (GetCommentResp);
   rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
@@ -141,4 +205,15 @@ service CommentService {
   rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns (DeleteCommentSubjectResp);
   rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns (SetCommentSubjectStateResp);
   rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns (SetCommentSubjectAttrsResp);
+
+  rpc CreateLabel(CreateLabelReq) returns (CreateLabelResp);
+  rpc DeleteLabel(DeleteLabelReq) returns (DeleteLabelResp);
+  rpc GetLabel(GetLabelReq) returns (GetLabelResp);
+  rpc GetLabelsInBatch(GetLabelsInBatchReq) returns(GetLabelsInBatchResp);
+  rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
+  rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
+  rpc CreateObject(CreateObjectReq) returns (CreateObjectResp);
+  rpc DeleteObject(DeleteObjectReq) returns (DeleteObjectResp);
+  rpc GetObjects(GetObjectsReq) returns (GetObjectsResp);
+  rpc UpdateObject(UpdateObjectReq) returns (UpdateObjectResp);
 }
