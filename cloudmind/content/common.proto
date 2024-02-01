@@ -31,6 +31,7 @@ message File {
   string subZone = 12;
   string description = 13;
   string url = 14;
+  repeated string labels = 15;
 }
 
 enum SortOptions{
@@ -57,6 +58,7 @@ message FileInfo {
   string url = 14;
   int64 createAt = 15;
   int64 updateAt = 16;
+  repeated string labels = 17;
 }
 
 message Zone {
