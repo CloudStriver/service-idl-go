@@ -57,6 +57,7 @@ message GetPublicFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherPath = 4;
 }
 
 message GetRecycleBinFilesReq{
