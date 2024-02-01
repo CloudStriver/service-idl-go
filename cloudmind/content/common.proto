@@ -56,9 +56,9 @@ message FileInfo {
   string subZone = 11;
   string description = 12;
   string url = 13;
-  int64 createAt = 14;
-  int64 updateAt = 15;
-  repeated string labels = 16;
+  repeated string labels = 14;
+  int64 createAt = 15;
+  int64 updateAt = 16;
 }
 
 message Zone {
