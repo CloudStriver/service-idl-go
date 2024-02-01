@@ -22,16 +22,16 @@ message File {
   string userId = 2;
   string name = 3;
   string type = 4;
-  string path = 6;
-  string fatherId = 7;
-  optional int64 spaceSize = 8;
-  string md5 = 9;
-  int64 isDel = 10;
-  string zone = 11;
-  string subZone = 12;
-  string description = 13;
-  string url = 14;
-  repeated string labels = 15;
+  string path = 5;
+  string fatherId = 6;
+  optional int64 spaceSize = 7;
+  string md5 = 8;
+  int64 isDel = 9;
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
+  string url = 13;
+  repeated string labels = 14;
 }
 
 enum SortOptions{
@@ -47,18 +47,18 @@ message FileInfo {
   string userId = 2;
   string name = 3;
   string type = 4;
-  string path = 6;
-  string fatherId = 7;
-  int64 spaceSize = 8;
-  string md5 = 9;
-  int64 isDel = 10;
-  string zone = 11;
-  string subZone = 12;
-  string description = 13;
-  string url = 14;
-  int64 createAt = 15;
-  int64 updateAt = 16;
-  repeated string labels = 17;
+  string path = 5;
+  string fatherId = 6;
+  int64 spaceSize = 7;
+  string md5 = 8;
+  int64 isDel = 9;
+  string zone = 10;
+  string subZone = 11;
+  string description = 12;
+  string url = 13;
+  int64 createAt = 14;
+  int64 updateAt = 15;
+  repeated string labels = 16;
 }
 
 message Zone {

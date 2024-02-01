@@ -64,6 +64,7 @@ message File {
   string subZone = 11;
   string description = 12;
   string url = 13;
+  repeated string labels = 14;
 }
 
 message FileInfo {
@@ -82,9 +83,10 @@ message FileInfo {
   string url = 13;
   int64 createAt = 14;
   int64 updateAt = 15;
-  User author = 16; // 作者信息
-  PostCount fileCount = 17; // 文章统计信息
-  PostRelation fileRelation = 18; // 文章关系信息
+  repeated string labels = 16;
+  User author = 17; // 作者信息
+  PostCount fileCount = 18; // 文章统计信息
+  PostRelation fileRelation = 19; // 文章关系信息
 }
 
 message Zone {
