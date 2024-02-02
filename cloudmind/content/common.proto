@@ -120,6 +120,7 @@ message ShareFileFilterOptions {
   optional string onlyUserId = 2;
 }
 
+
 message User {
   string userId = 1;
   string name = 2;
@@ -205,7 +206,7 @@ message Coupon {
   int64 createTime = 5;
   int64 expireTime = 6;
   string name = 7;
-  string description = 8;
+  string desciption = 8;
   optional int64 lowSumPrice = 9; // 优惠券使用的最低总价格
   optional int64 productType = 10; // 优惠券使用的商品类型
   optional int64 discount = 11; // 优惠券折扣 打多少折
