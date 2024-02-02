@@ -75,18 +75,17 @@ message FileInfo {
   string path = 5;
   string fatherId = 6;
   int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  string url = 13;
-  int64 createAt = 14;
-  int64 updateAt = 15;
-  repeated string labels = 16;
-  User author = 17; // 作者信息
-  PostCount fileCount = 18; // 文章统计信息
-  PostRelation fileRelation = 19; // 文章关系信息
+  int64 isDel = 8;
+  string zone = 9;
+  string subZone = 10;
+  string description = 11;
+  string url = 12;
+  int64 createAt = 13;
+  int64 updateAt = 14;
+  repeated string labels = 15;
+  User author = 16; // 作者信息
+  PostCount fileCount = 17; // 文章统计信息
+  PostRelation fileRelation = 18; // 文章关系信息
 }
 
 message Zone {
