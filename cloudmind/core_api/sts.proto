@@ -2,16 +2,3 @@ syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
 
-message ApplySignedUrlReq {
-  string md5 = 1; // 文件md5
-  string suffix = 2; // 文件后缀
-  bool file = 3; // 是否为文件
-}
-
-message ApplySignedUrlResp {
-  string tmpSecretId = 1;
-  string tmpSecretKey = 2;
-  int64 startTime = 3;
-  int64 expiredTime = 4;
-  string sessionToken = 5;
-}
