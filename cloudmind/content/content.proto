@@ -34,7 +34,8 @@ message GetFileListResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-  string fatherPath = 4;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetFolderSizeReq{
@@ -486,11 +487,11 @@ service ContentService {
   rpc GetOrder(GetOrderReq)  returns(GetOrderResp);
   rpc GetOrders(GetOrdersReq) returns(GetOrdersResp);
 
-//  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
-//  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
-//  rpc UpdateCart(UpdateCartReq) returns(UpdateCartResp);
-//  rpc GetCart(GetCartReq)  returns(GetCartResp);
-//  rpc CreateProductCart(CreateProductCartReq) returns(CreateProductCartResp);
+  //  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
+  //  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
+  //  rpc UpdateCart(UpdateCartReq) returns(UpdateCartResp);
+  //  rpc GetCart(GetCartReq)  returns(GetCartResp);
+  //  rpc CreateProductCart(CreateProductCartReq) returns(CreateProductCartResp);
 }
 
 //message CreateCartReq{

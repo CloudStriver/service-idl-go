@@ -20,6 +20,9 @@ service content {
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp){
     option (http.get) = "/content/getUserDetail";
   }
+  rpc AskUploadAvatar(AskUploadAvatarReq) returns(AskUploadAvatarResp) {
+    option (http.post) = "/content/askUploadAvatar";
+  }
   // ------------------ 用户 --------------------
 
   // ------------------ 文件 --------------------
@@ -85,6 +88,12 @@ service content {
   }
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp){
     option (http.get) = "/content/parsingShareCode";
+  }
+  rpc AskUploadFile(AskUploadFileReq) returns(AskUploadFileResp){
+    option (http.post) = "/content/askUploadFile";
+  }
+  rpc AskDownloadFile(AskDownloadFileReq) returns(AskDownloadFileResp){
+    option (http.post) = "/content/askDownloadFile";
   }
   // ------------------ 文件 --------------------
 
@@ -155,8 +164,3 @@ service relation {
   }
 }
 
-service sts {
-  rpc ApplySignedUrl(ApplySignedUrlReq) returns(ApplySignedUrlResp){
-    option (http.post) = "/sts/applySignedUrl";
-  }
-}

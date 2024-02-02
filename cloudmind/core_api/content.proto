@@ -43,7 +43,8 @@ message GetPrivateFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-  string fatherPath = 4;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetPublicFilesReq{
@@ -57,7 +58,8 @@ message GetPublicFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-  string fatherPath = 4;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetRecycleBinFilesReq{
@@ -215,6 +217,27 @@ message ParsingShareCodeResp {
   ShareFile shareFile = 1;
 }
 
+message AskUploadFileReq {
+  string name = 1;
+  int64 fileSize = 2;
+}
+
+message AskUploadFileResp {
+  string tmpSecretId = 1;
+  string tmpSecretKey = 2;
+  int64 startTime = 3;
+  int64 expiredTime = 4;
+  string sessionToken = 5;
+}
+
+message AskDownloadFileReq{
+  repeated string fileIds = 1;
+}
+
+message AskDownloadFileResp{
+  repeated string urls = 1;
+}
+
 message GetUserReq{
   string userId = 1;
 }
@@ -241,6 +264,19 @@ message DeleteUserReq{
 }
 
 message DeleteUserResp{
+}
+
+message AskUploadAvatarReq{
+    string name = 1;
+    int64 avatarSize = 2;
+}
+
+message AskUploadAvatarResp{
+    string tmpSecretId = 1;
+    string tmpSecretKey = 2;
+    int64 startTime = 3;
+    int64 expiredTime = 4;
+    string sessionToken = 5;
 }
 
 message CreatePostReq{
@@ -283,3 +319,5 @@ message GetPostsResp{
   int64 total = 2;
   string token = 3;
 }
+
+
