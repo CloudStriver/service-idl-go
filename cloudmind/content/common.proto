@@ -50,15 +50,14 @@ message FileInfo {
   string path = 5;
   string fatherId = 6;
   int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  string url = 13;
-  repeated string labels = 14;
-  int64 createAt = 15;
-  int64 updateAt = 16;
+  int64 isDel = 8;
+  string zone = 9;
+  string subZone = 10;
+  string description = 11;
+  string url = 12;
+  repeated string labels = 13;
+  int64 createAt = 14;
+  int64 updateAt = 15;
 }
 
 message Zone {
@@ -206,7 +205,7 @@ message Coupon {
   int64 createTime = 5;
   int64 expireTime = 6;
   string name = 7;
-  string desciption = 8;
+  string description = 8;
   optional int64 lowSumPrice = 9; // 优惠券使用的最低总价格
   optional int64 productType = 10; // 优惠券使用的商品类型
   optional int64 discount = 11; // 优惠券折扣 打多少折
