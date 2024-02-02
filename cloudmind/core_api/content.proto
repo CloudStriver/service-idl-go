@@ -43,7 +43,8 @@ message GetPrivateFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-  string fatherPath = 4;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetPublicFilesReq{
@@ -57,7 +58,8 @@ message GetPublicFilesResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
-  string fatherPath = 4;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetRecycleBinFilesReq{
