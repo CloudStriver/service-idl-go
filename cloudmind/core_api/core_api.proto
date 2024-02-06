@@ -109,11 +109,17 @@ service content {
   rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp){
     option (http.post) = "/content/updatePost";
   }
-  rpc GetPosts(GetPostsReq) returns(GetPostsResp){
-    option (http.post) = "/content/getPosts";
+  rpc GetOtherPosts(GetOtherPostsReq) returns(GetOtherPostsResp){
+    option (http.get) = "/content/getOtherPosts";
   }
-  rpc GetPost(GetPostReq) returns(GetPostResp) { 
-    option (http.get) = "/content/getPost";
+  rpc GetOtherPost(GetOtherPostReq) returns(GetOtherPostResp) {
+    option (http.get) = "/content/getOtherPost";
+  }
+  rpc GetOwnPosts(GetOwnPostsReq) returns(GetOwnPostsResp){
+    option (http.get) = "/content/getOwnPosts";
+  }
+  rpc GetOwnPost(GetOwnPostReq) returns(GetOwnPostResp) {
+    option (http.get) = "/content/getOwnPost";
   }
   // ------------------ 帖子 --------------------
 }

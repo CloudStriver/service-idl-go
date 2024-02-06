@@ -336,7 +336,11 @@ message AskUploadAvatarResp{
 }
 
 message CreatePostReq{
-  PostInfo postInfo = 1;
+  string title = 1;
+  string text = 2;
+  repeated string tags = 3;
+  int64 status = 4;
+  string url = 5;
 }
 
 message CreatePostResp{
@@ -350,30 +354,102 @@ message DeletePostResp{
 }
 
 message UpdatePostReq{
-  PostInfo postInfo = 1;
+  string postId = 1;
+  string title = 2;
+  string text = 3;
+  repeated string tags = 4;
+  int64 status = 5;
+  string url = 6;
 }
 
 message UpdatePostResp{
 }
 
-message GetPostReq{
+message GetOtherPostReq{
   string postId = 1;
 }
 
-message GetPostResp{
-  Post post = 1;
+message GetOtherPostResp{
+  string title = 1;
+  string text = 2;
+  int64 status = 3;
+  string url = 4;
+  User author = 5; // 作者信息
+  repeated string tags = 6; // 标签
+  int64 viewCount = 7; // 浏览量
+  int64 likeCount = 8; // 点赞量
+  int64 commentCount = 9; // 评论量
+  int64 shareCount = 10; // 分享量
+  int64 collectCount = 11;  // 收藏量
+  bool Liked = 12; //
+  bool Collected = 13;
+  int64 createTime = 14;
+  int64 updateTime = 15;
 }
 
-message GetPostsReq{
-  optional SearchOptions searchOptions = 1;
-  optional PostFilterOptions postFilterOptions = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
+message GetOtherPostsReq{
+  optional string allFieldsKey = 1;
+  optional string id = 2;
+  optional string tag = 3;
+  optional string text = 4;
+  optional string title = 5;
+  optional string onlyUserId = 6;
+  repeated string  onlyTags = 7;
+  optional int64 onlySetRelation = 9;
+  optional int64 limit = 10;
+  optional string lastToken = 11;
+  optional bool backward = 12;
+  optional int64 offset = 13;
 }
 
-message GetPostsResp{
+message GetOtherPostsResp{
   repeated Post posts = 1;
   int64 total = 2;
   string token = 3;
 }
+
+message GetOwnPostReq{
+  string postId = 1;
+}
+
+message GetOwnPostResp{
+  string title = 1;
+  string text = 2;
+  int64 status = 3;
+  string url = 4;
+  User author = 5; // 作者信息
+  repeated string tags = 6; // 标签
+  int64 viewCount = 7; // 浏览量
+  int64 likeCount = 8; // 点赞量
+  int64 commentCount = 9; // 评论量
+  int64 shareCount = 10; // 分享量
+  int64 collectCount = 11;  // 收藏量
+  bool Liked = 12;
+  bool Collected = 13;
+  int64 createTime = 14;
+  int64 updateTime = 15;
+}
+
+message GetOwnPostsReq{
+  optional string allFieldsKey = 1;
+  optional string id = 2;
+  optional string tag = 3;
+  optional string text = 4;
+  optional string title = 5;
+  optional string onlyStatus = 6;
+  repeated string  onlyTags = 7;
+  optional int64 onlySetRelation = 9;
+  optional int64 limit = 10;
+  optional string lastToken = 11;
+  optional bool backward = 12;
+  optional int64 offset = 13;
+}
+
+message GetOwnPostsResp{
+  repeated OwnPost posts = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
 
 

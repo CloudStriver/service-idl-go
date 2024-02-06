@@ -300,8 +300,9 @@ message GetPostResp{
   string text = 3;
   repeated string tags = 4;
   string url = 5;
-  int64 createTime = 6;
-  int64 updateTime = 7;
+  int64 status = 6;
+  int64 createTime = 7;
+  int64 updateTime = 8;
 }
 
 message GetPostsReq{
