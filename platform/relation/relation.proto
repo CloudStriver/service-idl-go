@@ -7,7 +7,11 @@ import "platform/relation/common.proto";
 
 
 message CreateRelationReq{
-  Relation relation = 1;
+  int64 fromType = 1;
+  string fromId = 2;
+  int64 toType = 3;
+  string toId = 4;
+  int64 relationType = 5;
 }
 message CreateRelationResp{
 }
@@ -20,7 +24,11 @@ message GetRelationResp{
 }
 
 message DeleteRelationReq{
-  Relation relation = 1;
+  int64 fromType = 1;
+  string fromId = 2;
+  int64 toType = 3;
+  string toId = 4;
+  int64 relationType = 5;
 }
 message DeleteRelationResp{
 }
