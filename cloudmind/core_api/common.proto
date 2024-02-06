@@ -189,26 +189,23 @@ message Post {
   string url = 5;
   User author = 6; // 作者信息
   repeated string tags = 7;
-  PostCount postCount = 8; // 文章统计信息
-  PostRelation postRelation = 9;
-  int64 createTime = 10;
-  int64 updateTime = 11;
+  int64 likeCount = 8; // 点赞量
+  int64 viewCount = 9; // 浏览量
+  int64 createTime = 15;
+  int64 updateTime = 16;
 }
 
-message PostInfo {
+
+
+message OwnPost {
   string postId = 1;
-  string userId = 2;
-  string title = 3;
-  string text = 4;
-  repeated string tags = 5;
-  int64 status = 6;
-  string url = 7;
+  string title = 2;
+  string text = 3;
+  string url = 4;
+  User author = 5; // 作者信息
+  repeated string tags = 6;
+  int64 likeCount = 7; // 点赞量
+  int64 viewCount = 8; // 浏览量
+  int64 createTime = 9;
+  int64 updateTime = 10;
 }
-
-message PostFilterOptions{
-  optional string onlyUserId = 1;
-  repeated string  onlyTags = 2;
-  optional int64 onlyStatus = 3;
-  optional int64 onlySetRelation = 4;
-}
-
