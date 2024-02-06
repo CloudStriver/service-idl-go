@@ -5,7 +5,6 @@ import "http/http.proto";
 import "cloudmind/core_api/content.proto";
 import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
-import "cloudmind/core_api/sts.proto";
 service content {
   // ------------------ 用户 --------------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
@@ -26,23 +25,23 @@ service content {
   // ------------------ 用户 --------------------
 
   // ------------------ 文件 --------------------
-  rpc GetPublicFile(GetFileReq) returns(GetFileResp){
-    option (http.post) = "/content/getPublicFile";
+  rpc GetPublicFile(GetPublicFilesReq) returns(GetPublicFilesResp){
+    option (http.get) = "/content/getPublicFile";
   }
-  rpc GetPrivateFile(GetFileReq) returns(GetFileResp){
-    option (http.post) = "/content/getPrivateFile";
+  rpc GetPrivateFile(GetPrivateFileReq) returns(GetPrivateFileResp){
+    option (http.get) = "/content/getPrivateFile";
   }
   rpc GetPrivateFiles(GetPrivateFilesReq) returns(GetPrivateFilesResp){
-    option (http.post) = "/content/getPrivateFiles";
+    option (http.get) = "/content/getPrivateFiles";
   }
   rpc GetPublicFiles(GetPublicFilesReq) returns(GetPublicFilesResp){
-    option (http.post) = "/content/getPublicFiles";
+    option (http.get) = "/content/getPublicFiles";
   }
   rpc GetRecycleBinFiles(GetRecycleBinFilesReq) returns(GetRecycleBinFilesResp){
-    option (http.post) = "/content/getRecycleBinFiles";
+    option (http.get) = "/content/getRecycleBinFiles";
   }
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp){
-    option (http.post) = "/content/getFileBySharingCode";
+    option (http.get) = "/content/getFileBySharingCode";
   }
   rpc CreateFile(CreateFileReq) returns(CreateFileResp){
     option (http.post) = "/content/createFile";
@@ -61,6 +60,9 @@ service content {
   }
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp){
     option (http.post) = "/content/deleteFile";
+  }
+  rpc CompletelyRemoveFile(CompletelyRemoveFileReq) returns(CompletelyRemoveFileReq){
+    option (http.post) = "/content/completelyRemoveFile";
   }
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp){
     option (http.post) = "/content/recoverRecycleBinFile";
@@ -81,7 +83,7 @@ service content {
     option (http.post) = "/content/createShareCode";
   }
   rpc GetShareList(GetShareListReq) returns(GetShareListResp){
-    option (http.post) = "/content/getShareList";
+    option (http.get) = "/content/getShareList";
   }
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp){
     option (http.post) = "/content/deleteShareCode";
