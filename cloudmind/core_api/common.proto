@@ -50,24 +50,20 @@ enum DocumentType {
   DocumentType_public = 2;
 }
 
-message File {
+message PrivateFile {
   string fileId = 1;
   string userId = 2;
   string name = 3;
   string type = 4;
   string path = 5;
   string fatherId = 6;
-  optional int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  string url = 13;
-  repeated string labels = 14;
+  int64 spaceSize = 7;
+  int64 isDel = 8;
+  int64 createAt = 9;
+  int64 updateAt = 10;
 }
 
-message FileInfo {
+message PublicFile {
   string fileId = 1;
   string userId = 2;
   string name = 3;
@@ -79,21 +75,31 @@ message FileInfo {
   string zone = 9;
   string subZone = 10;
   string description = 11;
-  string url = 12;
-  int64 createAt = 13;
-  int64 updateAt = 14;
-  repeated string labels = 15;
-  User author = 16; // 作者信息
-  PostCount fileCount = 17; // 文章统计信息
-  PostRelation fileRelation = 18; // 文章关系信息
+  int64 createAt = 12;
+  int64 updateAt = 13;
+  repeated string labels = 14;
+  User author = 15; // 作者信息
+  PostCount fileCount = 16; // 文章统计信息
+  PostRelation fileRelation = 17; // 文章关系信息
 }
 
 message Zone {
   string id = 1;
-  string value = 2;
+  string fatherId = 2;
+  string value = 3;
 }
 
 message ShareFile {
+  string code = 1;
+  string userId = 2;
+  string name = 3;
+  int64 effectiveTime = 4;
+  int64 browseNumber = 5;
+  int64 createAt = 6;
+  repeated string fileList = 7;
+}
+
+message ShareFileInfo {
   string code = 1;
   string userId = 2;
   string name = 3;
@@ -145,7 +151,6 @@ message ShareFileFilterOptions {
   optional string onlyCode = 1;
   optional string onlyUserId = 2;
 }
-
 
 message UserDetailInfo{
   string userId = 1;

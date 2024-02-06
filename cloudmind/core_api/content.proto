@@ -14,7 +14,10 @@ message UpdateUserResp{
 
 message SearchUserReq{
   string keyword = 1;
-  basic.PaginationOptions paginationOptions = 2;
+  optional int64 limit = 2;
+  optional string lastToken = 3;
+  optional bool backward = 4;
+  optional int64 offset = 5;
 }
 
 message SearchUserResp{
@@ -23,24 +26,39 @@ message SearchUserResp{
   int64 total = 3;
 }
 
-message GetFileReq{
-  optional FileFilterOptions filterOptions = 1;
-  bool IsGetSize = 2;
+message GetPrivateFileReq{
+  string fileId = 1;
+  bool isGetSize = 2;
 }
 
-message GetFileResp{
-  FileInfo file = 1;
+message GetPrivateFileResp{
+  PrivateFile file = 1;
+}
+
+message GetPublicFileReq{
+  string fileId = 1;
+  bool isGetSize = 2;
+}
+
+message GetPublicFileResp{
+  PublicFile file = 1;
 }
 
 message GetPrivateFilesReq{
-  optional SearchOptions searchOptions = 1;
-  optional FileFilterOptions filterOptions = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
+  optional string allFieldsKey = 1;
+  optional string name = 2;
+  optional string id = 3;
   optional int64 sortType = 4;
+  optional string onlyFatherId = 5;
+  repeated string onlyType = 6;
+  optional int64 limit = 7;
+  optional string lastToken = 8;
+  optional bool backward = 9;
+  optional int64 offset = 10;
 }
 
 message GetPrivateFilesResp{
-  repeated FileInfo files = 1;
+  repeated PrivateFile files = 1;
   int64 total = 2;
   string token = 3;
   string fatherNamePath = 4;
@@ -48,14 +66,24 @@ message GetPrivateFilesResp{
 }
 
 message GetPublicFilesReq{
-  optional SearchOptions searchOptions = 1;
-  optional FileFilterOptions filterOptions = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
-  optional int64 sortType = 4;
+  optional string allFieldsKey = 1;
+  optional string name = 2;
+  optional string id = 3;
+  optional string label = 4;
+  optional string description = 5;
+  optional int64 sortType = 6;
+  optional string onlyFatherId = 7;
+  repeated string onlyType = 8;
+  optional string onlyZone = 9;
+  optional string onlySubZone = 10;
+  optional int64 limit = 11;
+  optional string lastToken = 12;
+  optional bool backward = 13;
+  optional int64 offset = 14;
 }
 
 message GetPublicFilesResp{
-  repeated FileInfo files = 1;
+  repeated PublicFile files = 1;
   int64 total = 2;
   string token = 3;
   string fatherNamePath = 4;
@@ -63,30 +91,42 @@ message GetPublicFilesResp{
 }
 
 message GetRecycleBinFilesReq{
-  optional FileFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional int64 limit = 1;
+  optional string lastToken = 2;
+  optional bool backward = 3;
+  optional int64 offset = 4;
+  optional int64 sortType = 5;
 }
 
 message GetRecycleBinFilesResp{
-  repeated FileInfo files = 1;
+  repeated PrivateFile files = 1;
   int64 total = 2;
   string token = 3;
 }
 
 message GetFileBySharingCodeReq{
   string sharingCode = 1;
-  optional FileFilterOptions filterOptions = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
+  string key = 2;
+  optional string onlyFileId = 3;
+  optional string onlyFatherId = 4;
+  optional int64 limit = 5;
+  optional string lastToken = 6;
+  optional bool backward = 7;
+  optional int64 offset = 8;
 }
 
 message GetFileBySharingCodeResp{
-  repeated FileInfo files = 1;
+  repeated PrivateFile files = 1;
   int64 total = 2;
   string token = 3;
 }
 
 message CreateFileReq{
-  File file = 1;
+  string name = 1;
+  string type = 2;
+  string fatherId = 3;
+  optional int64 spaceSize = 4;
+  string md5 = 5;
 }
 
 message CreateFileResp{
@@ -94,7 +134,8 @@ message CreateFileResp{
 }
 
 message UpdateFileReq{
-  File file = 1;
+  string fileId = 1;
+  string name = 2;
 }
 
 message UpdateFileResp{
@@ -109,10 +150,9 @@ message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  string userId = 1;
-  string fileId = 2;
-  string fatherId = 3;
-  DocumentType documentType = 4;
+  string fileId = 1;
+  string fatherId = 2;
+  DocumentType documentType = 3;
 }
 
 message SaveFileToPrivateSpaceResp{
@@ -120,7 +160,11 @@ message SaveFileToPrivateSpaceResp{
 }
 
 message AddFileToPublicSpaceReq{
-  File file = 1;
+  string fileId = 1;
+  string zone = 2;
+  string subZone = 3;
+  string description = 4;
+  repeated string labels = 5;
 }
 
 message AddFileToPublicSpaceResp{
@@ -128,24 +172,31 @@ message AddFileToPublicSpaceResp{
 
 message DeleteFileReq{
   string fileId = 1;
-  string userId = 2;
-  IsDel deleteType = 3;
-  bool clearCommunity = 4;
+  IsDel deleteType = 2;
+  bool clearCommunity = 3;
 }
 
 message DeleteFileResp{
 }
 
-message RecoverRecycleBinFileReq{
+message CompletelyRemoveFileReq {
   string fileId = 1;
   string userId = 2;
+}
+
+message CompletelyRemoveFileResp {
+}
+
+message RecoverRecycleBinFileReq{
+  string fileId = 1;
 }
 
 message RecoverRecycleBinFileResp{
 }
 
 message CreateZoneReq {
-  Zone zone = 1;
+  string fatherId = 1;
+  string value = 2;
 }
 
 message CreateZoneResp {
@@ -175,7 +226,9 @@ message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
-  ShareFile shareFile = 1;
+  string name = 1;
+  int64 effectiveTime = 2;
+  repeated string fileList = 3;
 }
 
 message CreateShareCodeResp {
@@ -184,8 +237,10 @@ message CreateShareCodeResp {
 }
 
 message GetShareListReq {
-  optional ShareFileFilterOptions shareFileFilterOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional int64 limit = 1;
+  optional string lastToken = 2;
+  optional bool backward = 3;
+  optional int64 offset = 4;
 }
 
 message GetShareListResp {
@@ -195,14 +250,15 @@ message GetShareListResp {
 }
 
 message UpdateShareCodeReq {
-  ShareFile shareFile = 1;
+  string code = 1;
+  int64 browseNumber = 2;
 }
 
 message UpdateShareCodeResp {
 }
 
 message DeleteShareCodeReq {
-  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+  string onlyCode = 1;
 }
 
 message DeleteShareCodeResp {
@@ -272,11 +328,11 @@ message AskUploadAvatarReq{
 }
 
 message AskUploadAvatarResp{
-    string tmpSecretId = 1;
-    string tmpSecretKey = 2;
-    int64 startTime = 3;
-    int64 expiredTime = 4;
-    string sessionToken = 5;
+  string tmpSecretId = 1;
+  string tmpSecretKey = 2;
+  int64 startTime = 3;
+  int64 expiredTime = 4;
+  string sessionToken = 5;
 }
 
 message CreatePostReq{
