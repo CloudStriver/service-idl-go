@@ -46,15 +46,6 @@ message GetFolderSizeResp{
   int64 spaceSize = 1;
 }
 
-message GetFileCountReq{
-  optional SearchOptions searchOptions = 1;
-  optional FileFilterOptions filterOptions = 2;
-}
-
-message GetFileCountResp{
-  int64 count = 1;
-}
-
 message GetFileBySharingCodeReq{
   string sharingCode = 1;
   string key = 2;
@@ -448,7 +439,6 @@ service ContentService {
   rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
   rpc GetFile(GetFileReq) returns(GetFileResp);
   rpc GetFileList(GetFileListReq) returns(GetFileListResp);
-  rpc GetFileCount(GetFileCountReq) returns(GetFileCountResp);
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
   rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp);
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
