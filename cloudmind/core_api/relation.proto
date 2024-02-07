@@ -5,7 +5,9 @@ import "basic/pagination.proto";
 import "cloudmind/core_api/common.proto";
 
 message CreateRelationReq{
-  RelationInfo relation = 1;
+  string toId = 1;
+  int64 toType = 2;
+  int64 relationType = 3;
 }
 message CreateRelationResp{
 }
@@ -44,11 +46,11 @@ message GetToRelationsResp{
 }
 
 message GetRelationReq{
-  string FromId = 1;
-  int64 FromType = 2;
-  string ToId = 3;
-  int64 ToType = 4;
-  int64 RelationType = 5;
+  string fromId = 1;
+  int64 fromType = 2;
+  string toId = 3;
+  int64 toType = 4;
+  int64 relationType = 5;
 }
 
 message GetRelationResp{
@@ -56,7 +58,9 @@ message GetRelationResp{
 }
 
 message DeleteRelationReq{
-  RelationInfo relationInfo = 1;
+  string toId = 1;
+  int64 toType = 2;
+  int64 relationType = 3;
 }
 message DeleteRelationResp{
 }
