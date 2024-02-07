@@ -238,8 +238,8 @@ message GetUserResp{
 }
 
 message SearchUserReq{
-  string keyword = 1; // 可以是name,userId等等
-  optional basic.PaginationOptions paginationOptions = 3;
+  optional SearchOptions searchOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
 }
 
 message SearchUserResp{
