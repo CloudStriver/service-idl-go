@@ -212,7 +212,13 @@ message ParsingShareCodeResp {
 }
 
 message UpdateUserReq{
-  User user = 1;
+  string userId = 1;
+  string name = 2;
+  int64  sex = 3;
+  string fullName = 4;
+  string idCard = 5;
+  string description = 6;
+  string url = 7;
 }
 message UpdateUserResp{
 }
@@ -221,7 +227,14 @@ message GetUserReq{
   string userId = 1;
 }
 message GetUserResp{
-  User user = 1;
+  string name = 1;
+  int64  sex = 2;
+  string fullName = 3;
+  string idCard = 4;
+  string description = 5;
+  string url = 6;
+  int64 createTime = 7;
+  int64 updateTime = 8;
 }
 
 message SearchUserReq{
@@ -236,7 +249,9 @@ message SearchUserResp{
 }
 
 message CreateUserReq{
-  User user = 1;
+  string userId = 1;
+  string name = 2;
+  int64  sex = 3;
 }
 
 message CreateUserResp{
