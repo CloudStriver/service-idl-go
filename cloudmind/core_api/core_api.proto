@@ -159,10 +159,10 @@ service relation {
     option (http.post) = "/relation/createRelation";
   }
   rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
-    option (http.get) = "/relations/getFromRelations";
+    option (http.get) = "/relation/getFromRelations";
   }
   rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
-    option (http.get) = "/relations/getToRelations";
+    option (http.get) = "/relation/getToRelations";
   }
   rpc GetRelation(GetRelationReq) returns(GetRelationResp){
     option (http.get) = "/relation/getRelation";
