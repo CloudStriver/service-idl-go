@@ -118,6 +118,6 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
-  rpc UpateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
+  rpc UpdateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
   rpc DeleteNotifications(DeleteNotificationsReq) returns (DeleteNotificationsResp);
 }

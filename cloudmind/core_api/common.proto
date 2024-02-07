@@ -6,7 +6,6 @@ import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
-
 message User {
   string userId = 1;
   string name = 2;
