@@ -6,8 +6,10 @@ import "cloudmind/system/common.proto";
 
 
 message GetNotificationsReq {
-  optional NotificationFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional string onlyUserId = 1;
+  optional int64 onlyType = 2;
+  optional bool onlyIsRead = 3;
+  optional basic.PaginationOptions paginationOptions = 5;
 }
 
 message GetNotificationsResp {
@@ -16,41 +18,52 @@ message GetNotificationsResp {
   string token = 3;
 }
 
-message ReadNotificationsReq {
-  optional NotificationFilterOptions filterOptions = 1;
+message UpdateNotificationReq {
+
 }
-
-message ReadNotificationsResp {
-  int64 notRead = 1;
-}
-
-
 message CreateNotificationsReq {
-  repeated Notification notifications = 1;
+  repeated NotificationInfo notifications = 1;
 }
 
 message CreateNotificationsResp {
 }
 
-message CleanNotificationReq {
-  string userId = 1;
-}
-
-message CleanNotificationResp {
-}
-
-
 message GetNotificationCountReq {
-  optional NotificationFilterOptions filterOptions = 1;
+  optional string onlyUserId = 1;
+  optional int64 onlyType = 2;
+  optional bool onlyIsRead = 3;
 }
 
 message GetNotificationCountResp {
   int64 total = 1;
 }
 
+message UpdateNotificationsReq {
+  repeated string onlyNotificationIds = 1;
+  optional string onlyUserId = 2;
+  optional int64 onlyType = 3;
+  optional bool onlyIsRead = 4;
+  bool isRead = 5;
+}
+
+message UpdateNotificationsResp{
+
+}
+
+message DeleteNotificationsReq {
+  repeated string onlyNotificationIds = 1;
+  optional string onlyUserId = 2;
+  optional int64 onlyType = 3;
+  optional bool onlyIsRead = 4;
+}
+
+message DeleteNotificationsResp {
+}
+
 message GetSlidersReq {
-  optional SliderFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional int64 onlyType = 1;
+  optional int64 onlyIsPublic = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetSlidersResp {
@@ -60,14 +73,21 @@ message GetSlidersResp {
 }
 
 message CreateSliderReq {
-  Slider slider = 1;
+  string imageUrl = 1;
+  string linkUrl = 2;
+  int64 type = 3;
+  int64 isPublic = 4;
 }
 
 message CreateSliderResp {
 }
 
 message UpdateSliderReq {
-  Slider slider = 1;
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 type = 4;
+  int64 isPublic = 5;
 }
 
 message UpdateSliderResp {
@@ -88,16 +108,16 @@ service SystemService {
 //  rpc CreateNotice(CreateNoticeReq) returns (CreateNoticeResp);
 //  rpc UpdateNotice(UpdateNoticeReq) returns (UpdateNoticeResp);
 //  rpc DeleteNotice(DeleteNoticeReq) returns (DeleteNoticeResp);
-//
-//  // 轮播图
+
+  // 轮播图
   rpc GetSliders(GetSlidersReq) returns (GetSlidersResp);
   rpc CreateSlider(CreateSliderReq) returns (CreateSliderResp);
   rpc UpdateSlider(UpdateSliderReq) returns (UpdateSliderResp);
   rpc DeleteSlider(DeleteSliderReq) returns (DeleteSliderResp);
   //通知
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
-  rpc CleanNotification(CleanNotificationReq) returns (CleanNotificationResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
-  rpc ReadNotifications(ReadNotificationsReq) returns (ReadNotificationsResp);
+  rpc UpateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
+  rpc DeleteNotifications(DeleteNotificationsReq) returns (DeleteNotificationsResp);
 }
