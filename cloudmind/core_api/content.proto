@@ -17,7 +17,7 @@ message UpdateUserResp{
 }
 
 message SearchUserReq{
-  string keyword = 1;
+
   optional int64 limit = 2;
   optional string lastToken = 3;
   optional bool backward = 4;
