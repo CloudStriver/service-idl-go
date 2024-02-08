@@ -191,6 +191,7 @@ message Post {
   string url = 4;
   repeated string tags = 5;
   int64 likeCount = 6; // 点赞量
+  string userName = 7;
 }
 
 message OwnPost {
@@ -200,6 +201,7 @@ message OwnPost {
   string url = 4;
   repeated string tags = 5;
   int64 likeCount = 6; // 点赞量
+  string userName = 7;
 }
 
 
