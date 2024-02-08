@@ -188,29 +188,18 @@ message Post {
   string postId = 1;
   string title = 2;
   string text = 3;
-  int64 status = 4;
-  string url = 5;
-  User author = 6; // 作者信息
-  repeated string tags = 7;
-  int64 likeCount = 8; // 点赞量
-  int64 viewCount = 9; // 浏览量
-  int64 createTime = 15;
-  int64 updateTime = 16;
+  string url = 4;
+  repeated string tags = 5;
+  int64 likeCount = 6; // 点赞量
 }
-
-
 
 message OwnPost {
   string postId = 1;
   string title = 2;
   string text = 3;
   string url = 4;
-  User author = 5; // 作者信息
-  repeated string tags = 6;
-  int64 likeCount = 7; // 点赞量
-  int64 viewCount = 8; // 浏览量
-  int64 createTime = 9;
-  int64 updateTime = 10;
+  repeated string tags = 5;
+  int64 likeCount = 6; // 点赞量
 }
 
 
