@@ -191,7 +191,9 @@ message Post {
   string url = 4;
   repeated string tags = 5;
   int64 likeCount = 6; // 点赞量
-  string userName = 7;
+  int64 commentCount = 7; // 评论量
+  bool liked = 8; // 是否点赞
+  string userName = 9;
 }
 
 message OwnPost {
@@ -201,7 +203,9 @@ message OwnPost {
   string url = 4;
   repeated string tags = 5;
   int64 likeCount = 6; // 点赞量
-  string userName = 7;
+  int64 commentCount = 7; // 评论量
+  bool liked = 8; // 是否点赞
+  string userName = 9;
 }
 
 
