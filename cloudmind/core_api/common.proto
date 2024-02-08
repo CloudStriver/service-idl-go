@@ -21,19 +21,22 @@ message UserDetail {
   string url = 6;
 }
 
-message RelationInfo{
-  string FromId = 1;
-  int64 FromType = 2;
-  string ToId = 3;
-  int64 ToType = 4;
-  int64 RelationType = 5;
-}
 enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
   FileType = 2;
   ProductType = 3;
   PostType = 4;
+}
+
+enum RelationType {
+  UnKnowRelationType = 0;
+  LikeType = 1;
+  FollowType = 2;
+  CollectType = 3;
+  ShareType = 4;
+  CommentType = 5;
+  ViewType = 6;
 }
 
 enum IsDel {
@@ -208,4 +211,15 @@ message OwnPost {
   int64 viewCount = 8; // 浏览量
   int64 createTime = 9;
   int64 updateTime = 10;
+}
+
+
+message Notification {
+  string notificationId = 1;
+  string sourceUserId = 2;
+  string sourceContentId = 3;
+  int64 type = 4;
+  string text = 5;
+  bool  isRead = 6;
+  int64 createTime = 7;
 }
