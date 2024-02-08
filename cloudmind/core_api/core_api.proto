@@ -5,6 +5,8 @@ import "http/http.proto";
 import "cloudmind/core_api/content.proto";
 import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
+import "cloudmind/core_api/system.proto";
+
 service content {
   // ------------------ 用户 --------------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp){
@@ -172,3 +174,18 @@ service relation {
   }
 }
 
+
+service system {
+  rpc GetNotifications(GetNotificationsReq) returns(GetNotificationsResp){
+    option (http.get) = "/system/getNotifications";
+  }
+  rpc GetNotificationCount(GetNotificationCountReq) returns(GetNotificationCountResp){
+    option (http.get) = "/system/getNotificationCount";
+  }
+  rpc DeleteNotifications(DeleteNotificationsReq) returns(DeleteNotificationsResp){
+    option (http.post) = "/system/deleteNotifications";
+  }
+  rpc UpdateNotifications(UpdateNotificationsReq) returns(UpdateNotificationsResp){
+    option (http.post) = "/system/updateNotifications";
+  }
+}

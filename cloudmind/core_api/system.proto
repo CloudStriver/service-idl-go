@@ -1,0 +1,49 @@
+syntax = "proto3";
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
+import "cloudmind/core_api/common.proto";
+import "basic/pagination.proto";
+import "http/http.proto";
+
+
+message GetNotificationsReq {
+  optional int64 onlyType = 1;
+  optional bool onlyIsRead = 2;
+  optional int64 limit = 3;
+  optional string lastToken = 4;
+  optional bool backward = 5;
+  optional int64 offset = 6;
+}
+
+message GetNotificationsResp {
+  repeated Notification notifications = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message GetNotificationCountReq{
+  optional int64 onlyType = 2;
+  optional bool onlyIsRead = 3;
+}
+
+message GetNotificationCountResp{
+  int64 total = 1;
+}
+
+message DeleteNotificationsReq{
+  repeated string onlyNotificationIds = 1;
+  optional int64 onlyType = 2;
+  optional bool onlyIsRead = 3;
+}
+
+message DeleteNotificationsResp{
+}
+
+message UpdateNotificationsReq{
+  repeated string onlyNotificationIds = 1;
+  optional int64 onlyType = 2;
+}
+
+message UpdateNotificationsResp{
+}
+

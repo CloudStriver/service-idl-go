@@ -6,8 +6,8 @@ import "cloudmind/core_api/common.proto";
 
 message CreateRelationReq{
   string toId = 1;
-  int64 toType = 2;
-  int64 relationType = 3;
+  TargetType toType = 2;
+  RelationType relationType = 3;
 }
 message CreateRelationResp{
 }
@@ -16,7 +16,7 @@ message GetFromRelationsReq{
    string fromId = 1;
    int64 fromType = 2;
    TargetType toType = 3;
-   int64 relationType = 4;
+  int64 relationType = 4;
    optional int64 limit = 5;
    optional int64 offset = 6;
 }
