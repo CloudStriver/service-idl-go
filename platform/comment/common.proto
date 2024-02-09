@@ -129,9 +129,8 @@ message Label {
 
 message LabelEntity {
   string objectId = 1;
-  string userId = 2;
-  int64 objectType = 3;
-  repeated string labels = 4;
+  int64 objectType = 2;
+  repeated string labels = 3;
 }
 
 message ObjectFilterOptions {

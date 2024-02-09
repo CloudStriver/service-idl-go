@@ -3,20 +3,6 @@ syntax = "proto3";
 package cloudmind.content;
 option go_package = "cloudmind/content";
 
-
-enum IsDel {
-  Is_null = 0;
-  Is_no = 1;
-  Is_soft = 2;
-  Is_hard = 3;
-}
-
-enum DocumentType {
-  DocumentType_null = 0;
-  DocumentType_personal = 1;
-  DocumentType_public = 2;
-}
-
 message File {
   string fileId = 1;
   string userId = 2;
@@ -30,8 +16,7 @@ message File {
   string zone = 10;
   string subZone = 11;
   string description = 12;
-  string url = 13;
-  repeated string labels = 14;
+  repeated string labels = 13;
 }
 
 enum SortOptions{
@@ -54,10 +39,9 @@ message FileInfo {
   string zone = 9;
   string subZone = 10;
   string description = 11;
-  string url = 12;
-  repeated string labels = 13;
-  int64 createAt = 14;
-  int64 updateAt = 15;
+  repeated string labels = 12;
+  int64 createAt = 13;
+  int64 updateAt = 14;
 }
 
 message Zone {
@@ -119,7 +103,6 @@ message ShareFileFilterOptions {
   optional string onlyUserId = 2;
 }
 
-
 message User {
   string userId = 1;
   string name = 2;
@@ -131,6 +114,7 @@ message User {
   string description = 8;
   string url = 9;
 }
+
 message Post {
   string postId = 1;
   string userId = 2;

@@ -167,11 +167,16 @@ message CreateObjectReq{
   LabelEntity object = 1;
 }
 message CreateObjectResp{
-  string id = 1;
 }
+
+message CreateObjectsReq{
+  repeated LabelEntity objects = 1;
+}
+message CreateObjectsResp{
+}
+
 message DeleteObjectReq{
   string objectId = 1;
-  string userId = 2;
 }
 message DeleteObjectResp{
 }
@@ -213,6 +218,7 @@ service CommentService {
   rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
   rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
   rpc CreateObject(CreateObjectReq) returns (CreateObjectResp);
+  rpc CreateObjects(CreateObjectsReq) returns(CreateObjectsResp);
   rpc DeleteObject(DeleteObjectReq) returns (DeleteObjectResp);
   rpc GetObjects(GetObjectsReq) returns (GetObjectsResp);
   rpc UpdateObject(UpdateObjectReq) returns (UpdateObjectResp);
