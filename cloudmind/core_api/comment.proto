@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+package template;
+
+message CreateCommentReq {
+  Comment comment = 1;
+}
+
+message CreateCommentResp {
+  string id = 1;
+}
+
+message GetCommentReq {
+  optional CommentFilterOptions filterOptions = 1;
+}
+
+message GetCommentResp {
+  CommentInfo comment = 1;
+}
+
+message GetCommentListReq {
+  optional CommentFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions pagination = 2;
+}
+
+message GetCommentListResp {
+  repeated CommentInfo comments = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message UpdateCommentReq {
+  Comment comment = 1;
+}
+
+message UpdateCommentResp {
+
+}
+
+message DeleteCommentReq {
+  string id = 1;
+}
+
+message DeleteCommentResp {
+}
+
+message DeleteCommentWithUserIdReq {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteCommentWithUserIdResp {
+}
+
+message SetCommentStateReq {
+  string id = 1;
+  string userId = 2;
+  State state = 3;
+}
+
+message SetCommentStateResp {
+}
+
+message SetCommentAttrsReq {
+  string id = 1;
+  string userId = 2;
+  Attrs attrs = 3;
+  string subjectId = 4;
+  int64 sortTime = 5;
+}
+
+message SetCommentAttrsResp{
+
+}
+
+message GetCommentSubjectReq {
+  SubjectFilterOptions filterOptions = 1;
+}
+
+message GetCommentSubjectResp {
+  SubjectDetails subject = 1;
+}
+
+message CreateCommentSubjectReq {
+  Subject subject = 1;
+}
+
+message CreateCommentSubjectResp {
+  string id = 1;
+}
+
+message UpdateCommentSubjectReq {
+  Subject subject = 1;
+}
+
+message UpdateCommentSubjectResp {
+
+}
+
+message DeleteCommentSubjectReq {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteCommentSubjectResp {
+}
+
+message SetCommentSubjectStateReq {
+  string id = 1;
+  string userId = 2;
+  State state = 3;
+}
+
+message SetCommentSubjectStateResp {
+}
+
+message SetCommentSubjectAttrsReq {
+  string id = 1;
+  string userId = 2;
+  Attrs attrs = 3;
+}
+
+message SetCommentSubjectAttrsResp{
+}
+
+message CreateLabelReq {
+  Label label = 1;
+}
+message CreateLabelResp {
+  string id = 1;
+}
+message DeleteLabelReq {
+  string id = 1;
+}
+message DeleteLabelResp {
+}
+message GetLabelReq {
+  string id = 1;
+}
+message GetLabelResp {
+  Label label = 1;
+}
+message UpdateLabelReq {
+  Label label = 1;
+}
+message UpdateLabelResp {
+}
+message GetLabelsReq {
+  string key = 1; // 用于匹配标签的key
+  basic.PaginationOptions pagination = 2;
+}
+message GetLabelsResp {
+  repeated Label labels = 1;
+  int64 total = 2;
+  string token = 3;
+}
+message GetLabelsInBatchReq {
+  repeated string labelIds = 1;
+}
+message GetLabelsInBatchResp {
+  repeated Label labels = 1;
+}
+message CreateObjectReq{
+  LabelEntity object = 1;
+}
+message CreateObjectResp{
+}
+
+message CreateObjectsReq{
+  repeated LabelEntity objects = 1;
+}
+message CreateObjectsResp{
+}
+
+message DeleteObjectReq{
+  string objectId = 1;
+}
+message DeleteObjectResp{
+}
+message GetObjectsReq{
+  ObjectFilterOptions filterOptions = 1;
+  basic.PaginationOptions pagination = 2;
+}
+message GetObjectsResp{
+  repeated string objectIds = 1;
+  int64 total = 2;
+  string token = 3;
+}
+message UpdateObjectReq{
+  LabelEntity object = 1;
+}
+message UpdateObjectResp{
+}
