@@ -124,6 +124,24 @@ service content {
     option (http.get) = "/content/getOwnPost";
   }
   // ------------------ 帖子 --------------------
+
+
+  // ------------------ 推荐 --------------------
+  rpc GetRecommendByUser(GetRecommendByUserReq) returns(GetRecommendByUserResp){
+    option (http.get) = "/content/getRecommendByUser";
+  }
+  rpc GetRecommendByItem(GetRecommendByItemReq) returns(GetRecommendByItemResp){
+    option (http.get) = "/content/getRecommendByItem";
+  }
+  rpc CreateFeedBack(CreateFeedBackReq) returns(CreateFeedBackResp){
+    option (http.post) = "/content/createFeedBack";
+  }
+  rpc GetPopularRecommend(GetPopularRecommendReq) returns(GetPopularRecommendResp){
+    option (http.get) = "/content/getPopularRecommend";
+  }
+  rpc GetLatestRecommend(GetLatestRecommendReq) returns(GetLatestRecommendResp){
+    option (http.get) = "/content/getLatestRecommend";
+  }
 }
 
 service auth {
