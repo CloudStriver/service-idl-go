@@ -224,3 +224,20 @@ message LabelFilterOptions {
 //}
 //
 //
+
+
+message Item {
+  string itemId = 1;
+  bool isHidden = 2;
+  repeated string labels = 3;
+  repeated string categories = 4;
+  string timestamp = 5;
+  string comment = 6;
+}
+
+message FeedBack {
+  string feedbackType = 1;
+  string userId = 2;
+  string itemId = 3;
+  string timestamp = 4;
+}

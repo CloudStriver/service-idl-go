@@ -6,7 +6,6 @@ import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
-
 message User {
   string userId = 1;
   string name = 2;
@@ -22,19 +21,22 @@ message UserDetail {
   string url = 6;
 }
 
-message RelationInfo{
-  string FromId = 1;
-  int64 FromType = 2;
-  string ToId = 3;
-  int64 ToType = 4;
-  int64 RelationType = 5;
-}
 enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
   FileType = 2;
   ProductType = 3;
   PostType = 4;
+}
+
+enum RelationType {
+  UnKnowRelationType = 0;
+  LikeType = 1;
+  FollowType = 2;
+  CollectType = 3;
+  ShareType = 4;
+  CommentType = 5;
+  ViewType = 6;
 }
 
 enum IsDel {
@@ -186,14 +188,12 @@ message Post {
   string postId = 1;
   string title = 2;
   string text = 3;
-  int64 status = 4;
-  string url = 5;
-  User author = 6; // 作者信息
-  repeated string tags = 7;
-  int64 likeCount = 8; // 点赞量
-  int64 viewCount = 9; // 浏览量
-  int64 createTime = 15;
-  int64 updateTime = 16;
+  string url = 4;
+  repeated string tags = 5;
+  int64 likeCount = 6; // 点赞量
+  int64 commentCount = 7; // 评论量
+  bool liked = 8; // 是否点赞
+  string userName = 9;
 }
 
 message OwnPost {
@@ -201,10 +201,20 @@ message OwnPost {
   string title = 2;
   string text = 3;
   string url = 4;
-  User author = 5; // 作者信息
-  repeated string tags = 6;
-  int64 likeCount = 7; // 点赞量
-  int64 viewCount = 8; // 浏览量
-  int64 createTime = 9;
-  int64 updateTime = 10;
+  repeated string tags = 5;
+  int64 likeCount = 6; // 点赞量
+  int64 commentCount = 7; // 评论量
+  bool liked = 8; // 是否点赞
+  string userName = 9;
+}
+
+
+message Notification {
+  string notificationId = 1;
+  string sourceUserId = 2;
+  string sourceContentId = 3;
+  int64 type = 4;
+  string text = 5;
+  bool  isRead = 6;
+  int64 createTime = 7;
 }

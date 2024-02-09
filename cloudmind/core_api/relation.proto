@@ -5,7 +5,9 @@ import "basic/pagination.proto";
 import "cloudmind/core_api/common.proto";
 
 message CreateRelationReq{
-  RelationInfo relation = 1;
+  string toId = 1;
+  TargetType toType = 2;
+  RelationType relationType = 3;
 }
 message CreateRelationResp{
 }
@@ -14,12 +16,13 @@ message GetFromRelationsReq{
    string fromId = 1;
    int64 fromType = 2;
    TargetType toType = 3;
-   int64 relationType = 4;
+  int64 relationType = 4;
    optional int64 limit = 5;
    optional int64 offset = 6;
 }
 message GetFromRelationsResp{
   repeated User users = 1;
+  repeated OwnPost posts = 2;
   // 用户信息
   // 文件信息
   // 商品信息
@@ -44,11 +47,11 @@ message GetToRelationsResp{
 }
 
 message GetRelationReq{
-  string FromId = 1;
-  int64 FromType = 2;
-  string ToId = 3;
-  int64 ToType = 4;
-  int64 RelationType = 5;
+  string fromId = 1;
+  int64 fromType = 2;
+  string toId = 3;
+  int64 toType = 4;
+  int64 relationType = 5;
 }
 
 message GetRelationResp{
@@ -56,7 +59,9 @@ message GetRelationResp{
 }
 
 message DeleteRelationReq{
-  RelationInfo relationInfo = 1;
+  string toId = 1;
+  int64 toType = 2;
+  int64 relationType = 3;
 }
 message DeleteRelationResp{
 }
