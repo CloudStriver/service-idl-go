@@ -230,9 +230,8 @@ message Item {
   string itemId = 1;
   bool isHidden = 2;
   repeated string labels = 3;
-  repeated string categories = 4;
-  string timestamp = 5;
-  string comment = 6;
+  int64 category = 4;
+  string comment = 5;
 }
 
 message FeedBack {
