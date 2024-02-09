@@ -196,8 +196,6 @@ message Post {
   int64 updateTime = 16;
 }
 
-
-
 message OwnPost {
   string postId = 1;
   string title = 2;

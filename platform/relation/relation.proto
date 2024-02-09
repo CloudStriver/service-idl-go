@@ -68,7 +68,6 @@ message GetRelationCountResp{
   int64 total = 1;
 }
 
-
 service RelationService {
   rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
   rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);

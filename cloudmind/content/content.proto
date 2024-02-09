@@ -15,12 +15,20 @@ message GetFileIsExistResp {
 }
 
 message GetFileReq{
-  optional FileFilterOptions filterOptions = 1;
-  bool IsGetSize = 2;
+  string fileId = 1;
+  bool isGetSize = 2;
 }
 
 message GetFileResp{
   FileInfo file = 1;
+}
+
+message GetFilesByIdsReq{
+  repeated string fileIds = 1;
+}
+
+message GetFilesByIdsResp{
+  repeated FileInfo files = 1;
 }
 
 message GetFileListReq{
@@ -38,18 +46,10 @@ message GetFileListResp{
   string fatherIdPath = 5;
 }
 
-message GetFolderSizeReq{
-  optional FileFilterOptions filterOptions = 1;
-}
-
-message GetFolderSizeResp{
-  int64 spaceSize = 1;
-}
-
 message GetFileBySharingCodeReq{
-  string sharingCode = 1;
-  string key = 2;
-  optional FileFilterOptions filterOptions = 3;
+  repeated string fileIds = 1;
+  optional string onlyFileId = 2;
+  optional string onlyFatherId = 3;
   optional basic.PaginationOptions paginationOptions = 4;
 }
 
@@ -75,19 +75,19 @@ message UpdateFileResp{
 }
 
 message MoveFileReq{
-  string userId = 1;
-  string fileId = 2;
-  string fatherId = 3;
+  string fatherId = 1;
+  string newPath = 2;
+  FileInfo file = 3;
 }
 
 message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  string userId = 1;
-  string fileId = 2;
+  FileInfo file = 1;
+  string newPath = 2;
   string fatherId = 3;
-  DocumentType documentType = 4;
+  int64 documentType = 4;
 }
 
 message SaveFileToPrivateSpaceResp{
@@ -95,10 +95,11 @@ message SaveFileToPrivateSpaceResp{
 }
 
 message AddFileToPublicSpaceReq{
-  File file = 1;
+  FileInfo file = 1;
 }
 
 message AddFileToPublicSpaceResp{
+  repeated string fileIds = 1;
 }
 
 message CompletelyRemoveFileReq {
@@ -110,18 +111,16 @@ message CompletelyRemoveFileResp {
 }
 
 message DeleteFileReq{
-  string fileId = 1;
-  string userId = 2;
-  IsDel deleteType = 3;
-  bool clearCommunity = 4;
+  int64 deleteType = 1;
+  bool clearCommunity = 2;
+  FileInfo file = 3;
 }
 
 message DeleteFileResp{
 }
 
 message RecoverRecycleBinFileReq{
-  string fileId = 1;
-  string userId = 2;
+  FileInfo file = 1;
 }
 
 message RecoverRecycleBinFileResp{
@@ -438,9 +437,9 @@ service ContentService {
   // ---------------文件-----------------
   rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
   rpc GetFile(GetFileReq) returns(GetFileResp);
+  rpc GetFilesByIds(GetFilesByIdsReq) returns(GetFilesByIdsResp);
   rpc GetFileList(GetFileListReq) returns(GetFileListResp);
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
-  rpc GetFolderSize(GetFolderSizeReq) returns(GetFolderSizeResp);
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
   rpc CreateFile(CreateFileReq) returns(CreateFileResp);
   rpc MoveFile(MoveFileReq) returns(MoveFileResp);
