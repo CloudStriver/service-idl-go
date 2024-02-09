@@ -510,6 +510,16 @@ service ContentService {
   rpc GetOrder(GetOrderReq)  returns(GetOrderResp);
   rpc GetOrders(GetOrdersReq) returns(GetOrdersResp);
 
+  // ----------------推荐-------------------
+  rpc CreateItems(CreateItemsReq) returns(CreateItemsResp);
+  rpc UpdateItem(UpdateItemReq) returns(UpdateItemResp);
+  rpc DeleteItem(DeleteItemReq) returns(DeleteItemResp);
+  rpc GetRecommendByUser(GetRecommendByUserReq) returns(GetRecommendByUserResp);
+  rpc GetRecommendByItem(GetRecommendByItemReq) returns(GetRecommendByItemResp);
+  rpc GetPopularRecommend(GetPopularRecommendReq) returns(GetPopularRecommendResp);
+  rpc GetLatestRecommend(GetLatestRecommendReq) returns(GetLatestRecommendResp);
+  rpc CreateFeedBacks(CreateFeedBacksReq) returns(CreateFeedBacksResp);
+
   //  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
   //  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
   //  rpc UpdateCart(UpdateCartReq) returns(UpdateCartResp);
@@ -554,3 +564,78 @@ service ContentService {
 //
 //message CreateProductCartResp{
 //}
+
+
+message CreateItemsReq{
+  repeated Item items = 1;
+}
+
+message CreateItemsResp{
+}
+
+message UpdateItemReq{
+  string itemId = 1;
+  optional bool isHidden = 2;
+  repeated string labels = 3;
+  repeated string categories = 4;
+  optional string comment = 5;
+}
+
+message UpdateItemResp{
+
+}
+
+message DeleteItemReq{
+  string itemId = 1;
+}
+
+message DeleteItemResp{
+}
+
+message GetRecommendByUserReq{
+  string userId = 1;
+  optional int64 limit = 2;
+  optional string category = 3;
+}
+
+message GetRecommendByUserResp{
+  repeated string itemIds = 1;
+}
+
+message GetRecommendByItemReq{
+  string itemId = 1;
+  optional int64 limit = 2;
+  optional string category = 3;
+}
+
+message GetRecommendByItemResp{
+  repeated string itemIds = 1;
+}
+
+message GetPopularRecommendReq{
+  string userId = 1;
+  optional int64 limit = 2;
+  optional string category = 3;
+}
+
+message GetPopularRecommendResp{
+  repeated string itemIds = 1;
+}
+
+message GetLatestRecommendReq{
+  string userId = 1;
+  optional int64 limit = 2;
+  optional string category = 3;
+}
+
+message GetLatestRecommendResp{
+  repeated string itemIds = 1;
+}
+
+
+message CreateFeedBacksReq{
+  repeated FeedBack feedBacks = 1;
+}
+
+message CreateFeedBacksResp{
+}
