@@ -576,7 +576,7 @@ message UpdateItemReq{
   string itemId = 1;
   optional bool isHidden = 2;
   repeated string labels = 3;
-  int64 categories = 4;
+  optional int64 categories = 4;
   optional string comment = 5;
 }
 

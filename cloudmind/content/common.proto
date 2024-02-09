@@ -238,5 +238,4 @@ message FeedBack {
   string feedbackType = 1;
   string userId = 2;
   string itemId = 3;
-  string timestamp = 4;
 }
