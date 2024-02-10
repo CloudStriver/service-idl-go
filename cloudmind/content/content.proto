@@ -46,6 +46,17 @@ message GetFileListResp{
   string fatherIdPath = 5;
 }
 
+message GetRecycleBinFilesReq{
+  optional FileFilterOptions filterOptions = 1;
+  optional basic.PaginationOptions paginationOptions = 2;
+}
+
+message GetRecycleBinFilesResp{
+  repeated FileInfo files = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
 message GetFileBySharingCodeReq{
   repeated string fileIds = 1;
   optional string onlyFileId = 2;
