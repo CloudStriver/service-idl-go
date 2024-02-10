@@ -14,7 +14,7 @@ message CreateCommentResp {
 }
 
 message GetCommentReq {
-  optional CommentFilterOptions filterOptions = 1;
+  string commentId = 1;
 }
 
 message GetCommentResp {
@@ -58,7 +58,7 @@ message DeleteCommentWithUserIdResp {
 message SetCommentStateReq {
   string id = 1;
   string userId = 2;
-  State state = 3;
+  int64 state = 3;
 }
 
 message SetCommentStateResp {
@@ -67,7 +67,7 @@ message SetCommentStateResp {
 message SetCommentAttrsReq {
   string id = 1;
   string userId = 2;
-  Attrs attrs = 3;
+  int64 attrs = 3;
   string subjectId = 4;
   int64 sortTime = 5;
 }
@@ -111,7 +111,7 @@ message DeleteCommentSubjectResp {
 message SetCommentSubjectStateReq {
   string id = 1;
   string userId = 2;
-  State state = 3;
+  int64 state = 3;
 }
 
 message SetCommentSubjectStateResp {
@@ -120,7 +120,7 @@ message SetCommentSubjectStateResp {
 message SetCommentSubjectAttrsReq {
   string id = 1;
   string userId = 2;
-  Attrs attrs = 3;
+  int64 attrs = 3;
 }
 
 message SetCommentSubjectAttrsResp{

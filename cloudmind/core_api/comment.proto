@@ -1,29 +1,32 @@
 syntax = "proto3";
-
-package template;
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
+import "basic/pagination.proto";
+import "cloudmind/core_api/common.proto";
+import "http/http.proto";
 
 message CreateCommentReq {
   Comment comment = 1;
 }
 
 message CreateCommentResp {
-  string id = 1;
+  string CommentId = 1;
 }
 
 message GetCommentReq {
-  optional CommentFilterOptions filterOptions = 1;
+  string commentId = 1;
 }
 
 message GetCommentResp {
   CommentInfo comment = 1;
 }
 
-message GetCommentListReq {
+message GetCommentsReq {
   optional CommentFilterOptions filterOptions = 1;
   optional basic.PaginationOptions pagination = 2;
 }
 
-message GetCommentListResp {
+message GetCommentsResp {
   repeated CommentInfo comments = 1;
   int64 total = 2;
   string token = 3;
@@ -34,26 +37,17 @@ message UpdateCommentReq {
 }
 
 message UpdateCommentResp {
-
 }
 
 message DeleteCommentReq {
-  string id = 1;
+  string CommentId = 1;
 }
 
 message DeleteCommentResp {
 }
 
-message DeleteCommentWithUserIdReq {
-  string id = 1;
-  string userId = 2;
-}
-
-message DeleteCommentWithUserIdResp {
-}
-
 message SetCommentStateReq {
-  string id = 1;
+  string CommentId = 1;
   string userId = 2;
   State state = 3;
 }
@@ -62,7 +56,7 @@ message SetCommentStateResp {
 }
 
 message SetCommentAttrsReq {
-  string id = 1;
+  string CommentId = 1;
   string userId = 2;
   Attrs attrs = 3;
   string subjectId = 4;
@@ -70,11 +64,10 @@ message SetCommentAttrsReq {
 }
 
 message SetCommentAttrsResp{
-
 }
 
 message GetCommentSubjectReq {
-  SubjectFilterOptions filterOptions = 1;
+  string subjectId = 1;
 }
 
 message GetCommentSubjectResp {
@@ -86,7 +79,7 @@ message CreateCommentSubjectReq {
 }
 
 message CreateCommentSubjectResp {
-  string id = 1;
+  string subjectId = 1;
 }
 
 message UpdateCommentSubjectReq {
@@ -94,7 +87,6 @@ message UpdateCommentSubjectReq {
 }
 
 message UpdateCommentSubjectResp {
-
 }
 
 message DeleteCommentSubjectReq {
@@ -127,15 +119,15 @@ message CreateLabelReq {
   Label label = 1;
 }
 message CreateLabelResp {
-  string id = 1;
+  string labelId = 1;
 }
 message DeleteLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 message DeleteLabelResp {
 }
 message GetLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 message GetLabelResp {
   Label label = 1;

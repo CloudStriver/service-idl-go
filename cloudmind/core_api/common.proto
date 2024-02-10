@@ -289,6 +289,7 @@ message CommentInfo {
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
   int64 createTime = 13;
+  int64 like = 14;
 }
 
 message CommentFilterOptions {

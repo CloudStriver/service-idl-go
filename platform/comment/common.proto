@@ -2,20 +2,6 @@ syntax = "proto3";
 package platform.comment;
 option go_package = "platform/comment";
 
-enum State {
-  UnknownState = 0;
-  Normal = 1;
-  Deleted = 2;
-}
-
-enum Attrs {
-  UnknownAttrs = 0;
-  None = 1;
-  Pinned = 2;
-  Highlighted = 3;
-  PinnedAndHighlighted = 4;
-}
-
 message Content {
   string id = 1;
   string userId = 2; // 评论者
@@ -48,8 +34,8 @@ message Comment {
   string rootId = 3;
   string fatherId = 4;
   optional int64 count = 5; // 回复数
-  State state = 6; // 1: 正常, 2: 删除
-  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
   repeated string tags = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
@@ -100,8 +86,8 @@ message Subject {
   string topCommentId = 4;
   optional int64 rootCount = 5;
   optional int64 allCount = 6;
-  State state = 7; // 1: 正常, 2: 删除
-  Attrs attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  int64 state = 7; // 1: 正常, 2: 删除
+  int64 attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectDetails {
