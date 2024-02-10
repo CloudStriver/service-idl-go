@@ -274,6 +274,7 @@ message CreatePostReq{
 }
 
 message CreatePostResp{
+  string postId = 1;
 }
 
 message DeletePostReq{
