@@ -6,6 +6,7 @@ import "cloudmind/core_api/content.proto";
 import "cloudmind/core_api/auth.proto";
 import "cloudmind/core_api/relation.proto";
 import "cloudmind/core_api/system.proto";
+import "cloudmind/core_api/comment.proto";
 
 service content {
   // ------------------ 用户 --------------------
@@ -192,7 +193,6 @@ service relation {
   }
 }
 
-
 service system {
   rpc GetNotifications(GetNotificationsReq) returns(GetNotificationsResp){
     option (http.get) = "/system/getNotifications";
@@ -205,5 +205,83 @@ service system {
   }
   rpc UpdateNotifications(UpdateNotificationsReq) returns(UpdateNotificationsResp){
     option (http.post) = "/system/updateNotifications";
+  }
+}
+
+service comment {
+  rpc CreateComment(CreateCommentReq) returns(CreateCommentResp){
+    option (http.post) = "/comment/createComment";
+  }
+  rpc GetComment(GetCommentReq) returns(GetCommentResp){
+    option (http.get) = "/comment/getComment";
+  }
+  rpc GetComments(GetCommentsReq) returns(GetCommentsResp){
+    option (http.get) = "/comment/getComments";
+  }
+  rpc DeleteComment(DeleteCommentReq) returns(DeleteCommentResp){
+    option (http.post) = "/comment/deleteComment";
+  }
+  rpc UpdateComment(UpdateCommentReq) returns(UpdateCommentResp){
+    option (http.post) = "/comment/updateComment";
+  }
+  rpc SetCommentState(SetCommentStateReq) returns(SetCommentStateResp){
+    option (http.post) = "/comment/setCommentState";
+  }
+  rpc SetCommentAttrs(SetCommentAttrsReq) returns(SetCommentAttrsResp){
+    option (http.post) = "/comment/setCommentAttrs";
+  }
+  rpc GetCommentSubject(GetCommentSubjectReq) returns(GetCommentSubjectResp){
+    option (http.get) = "/comment/getCommentSubject";
+  }
+  rpc CreateCommentSubject(CreateCommentSubjectReq) returns(CreateCommentSubjectResp){
+    option (http.post) = "/comment/createCommentSubject";
+  }
+  rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns(UpdateCommentSubjectResp){
+    option (http.post) = "/comment/updateCommentSubject";
+  }
+  rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns(DeleteCommentSubjectResp){
+    option (http.post) = "/comment/deleteCommentSubject";
+  }
+  rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns(SetCommentSubjectStateResp){
+    option (http.post) = "/comment/setCommentSubjectState";
+  }
+  rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns(SetCommentSubjectAttrsResp){
+    option (http.post) = "/comment/setCommentSubjectAttrs";
+  }
+}
+
+service label {
+  rpc CreateLabel(CreateLabelReq) returns(CreateLabelResp){
+    option (http.post) = "/label/createLabel";
+  }
+  rpc DeleteLabel(DeleteLabelReq) returns(DeleteLabelResp){
+    option (http.post) = "/label/deleteLabel";
+  }
+  rpc UpdateLabel(UpdateLabelReq) returns(UpdateLabelResp){
+    option (http.post) = "/label/updateLabel";
+  }
+  rpc GetLabels(GetLabelsReq) returns(GetLabelsResp){
+    option (http.get) = "/label/getLabels";
+  }
+  rpc GetLabel(GetLabelReq) returns(GetLabelResp){
+    option (http.get) = "/label/getLabel";
+  }
+  rpc GetLabelsInBatch(GetLabelsInBatchReq) returns(GetLabelsInBatchResp){
+    option (http.get) = "/label/getLabelsInBatch";
+  }
+  rpc CreateObject(CreateObjectReq) returns(CreateObjectResp){
+    option (http.post) = "/label/createObject";
+  }
+  rpc CreateObjects(CreateObjectsReq) returns(CreateObjectsResp){
+    option (http.post) = "/label/createObjects";
+  }
+  rpc DeleteObject(DeleteObjectReq) returns(DeleteObjectResp){
+    option (http.post) = "/label/deleteObject";
+  }
+  rpc GetObjects(GetObjectsReq) returns(GetObjectsResp){
+    option (http.get) = "/label/getObjects";
+  }
+  rpc UpdateObject(UpdateObjectReq) returns(UpdateObjectResp){
+    option (http.post) = "/label/updateObject";
   }
 }

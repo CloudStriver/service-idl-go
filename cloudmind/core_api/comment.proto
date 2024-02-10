@@ -1,16 +1,16 @@
 syntax = "proto3";
-package platform.comment;
-option go_package = "platform/comment";
-
-import "platform/comment/common.proto";
+package cloudmind.core_api;
+option go_package = "cloudmind/core_api";
 import "basic/pagination.proto";
+import "cloudmind/core_api/common.proto";
+import "http/http.proto";
 
 message CreateCommentReq {
   Comment comment = 1;
 }
 
 message CreateCommentResp {
-  string id = 1;
+  string CommentId = 1;
 }
 
 message GetCommentReq {
@@ -21,12 +21,12 @@ message GetCommentResp {
   CommentInfo comment = 1;
 }
 
-message GetCommentListReq {
+message GetCommentsReq {
   optional CommentFilterOptions filterOptions = 1;
   optional basic.PaginationOptions pagination = 2;
 }
 
-message GetCommentListResp {
+message GetCommentsResp {
   repeated CommentInfo comments = 1;
   int64 total = 2;
   string token = 3;
@@ -37,47 +37,37 @@ message UpdateCommentReq {
 }
 
 message UpdateCommentResp {
-
 }
 
 message DeleteCommentReq {
-  string id = 1;
+  string CommentId = 1;
 }
 
 message DeleteCommentResp {
 }
 
-message DeleteCommentWithUserIdReq {
-  string id = 1;
-  string userId = 2;
-}
-
-message DeleteCommentWithUserIdResp {
-}
-
 message SetCommentStateReq {
-  string id = 1;
+  string CommentId = 1;
   string userId = 2;
-  int64 state = 3;
+  State state = 3;
 }
 
 message SetCommentStateResp {
 }
 
 message SetCommentAttrsReq {
-  string id = 1;
+  string CommentId = 1;
   string userId = 2;
-  int64 attrs = 3;
+  Attrs attrs = 3;
   string subjectId = 4;
   int64 sortTime = 5;
 }
 
 message SetCommentAttrsResp{
-
 }
 
 message GetCommentSubjectReq {
-  SubjectFilterOptions filterOptions = 1;
+  string subjectId = 1;
 }
 
 message GetCommentSubjectResp {
@@ -89,7 +79,7 @@ message CreateCommentSubjectReq {
 }
 
 message CreateCommentSubjectResp {
-  string id = 1;
+  string subjectId = 1;
 }
 
 message UpdateCommentSubjectReq {
@@ -97,7 +87,6 @@ message UpdateCommentSubjectReq {
 }
 
 message UpdateCommentSubjectResp {
-
 }
 
 message DeleteCommentSubjectReq {
@@ -111,7 +100,7 @@ message DeleteCommentSubjectResp {
 message SetCommentSubjectStateReq {
   string id = 1;
   string userId = 2;
-  int64 state = 3;
+  State state = 3;
 }
 
 message SetCommentSubjectStateResp {
@@ -120,7 +109,7 @@ message SetCommentSubjectStateResp {
 message SetCommentSubjectAttrsReq {
   string id = 1;
   string userId = 2;
-  int64 attrs = 3;
+  Attrs attrs = 3;
 }
 
 message SetCommentSubjectAttrsResp{
@@ -130,15 +119,15 @@ message CreateLabelReq {
   Label label = 1;
 }
 message CreateLabelResp {
-  string id = 1;
+  string labelId = 1;
 }
 message DeleteLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 message DeleteLabelResp {
 }
 message GetLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 message GetLabelResp {
   Label label = 1;
@@ -193,33 +182,4 @@ message UpdateObjectReq{
   LabelEntity object = 1;
 }
 message UpdateObjectResp{
-}
-
-service CommentService {
-  rpc GetComment(GetCommentReq) returns (GetCommentResp);
-  rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
-  rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
-  rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
-  rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
-  rpc DeleteCommentWithUserId(DeleteCommentWithUserIdReq) returns (DeleteCommentWithUserIdResp);
-  rpc SetCommentState(SetCommentStateReq) returns (SetCommentStateResp);
-  rpc SetCommentAttrs(SetCommentAttrsReq) returns (SetCommentAttrsResp);
-  rpc GetCommentSubject(GetCommentSubjectReq) returns (GetCommentSubjectResp);
-  rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
-  rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns (UpdateCommentSubjectResp);
-  rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns (DeleteCommentSubjectResp);
-  rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns (SetCommentSubjectStateResp);
-  rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns (SetCommentSubjectAttrsResp);
-
-  rpc CreateLabel(CreateLabelReq) returns (CreateLabelResp);
-  rpc DeleteLabel(DeleteLabelReq) returns (DeleteLabelResp);
-  rpc GetLabel(GetLabelReq) returns (GetLabelResp);
-  rpc GetLabelsInBatch(GetLabelsInBatchReq) returns(GetLabelsInBatchResp);
-  rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
-  rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
-  rpc CreateObject(CreateObjectReq) returns (CreateObjectResp);
-  rpc CreateObjects(CreateObjectsReq) returns(CreateObjectsResp);
-  rpc DeleteObject(DeleteObjectReq) returns (DeleteObjectResp);
-  rpc GetObjects(GetObjectsReq) returns (GetObjectsResp);
-  rpc UpdateObject(UpdateObjectReq) returns (UpdateObjectResp);
 }
