@@ -230,7 +230,7 @@ message Item {
   string itemId = 1;
   bool isHidden = 2;
   repeated string labels = 3;
-  int64 category = 4;
+  string category = 4;
   string comment = 5;
 }
 
