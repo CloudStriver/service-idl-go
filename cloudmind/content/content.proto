@@ -236,12 +236,13 @@ message GetUserResp{
   int64 updateTime = 8;
 }
 
-message SearchUserReq{
+message GetUsersReq{
   optional SearchOptions searchOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional UserFilterOptions userFilterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
-message SearchUserResp{
+message GetUsersResp{
   repeated User users = 1;
   int64 total = 2;
   string lastToken = 3;
@@ -263,6 +264,7 @@ message DeleteUserReq{
 
 message DeleteUserResp{
 }
+
 
 message CreatePostReq{
   string userId = 1;
@@ -478,7 +480,7 @@ service ContentService {
   // ---------------用户-----------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
   rpc GetUser(GetUserReq) returns(GetUserResp);
-  rpc SearchUser(SearchUserReq) returns(SearchUserResp);
+  rpc GetUsers(GetUsersReq) returns(GetUsersResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
   rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
 
