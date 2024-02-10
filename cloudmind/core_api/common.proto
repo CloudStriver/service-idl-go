@@ -233,19 +233,6 @@ message Notification {
   int64 createTime = 7;
 }
 
-enum Category {
-  UnknowCategory = 0;
-  UserCategory = 1;
-  FileCategory = 2;
-  ProductCategory = 3;
-  PostCategory = 4;
-}
-
-message Recommends {
-  repeated User users = 1;
-  repeated Post posts = 2;
-}
-
 message Content {
   string id = 1;
   string userId = 2; // 评论者
@@ -367,4 +354,16 @@ message LabelEntity {
 message ObjectFilterOptions {
   optional string onlyLabelId = 1;
   optional int64 onlyObjectType = 2;
+}
+enum Category {
+  UnknowCategory = 0;
+  UserCategory = 1;
+  FileCategory = 2;
+  ProductCategory = 3;
+  PostCategory = 4;
+}
+
+message Recommends {
+  repeated User users = 1;
+  repeated Post posts = 2;
 }
