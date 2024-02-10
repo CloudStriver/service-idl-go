@@ -590,8 +590,7 @@ message UpdateItemReq{
   string itemId = 1;
   optional bool isHidden = 2;
   repeated string labels = 3;
-  optional int64 categories = 4;
-  optional string comment = 5;
+  optional string comment = 4;
 }
 
 message UpdateItemResp{
@@ -608,7 +607,7 @@ message DeleteItemResp{
 message GetRecommendByUserReq{
   string userId = 1;
   optional int64 limit = 2;
-  int64 category = 3;
+  string category = 3;
 }
 
 message GetRecommendByUserResp{
@@ -618,7 +617,7 @@ message GetRecommendByUserResp{
 message GetRecommendByItemReq{
   string itemId = 1;
   optional int64 limit = 2;
-  int64 category = 3;
+  string category = 3;
 }
 
 message GetRecommendByItemResp{
@@ -628,7 +627,7 @@ message GetRecommendByItemResp{
 message GetPopularRecommendReq{
   string userId = 1;
   optional int64 limit = 2;
-  int64 category = 3;
+  string category = 3;
 }
 
 message GetPopularRecommendResp{
@@ -638,7 +637,7 @@ message GetPopularRecommendResp{
 message GetLatestRecommendReq{
   string userId = 1;
   optional int64 limit = 2;
-  int64 category = 3;
+  string category = 3;
 }
 
 message GetLatestRecommendResp{
