@@ -467,4 +467,49 @@ message GetOwnPostsResp{
 }
 
 
+message CreateFeedBackReq{
+  string feedbackType = 1;
+  string itemId = 2;
+}
+
+message CreateFeedBackResp{
+}
+
+message GetPopularRecommendReq{
+  optional int64 limit = 1;
+  Category category = 2;
+}
+
+message GetPopularRecommendResp{
+  Recommends recommends = 1;
+}
+
+message GetLatestRecommendReq{
+  optional int64 limit = 1;
+  Category category = 2;
+}
+
+message GetLatestRecommendResp{
+    Recommends recommends = 1;
+}
+
+
+message GetRecommendByItemReq{
+  string itemId = 1;
+  optional int64 limit = 2;
+  Category category = 3;
+}
+
+message GetRecommendByItemResp{
+  Recommends recommends = 1;
+}
+
+message GetRecommendByUserReq{
+  optional int64 limit = 1;
+  Category category = 2;
+}
+
+message GetRecommendByUserResp{
+  Recommends recommends = 1;
+}
 
