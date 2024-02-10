@@ -239,3 +239,8 @@ message FeedBack {
   string userId = 2;
   string itemId = 3;
 }
+
+
+message UserFilterOptions {
+  repeated string userIds = 1;
+}
