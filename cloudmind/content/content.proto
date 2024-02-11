@@ -62,12 +62,15 @@ message GetFileBySharingCodeReq{
   optional string onlyFileId = 2;
   optional string onlyFatherId = 3;
   optional basic.PaginationOptions paginationOptions = 4;
+  optional SortOptions sortOptions = 5;
 }
 
 message GetFileBySharingCodeResp{
   repeated FileInfo files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message CreateFileReq{

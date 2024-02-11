@@ -118,12 +118,15 @@ message GetFileBySharingCodeReq{
   optional string lastToken = 6;
   optional bool backward = 7;
   optional int64 offset = 8;
+  optional int64 sortType = 9;
 }
 
 message GetFileBySharingCodeResp{
   repeated PrivateFile files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message CreateFileReq{
