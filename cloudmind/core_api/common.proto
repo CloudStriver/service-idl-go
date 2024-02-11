@@ -385,3 +385,10 @@ enum ProductStatus {
   PublicProductStatus = 1;
   PrivateProductStatus = 2;
 }
+
+enum Product_Type {
+  UnknowProduct_Type = 0;
+  Flow_Type = 1;
+  Memory_Type = 2;
+  File_Type = 3;
+}
