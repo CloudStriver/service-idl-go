@@ -382,11 +382,11 @@ message UpdatePostReq{
 message UpdatePostResp{
 }
 
-message GetOtherPostReq{
+message GetPostReq{
   string postId = 1;
 }
 
-message GetOtherPostResp{
+message GetPostResp{
   string title = 1;
   string text = 2;
   int64 status = 3;
@@ -404,14 +404,14 @@ message GetOtherPostResp{
   int64 updateTime = 15;
 }
 
-message GetOtherPostsReq{
+message GetPostsReq{
   optional string allFieldsKey = 1;
   optional string id = 2;
   optional string tag = 3;
   optional string text = 4;
   optional string title = 5;
   optional string onlyUserId = 6;
-  repeated string  onlyTags = 7;
+  repeated string onlyTags = 7;
   optional int64 onlySetRelation = 9;
   optional int64 limit = 10;
   optional string lastToken = 11;
@@ -419,55 +419,11 @@ message GetOtherPostsReq{
   optional int64 offset = 13;
 }
 
-message GetOtherPostsResp{
+message GetPostsResp{
   repeated Post posts = 1;
   int64 total = 2;
   string token = 3;
 }
-
-message GetOwnPostReq{
-  string postId = 1;
-}
-
-message GetOwnPostResp{
-  string title = 1;
-  string text = 2;
-  int64 status = 3;
-  string url = 4;
-  User author = 5; // 作者信息
-  repeated string tags = 6; // 标签
-  int64 viewCount = 7; // 浏览量
-  int64 likeCount = 8; // 点赞量
-  int64 commentCount = 9; // 评论量
-  int64 shareCount = 10; // 分享量
-  int64 collectCount = 11;  // 收藏量
-  bool Liked = 12;
-  bool Collected = 13;
-  int64 createTime = 14;
-  int64 updateTime = 15;
-}
-
-message GetOwnPostsReq{
-  optional string allFieldsKey = 1;
-  optional string id = 2;
-  optional string tag = 3;
-  optional string text = 4;
-  optional string title = 5;
-  optional string onlyStatus = 6;
-  repeated string  onlyTags = 7;
-  optional int64 onlySetRelation = 9;
-  optional int64 limit = 10;
-  optional string lastToken = 11;
-  optional bool backward = 12;
-  optional int64 offset = 13;
-}
-
-message GetOwnPostsResp{
-  repeated OwnPost posts = 1;
-  int64 total = 2;
-  string token = 3;
-}
-
 
 message CreateFeedBackReq{
   string feedbackType = 1;
@@ -515,3 +471,76 @@ message GetRecommendByUserResp{
   Recommends recommends = 1;
 }
 
+message CreateProductReq{
+  string name = 1;
+  string description = 2;
+  int64 status = 3;
+  repeated string urls = 4;
+  repeated string tags = 5;
+  int64 type = 6;
+  int64 price = 7;
+  int64 productSize = 8;
+}
+
+message CreateProductResp{
+}
+
+message DeleteProductReq{
+  string productId = 1;
+}
+
+message DeleteProductResp{
+}
+
+message UpdateProductReq{
+  string productId = 1;
+  string name = 2;
+  string description = 3;
+  int64 status = 4;
+  repeated string urls = 5;
+  repeated string tags = 6;
+  int64 type = 7;
+  int64 price = 8;
+  int64 productSize = 9;
+}
+
+message UpdateProductResp{
+}
+
+message GetProductReq{
+  string productId = 1;
+}
+
+message GetProductResp {
+  string name = 1; // 商品名称
+  string description = 2; // 商品描述
+  repeated string urls = 3; // 商品图片
+  repeated string tags = 4; // 标签
+  int64 type = 5; // 商品类型
+  int64 price = 6; // 商品价格
+  int64 productSize = 7; // 商品大小
+  User user = 8; // 商家信息
+  int64 collectCount = 9; // 收藏量
+  int64 purchaseCount = 10; // 购买量
+  bool Collected = 11; // 时候收藏
+  int64 stock = 12; // 库存
+  int64 createTime = 13; // 创建时间
+}
+
+message GetProductsReq{
+  optional string allFieldsKey = 1;
+  optional string name = 2;
+  optional string onlyUserId = 3;
+  repeated string onlyTags = 4;
+  optional int64 onlySetRelation = 5;
+  optional int64 limit = 6;
+  optional string lastToken = 7;
+  optional bool backward = 8;
+  optional int64 offset = 9;
+}
+
+message GetProductsResp{
+  repeated Product products = 1;
+  int64 total = 2;
+  string token = 3;
+}
