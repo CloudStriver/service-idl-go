@@ -27,6 +27,37 @@ enum SortOptions{
   SortOptions_updateAtAsc = 4; // 修改时间排序
 }
 
+enum Deletion {
+  Deletion_null = 0;
+  Deletion_notDel = 1; // 未删除
+  Deletion_softDel = 2; // 软删除
+  Deletion_hardDel = 3; // 彻底删除
+}
+
+enum Space {
+    Space_null = 0;
+    Space_private = 1; // 个人空间
+    Space_public = 2; // 社区空间
+}
+
+enum SetRelation {
+  Set_null = 0;
+  Set_intersection = 1; // 交集
+  Set_unionSet = 2; // 并集
+}
+
+enum Validity {
+    Validity_null = 0;
+    Validity_perpetuity = 1;
+    Validity_temporary = 2;
+    Validity_expired = 3;
+}
+
+enum Folder {
+  Folder_null = 0;
+  Folder_Size = -1;
+}
+
 message FileInfo {
   string fileId = 1;
   string userId = 2;
