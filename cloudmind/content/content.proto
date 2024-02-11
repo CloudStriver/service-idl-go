@@ -467,6 +467,7 @@ service ContentService {
   rpc GetFilesByIds(GetFilesByIdsReq) returns(GetFilesByIdsResp);
   rpc GetFileList(GetFileListReq) returns(GetFileListResp);
   rpc GetFileBySharingCode(GetFileBySharingCodeReq) returns(GetFileBySharingCodeResp);
+  rpc GetRecycleBinFiles(GetRecycleBinFilesReq) returns(GetRecycleBinFilesResp);
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
   rpc CreateFile(CreateFileReq) returns(CreateFileResp);
   rpc MoveFile(MoveFileReq) returns(MoveFileResp);
