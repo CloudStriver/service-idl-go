@@ -112,17 +112,11 @@ service content {
   rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp){
     option (http.post) = "/content/updatePost";
   }
-  rpc GetOtherPosts(GetOtherPostsReq) returns(GetOtherPostsResp){
-    option (http.get) = "/content/getOtherPosts";
+  rpc GetPosts(GetPostsReq) returns(GetPostsResp){
+    option (http.get) = "/content/getPosts";
   }
-  rpc GetOtherPost(GetOtherPostReq) returns(GetOtherPostResp) {
-    option (http.get) = "/content/getOtherPost";
-  }
-  rpc GetOwnPosts(GetOwnPostsReq) returns(GetOwnPostsResp){
-    option (http.get) = "/content/getOwnPosts";
-  }
-  rpc GetOwnPost(GetOwnPostReq) returns(GetOwnPostResp) {
-    option (http.get) = "/content/getOwnPost";
+  rpc GetPost(GetPostReq) returns(GetPostResp) {
+    option (http.get) = "/content/getPost";
   }
   // ------------------ 帖子 --------------------
 
@@ -143,8 +137,24 @@ service content {
   rpc GetLatestRecommend(GetLatestRecommendReq) returns(GetLatestRecommendResp){
     option (http.get) = "/content/getLatestRecommend";
   }
-}
 
+  // ------------------商品-----------------------
+  rpc CreateProduct(CreateProductReq) returns(CreateProductResp){
+    option (http.post) = "/content/createProduct";
+  }
+  rpc GetProduct(GetProductReq) returns(GetProductResp){
+    option (http.get) = "/content/getProduct";
+  }
+  rpc GetProducts(GetProductsReq) returns(GetProductsResp){
+    option (http.get) = "/content/getProducts";
+  }
+  rpc UpdateProduct(UpdateProductReq) returns(UpdateProductResp){
+    option (http.post) = "/content/updateProduct";
+  }
+  rpc DeleteProduct(DeleteProductReq) returns(DeleteProductResp){
+    option (http.post) = "/content/deleteProduct";
+  }
+}
 service auth {
   rpc Register(RegisterReq) returns (RegisterResp){
     option (http.post) = "/auth/register";

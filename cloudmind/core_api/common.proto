@@ -23,6 +23,7 @@ enum RelationType {
   ShareType = 4;
   CommentType = 5;
   ViewType = 6;
+  PurchaseType = 7;
 }
 
 enum IsDel {
@@ -211,18 +212,6 @@ message Post {
   string userName = 9;
 }
 
-message OwnPost {
-  string postId = 1;
-  string title = 2;
-  string text = 3;
-  string url = 4;
-  repeated string tags = 5;
-  int64 likeCount = 6; // 点赞量
-  int64 commentCount = 7; // 评论量
-  bool liked = 8; // 是否点赞
-  string userName = 9;
-}
-
 message Notification {
   string notificationId = 1;
   string sourceUserId = 2;
@@ -366,4 +355,33 @@ enum Category {
 message Recommends {
   repeated User users = 1;
   repeated Post posts = 2;
+}
+
+
+message Product {
+  string productId = 1;
+  string name = 2; // 商品名称
+  string description = 3; // 商品描述
+  string url = 4; // 商品图片
+  repeated string tags = 5; // 标签
+  int64 type = 6; // 商品类型
+  int64 price = 7; // 商品价格
+  int64 productSize = 8; // 商品大小
+  User user = 9; // 商家信息
+  int64 collectCount = 10; // 收藏量
+  int64 purchaseCount = 11; // 购买量
+  int64 createTime = 12; // 创建时间
+}
+
+
+enum PostStatus {
+  UnknowPostStatus = 0;
+  PublicPostStatus = 1;
+  PrivatePostStatus = 2;
+}
+
+enum ProductStatus {
+  UnknowProductStatus = 0;
+  PublicProductStatus = 1;
+  PrivateProductStatus = 2;
 }
