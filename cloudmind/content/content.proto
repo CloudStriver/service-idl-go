@@ -96,9 +96,10 @@ message MoveFileResp{
 
 message SaveFileToPrivateSpaceReq{
   FileInfo file = 1;
-  string newPath = 2;
-  string fatherId = 3;
-  int64 documentType = 4;
+  string userId = 2;
+  string newPath = 3;
+  string fatherId = 4;
+  int64 documentType = 5;
 }
 
 message SaveFileToPrivateSpaceResp{
