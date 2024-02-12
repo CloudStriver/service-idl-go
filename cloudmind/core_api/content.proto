@@ -82,10 +82,11 @@ message GetPublicFilesReq{
   repeated string onlyType = 7;
   optional string onlyZone = 8;
   optional string onlySubZone = 9;
-  optional int64 limit = 10;
-  optional string lastToken = 11;
-  optional bool backward = 12;
-  optional int64 offset = 13;
+  optional string onlyLabelId = 10;
+  optional int64 limit = 11;
+  optional string lastToken = 12;
+  optional bool backward = 13;
+  optional int64 offset = 14;
 }
 
 message GetPublicFilesResp{
@@ -112,13 +113,12 @@ message GetRecycleBinFilesResp{
 message GetFileBySharingCodeReq{
   string sharingCode = 1;
   string key = 2;
-  optional string onlyFileId = 3;
-  optional string onlyFatherId = 4;
-  optional int64 limit = 5;
-  optional string lastToken = 6;
-  optional bool backward = 7;
-  optional int64 offset = 8;
-  optional int64 sortType = 9;
+  optional string onlyFatherId = 3;
+  optional int64 limit = 4;
+  optional string lastToken = 5;
+  optional bool backward = 6;
+  optional int64 offset = 7;
+  optional int64 sortType = 8;
 }
 
 message GetFileBySharingCodeResp{

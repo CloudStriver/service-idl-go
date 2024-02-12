@@ -2,6 +2,20 @@ syntax = "proto3";
 package platform.comment;
 option go_package = "platform/comment";
 
+enum Attrs {
+  UnknownAttrs = 0;
+  None = 1; // 无
+  Pinned = 2; // 置顶
+  Highlighted = 3; // 精华
+  PinnedAndHighlighted = 4; // 置顶+精华
+}
+
+enum State {
+  UnknownState = 0;
+  Normal = 1; // 正常状态
+  Hidden = 2; // 隐藏状态
+}
+
 message Content {
   string id = 1;
   string userId = 2; // 评论者
@@ -71,55 +85,33 @@ message CommentFilterOptions {
   optional int64 onlyAttrs = 8;
 }
 
-message SubjectFilterOptions {
-  optional string onlyUserId = 1;
-  optional string onlyItemId = 2;
-  optional string onlySubjectId = 3;
-  optional int64 onlyState = 4;
-  optional int64 onlyAttrs = 5;
-}
-
 message Subject {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  string topCommentId = 4;
-  optional int64 rootCount = 5;
-  optional int64 allCount = 6;
-  int64 state = 7; // 1: 正常, 2: 删除
-  int64 attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  string topCommentId = 3;
+  optional int64 rootCount = 4;
+  optional int64 allCount = 5;
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectDetails {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  string TopCommentId = 4;
-  int64 rootCount = 5;
-  int64 allCount = 6;
-  int64 state = 7; // 1: 正常, 2: 删除
-  int64 attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  string TopCommentId = 3;
+  int64 rootCount = 4;
+  int64 allCount = 5;
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectInfo {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  int64 attrs = 4; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  int64 attrs = 3; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message Label {
   string labelId = 1;
   string value = 2;
-}
-
-message LabelEntity {
-  string objectId = 1;
-  int64 objectType = 2;
-  repeated string labels = 3;
-}
-
-message ObjectFilterOptions {
-  optional string onlyLabelId = 1;
-  optional int64 onlyObjectType = 2;
 }

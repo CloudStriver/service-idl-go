@@ -252,12 +252,6 @@ service comment {
   rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns(DeleteCommentSubjectResp){
     option (http.post) = "/comment/deleteCommentSubject";
   }
-  rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns(SetCommentSubjectStateResp){
-    option (http.post) = "/comment/setCommentSubjectState";
-  }
-  rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns(SetCommentSubjectAttrsResp){
-    option (http.post) = "/comment/setCommentSubjectAttrs";
-  }
 }
 
 service label {
@@ -278,20 +272,5 @@ service label {
   }
   rpc GetLabelsInBatch(GetLabelsInBatchReq) returns(GetLabelsInBatchResp){
     option (http.get) = "/label/getLabelsInBatch";
-  }
-  rpc CreateObject(CreateObjectReq) returns(CreateObjectResp){
-    option (http.post) = "/label/createObject";
-  }
-  rpc CreateObjects(CreateObjectsReq) returns(CreateObjectsResp){
-    option (http.post) = "/label/createObjects";
-  }
-  rpc DeleteObject(DeleteObjectReq) returns(DeleteObjectResp){
-    option (http.post) = "/label/deleteObject";
-  }
-  rpc GetObjects(GetObjectsReq) returns(GetObjectsResp){
-    option (http.get) = "/label/getObjects";
-  }
-  rpc UpdateObject(UpdateObjectReq) returns(UpdateObjectResp){
-    option (http.post) = "/label/updateObject";
   }
 }

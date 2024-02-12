@@ -77,7 +77,7 @@ message SetCommentAttrsResp{
 }
 
 message GetCommentSubjectReq {
-  SubjectFilterOptions filterOptions = 1;
+  string id = 1;
 }
 
 message GetCommentSubjectResp {
@@ -106,24 +106,6 @@ message DeleteCommentSubjectReq {
 }
 
 message DeleteCommentSubjectResp {
-}
-
-message SetCommentSubjectStateReq {
-  string id = 1;
-  string userId = 2;
-  int64 state = 3;
-}
-
-message SetCommentSubjectStateResp {
-}
-
-message SetCommentSubjectAttrsReq {
-  string id = 1;
-  string userId = 2;
-  int64 attrs = 3;
-}
-
-message SetCommentSubjectAttrsResp{
 }
 
 message CreateLabelReq {
@@ -163,37 +145,6 @@ message GetLabelsInBatchReq {
 message GetLabelsInBatchResp {
   repeated Label labels = 1;
 }
-message CreateObjectReq{
-  LabelEntity object = 1;
-}
-message CreateObjectResp{
-}
-
-message CreateObjectsReq{
-  repeated LabelEntity objects = 1;
-}
-message CreateObjectsResp{
-}
-
-message DeleteObjectReq{
-  string objectId = 1;
-}
-message DeleteObjectResp{
-}
-message GetObjectsReq{
-  ObjectFilterOptions filterOptions = 1;
-  basic.PaginationOptions pagination = 2;
-}
-message GetObjectsResp{
-  repeated string objectIds = 1;
-  int64 total = 2;
-  string token = 3;
-}
-message UpdateObjectReq{
-  LabelEntity object = 1;
-}
-message UpdateObjectResp{
-}
 
 service CommentService {
   rpc GetComment(GetCommentReq) returns (GetCommentResp);
@@ -208,8 +159,6 @@ service CommentService {
   rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
   rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns (UpdateCommentSubjectResp);
   rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns (DeleteCommentSubjectResp);
-  rpc SetCommentSubjectState(SetCommentSubjectStateReq) returns (SetCommentSubjectStateResp);
-  rpc SetCommentSubjectAttrs(SetCommentSubjectAttrsReq) returns (SetCommentSubjectAttrsResp);
 
   rpc CreateLabel(CreateLabelReq) returns (CreateLabelResp);
   rpc DeleteLabel(DeleteLabelReq) returns (DeleteLabelResp);
@@ -217,9 +166,4 @@ service CommentService {
   rpc GetLabelsInBatch(GetLabelsInBatchReq) returns(GetLabelsInBatchResp);
   rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
   rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
-  rpc CreateObject(CreateObjectReq) returns (CreateObjectResp);
-  rpc CreateObjects(CreateObjectsReq) returns(CreateObjectsResp);
-  rpc DeleteObject(DeleteObjectReq) returns (DeleteObjectResp);
-  rpc GetObjects(GetObjectsReq) returns (GetObjectsResp);
-  rpc UpdateObject(UpdateObjectReq) returns (UpdateObjectResp);
 }
