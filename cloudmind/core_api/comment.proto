@@ -22,8 +22,18 @@ message GetCommentResp {
 }
 
 message GetCommentsReq {
-  optional CommentFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions pagination = 2;
+  optional string onlyUserId = 1;
+  optional string onlyAtUserId = 2;
+  optional string onlyCommentId = 3;
+  optional string onlySubjectId = 4;
+  optional string onlyRootId = 5;
+  optional string onlyFatherId = 6;
+  optional int64 onlyState = 7;
+  optional int64 onlyAttrs = 8;
+  optional int64 limit = 9;
+  optional string lastToken = 10;
+  optional bool backward = 11;
+  optional int64 offset = 12;
 }
 
 message GetCommentsResp {
@@ -97,24 +107,6 @@ message DeleteCommentSubjectReq {
 message DeleteCommentSubjectResp {
 }
 
-message SetCommentSubjectStateReq {
-  string id = 1;
-  string userId = 2;
-  State state = 3;
-}
-
-message SetCommentSubjectStateResp {
-}
-
-message SetCommentSubjectAttrsReq {
-  string id = 1;
-  string userId = 2;
-  Attrs attrs = 3;
-}
-
-message SetCommentSubjectAttrsResp{
-}
-
 message CreateLabelReq {
   Label label = 1;
 }
@@ -139,7 +131,10 @@ message UpdateLabelResp {
 }
 message GetLabelsReq {
   string key = 1; // 用于匹配标签的key
-  basic.PaginationOptions pagination = 2;
+  optional int64 limit = 2;
+  optional string lastToken = 3;
+  optional bool backward = 4;
+  optional int64 offset = 5;
 }
 message GetLabelsResp {
   repeated Label labels = 1;
@@ -151,35 +146,4 @@ message GetLabelsInBatchReq {
 }
 message GetLabelsInBatchResp {
   repeated Label labels = 1;
-}
-message CreateObjectReq{
-  LabelEntity object = 1;
-}
-message CreateObjectResp{
-}
-
-message CreateObjectsReq{
-  repeated LabelEntity objects = 1;
-}
-message CreateObjectsResp{
-}
-
-message DeleteObjectReq{
-  string objectId = 1;
-}
-message DeleteObjectResp{
-}
-message GetObjectsReq{
-  ObjectFilterOptions filterOptions = 1;
-  basic.PaginationOptions pagination = 2;
-}
-message GetObjectsResp{
-  repeated string objectIds = 1;
-  int64 total = 2;
-  string token = 3;
-}
-message UpdateObjectReq{
-  LabelEntity object = 1;
-}
-message UpdateObjectResp{
 }

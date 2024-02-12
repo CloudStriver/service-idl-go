@@ -95,7 +95,7 @@ message PublicFile {
   string description = 11;
   int64 createAt = 12;
   int64 updateAt = 13;
-  repeated string labels = 14;
+  repeated Label labels = 14;
   User author = 15; // 作者信息
   PostCount fileCount = 16; // 文章统计信息
   PostRelation fileRelation = 17; // 文章关系信息
@@ -162,7 +162,7 @@ message FileFilterOptions {
   optional string onlyZone = 5; // 分区
   optional string onlySubZone = 6; // 子分区
   optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
-  repeated string onlyTags = 8;
+  repeated string onlyLabels = 8; // 标签id
   repeated string onlyType = 9; // 文件类型
 }
 
@@ -196,8 +196,8 @@ message PostCount {
 }
 
 message PostRelation{
-  bool Liked = 1;
-  bool Collected = 2;
+  bool liked = 1;
+  bool collected = 2;
 }
 
 message Post {
@@ -261,7 +261,6 @@ message Comment {
   string atUserId = 10; // @谁
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
-  int64 createTime = 13;
 }
 
 message CommentInfo {
@@ -294,39 +293,35 @@ message CommentFilterOptions {
 
 message SubjectFilterOptions {
   optional string onlyUserId = 1;
-  optional string onlyItemId = 2;
-  optional string onlySubjectId = 3;
-  optional int64 onlyState = 4;
-  optional int64 onlyAttrs = 5;
+  optional string onlySubjectId = 2;
+  optional int64 onlyState = 3;
+  optional int64 onlyAttrs = 4;
 }
 
 message Subject {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  string topCommentId = 4;
-  optional int64 rootCount = 5;
-  optional int64 allCount = 6;
-  State state = 7; // 1: 正常, 2: 删除
-  Attrs attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  string topCommentId = 3;
+  optional int64 rootCount = 4;
+  optional int64 allCount = 5;
+  State state = 6; // 1: 正常, 2: 删除
+  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectDetails {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  string TopCommentId = 4;
-  int64 rootCount = 5;
-  int64 allCount = 6;
-  int64 state = 7; // 1: 正常, 2: 删除
-  int64 attrs = 8; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  string TopCommentId = 3;
+  int64 rootCount = 4;
+  int64 allCount = 5;
+  int64 state = 6; // 1: 正常, 2: 删除
+  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message SubjectInfo {
   string id = 1;
-  string itemId = 2;
-  string userId = 3;
-  int64 attrs = 4; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  string userId = 2;
+  int64 attrs = 3; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message Label {
@@ -334,16 +329,6 @@ message Label {
   string value = 2;
 }
 
-message LabelEntity {
-  string objectId = 1;
-  int64 objectType = 2;
-  repeated string labels = 3;
-}
-
-message ObjectFilterOptions {
-  optional string onlyLabelId = 1;
-  optional int64 onlyObjectType = 2;
-}
 enum Category {
   UnknowCategory = 0;
   UserCategory = 1;
@@ -356,7 +341,6 @@ message Recommends {
   repeated User users = 1;
   repeated Post posts = 2;
 }
-
 
 message Product {
   string productId = 1;
@@ -372,7 +356,6 @@ message Product {
   int64 purchaseCount = 11; // 购买量
   int64 createTime = 12; // 创建时间
 }
-
 
 enum PostStatus {
   UnknowPostStatus = 0;

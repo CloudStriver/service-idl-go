@@ -59,10 +59,9 @@ message GetRecycleBinFilesResp{
 
 message GetFileBySharingCodeReq{
   repeated string fileIds = 1;
-  optional string onlyFileId = 2;
-  optional string onlyFatherId = 3;
-  optional basic.PaginationOptions paginationOptions = 4;
-  optional SortOptions sortOptions = 5;
+  optional string onlyFatherId = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+  optional SortOptions sortOptions = 4;
 }
 
 message GetFileBySharingCodeResp{
