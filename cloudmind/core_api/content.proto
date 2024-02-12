@@ -484,6 +484,7 @@ message CreateProductReq{
   int64 price = 7;
   int64 productSize = 8;
   int64 stock = 9; // 库存
+  string fileId = 10;
 }
 
 message CreateProductResp{
