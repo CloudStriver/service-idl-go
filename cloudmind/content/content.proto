@@ -350,6 +350,7 @@ message CreateProductReq{
   int64 type = 7;
   int64 price = 8;
   int64 productSize = 9;
+  string objectId = 10;
 }
 
 message CreateProductResp{
