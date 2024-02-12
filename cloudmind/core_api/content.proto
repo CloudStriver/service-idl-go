@@ -330,6 +330,9 @@ message GetUserDetailResp {
   string idCard = 4;
   string description = 5;
   string url = 6;
+  int64 flow = 7;
+  int64 momery = 8;
+  int64 point = 9;
 }
 
 message DeleteUserReq{

@@ -2,16 +2,18 @@ syntax = "proto3";
 package cloudmind.trade;
 option go_package = "cloudmind/trade";
 
-message Balance{
-  optional int64 flow = 1;
-  optional int64 memory = 2;
-  optional int64 point = 3;
+enum BalanceType {
+  UnKnowBalanceType = 0;
+  FlowBalanceType = 1;
+  MemoryBalanceType = 2;
+  PointBalanceType = 3;
 }
 
 message UpdateBalanceReq{
   string userId = 1;
-  Balance oldBalance = 2;
-  Balance balance = 3;
+  int64 oldbalance = 2;
+  int64 balance = 3;
+  BalanceType balanceType = 4;
 }
 
 message UpdateBalanceResp{
@@ -23,12 +25,13 @@ message GetBalanceReq{
 }
 
 message GetBalanceResp{
-  Balance balance = 1;
+   int64 flow = 1;
+   int64 memory = 2;
+   int64 point = 3;
 }
 
 message CreateBalanceReq{
   string userId = 1;
-  Balance balance = 2;
 }
 
 message CreateBalanceResp{
