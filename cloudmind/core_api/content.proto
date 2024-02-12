@@ -480,7 +480,7 @@ message CreateProductReq{
   int64 status = 3;
   repeated string urls = 4;
   repeated string tags = 5;
-  int64 type = 6;
+  Product_Type type = 6;
   int64 price = 7;
   int64 productSize = 8;
   int64 stock = 9; // 库存

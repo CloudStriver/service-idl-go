@@ -11,12 +11,13 @@ enum BalanceType {
 
 message UpdateBalanceReq{
   string userId = 1;
-  int64 oldbalance = 2;
-  int64 balance = 3;
-  BalanceType balanceType = 4;
+  optional int64 flow = 2;
+  optional int64 memory = 3;
+  optional int64 point = 4;
 }
 
 message UpdateBalanceResp{
+  bool ok = 1;
 }
 
 
