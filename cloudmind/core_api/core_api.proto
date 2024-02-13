@@ -210,9 +210,6 @@ service system {
   rpc GetNotificationCount(GetNotificationCountReq) returns(GetNotificationCountResp){
     option (http.get) = "/system/getNotificationCount";
   }
-  rpc DeleteNotifications(DeleteNotificationsReq) returns(DeleteNotificationsResp){
-    option (http.post) = "/system/deleteNotifications";
-  }
   rpc UpdateNotifications(UpdateNotificationsReq) returns(UpdateNotificationsResp){
     option (http.post) = "/system/updateNotifications";
   }

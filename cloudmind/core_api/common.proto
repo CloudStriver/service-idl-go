@@ -59,6 +59,14 @@ message User {
   string url = 3;
 }
 
+message RecommendUser {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+  int64 followCount = 4;
+  string description = 5;
+}
+
 message UserDetail {
   string name = 1;
   int64  sex = 2;
@@ -213,13 +221,9 @@ message Post {
 }
 
 message Notification {
-  string notificationId = 1;
-  string sourceUserId = 2;
-  string sourceContentId = 3;
-  int64 type = 4;
-  string text = 5;
-  bool  isRead = 6;
-  int64 createTime = 7;
+  int64 type = 1;
+  string text = 2;
+  int64 createTime = 3;
 }
 
 message Content {
@@ -338,7 +342,7 @@ enum Category {
 }
 
 message Recommends {
-  repeated User users = 1;
+  repeated RecommendUser users = 1;
   repeated Post posts = 2;
 }
 

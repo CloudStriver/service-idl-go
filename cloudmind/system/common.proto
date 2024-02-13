@@ -10,7 +10,7 @@ message Notification {
   int64 targetType = 5;
   int64 type = 6;
   string text = 7;
-  bool  isRead = 8;
+  int64  status = 8;
   int64 createTime = 9;
 }
 
