@@ -90,18 +90,24 @@ message UpdateFileResp{
 message MoveFileReq{
   string fatherId = 1;
   string newPath = 2;
-  FileInfo file = 3;
+  string fileId = 3;
+  string oldPath = 4;
+  int64 spaceSize = 5;
 }
 
 message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  FileInfo file = 1;
+  string fileId = 1;
   string userId = 2;
   string newPath = 3;
   string fatherId = 4;
-  int64 documentType = 5;
+  string name = 5;
+  string type = 6;
+  string fileMd5 = 7;
+  int64 spaceSize = 8;
+  int64 documentType = 9;
 }
 
 message SaveFileToPrivateSpaceResp{
@@ -109,7 +115,14 @@ message SaveFileToPrivateSpaceResp{
 }
 
 message AddFileToPublicSpaceReq{
-  FileInfo file = 1;
+  string fileId = 1;
+  string userId = 2;
+  string path = 3;
+  int64 spaceSize = 4;
+  string zone = 5;
+  string subZone = 6;
+  string description = 7;
+  repeated string labels = 8;
 }
 
 message AddFileToPublicSpaceResp{
@@ -127,14 +140,19 @@ message CompletelyRemoveFileResp {
 message DeleteFileReq{
   int64 deleteType = 1;
   bool clearCommunity = 2;
-  FileInfo file = 3;
+  string fileId = 3;
+  string userId = 4;
+  string path = 5;
+  int64 spaceSize = 6;
 }
 
 message DeleteFileResp{
 }
 
 message RecoverRecycleBinFileReq{
-  FileInfo file = 1;
+  string userId = 1;
+  string path = 2;
+  int64 spaceSize = 3;
 }
 
 message RecoverRecycleBinFileResp{
@@ -430,7 +448,6 @@ message UpdateCouponResp{
 
 message GetCouponReq{
   optional CouponFilterOptions couponFilterOptions = 1;
-
 }
 
 message GetCouponResp{
