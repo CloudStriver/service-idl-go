@@ -4,34 +4,38 @@ option go_package = 'cloudmind/system';
 import "basic/pagination.proto";
 import "cloudmind/system/common.proto";
 
+enum NotificationStatus {
+  UnknowNotificationStatus = 0;
+  Read = 1;
+  NotRead = 2;
+}
 
 message GetNotificationsReq {
-  optional string onlyUserId = 1;
+  string userId = 1;
   optional int64 onlyType = 2;
-  optional bool onlyIsRead = 3;
   optional basic.PaginationOptions paginationOptions = 5;
 }
 
 message GetNotificationsResp {
   repeated Notification notifications = 1;
-  int64 total = 2;
-  string token = 3;
+  string token = 2;
 }
 
-message UpdateNotificationReq {
-
-}
 message CreateNotificationsReq {
-  repeated NotificationInfo notifications = 1;
+  string targetUserId = 1;
+  string sourceUserId = 2;
+  string sourceContentId = 3;
+  int64 targetType = 4;
+  int64 type = 5;
+  string text = 6;
 }
 
 message CreateNotificationsResp {
 }
 
 message GetNotificationCountReq {
-  optional string onlyUserId = 1;
+  string userId = 1;
   optional int64 onlyType = 2;
-  optional bool onlyIsRead = 3;
 }
 
 message GetNotificationCountResp {
@@ -39,24 +43,11 @@ message GetNotificationCountResp {
 }
 
 message UpdateNotificationsReq {
-  repeated string onlyNotificationIds = 1;
-  optional string onlyUserId = 2;
-  optional int64 onlyType = 3;
-  optional bool onlyIsRead = 4;
-  bool isRead = 5;
+  string userId = 1;
+  optional int64 onlyType = 2;
 }
 
 message UpdateNotificationsResp{
-}
-
-message DeleteNotificationsReq {
-  repeated string onlyNotificationIds = 1;
-  optional string onlyUserId = 2;
-  optional int64 onlyType = 3;
-  optional bool onlyIsRead = 4;
-}
-
-message DeleteNotificationsResp {
 }
 
 message GetSlidersReq {
@@ -118,5 +109,4 @@ service SystemService {
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
   rpc UpdateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
-  rpc DeleteNotifications(DeleteNotificationsReq) returns (DeleteNotificationsResp);
 }

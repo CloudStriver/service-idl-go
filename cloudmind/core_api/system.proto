@@ -8,11 +8,10 @@ import "http/http.proto";
 
 message GetNotificationsReq {
   optional int64 onlyType = 1;
-  optional bool onlyIsRead = 2;
-  optional int64 limit = 3;
-  optional string lastToken = 4;
-  optional bool backward = 5;
-  optional int64 offset = 6;
+  optional int64 limit = 2;
+  optional string lastToken = 3;
+  optional bool backward = 4;
+  optional int64 offset = 5;
 }
 
 message GetNotificationsResp {
@@ -22,28 +21,17 @@ message GetNotificationsResp {
 }
 
 message GetNotificationCountReq{
-  optional int64 onlyType = 2;
-  optional bool onlyIsRead = 3;
+  optional int64 onlyType = 1;
 }
 
 message GetNotificationCountResp{
   int64 total = 1;
 }
 
-message DeleteNotificationsReq{
-  repeated string onlyNotificationIds = 1;
-  optional int64 onlyType = 2;
-  optional bool onlyIsRead = 3;
-}
 
-message DeleteNotificationsResp{
-}
-
-message UpdateNotificationsReq{
-  repeated string onlyNotificationIds = 1;
-  optional int64 onlyType = 2;
+message UpdateNotificationsReq {
+  optional int64 onlyType = 1;
 }
 
 message UpdateNotificationsResp{
 }
-
