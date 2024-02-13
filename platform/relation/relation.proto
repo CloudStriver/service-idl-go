@@ -12,6 +12,7 @@ message CreateRelationReq{
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
+  bool isOnly = 6;
 }
 message CreateRelationResp{
   bool ok = 1;
