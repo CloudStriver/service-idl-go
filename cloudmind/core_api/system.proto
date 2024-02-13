@@ -16,8 +16,7 @@ message GetNotificationsReq {
 
 message GetNotificationsResp {
   repeated Notification notifications = 1;
-  int64 total = 2;
-  string token = 3;
+  string token = 2;
 }
 
 message GetNotificationCountReq{
