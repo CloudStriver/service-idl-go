@@ -231,9 +231,6 @@ service comment {
   rpc UpdateComment(UpdateCommentReq) returns(UpdateCommentResp){
     option (http.post) = "/comment/updateComment";
   }
-  rpc SetCommentState(SetCommentStateReq) returns(SetCommentStateResp){
-    option (http.post) = "/comment/setCommentState";
-  }
   rpc SetCommentAttrs(SetCommentAttrsReq) returns(SetCommentAttrsResp){
     option (http.post) = "/comment/setCommentAttrs";
   }
