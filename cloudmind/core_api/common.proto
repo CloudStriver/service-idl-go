@@ -280,8 +280,8 @@ message CommentInfo {
   string atUserId = 10; // @谁
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
-  int64 createTime = 13;
-  int64 like = 14;
+  int64 createTime = 13; // 创建时间
+  int64 like = 14; // 点赞数
 }
 
 message CommentFilterOptions {
@@ -330,7 +330,7 @@ message SubjectInfo {
 
 message Label {
   string labelId = 1;
-  string value = 2;
+    string value = 2;
 }
 
 enum Category {

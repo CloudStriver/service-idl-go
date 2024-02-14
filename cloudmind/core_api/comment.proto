@@ -10,7 +10,7 @@ message CreateCommentReq {
 }
 
 message CreateCommentResp {
-  string CommentId = 1;
+  string commentId = 1;
 }
 
 message GetCommentReq {
@@ -50,23 +50,14 @@ message UpdateCommentResp {
 }
 
 message DeleteCommentReq {
-  string CommentId = 1;
+  string commentId = 1;
 }
 
 message DeleteCommentResp {
 }
 
-message SetCommentStateReq {
-  string CommentId = 1;
-  string userId = 2;
-  State state = 3;
-}
-
-message SetCommentStateResp {
-}
-
 message SetCommentAttrsReq {
-  string CommentId = 1;
+  string commentId = 1;
   string userId = 2;
   Attrs attrs = 3;
   string subjectId = 4;
@@ -101,7 +92,6 @@ message UpdateCommentSubjectResp {
 
 message DeleteCommentSubjectReq {
   string id = 1;
-  string userId = 2;
 }
 
 message DeleteCommentSubjectResp {

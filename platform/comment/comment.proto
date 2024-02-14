@@ -55,15 +55,6 @@ message DeleteCommentWithUserIdReq {
 message DeleteCommentWithUserIdResp {
 }
 
-message SetCommentStateReq {
-  string id = 1;
-  string userId = 2;
-  int64 state = 3;
-}
-
-message SetCommentStateResp {
-}
-
 message SetCommentAttrsReq {
   string id = 1;
   string userId = 2;
@@ -153,7 +144,6 @@ service CommentService {
   rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
   rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
   rpc DeleteCommentWithUserId(DeleteCommentWithUserIdReq) returns (DeleteCommentWithUserIdResp);
-  rpc SetCommentState(SetCommentStateReq) returns (SetCommentStateResp);
   rpc SetCommentAttrs(SetCommentAttrsReq) returns (SetCommentAttrsResp);
   rpc GetCommentSubject(GetCommentSubjectReq) returns (GetCommentSubjectResp);
   rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
