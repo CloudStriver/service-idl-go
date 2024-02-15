@@ -250,6 +250,7 @@ message UpdateUserReq{
   string idCard = 5;
   string description = 6;
   string url = 7;
+  repeated string labels  = 8;
 }
 message UpdateUserResp{
 }
@@ -266,6 +267,7 @@ message GetUserResp{
   string url = 6;
   int64 createTime = 7;
   int64 updateTime = 8;
+  repeated string labels  = 9;
 }
 
 message GetUsersReq{
