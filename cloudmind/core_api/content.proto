@@ -11,6 +11,7 @@ message UpdateUserReq{
   string fullName = 3;
   string idCard = 4;
   string description = 5;
+  repeated string labels  = 6;
 }
 
 message UpdateUserResp{
@@ -335,6 +336,7 @@ message GetUserDetailResp {
   int64 flow = 7;
   int64 momery = 8;
   int64 point = 9;
+  repeated string labels  = 10;
 }
 
 message DeleteUserReq{

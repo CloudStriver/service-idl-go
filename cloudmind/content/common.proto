@@ -146,6 +146,8 @@ message User {
   int64 updateTime = 7;
   string description = 8;
   string url = 9;
+  repeated string labels = 10;
+
 }
 
 message Post {

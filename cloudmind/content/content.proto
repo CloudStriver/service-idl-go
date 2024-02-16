@@ -261,6 +261,7 @@ message UpdateUserReq{
   string idCard = 5;
   string description = 6;
   string url = 7;
+  repeated string labels  = 8;
 }
 message UpdateUserResp{
 }
@@ -277,6 +278,7 @@ message GetUserResp{
   string url = 6;
   int64 createTime = 7;
   int64 updateTime = 8;
+  repeated string labels  = 9;
 }
 
 message GetUsersReq{
@@ -287,8 +289,7 @@ message GetUsersReq{
 
 message GetUsersResp{
   repeated User users = 1;
-  int64 total = 2;
-  string lastToken = 3;
+  string lastToken = 2;
 }
 
 message CreateUserReq{
