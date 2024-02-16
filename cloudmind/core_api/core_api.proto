@@ -237,9 +237,6 @@ service comment {
   rpc GetCommentSubject(GetCommentSubjectReq) returns(GetCommentSubjectResp){
     option (http.get) = "/comment/getCommentSubject";
   }
-  rpc CreateCommentSubject(CreateCommentSubjectReq) returns(CreateCommentSubjectResp){
-    option (http.post) = "/comment/createCommentSubject";
-  }
   rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns(UpdateCommentSubjectResp){
     option (http.post) = "/comment/updateCommentSubject";
   }

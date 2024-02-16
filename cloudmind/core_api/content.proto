@@ -111,7 +111,7 @@ message GetRecycleBinFilesResp{
 }
 
 message GetFileBySharingCodeReq{
-  string sharingCode = 1;
+  string code = 1;
   string key = 2;
   optional string onlyFatherId = 3;
   optional int64 limit = 4;
@@ -161,6 +161,8 @@ message SaveFileToPrivateSpaceReq{
   string fileId = 1;
   string fatherId = 2;
   DocumentType documentType = 3;
+  optional string code = 4;
+  optional string key = 5;
 }
 
 message SaveFileToPrivateSpaceResp{
