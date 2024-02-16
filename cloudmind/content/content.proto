@@ -93,6 +93,7 @@ message MoveFileReq{
   string fileId = 3;
   string oldPath = 4;
   int64 spaceSize = 5;
+  string userId = 6;
 }
 
 message MoveFileResp{
@@ -199,6 +200,15 @@ message DeleteZoneReq {
 message DeleteZoneResp {
 }
 
+message CheckShareFileReq{
+  repeated string fileIds = 1;
+  string fileId = 2;
+}
+
+message CheckShareFileResp{
+  bool ok = 1;
+}
+
 message CreateShareCodeReq {
   ShareFile shareFile = 1;
 }
@@ -227,7 +237,8 @@ message UpdateShareCodeResp {
 }
 
 message DeleteShareCodeReq {
-  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+  string code = 1;
+  string userId = 2;
 }
 
 message DeleteShareCodeResp {
@@ -532,6 +543,7 @@ service ContentService {
   rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp);
   rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp);
   rpc GetShareList(GetShareListReq) returns(GetShareListResp);
+  rpc CheckShareFile(CheckShareFileReq) returns(CheckShareFileResp);
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp);
   rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp);
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp);

@@ -75,14 +75,6 @@ message GetCommentSubjectResp {
   SubjectDetails subject = 1;
 }
 
-message CreateCommentSubjectReq {
-  Subject subject = 1;
-}
-
-message CreateCommentSubjectResp {
-  string subjectId = 1;
-}
-
 message UpdateCommentSubjectReq {
   Subject subject = 1;
 }
