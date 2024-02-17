@@ -50,7 +50,7 @@ message Comment {
   optional int64 count = 5; // 回复数
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  repeated string labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
@@ -66,7 +66,7 @@ message CommentInfo {
   int64 count = 5; // 回复数
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  repeated string labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
