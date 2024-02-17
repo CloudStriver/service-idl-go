@@ -584,14 +584,14 @@ service ContentService {
   rpc GetOrders(GetOrdersReq) returns(GetOrdersResp);
 
   // ----------------推荐-------------------
-  rpc CreateItems(CreateItemsReq) returns(CreateItemsResp);
+  rpc CreateItem(CreateItemReq) returns(CreateItemResp);
   rpc UpdateItem(UpdateItemReq) returns(UpdateItemResp);
   rpc DeleteItem(DeleteItemReq) returns(DeleteItemResp);
   rpc GetRecommendByUser(GetRecommendByUserReq) returns(GetRecommendByUserResp);
   rpc GetRecommendByItem(GetRecommendByItemReq) returns(GetRecommendByItemResp);
   rpc GetPopularRecommend(GetPopularRecommendReq) returns(GetPopularRecommendResp);
   rpc GetLatestRecommend(GetLatestRecommendReq) returns(GetLatestRecommendResp);
-  rpc CreateFeedBacks(CreateFeedBacksReq) returns(CreateFeedBacksResp);
+  rpc CreateFeedBack(CreateFeedBackReq) returns(CreateFeedBackResp);
 
   //  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
   //  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
@@ -639,11 +639,14 @@ service ContentService {
 //}
 
 
-message CreateItemsReq{
-  repeated Item items = 1;
+message CreateItemReq{
+  string itemId = 1;
+  bool isHidden = 2;
+  repeated string labels = 3;
+  string category = 4;
 }
 
-message CreateItemsResp{
+message CreateItemResp{
 }
 
 message UpdateItemReq{
@@ -705,11 +708,13 @@ message GetLatestRecommendResp{
 }
 
 
-message CreateFeedBacksReq{
-  repeated FeedBack feedBacks = 1;
+message CreateFeedBackReq{
+  string feedbackType = 1;
+  string userId = 2;
+  string itemId = 3;
 }
 
-message CreateFeedBacksResp{
+message CreateFeedBackResp{
 }
 
 
