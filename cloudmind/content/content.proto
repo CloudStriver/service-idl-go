@@ -283,13 +283,21 @@ message GetUserResp{
 
 message GetUsersReq{
   optional SearchOptions searchOptions = 1;
-  optional UserFilterOptions userFilterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetUsersResp{
   repeated User users = 1;
-  string lastToken = 2;
+  int64 total = 2;
+  string lastToken = 3;
+}
+
+message GetUsersByUserIdsReq{
+  repeated string userIds = 1;
+}
+
+message GetUsersByUserIdsResp{
+  repeated User users = 1;
 }
 
 message CreateUserReq{
@@ -562,6 +570,7 @@ service ContentService {
   rpc GetUsers(GetUsersReq) returns(GetUsersResp);
   rpc CreateUser(CreateUserReq) returns(CreateUserResp);
   rpc DeleteUser(DeleteUserReq) returns(DeleteUserResp);
+  rpc GetUsersByUserIds(GetUsersByUserIdsReq) returns(GetUsersByUserIdsResp);
 
   // ---------------帖子-----------------
   rpc CreatePost(CreatePostReq) returns(CreatePostResp);
