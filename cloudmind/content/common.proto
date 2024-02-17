@@ -164,13 +164,11 @@ message Post {
 
 message PostFilterOptions{
   optional string onlyUserId = 1;
-  optional string onlyPostId = 2;
-  repeated string onlyPostIds = 3;
-  optional string onlyTitle = 4;
-  optional string onlyText = 5;
-  repeated string  onlyTags = 6;
-  optional int64 onlySetRelation = 7;
-  optional int64 onlyStatus = 8;
+  optional string onlyTitle = 2;
+  optional string onlyText = 3;
+  repeated string  onlyTags = 4;
+  optional int64 onlySetRelation = 5;
+  optional int64 onlyStatus = 6;
 }
 
 message Product{
