@@ -369,6 +369,14 @@ message GetPostsResp{
   string token = 3;
 }
 
+message GetPostsByPostIdsReq{
+  repeated string postIds = 1;
+}
+
+message GetPostsByPostIdsResp{
+  repeated Post posts = 1;
+}
+
 message CreateProductReq{
   string userId = 1;
   string name = 2;
@@ -561,6 +569,7 @@ service ContentService {
   rpc UpdatePost(UpdatePostReq) returns(UpdatePostResp);
   rpc GetPost(GetPostReq)  returns(GetPostResp);
   rpc GetPosts(GetPostsReq) returns(GetPostsResp);
+  rpc GetPostsByPostIds(GetPostsByPostIdsReq) returns(GetPostsByPostIdsResp);
 
   // ---------------商品-----------------
   rpc CreateProduct(CreateProductReq) returns(CreateProductResp);
