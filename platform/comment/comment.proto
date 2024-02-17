@@ -47,20 +47,11 @@ message DeleteCommentReq {
 message DeleteCommentResp {
 }
 
-message DeleteCommentWithUserIdReq {
-  string id = 1;
-  string userId = 2;
-}
-
-message DeleteCommentWithUserIdResp {
-}
-
 message SetCommentAttrsReq {
   string id = 1;
-  string userId = 2;
-  int64 attrs = 3;
-  string subjectId = 4;
-  int64 sortTime = 5;
+  int64 attrs = 2;
+  string subjectId = 3;
+  int64 sortTime = 4;
 }
 
 message SetCommentAttrsResp{
@@ -93,7 +84,6 @@ message UpdateCommentSubjectResp {
 
 message DeleteCommentSubjectReq {
   string id = 1;
-  string userId = 2;
 }
 
 message DeleteCommentSubjectResp {
@@ -114,7 +104,7 @@ message GetLabelReq {
   string id = 1;
 }
 message GetLabelResp {
-  Label label = 1;
+  string label = 1;
 }
 message UpdateLabelReq {
   Label label = 1;
@@ -123,7 +113,7 @@ message UpdateLabelResp {
 }
 message GetLabelsReq {
   string key = 1; // 用于匹配标签的key
-  basic.PaginationOptions pagination = 2;
+  optional basic.PaginationOptions pagination = 2;
 }
 message GetLabelsResp {
   repeated Label labels = 1;
@@ -134,7 +124,7 @@ message GetLabelsInBatchReq {
   repeated string labelIds = 1;
 }
 message GetLabelsInBatchResp {
-  repeated Label labels = 1;
+  repeated string labels = 1;
 }
 
 service CommentService {
@@ -143,7 +133,6 @@ service CommentService {
   rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
   rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
   rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
-  rpc DeleteCommentWithUserId(DeleteCommentWithUserIdReq) returns (DeleteCommentWithUserIdResp);
   rpc SetCommentAttrs(SetCommentAttrsReq) returns (SetCommentAttrsResp);
   rpc GetCommentSubject(GetCommentSubjectReq) returns (GetCommentSubjectResp);
   rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
