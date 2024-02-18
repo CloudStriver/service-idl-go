@@ -93,7 +93,6 @@ message MoveFileReq{
   string fileId = 3;
   string oldPath = 4;
   int64 spaceSize = 5;
-  string userId = 6;
 }
 
 message MoveFileResp{
@@ -117,13 +116,12 @@ message SaveFileToPrivateSpaceResp{
 
 message AddFileToPublicSpaceReq{
   string fileId = 1;
-  string userId = 2;
-  string path = 3;
-  int64 spaceSize = 4;
-  string zone = 5;
-  string subZone = 6;
-  string description = 7;
-  repeated string labels = 8;
+  string path = 2;
+  int64 spaceSize = 3;
+  string zone = 4;
+  string subZone = 5;
+  string description = 6;
+  repeated string labels = 7;
 }
 
 message AddFileToPublicSpaceResp{
@@ -132,7 +130,6 @@ message AddFileToPublicSpaceResp{
 
 message CompletelyRemoveFileReq {
   string fileId = 1;
-  string userId = 2;
 }
 
 message CompletelyRemoveFileResp {
@@ -142,18 +139,16 @@ message DeleteFileReq{
   int64 deleteType = 1;
   bool clearCommunity = 2;
   string fileId = 3;
-  string userId = 4;
-  string path = 5;
-  int64 spaceSize = 6;
+  string path = 4;
+  int64 spaceSize = 5;
 }
 
 message DeleteFileResp{
 }
 
 message RecoverRecycleBinFileReq{
-  string userId = 1;
-  string path = 2;
-  int64 spaceSize = 3;
+  string path = 1;
+  int64 spaceSize = 2;
 }
 
 message RecoverRecycleBinFileResp{
@@ -238,7 +233,6 @@ message UpdateShareCodeResp {
 
 message DeleteShareCodeReq {
   string code = 1;
-  string userId = 2;
 }
 
 message DeleteShareCodeResp {

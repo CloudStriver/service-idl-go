@@ -13,6 +13,7 @@ enum TargetType {
   FileType = 2;
   ProductType = 3;
   PostType = 4;
+  CommentContentType = 5;
 }
 
 enum RelationType {
@@ -24,6 +25,7 @@ enum RelationType {
   CommentType = 5;
   ViewType = 6;
   PurchaseType = 7;
+  HateType = 8;
 }
 
 enum IsDel {
@@ -209,6 +211,11 @@ message PostRelation{
   bool collected = 2;
 }
 
+message CommentRelation{
+  bool liked = 1;
+  bool hated = 2;
+}
+
 message Post {
   string postId = 1;
   string title = 2;
@@ -231,32 +238,11 @@ message Notification {
   int64 createTime = 7; // 通知创建时间
 }
 
-message Content {
-  string id = 1;
-  string userId = 2; // 评论者
-  string atUserId = 3; // @谁
-  string content = 4; // 内容
-  string meta = 5; // 皮肤，字体等
-  int64 createTime = 6;
-}
-
 /*
   一级评论：rootId = fatherId = subjectId
   二级评论：rootId = fatherId != subjectId
   三级评论：rootId != fatherId != subjectId
 */
-
-message IndexInfo {
-  string id = 1;
-  string subjectId = 2;
-  string rootId = 3;
-  string fatherId = 4;
-  int64 count = 5; // 回复数
-  int64 state = 6; // 1: 正常, 2: 删除
-  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
-}
-
 message Comment {
   string id = 1;
   string subjectId = 2;
@@ -265,7 +251,7 @@ message Comment {
   optional int64 count = 5; // 回复数
   State state = 6; // 1: 正常, 2: 删除
   Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  repeated string labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
@@ -280,13 +266,15 @@ message CommentInfo {
   int64 count = 5; // 回复数
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string tags = 8; // 标签：作者点赞，作者回复等
+  repeated Label labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
   int64 createTime = 13; // 创建时间
   int64 like = 14; // 点赞数
+  User author = 15; // 评论者信息
+  CommentRelation commentRelation = 16; // 评论关系信息
 }
 
 message CommentFilterOptions {
