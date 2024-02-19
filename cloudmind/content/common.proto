@@ -91,6 +91,7 @@ message ShareFile {
   int64 browseNumber = 6;
   int64 createAt = 7;
   repeated string fileList = 8;
+  string key = 9;
 }
 
 message ShareCode {
