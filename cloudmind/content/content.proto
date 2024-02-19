@@ -130,6 +130,8 @@ message AddFileToPublicSpaceResp{
 
 message CompletelyRemoveFileReq {
   string fileId = 1;
+  int64 spaceSize = 2;
+  string path = 3;
 }
 
 message CompletelyRemoveFileResp {
@@ -240,7 +242,6 @@ message DeleteShareCodeResp {
 
 message ParsingShareCodeReq {
   string code = 1;
-  string key = 2;
 }
 
 message ParsingShareCodeResp {
@@ -310,7 +311,6 @@ message DeleteUserReq{
 
 message DeleteUserResp{
 }
-
 
 message CreatePostReq{
   string userId = 1;
