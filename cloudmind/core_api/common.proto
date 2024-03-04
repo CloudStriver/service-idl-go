@@ -90,6 +90,7 @@ message PrivateFile {
   int64 isDel = 8;
   int64 createAt = 9;
   int64 updateAt = 10;
+  int64 deleteAt = 11;
 }
 
 message PublicFile {
