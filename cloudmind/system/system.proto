@@ -13,7 +13,7 @@ enum NotificationStatus {
 message GetNotificationsReq {
   string userId = 1;
   optional int64 onlyType = 2;
-  optional basic.PaginationOptions paginationOptions = 5;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetNotificationsResp {
@@ -35,25 +35,30 @@ message CreateNotificationsResp {
 
 message GetNotificationCountReq {
   string userId = 1;
-  optional int64 onlyType = 2;
 }
 
 message GetNotificationCountResp {
   int64 total = 1;
 }
 
-message UpdateNotificationsReq {
+message ReadNotificationsReq {
   string userId = 1;
-  optional int64 onlyType = 2;
+  int64 readCount = 2;
 }
 
-message UpdateNotificationsResp{
+message ReadNotificationsResp{
+}
+
+message InsertNotificationCountReq{
+  string userId = 1;
+}
+message InsertNotificationCountResp{
 }
 
 message GetSlidersReq {
-  optional int64 onlyType = 1;
-  optional int64 onlyIsPublic = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
+  optional int64 onlyType = 1; // 类型
+  optional int64 onlyIsPublic = 2; // 是否公开
+  optional basic.PaginationOptions paginationOptions = 3; //  分页
 }
 
 message GetSlidersResp {
@@ -63,10 +68,10 @@ message GetSlidersResp {
 }
 
 message CreateSliderReq {
-  string imageUrl = 1;
-  string linkUrl = 2;
-  int64 type = 3;
-  int64 isPublic = 4;
+  string imageUrl = 1; // 图片链接
+  string linkUrl = 2; // 跳转链接
+  int64 type = 3; // 类型
+  int64 isPublic = 4; // 是否公开
 }
 
 message CreateSliderResp {
@@ -90,8 +95,6 @@ message DeleteSliderReq {
 message DeleteSliderResp {
 }
 
-
-
 service SystemService {
 //  rpc RetrieveNotice(RetrieveNoticeReq) returns (RetrieveNoticeResp);
 //  rpc ListNotice(ListNoticeReq) returns (ListNoticeResp);
@@ -108,5 +111,6 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
-  rpc UpdateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
+  rpc ReadNotifications(ReadNotificationsReq) returns (ReadNotificationsResp);
+  rpc InsertNotificationCount(InsertNotificationCountReq) returns (InsertNotificationCountResp);
 }
