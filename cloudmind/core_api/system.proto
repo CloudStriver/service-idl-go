@@ -28,9 +28,9 @@ message GetNotificationCountResp{
 }
 
 
-message UpdateNotificationsReq {
+message ReadNotificationsReq {
   optional int64 onlyType = 1;
 }
 
-message UpdateNotificationsResp{
+message ReadNotificationsResp{
 }

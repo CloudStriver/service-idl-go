@@ -41,14 +41,6 @@ message GetNotificationCountResp {
   int64 total = 1;
 }
 
-message ReadNotificationsReq {
-  string userId = 1;
-  int64 readCount = 2;
-}
-
-message ReadNotificationsResp{
-}
-
 message InsertNotificationCountReq{
   string userId = 1;
 }
@@ -111,6 +103,4 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
-  rpc ReadNotifications(ReadNotificationsReq) returns (ReadNotificationsResp);
-  rpc InsertNotificationCount(InsertNotificationCountReq) returns (InsertNotificationCountResp);
 }
