@@ -4,11 +4,7 @@ option go_package = 'cloudmind/system';
 import "basic/pagination.proto";
 import "cloudmind/system/common.proto";
 
-enum NotificationStatus {
-  UnknowNotificationStatus = 0;
-  Read = 1;
-  NotRead = 2;
-}
+
 
 message GetNotificationsReq {
   string userId = 1;
@@ -41,10 +37,10 @@ message GetNotificationCountResp {
   int64 total = 1;
 }
 
-message InsertNotificationCountReq{
+message CreateNotificationCountReq{
   string userId = 1;
 }
-message InsertNotificationCountResp{
+message CreateNotificationCountResp{
 }
 
 message GetSlidersReq {
@@ -103,4 +99,5 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
+  rpc CreateNotificationCount(CreateNotificationCountReq) returns (CreateNotificationCountResp);
 }

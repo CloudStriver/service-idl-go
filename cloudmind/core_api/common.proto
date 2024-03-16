@@ -7,6 +7,15 @@ import "platform/comment/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
+message Slider{
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 type = 4;
+  int64 isPublic = 5;
+  int64 createTime = 6;
+  int64 updateTime = 7;
+}
 enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
