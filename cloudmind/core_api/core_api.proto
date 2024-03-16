@@ -214,13 +214,13 @@ service system {
     option (http.post) = "/system/updateSlider";
   }
   rpc DeleteSlider(DeleteSliderReq) returns(DeleteSliderResp) {
-    option (http.post) = "system/deleteSlider";
+    option (http.post) = "/system/deleteSlider";
   }
   rpc CreateSlider(CreateSliderReq) returns(CreateSliderResp) {
-    option (http.post) = "system/createSlider";
+    option (http.post) = "/system/createSlider";
   }
   rpc GetSliders(GetSlidersReq) returns(GetSlidersResp) {
-    option (http.get) = "system/getSliders";
+    option (http.get) = "/system/getSliders";
   }
 }
 

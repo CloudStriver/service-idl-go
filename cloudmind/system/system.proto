@@ -58,8 +58,7 @@ message GetSlidersResp {
 message CreateSliderReq {
   string imageUrl = 1; // 图片链接
   string linkUrl = 2; // 跳转链接
-  int64 type = 3; // 类型
-  int64 isPublic = 4; // 是否公开
+  int64 isPublic = 3; // 是否公开
 }
 
 message CreateSliderResp {
@@ -69,8 +68,7 @@ message UpdateSliderReq {
   string sliderId = 1;
   string imageUrl = 2;
   string linkUrl = 3;
-  int64 type = 4;
-  int64 isPublic = 5;
+  int64 isPublic = 4;
 }
 
 message UpdateSliderResp {

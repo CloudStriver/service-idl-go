@@ -420,10 +420,11 @@ message GetPostsReq{
   optional string onlyUserId = 6;
   repeated string onlyTags = 7;
   optional int64 onlySetRelation = 9;
-  optional int64 limit = 10;
-  optional string lastToken = 11;
-  optional bool backward = 12;
-  optional int64 offset = 13;
+  optional int64 onlyStatus = 10;
+  optional int64 limit = 11;
+  optional string lastToken = 12;
+  optional bool backward = 13;
+  optional int64 offset = 14;
 }
 
 message GetPostsResp{
