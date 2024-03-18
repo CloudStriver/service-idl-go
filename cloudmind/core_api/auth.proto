@@ -6,6 +6,12 @@ import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
+enum UploadType{
+  UnknowUploadType = 0;
+  UserAvatarUploadType = 1;
+  PostAvatarUploadType = 2;
+  ProductAvatarUploadType = 3;
+}
 
 message RegisterReq{
   string name = 1;
@@ -102,3 +108,19 @@ message CheckEmailReq{
 message CheckEmailResp{
    bool ok = 1;
 }
+
+
+message AskUploadAvatarReq{
+  string name = 1;
+  int64 avatarSize = 2;
+  UploadType type = 3; // 头像，帖子封面，商品图片
+}
+
+message AskUploadAvatarResp{
+  string tmpSecretId = 1;
+  string tmpSecretKey = 2;
+  int64 startTime = 3;
+  int64 expiredTime = 4;
+  string sessionToken = 5;
+}
+
