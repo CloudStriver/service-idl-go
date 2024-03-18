@@ -27,10 +27,39 @@ message GetNotificationCountResp{
   int64 total = 1;
 }
 
-
-message UpdateNotificationsReq {
-  optional int64 onlyType = 1;
+message CreateSliderReq{
+  string imageUrl = 1; // 图片链接
+  string linkUrl = 2; // 跳转链接
+  int64 type = 3; // 类型
+  int64 isPublic = 4; // 是否公开
 }
 
-message UpdateNotificationsResp{
+message CreateSliderResp{
+}
+
+message DeleteSliderReq{
+ string  sliderId = 1;
+}
+
+message DeleteSliderResp{
+
+}
+
+message UpdateSliderReq{
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 type = 4;
+  int64 isPublic = 5;
+}
+
+message UpdateSliderResp{
+}
+
+message GetSlidersReq{
+}
+
+message GetSlidersResp{
+  repeated Slider sliders = 1;
+  int64 total = 2;
 }

@@ -10,8 +10,7 @@ message Notification {
   int64 targetType = 5;
   int64 type = 6;
   string text = 7;
-  int64  status = 8;
-  int64 createTime = 9;
+  int64 createTime = 8;
 }
 
 message Slider {

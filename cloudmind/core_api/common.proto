@@ -7,6 +7,12 @@ import "platform/comment/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
+message Slider{
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 isPublic = 4;
+}
 enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
@@ -358,7 +364,8 @@ message Product {
 enum PostStatus {
   UnknowPostStatus = 0;
   PublicPostStatus = 1;
-  PrivatePostStatus = 2;
+  DraftPostStatus = 2;
+  PrivatePostStatus = 3;
 }
 
 enum ProductStatus {
