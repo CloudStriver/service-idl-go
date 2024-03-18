@@ -182,7 +182,7 @@ message AddFileToPublicSpaceResp{
 }
 
 message DeleteFileReq{
-  string fileId = 1;
+  repeated string fileIds = 1;
   IsDel deleteType = 2;
   bool clearCommunity = 3;
 }
@@ -199,7 +199,7 @@ message CompletelyRemoveFileResp {
 }
 
 message RecoverRecycleBinFileReq{
-  string fileId = 1;
+  repeated string fileIds = 1;
 }
 
 message RecoverRecycleBinFileResp{

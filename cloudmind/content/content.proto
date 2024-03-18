@@ -140,17 +140,14 @@ message CompletelyRemoveFileResp {
 message DeleteFileReq{
   int64 deleteType = 1;
   bool clearCommunity = 2;
-  string fileId = 3;
-  string path = 4;
-  int64 spaceSize = 5;
+  repeated FileParameter files = 3;
 }
 
 message DeleteFileResp{
 }
 
 message RecoverRecycleBinFileReq{
-  string path = 1;
-  int64 spaceSize = 2;
+  repeated FileParameter files = 1;
 }
 
 message RecoverRecycleBinFileResp{
@@ -303,7 +300,6 @@ message CreateUserReq{
 
 message CreateUserResp{
 }
-
 
 message DeleteUserReq{
   string userId = 1;
