@@ -113,7 +113,6 @@ message CheckEmailResp{
 message AskUploadAvatarReq{
   string name = 1;
   int64 avatarSize = 2;
-  UploadType type = 3; // 头像，帖子封面，商品图片
 }
 
 message AskUploadAvatarResp{
