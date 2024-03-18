@@ -4,16 +4,12 @@ option go_package = 'cloudmind/system';
 import "basic/pagination.proto";
 import "cloudmind/system/common.proto";
 
-enum NotificationStatus {
-  UnknowNotificationStatus = 0;
-  Read = 1;
-  NotRead = 2;
-}
+
 
 message GetNotificationsReq {
   string userId = 1;
   optional int64 onlyType = 2;
-  optional basic.PaginationOptions paginationOptions = 5;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetNotificationsResp {
@@ -35,25 +31,22 @@ message CreateNotificationsResp {
 
 message GetNotificationCountReq {
   string userId = 1;
-  optional int64 onlyType = 2;
 }
 
 message GetNotificationCountResp {
   int64 total = 1;
 }
 
-message UpdateNotificationsReq {
+message CreateNotificationCountReq{
   string userId = 1;
-  optional int64 onlyType = 2;
 }
-
-message UpdateNotificationsResp{
+message CreateNotificationCountResp{
 }
 
 message GetSlidersReq {
-  optional int64 onlyType = 1;
-  optional int64 onlyIsPublic = 2;
-  optional basic.PaginationOptions paginationOptions = 3;
+  optional int64 onlyType = 1; // 类型
+  optional int64 onlyIsPublic = 2; // 是否公开
+  optional basic.PaginationOptions paginationOptions = 3; //  分页
 }
 
 message GetSlidersResp {
@@ -63,10 +56,9 @@ message GetSlidersResp {
 }
 
 message CreateSliderReq {
-  string imageUrl = 1;
-  string linkUrl = 2;
-  int64 type = 3;
-  int64 isPublic = 4;
+  string imageUrl = 1; // 图片链接
+  string linkUrl = 2; // 跳转链接
+  int64 isPublic = 3; // 是否公开
 }
 
 message CreateSliderResp {
@@ -76,8 +68,7 @@ message UpdateSliderReq {
   string sliderId = 1;
   string imageUrl = 2;
   string linkUrl = 3;
-  int64 type = 4;
-  int64 isPublic = 5;
+  int64 isPublic = 4;
 }
 
 message UpdateSliderResp {
@@ -89,8 +80,6 @@ message DeleteSliderReq {
 
 message DeleteSliderResp {
 }
-
-
 
 service SystemService {
 //  rpc RetrieveNotice(RetrieveNoticeReq) returns (RetrieveNoticeResp);
@@ -108,5 +97,5 @@ service SystemService {
   rpc GetNotifications(GetNotificationsReq) returns (GetNotificationsResp);
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
-  rpc UpdateNotifications(UpdateNotificationsReq) returns (UpdateNotificationsResp);
+  rpc CreateNotificationCount(CreateNotificationCountReq) returns (CreateNotificationCountResp);
 }
