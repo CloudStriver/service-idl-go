@@ -12,6 +12,7 @@ message UpdateUserReq{
   string idCard = 4;
   string description = 5;
   repeated string labels  = 6;
+  string url = 7;
 }
 
 message UpdateUserResp{
@@ -348,18 +349,6 @@ message DeleteUserReq{
 message DeleteUserResp{
 }
 
-message AskUploadAvatarReq{
-    string name = 1;
-    int64 avatarSize = 2;
-}
-
-message AskUploadAvatarResp{
-  string tmpSecretId = 1;
-  string tmpSecretKey = 2;
-  int64 startTime = 3;
-  int64 expiredTime = 4;
-  string sessionToken = 5;
-}
 
 message CreatePostReq{
   string title = 1;
