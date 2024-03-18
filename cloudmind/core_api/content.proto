@@ -140,6 +140,7 @@ message CreateFileReq{
 
 message CreateFileResp{
   string fileId = 1;
+  string name = 2;
 }
 
 message UpdateFileReq{
@@ -168,6 +169,7 @@ message SaveFileToPrivateSpaceReq{
 
 message SaveFileToPrivateSpaceResp{
   string fileId = 1;
+  string name = 2;
 }
 
 message AddFileToPublicSpaceReq{
