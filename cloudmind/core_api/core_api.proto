@@ -22,9 +22,7 @@ service content {
   rpc GetUserDetail(GetUserDetailReq) returns(GetUserDetailResp){
     option (http.get) = "/content/getUserDetail";
   }
-  rpc AskUploadAvatar(AskUploadAvatarReq) returns(AskUploadAvatarResp) {
-    option (http.post) = "/content/askUploadAvatar";
-  }
+
   // ------------------ 用户 --------------------
 
   // ------------------ 文件 --------------------
@@ -156,6 +154,10 @@ service content {
   }
 }
 service auth {
+  rpc AskUploadAvatar(AskUploadAvatarReq) returns(AskUploadAvatarResp) {
+    option (http.post) = "/auth/askUploadAvatar";
+  }
+
   rpc Register(RegisterReq) returns (RegisterResp){
     option (http.post) = "/auth/register";
   }
