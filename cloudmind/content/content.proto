@@ -324,7 +324,7 @@ message CreatePostResp{
 }
 
 message DeletePostReq{
-  string postId = 1;
+  repeated string postId = 1;
 }
 
 message DeletePostResp{
