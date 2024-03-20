@@ -43,6 +43,15 @@ message CreateNotificationCountReq{
 message CreateNotificationCountResp{
 }
 
+
+message DeleteNotificationsReq{
+  string userId = 1;
+  repeated string notificationIds = 2;
+  optional int64 onlyType = 3;
+}
+message DeleteNotificationsResp{
+}
+
 message GetSlidersReq {
   optional int64 onlyType = 1; // 类型
   optional int64 onlyIsPublic = 2; // 是否公开
@@ -98,4 +107,5 @@ service SystemService {
   rpc GetNotificationCount(GetNotificationCountReq) returns (GetNotificationCountResp);
   rpc CreateNotifications(CreateNotificationsReq) returns (CreateNotificationsResp);
   rpc CreateNotificationCount(CreateNotificationCountReq) returns (CreateNotificationCountResp);
+  rpc DeleteNotifications(DeleteNotificationsReq) returns (DeleteNotificationsResp);
 }

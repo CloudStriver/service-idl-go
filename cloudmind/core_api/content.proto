@@ -359,6 +359,7 @@ message CreatePostReq{
 }
 
 message CreatePostResp{
+  string postId = 1;
 }
 
 message DeletePostReq{
@@ -404,18 +405,17 @@ message GetPostResp{
 
 message GetPostsReq{
   optional string allFieldsKey = 1;
-  optional string id = 2;
-  optional string tag = 3;
-  optional string text = 4;
-  optional string title = 5;
-  optional string onlyUserId = 6;
-  repeated string onlyTags = 7;
-  optional int64 onlySetRelation = 9;
-  optional int64 onlyStatus = 10;
-  optional int64 limit = 11;
-  optional string lastToken = 12;
-  optional bool backward = 13;
-  optional int64 offset = 14;
+  optional string tag = 2;
+  optional string text = 3;
+  optional string title = 4;
+  optional string onlyUserId = 5;
+  repeated string onlyTags = 6;
+  optional int64 onlySetRelation = 7;
+  optional int64 onlyStatus = 8;
+  optional int64 limit = 9;
+  optional string lastToken = 10;
+  optional bool backward = 11;
+  optional int64 offset = 12;
 }
 
 message GetPostsResp{
