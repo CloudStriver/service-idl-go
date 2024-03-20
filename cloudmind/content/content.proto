@@ -148,6 +148,13 @@ message DeleteFileReq{
 message DeleteFileResp{
 }
 
+message EmptyRecycleBinReq{
+  string userId = 1;
+}
+
+message EmptyRecycleBinResp{
+}
+
 message RecoverRecycleBinFileReq{
   repeated FileParameter files = 1;
 }
@@ -543,6 +550,7 @@ service ContentService {
   rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
   rpc CompletelyRemoveFile(CompletelyRemoveFileReq) returns(CompletelyRemoveFileResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
+  rpc EmptyRecycleBin(EmptyRecycleBinReq) returns(EmptyRecycleBinResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
   rpc GetZone(GetZoneReq) returns(GetZoneResp);
   rpc GetZones(GetZonesReq) returns(GetZonesResp);
