@@ -65,6 +65,9 @@ service content {
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp){
     option (http.post) = "/content/deleteFile";
   }
+  rpc EmptyRecycleBin(EmptyRecycleBinReq) returns(EmptyRecycleBinResp){
+    option (http.post) = "/content/emptyRecycleBin";
+  }
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp){
     option (http.post) = "/content/recoverRecycleBinFile";
   }

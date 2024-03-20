@@ -193,6 +193,12 @@ message DeleteFileReq{
 message DeleteFileResp{
 }
 
+message EmptyRecycleBinReq{
+}
+
+message EmptyRecycleBinResp{
+}
+
 message CompletelyRemoveFileReq {
   string fileId = 1;
   string userId = 2;
