@@ -93,7 +93,7 @@ message DeleteSliderResp {
 service SystemService {
 //  rpc RetrieveNotice(RetrieveNoticeReq) returns (RetrieveNoticeResp);
 //  rpc ListNotice(ListNoticeReq) returns (ListNoticeResp);
-//  rpc CreateNotice(CreateNoticeReq) returns (CreateNoticeResp);
+//  rpc CreateNotice(CreateNoticeReq) returns (CreateNoticeRexesp);
 //  rpc UpdateNotice(UpdateNoticeReq) returns (UpdateNoticeResp);
 //  rpc DeleteNotice(DeleteNoticeReq) returns (DeleteNoticeResp);
 

@@ -27,6 +27,14 @@ message GetNotificationCountResp{
   int64 total = 1;
 }
 
+message DeleteNotificationsReq{
+  repeated string notificationIds = 1;
+  optional int64 onlyType = 2;
+}
+
+message DeleteNotificationsResp{
+}
+
 message CreateSliderReq{
   string imageUrl = 1; // 图片链接
   string linkUrl = 2; // 跳转链接
