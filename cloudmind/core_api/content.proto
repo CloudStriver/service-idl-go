@@ -63,6 +63,7 @@ message GetPrivateFilesReq{
   optional string lastToken = 8;
   optional bool backward = 9;
   optional int64 offset = 10;
+  optional int64 onlyCategory = 11;
 }
 
 message GetPrivateFilesResp{
@@ -88,6 +89,7 @@ message GetPublicFilesReq{
   optional string lastToken = 12;
   optional bool backward = 13;
   optional int64 offset = 14;
+  optional int64 onlyCategory = 15;
 }
 
 message GetPublicFilesResp{
