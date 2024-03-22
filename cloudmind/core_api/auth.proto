@@ -14,9 +14,9 @@ enum UploadType{
 }
 
 message RegisterReq{
-  string name = 1;
-  int64 sex = 2;
-  string email = 3;
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 20"];
+  int64 sex = 2[(http.vd) = "$ >= 1 && $ <= 2"];
+  string email = 3[(http.vd) = "email($)"];
   string password = 4;
 }
 message RegisterResp{
@@ -26,7 +26,7 @@ message RegisterResp{
 }
 
 message EmailLoginReq{
-  string email = 1;
+  string email = 1[(http.vd) = "email($)"];
   string password = 2;
 }
 
@@ -68,7 +68,7 @@ message RefreshTokenResp{
 }
 
 message SendEmailReq {
-  string email = 1;
+  string email = 1[(http.vd) = "email($)"];
   string subject = 2;
 }
 
@@ -86,7 +86,7 @@ message GetCaptchaResp{
 
 
 message SetPasswordByEmailReq{
-  string email = 1;
+  string email = 1[(http.vd) = "email($)"];
   string password = 2;
 }
 message SetPasswordByEmailResp{
@@ -101,7 +101,7 @@ message SetPasswordByPasswordResp{
 }
 
 message CheckEmailReq{
-    string email = 1;
+    string email = 1[(http.vd) = "email($)"];
     string code = 2;
 }
 
