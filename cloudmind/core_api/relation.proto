@@ -3,20 +3,20 @@ package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
 import "basic/pagination.proto";
 import "cloudmind/core_api/common.proto";
-
+import "http/http.proto";
 message CreateRelationReq{
   string toId = 1;
-  TargetType toType = 2;
-  RelationType relationType = 3;
+  TargetType toType = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  RelationType relationType = 3[(http.vd) = "($ >= 1 && $ <= 5"];
 }
 message CreateRelationResp{
 }
 
 message GetFromRelationsReq{
    string fromId = 1;
-   int64 fromType = 2;
-   TargetType toType = 3;
-  int64 relationType = 4;
+   int64 fromType = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+   TargetType toType = 3[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  int64 relationType = 4[(http.vd) = "($ >= 1 && $ <= 5"];
    optional int64 limit = 5;
    optional int64 offset = 6;
 }
@@ -30,10 +30,10 @@ message GetFromRelationsResp{
 }
 
 message GetToRelationsReq{
-   int64 toType = 1;
+   int64 toType = 1[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
    string toId = 2;
-  TargetType fromType = 3;
-  int64 relationType = 4;
+  TargetType fromType = 3[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  int64 relationType = 4[(http.vd) = "($ >= 1 && $ <= 5"];
   optional int64 limit = 5;
   optional int64 offset = 6;
 }
@@ -48,10 +48,10 @@ message GetToRelationsResp{
 
 message GetRelationReq{
   string fromId = 1;
-  int64 fromType = 2;
+  int64 fromType = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
   string toId = 3;
-  int64 toType = 4;
-  int64 relationType = 5;
+  int64 toType = 4[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  int64 relationType = 5[(http.vd) = "($ >= 1 && $ <= 5"];
 }
 
 message GetRelationResp{
@@ -60,8 +60,8 @@ message GetRelationResp{
 
 message DeleteRelationReq{
   string toId = 1;
-  int64 toType = 2;
-  int64 relationType = 3;
+  int64 toType = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  int64 relationType = 3[(http.vd) = "($ >= 1 && $ <= 5"];
 }
 message DeleteRelationResp{
 }

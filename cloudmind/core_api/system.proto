@@ -5,9 +5,8 @@ import "cloudmind/core_api/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
-
 message GetNotificationsReq {
-  optional int64 onlyType = 1;
+  optional int64 onlyType = 1[(http.vd) = "($ == nil) || ($>=1 && $ <= 5)"];
   optional int64 limit = 2;
   optional string lastToken = 3;
   optional bool backward = 4;
@@ -20,7 +19,6 @@ message GetNotificationsResp {
 }
 
 message GetNotificationCountReq{
-  optional int64 onlyType = 1;
 }
 
 message GetNotificationCountResp{
@@ -29,7 +27,7 @@ message GetNotificationCountResp{
 
 message DeleteNotificationsReq{
   repeated string notificationIds = 1;
-  optional int64 onlyType = 2;
+  optional int64 onlyType = 2[(http.vd) = "($ == nil) || ($>=1 && $ <= 5)"];
 }
 
 message DeleteNotificationsResp{
@@ -38,8 +36,7 @@ message DeleteNotificationsResp{
 message CreateSliderReq{
   string imageUrl = 1; // 图片链接
   string linkUrl = 2; // 跳转链接
-  int64 type = 3; // 类型
-  int64 isPublic = 4; // 是否公开
+  int64 isPublic = 3[(http.vd) = "$ >= 1 && $ <= 2"]; // 是否公开
 }
 
 message CreateSliderResp{
@@ -57,8 +54,7 @@ message UpdateSliderReq{
   string sliderId = 1;
   string imageUrl = 2;
   string linkUrl = 3;
-  int64 type = 4;
-  int64 isPublic = 5;
+  int64 isPublic = 4[(http.vd) = "$ >= 1 && $ <= 2"];
 }
 
 message UpdateSliderResp{
