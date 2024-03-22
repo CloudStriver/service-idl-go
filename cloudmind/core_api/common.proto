@@ -182,6 +182,7 @@ message FileFilterOptions {
   optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
   repeated string onlyLabels = 8; // 标签id
   repeated string onlyType = 9; // 文件类型
+  optional int64 onlyCategory = 10;
 }
 
 message ShareFileFilterOptions {
