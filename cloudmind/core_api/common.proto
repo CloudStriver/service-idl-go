@@ -237,13 +237,14 @@ message Post {
 }
 
 message Notification {
-  string fromName = 1; // 通知来源人的名字
-  string fromId = 2; // 通知来源人的ID
-  string toName = 3; // 通知接收人的名字
-  string toId = 4; // 接收通知的ID
-  int64 toType = 5; // 接收通知人的类型
-  int64 type = 6; // 通知类型
-  int64 createTime = 7; // 通知创建时间
+  string notificationId = 1;
+  string fromName = 2; // 通知来源人的名字
+  string fromId = 3; // 通知来源人的ID
+  string toName = 4; // 通知接收人的名字
+  string toId = 5; // 接收通知的ID
+  int64 toType = 6; // 接收通知人的类型
+  int64 type = 7; // 通知类型
+  int64 createTime = 8; // 通知创建时间
 }
 
 /*
