@@ -279,3 +279,18 @@ service label {
     option (http.get) = "/label/getLabelsInBatch";
   }
 }
+
+service zone {
+   rpc CreateZone(CreateZoneReq) returns(CreateZoneResp){
+     option (http.post) = "/zone/createZone";
+   }
+   rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp){
+     option (http.post) = "/zone/updateZone";
+   }
+   rpc GetZone(GetZoneReq) returns(GetZoneResp){
+     option (http.get) = "/zone/getZone";
+   }
+   rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp){
+     option (http.post) = "/zone/deleteZone";
+   }
+}
