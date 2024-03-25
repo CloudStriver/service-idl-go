@@ -5,7 +5,7 @@ import "cloudmind/sts/common.proto";
 import "cloudmind/content/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
-
+import "cloudmind/core_api/content.proto";
 enum UploadType{
   UnknowUploadType = 0;
   UserAvatarUploadType = 1;
@@ -18,11 +18,13 @@ message RegisterReq{
   int64 sex = 2[(http.vd) = "$ >= 1 && $ <= 2"];
   string email = 3[(http.vd) = "email($)"];
   string password = 4;
+  bool isSure = 5;
 }
 message RegisterResp{
   string shortToken = 1;
   string longToken = 2;
   string userId = 3;
+  repeated Keywords keywords = 4;
 }
 
 message EmailLoginReq{
