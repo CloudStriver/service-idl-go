@@ -9,6 +9,10 @@ enum SortOptions{
   SortOptions_createAtAsc = 2; // 创建时间排序
   SortOptions_updateAtDesc = 3; // 修改时间排序
   SortOptions_updateAtAsc = 4; // 修改时间排序
+  SortOptions_NameDesc = 5; // 文件名逆序
+  SortOptions_NameAsc = 6; // 文件名升序
+  SortOptions_TypeDesc = 7; // 文件类型逆序
+  SortOptions_TypeAsc = 8; // 文件类型升序
 }
 
 enum Deletion {
@@ -75,6 +79,7 @@ message File {
   string subZone = 11;
   string description = 12;
   repeated string labels = 13;
+  int64 category = 14;
 }
 
 message FileParameter {
