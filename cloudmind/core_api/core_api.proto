@@ -80,6 +80,9 @@ service content {
   rpc GetZone(GetZoneReq) returns(GetZoneResp){
     option (http.get) = "/content/getZone";
   }
+  rpc GetZones(GetZonesReq) returns(GetZonesResp){
+    option (http.get) = "/content/getZones";
+  }
   rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp){
     option (http.post) = "/content/deleteZone";
   }
