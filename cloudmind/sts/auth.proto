@@ -2,7 +2,7 @@ syntax = "proto3";
 package cloudmind.sts;
 option go_package = "cloudmind/sts";
 import "cloudmind/sts/common.proto";
-
+import "basic/pagination.proto";
 message SendEmailReq {
   string email = 1;
   string subject = 2;
@@ -87,6 +87,27 @@ message DeleteObjectReq {
 message DeleteObjectResp {
 }
 
+
+message ReplaceContentReq{
+  repeated string contents = 1;
+}
+ 
+message ReplaceContentResp{
+  repeated string content = 1;
+} 
+
+message FindAllContentReq{
+  repeated string contents = 1;
+}   
+
+message Keywords {
+  repeated string keywords = 1;
+}
+
+message FindAllContentResp{ 
+  repeated Keywords keywords = 1;
+}
+
 service StsService {
     rpc SetPassword(SetPasswordReq) returns(SetPasswordResp);
     rpc SendEmail(SendEmailReq) returns(SendEmailResp);
@@ -97,4 +118,6 @@ service StsService {
     rpc genCosSts(GenCosStsReq) returns (GenCosStsResp);
     rpc genSignedUrl(GenSignedUrlReq) returns (GenSignedUrlResp);
     rpc deleteObject(DeleteObjectReq) returns (DeleteObjectResp);
-}
+    rpc ReplaceContent(ReplaceContentReq) returns(ReplaceContentResp);
+    rpc FindAllContent(FindAllContentReq) returns(FindAllContentResp);
+  }
