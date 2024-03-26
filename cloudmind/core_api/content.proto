@@ -65,7 +65,7 @@ message GetPrivateFilesReq{
   optional string lastToken = 8;
   optional bool backward = 9;
   optional int64 offset = 10;
-  optional int64 onlyCategory = 11[(http.vd) = "$ >= 1 && $ <= 4"];
+  optional int64 onlyCategory = 11;
 }
 
 message GetPrivateFilesResp{
@@ -140,7 +140,7 @@ message CreateFileReq{
   string fatherId = 3;
   optional int64 spaceSize = 4;
   string md5 = 5;
-  int64 category = 6;
+  int64 category = 6[(http.vd) = "$ >= 1 && $ <= 4"];
 }
 
 message CreateFileResp{
