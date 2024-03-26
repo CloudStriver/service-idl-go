@@ -137,10 +137,10 @@ message GetFileBySharingCodeResp{
 message CreateFileReq{
   string name = 1[(http.vd) = "len($) >= 1 && len($) <= 80"];
   string type = 2;
-  string fatherId = 3;
-  optional int64 spaceSize = 4;
-  string md5 = 5;
-  int64 category = 6[(http.vd) = "$ >= 1 && $ <= 4"];
+  int64 category = 3[(http.vd) = "$ >= 1 && $ <= 4"];
+  string fatherId = 4;
+  optional int64 spaceSize = 5;
+  string md5 = 6;
 }
 
 message CreateFileResp{
