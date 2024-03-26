@@ -611,6 +611,11 @@ service ContentService {
   rpc GetLatestRecommend(GetLatestRecommendReq) returns(GetLatestRecommendResp);
   rpc CreateFeedBack(CreateFeedBackReq) returns(CreateFeedBackResp);
 
+  // ----------------热度-------------------
+  rpc IncrHotValue(IncrHotValueReq) returns(IncrHotValueResp);
+  rpc GetHotValue(GetHotValueReq) returns(GetHotValueResp);
+  rpc CreateHot(CreateHotReq) returns(CreateHotResp);
+  rpc GetHotValues(GetHotValuesReq) returns(GetHotValuesResp);
   //  rpc CreateCart(CreateCartReq) returns(CreateCartResp);
   //  rpc DeleteCart(DeleteCartReq) returns(DeleteCartResp);
   //  rpc UpdateCart(UpdateCartReq) returns(UpdateCartResp);
@@ -736,3 +741,36 @@ message CreateFeedBackResp{
 }
 
 
+
+message GetHotValueReq{
+  string hotId = 1;
+}
+
+message GetHotValueResp{
+  double hotValue = 1;
+}
+
+message IncrHotValueReq{
+  Action action = 1;
+  string hotId = 2;
+  TargetType targetType = 3;
+}
+
+message IncrHotValueResp{
+}
+
+
+message CreateHotReq {
+  string hotId = 1;
+}
+
+message CreateHotResp {
+}
+
+message GetHotValuesReq{
+  repeated string hotIds = 1;
+}
+
+message GetHotValuesResp{
+  repeated double hotValues = 1;
+}
