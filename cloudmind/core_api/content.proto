@@ -135,7 +135,7 @@ message GetFileBySharingCodeResp{
 }
 
 message CreateFileReq{
-  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 80"];
   string type = 2;
   string fatherId = 3;
   optional int64 spaceSize = 4;
@@ -150,7 +150,7 @@ message CreateFileResp{
 
 message UpdateFileReq{
   string fileId = 1;
-  string name = 2[(http.vd) = "len($) >= 1 && len($) <= 100"];
+  string name = 2[(http.vd) = "len($) >= 1 && len($) <= 80"];
 }
 
 message UpdateFileResp{
@@ -264,7 +264,7 @@ message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
-  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 80"];
   int64 effectiveTime = 2;
   repeated string fileList = 3;
 }
@@ -312,7 +312,7 @@ message ParsingShareCodeResp {
 }
 
 message AskUploadFileReq {
-  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 80"];
   int64 fileSize = 2;
 }
 
