@@ -7,7 +7,7 @@ import "basic/pagination.proto";
 import "http/http.proto";
 import "cloudmind/core_api/content.proto";
 enum UploadType{
-  UnknowUploadType = 0;
+  UnknownUploadType = 0;
   UserAvatarUploadType = 1;
   PostAvatarUploadType = 2;
   ProductAvatarUploadType = 3;

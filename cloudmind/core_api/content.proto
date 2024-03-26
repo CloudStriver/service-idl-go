@@ -65,7 +65,7 @@ message GetPrivateFilesReq{
   optional string lastToken = 8;
   optional bool backward = 9;
   optional int64 offset = 10;
-  optional int64 onlyCategory = 11;
+  optional int64 onlyCategory = 11[(http.vd) = "$ >= 1 && $ <= 4"];
 }
 
 message GetPrivateFilesResp{
@@ -135,11 +135,12 @@ message GetFileBySharingCodeResp{
 }
 
 message CreateFileReq{
-  string name = 1;
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
   string type = 2;
   string fatherId = 3;
   optional int64 spaceSize = 4;
   string md5 = 5;
+  int64 category = 6;
 }
 
 message CreateFileResp{
@@ -149,7 +150,7 @@ message CreateFileResp{
 
 message UpdateFileReq{
   string fileId = 1;
-  string name = 2;
+  string name = 2[(http.vd) = "len($) >= 1 && len($) <= 100"];
 }
 
 message UpdateFileResp{
@@ -263,7 +264,7 @@ message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
-  string name = 1;
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
   int64 effectiveTime = 2;
   repeated string fileList = 3;
 }
@@ -311,7 +312,7 @@ message ParsingShareCodeResp {
 }
 
 message AskUploadFileReq {
-  string name = 1;
+  string name = 1[(http.vd) = "len($) >= 1 && len($) <= 100"];
   int64 fileSize = 2;
 }
 
