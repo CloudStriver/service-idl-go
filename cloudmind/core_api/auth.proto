@@ -15,10 +15,9 @@ enum UploadType{
 
 message RegisterReq{
   string name = 1[(http.vd) = "len($) >= 1 && len($) <= 20"];
-  int64 sex = 2[(http.vd) = "$ >= 1 && $ <= 2"];
-  string email = 3[(http.vd) = "email($)"];
-  string password = 4;
-  bool isSure = 5;
+  string email = 2[(http.vd) = "email($)"];
+  string password = 3;
+  bool isSure = 4;
 }
 message RegisterResp{
   string shortToken = 1;
