@@ -285,3 +285,10 @@ service label {
     option (http.get) = "/label/getLabelsInBatch";
   }
 }
+
+
+service hotRank {
+  rpc GetHotRanks(GetHotRanksReq) returns(GetHotRanksResp){
+    option (http.get) = "/rank/getHotRanks";
+  }
+}
