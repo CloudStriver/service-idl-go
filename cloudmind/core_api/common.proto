@@ -7,6 +7,27 @@ import "platform/comment/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
+enum PostStatus {
+  UnknowPostStatus = 0;
+  PublicPostStatus = 1;
+  DraftPostStatus = 2;
+  PrivatePostStatus = 3;
+}
+
+enum ProductStatus {
+  UnknowProductStatus = 0;
+  PublicProductStatus = 1;
+  PrivateProductStatus = 2;
+}
+
+enum Product_Type {
+  UnknowProduct_Type = 0;
+  Flow_Type = 1;
+  Memory_Type = 2;
+  File_Type = 3;
+}
+
+
 message Slider{
   string sliderId = 1;
   string imageUrl = 2;
@@ -17,9 +38,8 @@ enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
   FileType = 2;
-  ProductType = 3;
-  PostType = 4;
-  CommentContentType = 5;
+  PostType = 3;
+  CommentContentType = 4;
 }
 
 enum RelationType {
@@ -30,8 +50,7 @@ enum RelationType {
   ShareType = 4;
   CommentType = 5;
   ViewType = 6;
-  PurchaseType = 7;
-  HateType = 8;
+  HateType = 7;
 }
 
 enum IsDel {
@@ -65,6 +84,30 @@ message User {
   string userId = 1;
   string name = 2;
   string url = 3;
+  repeated string tags = 4;
+}
+
+message HotUser {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+  repeated string tags = 4;
+  double hotValue = 5;
+}
+
+message HotPost {
+  string postId = 1;
+  string title = 2;
+  string url = 3;
+  string userName = 4;
+  double hotValue = 5;
+}
+
+message HotFile {
+  string fileId = 1;
+  string name = 3;
+  string type = 4;
+  double hotValue = 5;
 }
 
 message RecommendUser {
@@ -363,22 +406,3 @@ message Product {
   int64 createTime = 12; // 创建时间
 }
 
-enum PostStatus {
-  UnknowPostStatus = 0;
-  PublicPostStatus = 1;
-  DraftPostStatus = 2;
-  PrivatePostStatus = 3;
-}
-
-enum ProductStatus {
-  UnknowProductStatus = 0;
-  PublicProductStatus = 1;
-  PrivateProductStatus = 2;
-}
-
-enum Product_Type {
-  UnknowProduct_Type = 0;
-  Flow_Type = 1;
-  Memory_Type = 2;
-  File_Type = 3;
-}

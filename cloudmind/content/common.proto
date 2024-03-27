@@ -3,6 +3,25 @@ syntax = "proto3";
 package cloudmind.content;
 option go_package = "cloudmind/content";
 
+enum TargetType {
+  UnKnowTargetType = 0;
+  UserType = 1;
+  FileType = 2;
+  PostType = 3;
+  CommentContentType = 4;
+}
+
+enum Action{
+  UnKnownAction = 0;
+  LikeType = 1; // 点赞
+  FollowType = 2; // 关注
+  CollectType = 3; // 收藏
+  CommentType = 4; // 评论
+  ShareType = 5; // 分享
+  ViewType = 6; // 浏览
+  HateType = -2; // 讨厌
+}
+
 enum SortOptions{
   SortOptions_null = 0;
   SortOptions_createAtDesc = 1; // 创建时间排序
