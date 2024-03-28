@@ -375,7 +375,9 @@ message SubjectInfo {
 
 message Label {
   string labelId = 1;
-    string value = 2;
+  string zone = 2;
+  string subZone = 3;
+  string value = 4;
 }
 
 enum Category {
