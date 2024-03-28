@@ -85,6 +85,12 @@ message CommentFilterOptions {
   optional int64 onlyAttrs = 8;
 }
 
+message LabelFilterOptions {
+  optional string key = 1; // 用于匹配标签的key
+  optional string zone = 2;
+  optional string subZone = 3;
+}
+
 message Subject {
   string id = 1;
   string userId = 2;
@@ -113,5 +119,7 @@ message SubjectInfo {
 
 message Label {
   string labelId = 1;
-  string value = 2;
+  string zone = 2;
+  string subZone = 3;
+  string value = 4;
 }

@@ -112,7 +112,7 @@ message UpdateLabelReq {
 message UpdateLabelResp {
 }
 message GetLabelsReq {
-  string key = 1; // 用于匹配标签的key
+  optional LabelFilterOptions filterOptions = 1;
   optional basic.PaginationOptions pagination = 2;
 }
 message GetLabelsResp {
