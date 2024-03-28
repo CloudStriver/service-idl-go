@@ -109,11 +109,13 @@ message UpdateLabelReq {
 message UpdateLabelResp {
 }
 message GetLabelsReq {
-  string key = 1; // 用于匹配标签的key
+  optional string key = 1; // 用于匹配标签的key
   optional int64 limit = 2;
   optional string lastToken = 3;
   optional bool backward = 4;
   optional int64 offset = 5;
+  optional string zone = 6;
+  optional string subZone = 7;
 }
 message GetLabelsResp {
   repeated Label labels = 1;

@@ -375,11 +375,13 @@ message SubjectInfo {
 
 message Label {
   string labelId = 1;
-    string value = 2;
+  string zone = 2;
+  string subZone = 3;
+  string value = 4;
 }
 
 enum Category {
-  UnknowCategory = 0;
+  UnknownCategory = 0;
   UserCategory = 1;
   FileCategory = 2;
   PostCategory = 3;
