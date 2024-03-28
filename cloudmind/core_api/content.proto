@@ -430,8 +430,8 @@ message GetPostResp{
   int64 commentCount = 9; // 评论量
   int64 shareCount = 10; // 分享量
   int64 collectCount = 11;  // 收藏量
-  bool Liked = 12; //
-  bool Collected = 13;
+  bool liked = 12; //
+  bool collected = 13;
   int64 createTime = 14;
   int64 updateTime = 15;
 }
