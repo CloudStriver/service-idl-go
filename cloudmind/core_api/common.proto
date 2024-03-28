@@ -381,7 +381,7 @@ message Label {
 }
 
 enum Category {
-  UnknowCategory = 0;
+  UnknownCategory = 0;
   UserCategory = 1;
   FileCategory = 2;
   ProductCategory = 3;
