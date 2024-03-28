@@ -154,6 +154,7 @@ message UpdateFileReq{
 }
 
 message UpdateFileResp{
+  string name = 1;
 }
 
 message MoveFileReq{
