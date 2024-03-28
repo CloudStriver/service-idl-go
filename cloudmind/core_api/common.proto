@@ -285,7 +285,7 @@ message Notification {
   string fromId = 3; // 通知来源人的ID
   string toName = 4; // 通知接收人的名字
   string toId = 5; // 接收通知的ID
-  int64 toType = 6; // 接收通知人的类型
+  string toUserId = 6; // 接收通知人的Id
   int64 type = 7; // 通知类型
   int64 createTime = 8; // 通知创建时间
 }
