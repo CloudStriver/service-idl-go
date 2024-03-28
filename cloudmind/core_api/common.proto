@@ -382,8 +382,7 @@ enum Category {
   UnknowCategory = 0;
   UserCategory = 1;
   FileCategory = 2;
-  ProductCategory = 3;
-  PostCategory = 4;
+  PostCategory = 3;
 }
 
 message Recommends {
