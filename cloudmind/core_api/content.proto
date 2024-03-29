@@ -205,8 +205,7 @@ message EmptyRecycleBinResp{
 }
 
 message CompletelyRemoveFileReq {
-  string fileId = 1;
-  string userId = 2;
+  repeated string fileIds = 1;
 }
 
 message CompletelyRemoveFileResp {
