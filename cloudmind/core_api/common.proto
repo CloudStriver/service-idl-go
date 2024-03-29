@@ -27,7 +27,6 @@ enum Product_Type {
   File_Type = 3;
 }
 
-
 message Slider{
   string sliderId = 1;
   string imageUrl = 2;
