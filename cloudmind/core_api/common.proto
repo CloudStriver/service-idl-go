@@ -85,6 +85,7 @@ message User {
   string name = 2;
   string url = 3;
   repeated string tags = 4;
+  bool followed = 5;
 }
 
 message HotUser {
@@ -117,6 +118,7 @@ message RecommendUser {
   int64 followCount = 4;
   string description = 5;
   repeated string labels = 6;
+  bool followed = 7;
 }
 
 message UserDetail {
