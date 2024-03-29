@@ -132,9 +132,7 @@ message AddFileToPublicSpaceResp{
 }
 
 message CompletelyRemoveFileReq {
-  string fileId = 1;
-  int64 spaceSize = 2;
-  string path = 3;
+  repeated FileParameter files = 1;
 }
 
 message CompletelyRemoveFileResp {
