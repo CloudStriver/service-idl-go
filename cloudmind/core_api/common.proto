@@ -80,6 +80,13 @@ enum Attrs {
   PinnedAndHighlighted = 4;
 }
 
+enum Validity {
+  Validity_null = 0;
+  Validity_perpetuity = 1;
+  Validity_temporary = 2;
+  Validity_expired = 3;
+}
+
 message User {
   string userId = 1;
   string name = 2;
