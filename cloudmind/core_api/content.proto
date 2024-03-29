@@ -467,7 +467,7 @@ message CreateFeedBackResp{
 
 message GetPopularRecommendReq{
   optional int64 limit = 1;
-  Category category = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  Category category = 2[(http.vd) = "$ >= 1 && $ <= 3"];
 }
 
 message GetPopularRecommendResp{
@@ -476,7 +476,7 @@ message GetPopularRecommendResp{
 
 message GetLatestRecommendReq{
   optional int64 limit = 1;
-  Category category = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  Category category = 2[(http.vd) = "$ >= 1 && $ <= 3"];
 }
 
 message GetLatestRecommendResp{
@@ -487,7 +487,7 @@ message GetLatestRecommendResp{
 message GetRecommendByItemReq{
   string itemId = 1;
   optional int64 limit = 2;
-  Category category = 3[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  Category category = 3[(http.vd) = "$ >= 1 && $ <= 3"];
 }
 
 message GetRecommendByItemResp{
@@ -496,7 +496,7 @@ message GetRecommendByItemResp{
 
 message GetRecommendByUserReq{
   optional int64 limit = 1;
-  Category category = 2[(http.vd) = "($ >= 1 && $ <= 2) || ($ == 4)"];
+  Category category = 2[(http.vd) = "$ >= 1 && $ <= 3"];
 }
 
 message GetRecommendByUserResp{
