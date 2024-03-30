@@ -340,6 +340,12 @@ message GetUserResp{
   string name = 2;
   string url = 3;
   repeated string tags = 4;
+  string description = 5;
+  int64 sex = 6;
+  int64 createTime = 7;
+  bool followed = 8;
+  int64 followedCount = 9;
+  int64 followCount = 10;
 }
 
 message CreateUserReq{
@@ -364,7 +370,8 @@ message GetUserDetailResp {
   int64 flow = 7;
   int64 momery = 8;
   int64 point = 9;
-  repeated string labels  = 10;
+  repeated string tags  = 10;
+  int64 createTime = 11;
 }
 
 message DeleteUserReq{
