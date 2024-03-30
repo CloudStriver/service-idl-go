@@ -91,7 +91,7 @@ message File {
   string type = 4;
   string path = 5;
   string fatherId = 6;
-  optional int64 spaceSize = 7;
+  int64 spaceSize = 7;
   string md5 = 8;
   int64 isDel = 9;
   string zone = 10;
