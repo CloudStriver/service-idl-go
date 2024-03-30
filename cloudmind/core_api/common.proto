@@ -114,7 +114,7 @@ message RecommendUser {
   string userId = 1;
   string name = 2;
   string url = 3;
-  int64 followCount = 4;
+  int64 followedCount = 4;
   string description = 5;
   repeated string labels = 6;
   bool followed = 7;
