@@ -95,23 +95,19 @@ message HotUser {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated string tags = 4;
-  double hotValue = 5;
+  bool followed = 4;
+  string description = 5;
 }
 
 message HotPost {
   string postId = 1;
   string title = 2;
-  string url = 3;
-  string userName = 4;
-  double hotValue = 5;
 }
 
 message HotFile {
   string fileId = 1;
   string name = 3;
   string type = 4;
-  double hotValue = 5;
 }
 
 message RecommendUser {
