@@ -43,13 +43,16 @@ enum TargetType {
 
 enum RelationType {
   UnKnowRelationType = 0;
-  LikeType = 1;
-  FollowType = 2;
-  CollectType = 3;
-  ShareType = 4;
-  CommentType = 5;
-  ViewType = 6;
-  HateType = 7;
+  LikeRelationType = 1; // 点赞
+  FollowRelationType = 2; // 关注
+  CollectRelationType = 3; // 收藏
+  ShareRelationType = 4; // 分享
+  CommentRelationType = 5; // 评论
+  ViewRelationType = 6; // 浏览
+  HateRelationType = 7;
+  DownLoadRelationType = 8; // 下载
+  UploadRelationType = 9; // 上传
+  PublishRelationType = 10; // 发布
 }
 
 enum IsDel {
@@ -85,6 +88,7 @@ message User {
   string url = 3;
   repeated string tags = 4;
   bool followed = 5;
+  int64 followedCount = 6;
 }
 
 message HotUser {
@@ -232,22 +236,6 @@ message FileFilterOptions {
 message ShareFileFilterOptions {
   optional string onlyCode = 1;
   optional string onlyUserId = 2;
-}
-
-message UserDetailInfo{
-  string userId = 1;
-  string name = 2;
-  int64  sex = 3;
-  string fullName = 4;
-  string idCard = 5;
-  string description = 6;
-  string url = 7;
-}
-
-message UserInfo {
-  string userId = 1;
-  string name = 2;
-  int64 sex = 3;
 }
 
 message PostCount {
