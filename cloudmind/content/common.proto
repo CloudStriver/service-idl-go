@@ -20,6 +20,9 @@ enum Action{
   ShareType = 5; // 分享
   ViewType = 6; // 浏览
   HateType = -2; // 讨厌
+  Upload = 8;
+  Download = 9;
+  Publish = 10;
 }
 
 enum SortOptions{
