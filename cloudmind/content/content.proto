@@ -96,6 +96,7 @@ message MoveFileReq{
   string oldPath = 4;
   int64 spaceSize = 5;
   string name = 6;
+  int64 isDel = 7;
 }
 
 message MoveFileResp{
