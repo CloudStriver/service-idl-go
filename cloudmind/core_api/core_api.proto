@@ -179,6 +179,18 @@ service auth {
   rpc GiteeLogin(GiteeLoginReq) returns (GiteeLoginResp){
     option (http.get) = "/auth/giteeLogin";
   }
+  rpc WeixinLogin(WeixinLoginReq) returns (WeixinLoginResp){
+    option (http.get) = "/auth/weixinLogin";
+  }
+  rpc WeixinCallBack(WeixinCallBackReq) returns (WeixinCallBackResp){
+    option (http.post) = "/auth/weixinCallback";
+  }
+  rpc WeixinIsLogin(WeixinIsLoginReq) returns (WeixinIsLoginResp){
+    option (http.post) = "/auth/weixinIsLogin";
+  }
+  rpc QQLogin(QQLoginReq) returns (QQLoginResp){
+    option (http.get) = "/auth/qqLogin";
+  }
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp){
     option (http.post) = "/auth/refreshToken";
   }

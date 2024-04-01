@@ -306,6 +306,7 @@ message CreateUserReq{
   string userId = 1;
   string name = 2;
   int64  sex = 3;
+  string url = 4;
 }
 
 message CreateUserResp{
