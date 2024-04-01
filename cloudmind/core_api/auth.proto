@@ -57,6 +57,51 @@ message GiteeLoginResp{
   string userId = 3;
 }
 
+message WxMaUserInfo {
+  string openId = 1;
+  string nickName = 2;
+  int64 gender = 3;
+  string avatarUrl = 4;
+}
+message WeixinCallBackReq{
+  bool scanSuccess = 1;
+  bool cancelLogin = 2;
+  string tempUserId = 3;
+  WxMaUserInfo wxMaUserInfo = 4;
+}
+
+message WeixinCallBackResp{
+  int64 code = 1;
+  string msg = 2;
+}
+
+message WeixinLoginReq{
+}
+
+message WeixinLoginResp{
+  string  qrUrl = 1;
+  string tempUserId = 2;
+}
+
+message WeixinIsLoginReq{
+  string tempUserId = 1;
+}
+message WeixinIsLoginResp{
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+  string status = 4;
+}
+
+message QQLoginReq {
+  string code = 1;
+}
+
+message QQLoginResp {
+  string shortToken = 1;
+  string longToken = 2;
+  string userId = 3;
+}
 
 
 message RefreshTokenReq {
