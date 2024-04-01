@@ -386,6 +386,7 @@ message Tag {
   string zoneId = 2;
 }
 
+
 message CreatePostReq{
   string title = 1;
   string text = 2;
@@ -435,7 +436,7 @@ message GetPostResp{
   int64 status = 3;
   string url = 4;
   User author = 5; // 作者信息
-  repeated string tags = 6; // 标签
+  repeated TagInfo tags = 6; // 标签
   int64 viewCount = 7; // 浏览量
   int64 likeCount = 8; // 点赞量
   int64 commentCount = 9; // 评论量

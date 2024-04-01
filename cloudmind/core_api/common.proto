@@ -120,6 +120,12 @@ message RecommendUser {
   bool followed = 7;
 }
 
+message TagInfo{
+  string tagId = 1;
+  string zoneId = 2;
+  string value = 3;
+}
+
 message UserDetail {
   string name = 1;
   int64  sex = 2;
@@ -257,7 +263,7 @@ message Post {
   string title = 2;
   string text = 3;
   string url = 4;
-  repeated string tags = 5;
+  repeated TagInfo tags = 5;
   int64 likeCount = 6; // 点赞量
   int64 commentCount = 7; // 评论量
   bool liked = 8; // 是否点赞
