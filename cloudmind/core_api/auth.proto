@@ -60,7 +60,7 @@ message GiteeLoginResp{
 message WxMaUserInfo {
   string openId = 1;
   string nickName = 2;
-  int64 gender = 3;
+  string gender = 3;
   string avatarUrl = 4;
 }
 message WeixinCallBackReq{
