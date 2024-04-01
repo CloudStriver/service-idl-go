@@ -319,14 +319,15 @@ message DeleteUserReq{
 message DeleteUserResp{
 }
 
+
+
 message CreatePostReq{
   string userId = 1;
   string title = 2;
   string text = 3;
-  repeated string tags = 4;
+  repeated Tag tags = 4;
   int64 status = 5;
   string url = 6;
-  repeated string zoneIds = 7;
 }
 
 message CreatePostResp{
@@ -344,11 +345,9 @@ message UpdatePostReq{
   string postId = 1;
   string title = 3;
   string text = 4;
-  repeated string tags = 5;
+  repeated Tag tags = 5;
   int64 status = 6;
   string url = 7;
-  repeated string zoneIds = 8;
-
 }
 
 message UpdatePostResp{
@@ -362,7 +361,7 @@ message GetPostResp{
   string userId = 1;
   string title = 2;
   string text = 3;
-  repeated string tags = 4;
+  repeated Tag tags = 4;
   string url = 5;
   int64 status = 6;
   int64 createTime = 7;
