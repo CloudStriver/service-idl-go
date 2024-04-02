@@ -104,6 +104,9 @@ service content {
   rpc AskDownloadFile(AskDownloadFileReq) returns(AskDownloadFileResp){
     option (http.post) = "/content/askDownloadFile";
   }
+  rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp){
+    option (http.post) = "content/makeFilePrivate";
+  }
   // ------------------ 文件 --------------------
 
   // ------------------ 帖子 --------------------
@@ -297,7 +300,6 @@ service label {
     option (http.get) = "/label/getLabelsInBatch";
   }
 }
-
 
 service hotRank {
   rpc GetHotRanks(GetHotRanksReq) returns(GetHotRanksResp){

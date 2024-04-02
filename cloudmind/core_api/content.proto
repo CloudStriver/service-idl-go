@@ -598,3 +598,10 @@ message GetHotRanksResp{
   repeated HotUser users = 2;
   repeated HotFile files = 3;
 }
+
+message MakeFilePrivateReq{
+  string fileId = 1;
+}
+
+message MakeFilePrivateResp{
+}
