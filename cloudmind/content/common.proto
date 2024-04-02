@@ -68,6 +68,13 @@ enum Folder {
   Folder_Size = -1;
 }
 
+
+message Tag {
+  string tagId = 1;
+  string zoneId = 2;
+}
+
+
 message FileInfo {
   string fileId = 1;
   string userId = 2;
@@ -191,7 +198,7 @@ message Post {
   string userId = 2;
   string title = 3;
   string text = 4;
-  repeated string tags = 5;
+  repeated Tag tags = 5;
   int64 status = 6;
   string url = 7;
   int64 createTime = 8;
