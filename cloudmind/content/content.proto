@@ -135,15 +135,24 @@ message AddFileToPublicSpaceResp{
 
 message CompletelyRemoveFileReq {
   repeated FileParameter files = 1;
+  string userId = 2;
 }
 
 message CompletelyRemoveFileResp {
+}
+
+message MakeFilePrivateReq{
+  string fileId = 1;
+}
+
+message MakeFilePrivateResp{
 }
 
 message DeleteFileReq{
   int64 deleteType = 1;
   bool clearCommunity = 2;
   repeated FileParameter files = 3;
+  string userId = 4;
 }
 
 message DeleteFileResp{
@@ -318,8 +327,6 @@ message DeleteUserReq{
 
 message DeleteUserResp{
 }
-
-
 
 message CreatePostReq{
   string userId = 1;
@@ -567,6 +574,7 @@ service ContentService {
   rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp);
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp);
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp);
+  rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp);
 
   // ---------------用户-----------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
@@ -665,7 +673,6 @@ service ContentService {
 //message CreateProductCartResp{
 //}
 
-
 message CreateItemReq{
   string itemId = 1;
   bool isHidden = 2;
@@ -734,7 +741,6 @@ message GetLatestRecommendResp{
   repeated string itemIds = 1;
 }
 
-
 message CreateFeedBackReq{
   string feedbackType = 1;
   string userId = 2;
@@ -743,8 +749,6 @@ message CreateFeedBackReq{
 
 message CreateFeedBackResp{
 }
-
-
 
 message GetHotValueReq{
   string hotId = 1;
@@ -762,7 +766,6 @@ message IncrHotValueReq{
 
 message IncrHotValueResp{
 }
-
 
 message CreateHotReq {
   string hotId = 1;
