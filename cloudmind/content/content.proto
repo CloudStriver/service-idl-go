@@ -143,6 +143,7 @@ message CompletelyRemoveFileResp {
 
 message MakeFilePrivateReq{
   string fileId = 1;
+  string userId = 2;
 }
 
 message MakeFilePrivateResp{
