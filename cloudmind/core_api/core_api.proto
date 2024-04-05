@@ -107,6 +107,9 @@ service content {
   rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp){
     option (http.post) = "content/makeFilePrivate";
   }
+  rpc CheckFile(CheckFileReq) returns(CheckFileResp){
+    option (http.get) = "/content/checkFile";
+  }
   // ------------------ 文件 --------------------
 
   // ------------------ 帖子 --------------------
