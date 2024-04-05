@@ -11,6 +11,14 @@ enum TargetType {
   CommentContentType = 4;
 }
 
+enum AuditStatus {
+  UnKnowAuditStatus = 0;
+  AuditStatus_notStart = 1; // 未开始审核
+  AuditStatus_pass = 2; // 审核通过
+  AuditStatus_notPass = 3; // 审核未通过
+  AuditStatus_wait = 4; // 等待审核
+}
+
 enum Action{
   UnKnownAction = 0;
   LikeType = 1; // 点赞
@@ -68,12 +76,10 @@ enum Folder {
   Folder_Size = -1;
 }
 
-
 message Tag {
   string tagId = 1;
   string zoneId = 2;
 }
-
 
 message FileInfo {
   string fileId = 1;
@@ -89,9 +95,11 @@ message FileInfo {
   string subZone = 11;
   string description = 12;
   repeated string labels = 13;
-  int64 createAt = 14;
-  int64 updateAt = 15;
-  int64 deleteAt = 16;
+  int64 auditStatus = 14;
+  int64 createAt = 15;
+  int64 updateAt = 16;
+  int64 deleteAt = 17;
+
 }
 
 message File {
@@ -109,6 +117,7 @@ message File {
   string description = 12;
   repeated string labels = 13;
   int64 category = 14;
+  int64 auditStatus = 15;
 }
 
 message FileParameter {
@@ -172,6 +181,7 @@ message FileFilterOptions {
   repeated string onlyType = 8;
   optional string onlyLabelId = 9;
   optional int64 onlyCategory = 10;
+  optional int64 onlyAuditStatus = 11;
 }
 
 message ShareFileFilterOptions {
