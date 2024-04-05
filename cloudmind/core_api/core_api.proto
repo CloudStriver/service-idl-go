@@ -176,12 +176,6 @@ service auth {
   rpc EmailLogin(EmailLoginReq) returns (EmailLoginResp){
     option (http.post) = "/auth/emailLogin";
   }
-  rpc GithubLogin(GithubLoginReq) returns (GithubLoginResp){
-    option (http.get) = "/auth/githubLogin";
-  }
-  rpc GiteeLogin(GiteeLoginReq) returns (GiteeLoginResp){
-    option (http.get) = "/auth/giteeLogin";
-  }
   rpc WeixinLogin(WeixinLoginReq) returns (WeixinLoginResp){
     option (http.get) = "/auth/weixinLogin";
   }

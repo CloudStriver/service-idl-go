@@ -37,25 +37,7 @@ message EmailLoginResp{
   string userId = 3;
 }
 
-message GithubLoginReq{
-  string code = 1;
-}
 
-message GithubLoginResp{
-  string shortToken = 1;
-  string longToken = 2;
-  string userId = 3;
-}
-
-message GiteeLoginReq{
-  string code = 1;
-}
-
-message GiteeLoginResp{
-  string shortToken = 1;
-  string longToken = 2;
-  string userId = 3;
-}
 
 message WxMaUserInfo {
   string openId = 1;
