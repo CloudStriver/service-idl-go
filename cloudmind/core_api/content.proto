@@ -160,10 +160,10 @@ message UpdateFileResp{
 
 message CheckFileReq{
   string fileId = 1;
-  int64 auditStatus = 2;
 }
 
 message CheckFileResp{
+  repeated Keywords keywords = 1;
 }
 
 message MoveFileReq{
