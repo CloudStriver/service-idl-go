@@ -11,6 +11,14 @@ enum TargetType {
   CommentContentType = 4;
 }
 
+enum AuditStatus {
+  UnKnowAuditStatus = 0;
+  AuditStatus_notStart = 1; // 未开始审核
+  AuditStatus_pass = 2; // 审核通过
+  AuditStatus_notPass = 3; // 审核未通过
+  AuditStatus_wait = 4; // 等待审核
+}
+
 enum Action{
   UnKnownAction = 0;
   LikeType = 1; // 点赞
@@ -67,7 +75,6 @@ enum Folder {
   Folder_null = 0;
   Folder_Size = -1;
 }
-
 
 message Tag {
   string tagId = 1;
