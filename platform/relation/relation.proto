@@ -74,10 +74,23 @@ message GetRelationCountResp{
   int64 total = 1;
 }
 
+message GetRelationPathsReq{
+  string fromId = 1;
+  int64 fromType = 2;
+  int64 edgeType1 = 3;
+  int64 edgeType2 = 4;
+  optional basic.PaginationOptions paginationOptions = 5;
+}
+
+message GetRelationPathsResp{
+  repeated Relation relations = 1;
+}
+
 service RelationService {
   rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
   rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);
   rpc GetRelationCount(GetRelationCountReq) returns(GetRelationCountResp);
   rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp);
   rpc GetRelation(GetRelationReq) returns(GetRelationResp);
+  rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp);
 }
