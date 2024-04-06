@@ -223,7 +223,7 @@ message DeleteNodeReq{
 message DeleteNodeResp{
 }
 
-service CommentService {
+service PlatformService {
   rpc GetComment(GetCommentReq) returns (GetCommentResp);
   rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
   rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
