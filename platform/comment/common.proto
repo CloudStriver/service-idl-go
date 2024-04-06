@@ -83,6 +83,7 @@ message CommentFilterOptions {
   optional string onlyFatherId = 6;
   optional int64 onlyState = 7;
   optional int64 onlyAttrs = 8;
+  repeated string onlyCommentIds = 9;
 }
 
 message LabelFilterOptions {
