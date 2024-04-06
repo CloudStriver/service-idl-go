@@ -90,6 +90,13 @@ message DeleteCommentSubjectReq {
 message DeleteCommentSubjectResp {
 }
 
+message DeleteCommentByIdsReq {
+  repeated string ids = 1;
+}
+
+message DeleteCommentByIdsResp {
+}
+
 message CreateLabelReq {
   Label label = 1;
 }
@@ -139,6 +146,7 @@ service CommentService {
   rpc CreateCommentSubject(CreateCommentSubjectReq) returns (CreateCommentSubjectResp);
   rpc UpdateCommentSubject(UpdateCommentSubjectReq) returns (UpdateCommentSubjectResp);
   rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns (DeleteCommentSubjectResp);
+  rpc DeleteCommentByIds(DeleteCommentByIdsReq) returns (DeleteCommentByIdsResp);
 
   rpc CreateLabel(CreateLabelReq) returns (CreateLabelResp);
   rpc DeleteLabel(DeleteLabelReq) returns (DeleteLabelResp);
