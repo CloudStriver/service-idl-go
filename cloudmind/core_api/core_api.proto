@@ -221,6 +221,9 @@ service relation {
   rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
     option (http.post) = "/relation/deleteRelation";
   }
+  rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp){
+    option (http.get) = "/relation/getRelationPaths";
+  }
 }
 
 service system {

@@ -66,3 +66,15 @@ message DeleteRelationReq{
 }
 message DeleteRelationResp{
 }
+
+message GetRelationPathsReq{
+  RelationType relationType = 1[(http.vd) = "$ >= 1 && $ <= 10"];
+  optional int64 limit = 2;
+  optional int64 offset = 3;
+}
+
+message GetRelationPathsResp{
+  repeated User users = 1;
+  repeated PublicFile files = 2;
+  repeated Post posts = 3;
+}
