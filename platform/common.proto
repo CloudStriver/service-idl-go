@@ -1,6 +1,6 @@
 syntax = "proto3";
 package platform.comment;
-option go_package = "platform/comment";
+option go_package = "platform";
 
 enum Attrs {
   UnknownAttrs = 0;
@@ -123,4 +123,13 @@ message Label {
   string zone = 2;
   string subZone = 3;
   string value = 4;
+}
+
+message Relation {
+  int64 fromType = 1;
+  string fromId = 2;
+  int64 toType = 3;
+  string toId = 4;
+  int64 relationType = 5;
+  int64 createTime = 6;
 }
