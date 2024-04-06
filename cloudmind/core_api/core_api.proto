@@ -4,9 +4,8 @@ option go_package = "cloudmind/core_api";
 import "http/http.proto";
 import "cloudmind/core_api/content.proto";
 import "cloudmind/core_api/auth.proto";
-import "cloudmind/core_api/relation.proto";
 import "cloudmind/core_api/system.proto";
-import "cloudmind/core_api/comment.proto";
+import "cloudmind/core_api/platform.proto";
 
 service content {
   // ------------------ 用户 --------------------

@@ -1,27 +1,24 @@
 syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
-import "cloudmind/sts/common.proto";
-import "cloudmind/content/common.proto";
-import "platform/comment/common.proto";
 import "basic/pagination.proto";
 import "http/http.proto";
 
 enum PostStatus {
-  UnknowPostStatus = 0;
+  UnknownPostStatus = 0;
   PublicPostStatus = 1;
   DraftPostStatus = 2;
   PrivatePostStatus = 3;
 }
 
 enum ProductStatus {
-  UnknowProductStatus = 0;
+  UnknownProductStatus = 0;
   PublicProductStatus = 1;
   PrivateProductStatus = 2;
 }
 
 enum Product_Type {
-  UnknowProduct_Type = 0;
+  UnknownProduct_Type = 0;
   Flow_Type = 1;
   Memory_Type = 2;
   File_Type = 3;
@@ -80,6 +77,13 @@ enum Attrs {
   Pinned = 2;
   Highlighted = 3;
   PinnedAndHighlighted = 4;
+}
+
+enum Category {
+  UnknownCategory = 0;
+  UserCategory = 1;
+  FileCategory = 2;
+  PostCategory = 3;
 }
 
 message User {
@@ -369,13 +373,6 @@ message Label {
   string zone = 2;
   string subZone = 3;
   string value = 4;
-}
-
-enum Category {
-  UnknownCategory = 0;
-  UserCategory = 1;
-  FileCategory = 2;
-  PostCategory = 3;
 }
 
 message Recommends {
