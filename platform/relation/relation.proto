@@ -18,14 +18,6 @@ message CreateRelationResp{
   bool ok = 1;
 }
 
-message DeleteNodeReq{
-
-}
-
-message DeleteNodeResp{
-
-}
-
 message GetRelationReq{
   int64 fromType = 1;
   string fromId = 2;
@@ -94,6 +86,14 @@ message GetRelationPathsResp{
   repeated Relation relations = 1;
 }
 
+message DeleteNodeReq{
+  int64 nodeType = 1;
+  string nodeId = 2;
+}
+
+message DeleteNodeResp{
+}
+
 service RelationService {
   rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
   rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);
@@ -101,4 +101,5 @@ service RelationService {
   rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp);
   rpc GetRelation(GetRelationReq) returns(GetRelationResp);
   rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp);
+  rpc DeleteNode(DeleteNodeReq) returns(DeleteNodeResp);
 }
