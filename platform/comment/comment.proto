@@ -84,6 +84,7 @@ message UpdateCommentSubjectResp {
 
 message DeleteCommentSubjectReq {
   string id = 1;
+  string userId = 2;
 }
 
 message DeleteCommentSubjectResp {

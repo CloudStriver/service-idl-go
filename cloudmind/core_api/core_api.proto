@@ -108,7 +108,7 @@ service content {
     option (http.post) = "content/makeFilePrivate";
   }
   rpc CheckFile(CheckFileReq) returns(CheckFileResp){
-    option (http.get) = "/content/checkFile";
+    option (http.post) = "/content/checkFile";
   }
   // ------------------ 文件 --------------------
 
