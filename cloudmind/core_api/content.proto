@@ -92,6 +92,7 @@ message GetPublicFilesReq{
   optional bool backward = 13;
   optional int64 offset = 14;
   optional int64 onlyCategory = 15;
+  optional int64 onlyAuditStatus = 16;
 }
 
 message GetPublicFilesResp{
@@ -155,6 +156,14 @@ message UpdateFileReq{
 
 message UpdateFileResp{
   string name = 1;
+}
+
+message CheckFileReq{
+  string fileId = 1;
+}
+
+message CheckFileResp{
+  repeated Keywords keywords = 1;
 }
 
 message MoveFileReq{
