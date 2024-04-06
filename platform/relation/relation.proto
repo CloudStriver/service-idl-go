@@ -18,6 +18,14 @@ message CreateRelationResp{
   bool ok = 1;
 }
 
+message DeleteNodeReq{
+
+}
+
+message DeleteNodeResp{
+
+}
+
 message GetRelationReq{
   int64 fromType = 1;
   string fromId = 2;
