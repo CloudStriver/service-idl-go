@@ -90,9 +90,21 @@ message User {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated string tags = 4;
+  repeated string labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
+}
+
+message PostUser {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+  repeated string labels = 4;
+  bool followed = 5;
+  int64 followedCount = 6;
+  string description = 7;
+  int64 likedCount = 8;
+  int64 postCount = 9;
 }
 
 message HotUser {
@@ -124,7 +136,7 @@ message RecommendUser {
   bool followed = 7;
 }
 
-message TagInfo{
+message LabelInfo{
   string tagId = 1;
   string zoneId = 2;
   string value = 3;
@@ -177,6 +189,11 @@ message Zone {
   string id = 1;
   string fatherId = 2;
   string value = 3;
+}
+
+message ZoneInfo {
+  string id = 1;
+  string value = 2;
 }
 
 message ShareFile {
@@ -267,7 +284,7 @@ message Post {
   string title = 2;
   string text = 3;
   string url = 4;
-  repeated TagInfo tags = 5;
+  repeated LabelInfo tags = 5;
   int64 likeCount = 6; // 点赞量
   int64 commentCount = 7; // 评论量
   bool liked = 8; // 是否点赞

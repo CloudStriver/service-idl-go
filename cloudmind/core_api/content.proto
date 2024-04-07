@@ -253,7 +253,7 @@ message GetZonesReq {
 }
 
 message GetZonesResp {
-  repeated Zone zones = 1;
+  repeated ZoneInfo zones = 1;
   int64 total = 2;
   string token = 3;
 }
@@ -344,6 +344,7 @@ message AskDownloadFileResp{
 message GetUserReq{
   string userId = 1;
 }
+
 message GetUserResp{
   string userId = 1;
   string name = 2;
@@ -444,8 +445,8 @@ message GetPostResp{
   string text = 2;
   int64 status = 3;
   string url = 4;
-  User author = 5; // 作者信息
-  repeated TagInfo tags = 6; // 标签
+  PostUser author = 5; // 作者信息
+  repeated LabelInfo tags = 6; // 标签
   int64 viewCount = 7; // 浏览量
   int64 likeCount = 8; // 点赞量
   int64 commentCount = 9; // 评论量
