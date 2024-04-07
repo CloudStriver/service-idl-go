@@ -223,6 +223,20 @@ message DeleteNodeReq{
 message DeleteNodeResp{
 }
 
+message GetRelationPathsCountReq{
+  string fromId1 = 1;
+  int64 fromType1 = 2;
+  string fromId2 = 3;
+  int64 fromType2 = 4;
+  int64 edgeType1 = 5;
+  int64 edgeType2 = 6;
+  int64 toType = 7;
+}
+
+message GetRelationPathsCountResp{
+  int64 total = 1;
+}
+
 service PlatformService {
   rpc GetComment(GetCommentReq) returns (GetCommentResp);
   rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
@@ -250,4 +264,5 @@ service PlatformService {
   rpc GetRelation(GetRelationReq) returns(GetRelationResp);
   rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp);
   rpc DeleteNode(DeleteNodeReq) returns(DeleteNodeResp);
+  rpc GetRelationPathsCount(GetRelationPathsCountReq) returns(GetRelationPathsCountResp);
 }
