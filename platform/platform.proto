@@ -226,11 +226,10 @@ message DeleteNodeResp{
 message GetRelationPathsCountReq{
   string fromId1 = 1;
   int64 fromType1 = 2;
-  string fromId2 = 3;
-  int64 fromType2 = 4;
-  int64 edgeType1 = 5;
-  int64 edgeType2 = 6;
-  int64 toType = 7;
+  int64 fromType2 = 3;
+  int64 edgeType1 = 4;
+  int64 edgeType2 = 5;
+  int64 toType = 6;
 }
 
 message GetRelationPathsCountResp{
