@@ -1,5 +1,5 @@
 syntax = "proto3";
-package platform.comment;
+package platform;
 option go_package = "platform";
 
 import "platform/common.proto";

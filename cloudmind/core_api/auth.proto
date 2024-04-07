@@ -1,11 +1,13 @@
 syntax = "proto3";
 package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
-import "cloudmind/sts/common.proto";
-import "cloudmind/content/common.proto";
+
 import "basic/pagination.proto";
 import "http/http.proto";
+import "cloudmind/sts/common.proto";
+import "cloudmind/core_api/common.proto";
 import "cloudmind/core_api/content.proto";
+
 enum UploadType{
   UnknownUploadType = 0;
   UserAvatarUploadType = 1;
@@ -36,8 +38,6 @@ message EmailLoginResp{
   string longToken = 2;
   string userId = 3;
 }
-
-
 
 message WxMaUserInfo {
   string openId = 1;
@@ -84,7 +84,6 @@ message QQLoginResp {
   string longToken = 2;
   string userId = 3;
 }
-
 
 message RefreshTokenReq {
   string longToken = 1;
@@ -136,7 +135,6 @@ message CheckEmailReq{
 message CheckEmailResp{
    bool ok = 1;
 }
-
 
 message AskUploadAvatarReq{
   string name = 1;

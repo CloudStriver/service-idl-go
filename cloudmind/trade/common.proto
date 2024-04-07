@@ -20,7 +20,6 @@ message UpdateBalanceResp{
   bool ok = 1;
 }
 
-
 message GetBalanceReq{
   string userId = 1;
 }
@@ -38,8 +37,6 @@ message CreateBalanceReq{
 message CreateBalanceResp{
 }
 
-
-
 message AddStockReq{
   string productId = 1;
   int64 amount = 3;
@@ -47,7 +44,6 @@ message AddStockReq{
 
 message AddStockResp{
 }
-
 
 message GetStockReq{
   string productId = 1;

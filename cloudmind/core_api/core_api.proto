@@ -204,27 +204,6 @@ service auth {
   }
 }
 
-service relation {
-  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
-    option (http.post) = "/relation/createRelation";
-  }
-  rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
-    option (http.get) = "/relation/getFromRelations";
-  }
-  rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
-    option (http.get) = "/relation/getToRelations";
-  }
-  rpc GetRelation(GetRelationReq) returns(GetRelationResp){
-    option (http.get) = "/relation/getRelation";
-  }
-  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
-    option (http.post) = "/relation/deleteRelation";
-  }
-  rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp){
-    option (http.get) = "/relation/getRelationPaths";
-  }
-}
-
 service system {
   rpc GetNotifications(GetNotificationsReq) returns(GetNotificationsResp){
     option (http.get) = "/system/getNotifications";
@@ -249,7 +228,7 @@ service system {
   }
 }
 
-service comment {
+service platform {
   rpc CreateComment(CreateCommentReq) returns(CreateCommentResp){
     option (http.post) = "/comment/createComment";
   }
@@ -276,6 +255,24 @@ service comment {
   }
   rpc DeleteCommentSubject(DeleteCommentSubjectReq) returns(DeleteCommentSubjectResp){
     option (http.post) = "/comment/deleteCommentSubject";
+  }
+  rpc CreateRelation(CreateRelationReq) returns (CreateRelationResp){
+    option (http.post) = "/relation/createRelation";
+  }
+  rpc GetFromRelations(GetFromRelationsReq) returns(GetFromRelationsResp){
+    option (http.get) = "/relation/getFromRelations";
+  }
+  rpc GetToRelations(GetToRelationsReq) returns(GetToRelationsResp){
+    option (http.get) = "/relation/getToRelations";
+  }
+  rpc GetRelation(GetRelationReq) returns(GetRelationResp){
+    option (http.get) = "/relation/getRelation";
+  }
+  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp){
+    option (http.post) = "/relation/deleteRelation";
+  }
+  rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp){
+    option (http.get) = "/relation/getRelationPaths";
   }
 }
 
