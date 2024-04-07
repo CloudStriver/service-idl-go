@@ -1,10 +1,8 @@
 syntax = "proto3";
 package cloudmind.system;
-option go_package = 'cloudmind/system';
+option go_package = "cloudmind/system";
 import "basic/pagination.proto";
 import "cloudmind/system/common.proto";
-
-
 
 message GetNotificationsReq {
   string userId = 1;

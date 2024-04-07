@@ -1,8 +1,6 @@
 syntax = "proto3";
-
 package cloudmind.content;
 option go_package = "cloudmind/content";
-
 import "basic/pagination.proto";
 import "cloudmind/content/common.proto";
 
