@@ -17,17 +17,15 @@ message UpdateUserReq{
 }
 
 message UpdateUserResp{
-  repeated Keywords keywords = 1;
+  repeated string keywords = 1;
 }
 
 message SearchUserReq{
-  optional string allFieldsKey = 1;
-  optional string name = 2;
-  optional string description = 3;
-  optional int64 limit = 4;
-  optional string lastToken = 5;
-  optional bool backward = 6;
-  optional int64 offset = 7;
+  optional string keyword = 1;
+  optional int64 limit = 2;
+  optional string lastToken = 3;
+  optional bool backward = 4;
+  optional int64 offset = 5;
 }
 
 message SearchReq{
@@ -173,7 +171,7 @@ message CheckFileReq{
 }
 
 message CheckFileResp{
-  repeated Keywords keywords = 1;
+  repeated string keywords = 1;
 }
 
 message MoveFileReq{
@@ -410,7 +408,7 @@ message Tag {
 message CreatePostReq{
   string title = 1;
   string text = 2;
-  repeated Tag tags = 3[(http.vd) = "len($) >= 1 && len($) <= 10"];
+  repeated string labelIds = 3[(http.vd) = "len($) >= 1 && len($) <= 10"];
   int64 status = 4[(http.vd) = "$ >= 1 && $ <= 3"];
   string url = 5;
   bool isSure = 6;
@@ -418,7 +416,7 @@ message CreatePostReq{
 
 message CreatePostResp{
   string postId = 1;
-  repeated Keywords keywords = 2;
+  repeated string keywords = 2;
 }
 
 message Keywords {
@@ -436,14 +434,14 @@ message UpdatePostReq{
   string postId = 1;
   string title = 2;
   string text = 3;
-  repeated Tag tags = 4[(http.vd) = "len($) >= 1 && len($) <= 10"];
+  repeated string labelIds = 4[(http.vd) = "len($) >= 1 && len($) <= 10"];
   int64 status = 5[(http.vd) = "($ == 0) || ($ >= 1 && $ <= 3)"];
   string url = 6;
   bool isSure = 7;
 }
 
 message UpdatePostResp{
-  repeated Keywords keywords = 1;
+  repeated string keywords = 1;
 }
 
 message GetPostReq{
@@ -456,7 +454,7 @@ message GetPostResp{
   int64 status = 3;
   string url = 4;
   PostUser author = 5; // 作者信息
-  repeated LabelInfo tags = 6; // 标签
+  repeated string labelIds = 6; // 标签
   int64 viewCount = 7; // 浏览量
   int64 likeCount = 8; // 点赞量
   int64 commentCount = 9; // 评论量
@@ -469,18 +467,14 @@ message GetPostResp{
 }
 
 message GetPostsReq{
-  optional string allFieldsKey = 1;
-  optional string tag = 2;
-  optional string text = 3;
-  optional string title = 4;
-  optional string onlyUserId = 5;
-  optional string onlyTag = 6;
-  optional string onlyZoneId = 7;
-  optional int64 onlyStatus = 8[(http.vd) = "$ == nil || ($ >= 1 && $ <= 3)"];
-  optional int64 limit = 9;
-  optional string lastToken = 10;
-  optional bool backward = 11;
-  optional int64 offset = 12;
+  optional string keyword = 1;
+  optional string onlyUserId = 2;
+  optional string onlyLabelId = 3;
+  optional int64 onlyStatus = 4[(http.vd) = "$ == nil || ($ >= 1 && $ <= 3)"];
+  optional int64 limit = 5;
+  optional string lastToken = 6;
+  optional bool backward = 7;
+  optional int64 offset = 8;
 }
 
 message GetPostsResp{

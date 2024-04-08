@@ -93,6 +93,7 @@ message User {
   repeated string labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
+  string description = 7;
 }
 
 message PostUser {
@@ -312,11 +313,12 @@ message Post {
   string title = 2;
   string text = 3;
   string url = 4;
-  repeated LabelInfo tags = 5;
+  repeated string labelIds = 5;
   int64 likeCount = 6; // 点赞量
   int64 commentCount = 7; // 评论量
-  bool liked = 8; // 是否点赞
-  string userName = 9;
+  int64 viewCount = 8;
+  bool liked = 9; // 是否点赞
+  string userName = 10;
 }
 
 message Notification {
@@ -421,7 +423,7 @@ message Label {
 }
 
 message Recommends {
-  repeated RecommendUser users = 1;
+  repeated User users = 1;
   repeated Post posts = 2;
 }
 
