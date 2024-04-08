@@ -32,8 +32,12 @@ message CheckEmailResp{
 }
 
 message CreateAuthReq{
-  AuthInfo authInfo = 1;
-  UserInfo userInfo = 2;
+  int64 authType = 1; // 登录类型
+  string appId = 2; // APP下的唯一用户ID
+  string unionId = 3; // 同一个平台下的唯一用户ID
+  string platFormId = 4; // 平台ID
+  int64 role = 5; // 用户权限
+  string password = 6; // 用户密码
 }
 
 message CreateAuthResp{
@@ -41,8 +45,11 @@ message CreateAuthResp{
 }
 
 message LoginReq{
-  AuthInfo auth = 1;
-  string password = 2;
+  int64 authType = 1;
+  string appId = 2;
+  string unionId = 3;
+  string platFormId = 4;
+  string password = 5;
 }
 message LoginResp {
   string userId = 1;
@@ -50,8 +57,10 @@ message LoginResp {
 
 message AppendAuthReq{
   string userId = 1;
-  AuthInfo authInfo = 2;
-  optional string code = 3;
+  int64 authType = 2;
+  string appId = 3;
+  string unionId = 4;
+  string platFormId = 5;
 }
 
 message AppendAuthResp{
@@ -101,12 +110,8 @@ message FindAllContentReq{
   repeated string contents = 1;
 }   
 
-message Keywords {
-  repeated string keywords = 1;
-}
-
 message FindAllContentResp{ 
-  repeated Keywords keywords = 1;
+  repeated string keywords = 1;
 }
 
 service StsService {

@@ -15,17 +15,30 @@ enum UploadType{
   ProductAvatarUploadType = 3;
 }
 
+enum LoginType{
+  UnknownLoginType = 0;
+  EmailLoginType = 1;
+  WeixinLoginType = 2;
+  QQLoginType = 3;
+}
+
+enum RoleType {
+  UnknownRoleType = 0;
+  UserRoleType = 1;
+  AdminRoleType = 2;
+  SuperAdminRoleType = 3;
+}
+
+
 message RegisterReq{
   string name = 1[(http.vd) = "len($) >= 1 && len($) <= 20"];
   string email = 2[(http.vd) = "email($)"];
   string password = 3;
-  bool isSure = 4;
 }
 message RegisterResp{
   string shortToken = 1;
   string longToken = 2;
   string userId = 3;
-  repeated Keywords keywords = 4;
 }
 
 message EmailLoginReq{

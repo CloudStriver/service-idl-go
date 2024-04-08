@@ -317,8 +317,9 @@ message Post {
   repeated Label labels = 5;
   int64 likeCount = 6; // 点赞量
   int64 commentCount = 7; // 评论量
-  bool liked = 8; // 是否点赞
-  string userName = 9;
+  int64 viewCount = 8;
+  bool liked = 9; // 是否点赞
+  string userName = 10;
 }
 
 message Notification {
@@ -421,7 +422,7 @@ message Label {
 }
 
 message Recommends {
-  repeated RecommendUser users = 1;
+  repeated User users = 1;
   repeated Post posts = 2;
 }
 
