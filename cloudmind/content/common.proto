@@ -78,7 +78,7 @@ enum Folder {
 
 message Tag {
   string tagId = 1;
-  string zoneId = 2;
+  string fatherTagId = 2;
 }
 
 message FileInfo {
@@ -208,7 +208,7 @@ message Post {
   string userId = 2;
   string title = 3;
   string text = 4;
-  repeated Tag tags = 5;
+  repeated string tagIds = 5;
   int64 status = 6;
   string url = 7;
   int64 createTime = 8;
@@ -217,11 +217,8 @@ message Post {
 
 message PostFilterOptions{
   optional string onlyUserId = 1;
-  optional string onlyTitle = 2;
-  optional string onlyText = 3;
-  optional string  onlyTag = 4;
-  optional int64 onlyStatus = 5;
-  optional string onlyZoneId = 6;
+  optional string onlyTagId = 2;
+  optional int64 onlyStatus = 3;
 }
 
 message Product{
