@@ -6,7 +6,14 @@ import "platform/common.proto";
 import "basic/pagination.proto";
 
 message CreateCommentReq {
-  Comment comment = 1;
+  string subjectId = 1;
+  string rootId = 2;
+  string fatherId = 3;
+  repeated string labelIds = 4; // 标签id列表：作者点赞，作者回复等
+  string userId = 5; // 评论者
+  string atUserId = 6; // @谁
+  string content = 7; // 内容
+  string meta = 8; // 皮肤，字体等
 }
 
 message CreateCommentResp {
@@ -14,11 +21,22 @@ message CreateCommentResp {
 }
 
 message GetCommentReq {
-  string commentId = 1;
+  string id = 1;
 }
 
 message GetCommentResp {
-  CommentInfo comment = 1;
+  string subjectId = 1;
+  string rootId = 2;
+  string fatherId = 3;
+  int64 count = 4; // 回复数
+  int64 state = 5; // 1: 正常, 2: 删除
+  int64 attrs = 6; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string labelIds = 7; // 标签：作者点赞，作者回复等
+  string userId = 8; // 评论者
+  string atUserId = 9; // @谁
+  string content = 10; // 内容
+  string meta = 11; // 皮肤，字体等
+  int64 createTime = 12;
 }
 
 message GetCommentListReq {
@@ -27,17 +45,19 @@ message GetCommentListReq {
 }
 
 message GetCommentListResp {
-  repeated CommentInfo comments = 1;
+  repeated Comment comments = 1;
   int64 total = 2;
   string token = 3;
 }
 
 message UpdateCommentReq {
-  Comment comment = 1;
+  string id = 1;
+  int64 state = 2; // 1: 正常, 2: 删除
+  repeated string labelIds = 3; // 标签：作者点赞，作者回复等
+  string meta = 4; // 皮肤，字体等
 }
 
 message UpdateCommentResp {
-
 }
 
 message DeleteCommentReq {
@@ -55,7 +75,6 @@ message SetCommentAttrsReq {
 }
 
 message SetCommentAttrsResp{
-
 }
 
 message GetCommentSubjectReq {
@@ -63,19 +82,28 @@ message GetCommentSubjectReq {
 }
 
 message GetCommentSubjectResp {
-  SubjectDetails subject = 1;
+  string userId = 1;
+  string topCommentId = 2;
+  int64 rootCount = 3;
+  int64 allCount = 4;
+  int64 state = 5; // 1: 正常, 2: 删除
+  int64 attrs = 6; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message CreateCommentSubjectReq {
-  Subject subject = 1;
+  string id = 1;
+  string userId = 2;
 }
 
 message CreateCommentSubjectResp {
-  string id = 1;
 }
 
 message UpdateCommentSubjectReq {
-  Subject subject = 1;
+  string id = 1;
+  optional int64 rootCount = 2;
+  optional int64 allCount = 3;
+  int64 state = 4; // 1: 正常, 2: 删除
+  int64 attrs = 5; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message UpdateCommentSubjectResp {
@@ -98,39 +126,54 @@ message DeleteCommentByIdsResp {
 }
 
 message CreateLabelReq {
-  Label label = 1;
+  string fatherId = 1;
+  string value = 2;
 }
+
 message CreateLabelResp {
   string id = 1;
 }
+
 message DeleteLabelReq {
   string id = 1;
 }
+
 message DeleteLabelResp {
 }
+
 message GetLabelReq {
   string id = 1;
 }
+
 message GetLabelResp {
-  string label = 1;
+  string value = 1;
 }
+
 message UpdateLabelReq {
-  Label label = 1;
+  string id = 1;
+  string fatherId = 2;
+  string value = 3;
 }
+
 message UpdateLabelResp {
 }
+
 message GetLabelsReq {
-  optional LabelFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions pagination = 2;
+  optional string key = 1; // 用于匹配标签的key
+  optional string fatherId = 2;
+  optional basic.PaginationOptions pagination = 3;
 }
+
 message GetLabelsResp {
   repeated Label labels = 1;
   int64 total = 2;
   string token = 3;
 }
+
 message GetLabelsInBatchReq {
-  repeated string labelIds = 1;
+  repeated string ids = 1;
 }
+
 message GetLabelsInBatchResp {
   repeated string labels = 1;
 }
@@ -143,6 +186,7 @@ message CreateRelationReq{
   int64 relationType = 5;
   bool isOnly = 6;
 }
+
 message CreateRelationResp{
   bool ok = 1;
 }
