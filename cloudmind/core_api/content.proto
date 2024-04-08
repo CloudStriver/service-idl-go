@@ -30,6 +30,16 @@ message SearchUserReq{
   optional int64 offset = 7;
 }
 
+message SearchReq{
+  optional string allFieldsKey = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional int64 limit = 4;
+  optional string lastToken = 5;
+  optional bool backward = 6;
+  optional int64 offset = 7;
+}
+
 message SearchUserResp{
   repeated User users = 1;
   string lastToken = 2;
