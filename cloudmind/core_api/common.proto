@@ -181,8 +181,23 @@ message PublicFile {
   int64 updateAt = 13;
   repeated Label labels = 14;
   User author = 15; // 作者信息
-  PostCount fileCount = 16; // 文章统计信息
-  PostRelation fileRelation = 17; // 文章关系信息
+  FileCount fileCount = 16; // 文章统计信息
+  FileRelation fileRelation = 17; // 文章关系信息
+}
+
+message SearchInfo {
+  string id = 1;
+  string name = 2;
+  int64 type = 3;
+  string description = 4;
+  int64 createAt = 5;
+  repeated LabelInfo labels = 6;
+  int64 viewCount = 7;
+  int64 likedCount = 8;
+  int64 liked = 9;
+  string userId = 10;
+  string userName = 11;
+  string postUrl = 12;
 }
 
 message Zone {
@@ -263,13 +278,26 @@ message ShareFileFilterOptions {
 
 message PostCount {
   int64 viewCount = 1; // 浏览量
-  int64 likeCount = 2; // 点赞量
+  int64 likedCount = 2; // 点赞量
   int64 commentCount = 3; // 评论量
   int64 shareCount = 4; // 分享量
   int64 collectCount = 5;  // 收藏量
 }
 
 message PostRelation{
+  bool liked = 1;
+  bool collected = 2;
+}
+
+message FileCount {
+  int64 viewCount = 1; // 浏览量
+  int64 likedCount = 2; // 点赞量
+  int64 commentCount = 3; // 评论量
+  int64 shareCount = 4; // 分享量
+  int64 collectCount = 5;  // 收藏量
+}
+
+message FileRelation{
   bool liked = 1;
   bool collected = 2;
 }
