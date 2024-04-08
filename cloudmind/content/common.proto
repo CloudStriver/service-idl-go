@@ -208,7 +208,7 @@ message Post {
   string userId = 2;
   string title = 3;
   string text = 4;
-  repeated string tagIds = 5;
+  repeated string labelIds = 5;
   int64 status = 6;
   string url = 7;
   int64 createTime = 8;
@@ -217,7 +217,7 @@ message Post {
 
 message PostFilterOptions{
   optional string onlyUserId = 1;
-  optional string onlyTagId = 2;
+  optional string onlyLabelId = 2;
   optional int64 onlyStatus = 3;
 }
 
