@@ -24,12 +24,6 @@ enum Product_Type {
   File_Type = 3;
 }
 
-message Slider{
-  string sliderId = 1;
-  string imageUrl = 2;
-  string linkUrl = 3;
-  int64 isPublic = 4;
-}
 enum TargetType {
   UnKnowTargetType = 0;
   UserType = 1;
@@ -86,20 +80,34 @@ enum Category {
   PostCategory = 3;
 }
 
+message Slider{
+  string sliderId = 1;
+  string imageUrl = 2;
+  string linkUrl = 3;
+  int64 isPublic = 4;
+}
+
 message User {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated string labels = 4;
+  repeated Label labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
+  string description = 7;
+}
+
+message SimpleUser {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
 }
 
 message PostUser {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated string labels = 4;
+  repeated Label labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
   string description = 7;
@@ -132,14 +140,8 @@ message RecommendUser {
   string url = 3;
   int64 followedCount = 4;
   string description = 5;
-  repeated string labels = 6;
+  repeated Label labels = 6;
   bool followed = 7;
-}
-
-message LabelInfo{
-  string tagId = 1;
-  string zoneId = 2;
-  string value = 3;
 }
 
 message UserDetail {
@@ -191,7 +193,7 @@ message SearchInfo {
   int64 type = 3;
   string description = 4;
   int64 createAt = 5;
-  repeated LabelInfo labels = 6;
+  repeated Label labels = 6;
   int64 viewCount = 7;
   int64 likedCount = 8;
   int64 liked = 9;
@@ -266,7 +268,7 @@ message FileFilterOptions {
   optional string onlyZone = 5; // 分区
   optional string onlySubZone = 6; // 子分区
   optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
-  repeated string onlyLabels = 8; // 标签id
+  repeated string onlyLabelId = 8; // 标签id
   repeated string onlyType = 9; // 文件类型
   optional int64 onlyCategory = 10;
 }
@@ -312,7 +314,7 @@ message Post {
   string title = 2;
   string text = 3;
   string url = 4;
-  repeated LabelInfo tags = 5;
+  repeated Label labels = 5;
   int64 likeCount = 6; // 点赞量
   int64 commentCount = 7; // 评论量
   bool liked = 8; // 是否点赞
@@ -343,7 +345,7 @@ message Comment {
   optional int64 count = 5; // 回复数
   State state = 6; // 1: 正常, 2: 删除
   Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated string labels = 8; // 标签：作者点赞，作者回复等
+  repeated Label labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
@@ -414,9 +416,7 @@ message SubjectInfo {
 }
 
 message Label {
-  string labelId = 1;
-  string zone = 2;
-  string subZone = 3;
+  string id = 1;
   string value = 4;
 }
 
