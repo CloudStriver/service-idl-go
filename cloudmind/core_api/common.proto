@@ -91,7 +91,7 @@ message User {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated Label labels = 4;
+  repeated string labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
   string description = 7;
@@ -107,12 +107,24 @@ message PostUser {
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated Label labels = 4;
+  repeated string labels = 4;
   bool followed = 5;
   int64 followedCount = 6;
   string description = 7;
   int64 likedCount = 8;
   int64 postCount = 9;
+}
+
+message FileUser {
+  string userId = 1;
+  string name = 2;
+  string url = 3;
+  repeated string labels = 4;
+  bool followed = 5;
+  int64 followedCount = 6;
+  string description = 7;
+  int64 likedCount = 8;
+  int64 fileCount = 9;
 }
 
 message HotUser {
@@ -130,8 +142,8 @@ message HotPost {
 
 message HotFile {
   string fileId = 1;
-  string name = 3;
-  string type = 4;
+  string name = 2;
+  string type = 3;
 }
 
 message RecommendUser {
@@ -140,7 +152,7 @@ message RecommendUser {
   string url = 3;
   int64 followedCount = 4;
   string description = 5;
-  repeated Label labels = 6;
+  repeated string labels = 6;
   bool followed = 7;
 }
 
@@ -154,7 +166,7 @@ message UserDetail {
 }
 
 message PrivateFile {
-  string fileId = 1;
+  string id = 1;
   string userId = 2;
   string name = 3;
   string type = 4;
@@ -168,23 +180,21 @@ message PrivateFile {
 }
 
 message PublicFile {
-  string fileId = 1;
+  string id = 1;
   string userId = 2;
   string name = 3;
   string type = 4;
-  string path = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  int64 isDel = 8;
-  string zone = 9;
-  string subZone = 10;
-  string description = 11;
-  int64 createAt = 12;
-  int64 updateAt = 13;
-  repeated Label labels = 14;
-  User author = 15; // 作者信息
-  FileCount fileCount = 16; // 文章统计信息
-  FileRelation fileRelation = 17; // 文章关系信息
+  int64 spaceSize = 5;
+  int64 isDel = 6;
+  string zone = 7;
+  string subZone = 8;
+  string description = 9;
+  int64 createAt = 10;
+  int64 updateAt = 11;
+  repeated Label labels = 12;
+  FileUser author = 13; // 作者信息
+  FileCount fileCount = 14; // 文章统计信息
+  FileRelation fileRelation = 15; // 文章关系信息
 }
 
 message SearchInfo {
@@ -200,17 +210,6 @@ message SearchInfo {
   string userId = 10;
   string userName = 11;
   string postUrl = 12;
-}
-
-message Zone {
-  string id = 1;
-  string fatherId = 2;
-  string value = 3;
-}
-
-message ZoneInfo {
-  string id = 1;
-  string value = 2;
 }
 
 message ShareFile {
@@ -246,7 +245,7 @@ message ShareCode {
 message SearchField {
   optional string name = 1;
   optional string id = 2;
-  optional string tag = 3; // 仅限Post
+  optional string label = 3; // 仅限Post
   optional string text = 4;
   optional string title = 5;
   optional string description = 6;
@@ -343,32 +342,17 @@ message Comment {
   string subjectId = 2;
   string rootId = 3;
   string fatherId = 4;
-  optional int64 count = 5; // 回复数
-  State state = 6; // 1: 正常, 2: 删除
-  Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated Label labels = 8; // 标签：作者点赞，作者回复等
-  string userId = 9; // 评论者
-  string atUserId = 10; // @谁
-  string content = 11; // 内容
-  string meta = 12; // 皮肤，字体等
-}
-
-message CommentInfo {
-  string id = 1;
-  string subjectId = 2;
-  string rootId = 3;
-  string fatherId = 4;
   int64 count = 5; // 回复数
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-  repeated Label labels = 8; // 标签：作者点赞，作者回复等
+  repeated string labels = 8; // 标签：作者点赞，作者回复等
   string userId = 9; // 评论者
   string atUserId = 10; // @谁
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
   int64 createTime = 13; // 创建时间
   int64 like = 14; // 点赞数
-  User author = 15; // 评论者信息
+  SimpleUser author = 15; // 评论者信息
   CommentRelation commentRelation = 16; // 评论关系信息
 }
 
@@ -418,7 +402,7 @@ message SubjectInfo {
 
 message Label {
   string id = 1;
-  string value = 4;
+  string value = 2;
 }
 
 message Recommends {

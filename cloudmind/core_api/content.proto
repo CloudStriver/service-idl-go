@@ -11,7 +11,7 @@ message UpdateUserReq{
   string fullName = 3;
   string idCard = 4;
   string description = 5;
-  repeated string labels  = 6;
+  repeated string labelIds  = 6;
   string url = 7;
   bool isSure = 8;
 }
@@ -45,21 +45,41 @@ message SearchUserResp{
 }
 
 message GetPrivateFileReq{
-  string fileId = 1;
+  string id = 1;
   bool isGetSize = 2;
 }
 
 message GetPrivateFileResp{
-  PrivateFile file = 1;
+  string name = 1;
+  string type = 2;
+  string path = 3;
+  int64 spaceSize = 4;
+  int64 isDel = 5;
+  int64 createAt = 6;
+  int64 updateAt = 7;
+  int64 deleteAt = 8;
 }
 
 message GetPublicFileReq{
-  string fileId = 1;
+  string id = 1;
   bool isGetSize = 2;
 }
 
 message GetPublicFileResp{
-  PublicFile file = 1;
+  string userId = 1;
+  string name = 2;
+  string type = 3;
+  int64 spaceSize = 4;
+  int64 isDel = 5;
+  string zone = 6;
+  string subZone = 7;
+  string description = 8;
+  int64 createAt = 9;
+  int64 updateAt = 10;
+  repeated Label labels = 11;
+  FileUser author = 12; // 作者信息
+  FileCount fileCount = 13; // 社区文件统计信息
+  FileRelation fileRelation = 14; // 社区文件关系信息
 }
 
 message GetPrivateFilesReq{
@@ -153,12 +173,12 @@ message CreateFileReq{
 }
 
 message CreateFileResp{
-  string fileId = 1;
+  string id = 1;
   string name = 2;
 }
 
 message UpdateFileReq{
-  string fileId = 1;
+  string id = 1;
   string name = 2[(http.vd) = "len($) >= 1 && len($) <= 80"];
 }
 
@@ -167,7 +187,7 @@ message UpdateFileResp{
 }
 
 message CheckFileReq{
-  string fileId = 1;
+  string id = 1;
 }
 
 message CheckFileResp{
@@ -175,7 +195,7 @@ message CheckFileResp{
 }
 
 message MoveFileReq{
-  string fileId = 1;
+  string id = 1;
   string fatherId = 2;
 }
 
@@ -183,7 +203,7 @@ message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  string fileId = 1;
+  string id = 1;
   string fatherId = 2;
   DocumentType documentType = 3;
   optional string code = 4;
@@ -191,12 +211,12 @@ message SaveFileToPrivateSpaceReq{
 }
 
 message SaveFileToPrivateSpaceResp{
-  string fileId = 1;
+  string id = 1;
   string name = 2;
 }
 
 message AddFileToPublicSpaceReq{
-  string fileId = 1;
+  string id = 1;
   string zone = 2;
   string subZone = 3;
   string description = 4;
@@ -207,7 +227,7 @@ message AddFileToPublicSpaceResp{
 }
 
 message DeleteFileReq{
-  repeated string fileIds = 1;
+  repeated string ids = 1;
   IsDel deleteType = 2;
   bool clearCommunity = 3;
 }
@@ -222,62 +242,17 @@ message EmptyRecycleBinResp{
 }
 
 message CompletelyRemoveFileReq {
-  repeated string fileIds = 1;
+  repeated string ids = 1;
 }
 
 message CompletelyRemoveFileResp {
 }
 
 message RecoverRecycleBinFileReq{
-  repeated string fileIds = 1;
+  repeated string ids = 1;
 }
 
 message RecoverRecycleBinFileResp{
-}
-
-message CreateZoneReq {
-  string fatherId = 1;
-  string value = 2;
-}
-
-message CreateZoneResp {
-  string id = 1;
-}
-
-message GetZoneReq {
-  string id = 1;
-}
-
-message GetZoneResp {
-  Zone zone = 1;
-}
-
-message GetZonesReq {
-  string fatherId= 1;
-  optional int64 limit = 2;
-  optional string lastToken = 3;
-  optional bool backward = 4;
-  optional int64 offset = 5;
-}
-
-message GetZonesResp {
-  repeated ZoneInfo zones = 1;
-  int64 total = 2;
-  string token = 3;
-}
-
-message UpdateZoneReq {
-  Zone zone = 1;
-}
-
-message UpdateZoneResp {
-}
-
-message DeleteZoneReq {
-  string id = 1;
-}
-
-message DeleteZoneResp {
 }
 
 message CreateShareCodeReq {
@@ -313,7 +288,7 @@ message UpdateShareCodeResp {
 }
 
 message DeleteShareCodeReq {
-  string onlyCode = 1;
+  string code = 1;
 }
 
 message DeleteShareCodeResp {
@@ -325,7 +300,12 @@ message ParsingShareCodeReq {
 }
 
 message ParsingShareCodeResp {
-  ShareFile shareFile = 1;
+  string userId = 1;
+  string name = 2;
+  int64 effectiveTime = 3;
+  int64 browseNumber = 4;
+  int64 createAt = 5;
+  repeated string fileList = 6;
 }
 
 message AskUploadFileReq {
@@ -357,7 +337,7 @@ message GetUserResp{
   string userId = 1;
   string name = 2;
   string url = 3;
-  repeated Label labels = 4;
+  repeated string labels = 4;
   string description = 5;
   int64 sex = 6;
   int64 createTime = 7;
@@ -386,9 +366,9 @@ message GetUserDetailResp {
   string description = 5;
   string url = 6;
   int64 flow = 7;
-  int64 momery = 8;
+  int64 memory = 8;
   int64 point = 9;
-  repeated Label labels  = 10;
+  repeated string labels  = 10;
   int64 createTime = 11;
 }
 
@@ -613,7 +593,7 @@ message GetHotRanksResp{
 }
 
 message MakeFilePrivateReq{
-  string fileId = 1;
+  string id = 1;
 }
 
 message MakeFilePrivateResp{
