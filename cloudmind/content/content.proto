@@ -18,23 +18,22 @@ message GetFileReq{
 }
 
 message GetFileResp{
-  string id = 1;
-  string userId = 2;
-  string name = 3;
-  string type = 4;
-  string path = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  repeated string labels = 13;
-  int64 auditStatus = 14;
-  int64 createAt = 15;
-  int64 updateAt = 16;
-  int64 deleteAt = 17;
+  string userId = 1;
+  string name = 2;
+  string type = 3;
+  string path = 4;
+  string fatherId = 5;
+  int64 spaceSize = 6;
+  string md5 = 7;
+  int64 isDel = 8;
+  string zone = 9;
+  string subZone = 10;
+  string description = 11;
+  repeated string labels = 12;
+  int64 auditStatus = 13;
+  int64 createAt = 14;
+  int64 updateAt = 15;
+  int64 deleteAt = 16;
 }
 
 message GetFilesByIdsReq{
@@ -94,6 +93,7 @@ message CreateFileReq{
   int64 spaceSize = 5;
   string md5 = 6;
   int64 category = 7;
+  string path = 8;
 }
 
 message CreateFileResp{
