@@ -6,19 +6,40 @@ import "cloudmind/core_api/common.proto";
 import "http/http.proto";
 
 message CreateCommentReq {
-  Comment comment = 1;
+  string subjectId = 1;
+  string rootId = 2;
+  string fatherId = 3;
+  repeated string labelIds = 4; // 标签id列表：作者点赞，作者回复等
+  string userId = 5; // 评论者
+  string atUserId = 6; // @谁
+  string content = 7; // 内容
+  string meta = 8; // 皮肤，字体等
 }
 
 message CreateCommentResp {
-  string commentId = 1;
+  string id = 1;
 }
 
 message GetCommentReq {
-  string commentId = 1;
+  string id = 1;
 }
 
 message GetCommentResp {
-  CommentInfo comment = 1;
+  string subjectId = 1;
+  string rootId = 2;
+  string fatherId = 3;
+  int64 count = 4; // 回复数
+  int64 state = 5; // 1: 正常, 2: 删除
+  int64 attrs = 6; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  repeated string labels = 7; // 标签：作者点赞，作者回复等
+  string userId = 8; // 评论者
+  string atUserId = 9; // @谁
+  string content = 10; // 内容
+  string meta = 11; // 皮肤，字体等
+  int64 createTime = 12; // 创建时间
+  int64 like = 13; // 点赞数
+  SimpleUser author = 14; // 评论者信息
+  CommentRelation commentRelation = 15; // 评论关系信息
 }
 
 message GetCommentsReq {
@@ -37,27 +58,29 @@ message GetCommentsReq {
 }
 
 message GetCommentsResp {
-  repeated CommentInfo comments = 1;
+  repeated Comment comments = 1;
   int64 total = 2;
   string token = 3;
 }
 
 message UpdateCommentReq {
-  Comment comment = 1;
+  string id = 1;
+  State state = 2; // 1: 正常, 2: 删除
+  repeated string labelIds = 3; // 标签：作者点赞，作者回复等
 }
 
 message UpdateCommentResp {
 }
 
 message DeleteCommentReq {
-  string commentId = 1;
+  string id = 1;
 }
 
 message DeleteCommentResp {
 }
 
 message SetCommentAttrsReq {
-  string commentId = 1;
+  string id = 1;
   Attrs attrs = 2;
 }
 
@@ -65,15 +88,22 @@ message SetCommentAttrsResp{
 }
 
 message GetCommentSubjectReq {
-  string subjectId = 1;
+  string id = 1;
 }
 
 message GetCommentSubjectResp {
-  SubjectDetails subject = 1;
+  string userId = 1;
+  string topCommentId = 2;
+  int64 rootCount = 3;
+  int64 allCount = 4;
+  int64 state = 5; // 1: 正常, 2: 删除
+  int64 attrs = 6; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message UpdateCommentSubjectReq {
-  Subject subject = 1;
+  string id = 1;
+  State state = 2; // 1: 正常, 2: 删除
+  Attrs attrs = 3; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
 
 message UpdateCommentSubjectResp {
@@ -87,44 +117,57 @@ message DeleteCommentSubjectResp {
 }
 
 message CreateLabelReq {
-  Label label = 1;
+  string fatherId = 1;
+  string value = 2;
 }
+
 message CreateLabelResp {
-  string labelId = 1;
+  string id = 1;
 }
+
 message DeleteLabelReq {
-  string labelId = 1;
+  string id = 1;
 }
+
 message DeleteLabelResp {
 }
+
 message GetLabelReq {
-  string labelId = 1;
+  string id = 1;
 }
+
 message GetLabelResp {
   string label = 1;
 }
+
 message UpdateLabelReq {
-  Label label = 1;
+  string id = 1;
+  string fatherId = 2;
+  string value = 3;
 }
+
 message UpdateLabelResp {
 }
+
 message GetLabelsReq {
   optional string key = 1; // 用于匹配标签的key
   optional int64 limit = 2;
   optional string lastToken = 3;
   optional bool backward = 4;
   optional int64 offset = 5;
-  optional string zone = 6;
-  optional string subZone = 7;
+  optional string fatherId = 6;
 }
+
 message GetLabelsResp {
   repeated Label labels = 1;
   int64 total = 2;
   string token = 3;
 }
+
 message GetLabelsInBatchReq {
-  repeated string labelIds = 1;
+  repeated string ids = 1;
 }
+
 message GetLabelsInBatchResp {
   repeated string labels = 1;
 }

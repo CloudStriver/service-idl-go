@@ -70,21 +70,6 @@ service content {
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp){
     option (http.post) = "/content/recoverRecycleBinFile";
   }
-  rpc CreateZone(CreateZoneReq) returns(CreateZoneResp){
-    option (http.post) = "/content/createZone";
-  }
-  rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp){
-    option (http.post) = "/content/updateZone";
-  }
-  rpc GetZone(GetZoneReq) returns(GetZoneResp){
-    option (http.get) = "/content/getZone";
-  }
-  rpc GetZones(GetZonesReq) returns(GetZonesResp){
-    option (http.get) = "/content/getZones";
-  }
-  rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp){
-    option (http.post) = "/content/deleteZone";
-  }
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp){
     option (http.post) = "/content/createShareCode";
   }

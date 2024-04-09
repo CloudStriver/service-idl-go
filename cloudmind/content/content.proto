@@ -13,20 +13,35 @@ message GetFileIsExistResp {
 }
 
 message GetFileReq{
-  string fileId = 1;
+  string id = 1;
   bool isGetSize = 2;
 }
 
 message GetFileResp{
-  FileInfo file = 1;
+  string userId = 1;
+  string name = 2;
+  string type = 3;
+  string path = 4;
+  string fatherId = 5;
+  int64 spaceSize = 6;
+  string md5 = 7;
+  int64 isDel = 8;
+  string zone = 9;
+  string subZone = 10;
+  string description = 11;
+  repeated string labels = 12;
+  int64 auditStatus = 13;
+  int64 createAt = 14;
+  int64 updateAt = 15;
+  int64 deleteAt = 16;
 }
 
 message GetFilesByIdsReq{
-  repeated string fileIds = 1;
+  repeated string ids = 1;
 }
 
 message GetFilesByIdsResp{
-  repeated FileInfo files = 1;
+  repeated File files = 1;
 }
 
 message GetFileListReq{
@@ -37,7 +52,7 @@ message GetFileListReq{
 }
 
 message GetFileListResp{
-  repeated FileInfo files = 1;
+  repeated File files = 1;
   int64 total = 2;
   string token = 3;
   string fatherNamePath = 4;
@@ -50,20 +65,20 @@ message GetRecycleBinFilesReq{
 }
 
 message GetRecycleBinFilesResp{
-  repeated FileInfo files = 1;
+  repeated File files = 1;
   int64 total = 2;
   string token = 3;
 }
 
 message GetFileBySharingCodeReq{
-  repeated string fileIds = 1;
+  repeated string ids = 1;
   optional string onlyFatherId = 2;
   optional basic.PaginationOptions paginationOptions = 3;
   optional SortOptions sortOptions = 4;
 }
 
 message GetFileBySharingCodeResp{
-  repeated FileInfo files = 1;
+  repeated File files = 1;
   int64 total = 2;
   string token = 3;
   string fatherNamePath = 4;
@@ -71,16 +86,26 @@ message GetFileBySharingCodeResp{
 }
 
 message CreateFileReq{
-  File file = 1;
+  string userId = 1;
+  string name = 2;
+  string type = 3;
+  string fatherId = 4;
+  int64 spaceSize = 5;
+  string md5 = 6;
+  int64 category = 7;
+  string path = 8;
 }
 
 message CreateFileResp{
-  string fileId = 1;
+  string id = 1;
   string name = 2;
 }
 
 message UpdateFileReq{
-  File file = 1;
+  string id = 1;
+  string userId = 2;
+  string name = 3;
+  int64 auditStatus = 4;
 }
 
 message UpdateFileResp{
@@ -90,7 +115,7 @@ message UpdateFileResp{
 message MoveFileReq{
   string fatherId = 1;
   string newPath = 2;
-  string fileId = 3;
+  string id = 3;
   string oldPath = 4;
   int64 spaceSize = 5;
   string name = 6;
@@ -101,7 +126,7 @@ message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  string fileId = 1;
+  string id = 1;
   string userId = 2;
   string newPath = 3;
   string fatherId = 4;
@@ -113,12 +138,12 @@ message SaveFileToPrivateSpaceReq{
 }
 
 message SaveFileToPrivateSpaceResp{
-  string fileId = 1;
+  string id = 1;
   string name = 2;
 }
 
 message AddFileToPublicSpaceReq{
-  string fileId = 1;
+  string id = 1;
   string path = 2;
   int64 spaceSize = 3;
   string zone = 4;
@@ -128,7 +153,7 @@ message AddFileToPublicSpaceReq{
 }
 
 message AddFileToPublicSpaceResp{
-  repeated string fileIds = 1;
+  repeated string ids = 1;
 }
 
 message CompletelyRemoveFileReq {
@@ -140,7 +165,7 @@ message CompletelyRemoveFileResp {
 }
 
 message MakeFilePrivateReq{
-  string fileId = 1;
+  string id = 1;
   string userId = 2;
 }
 
@@ -171,50 +196,10 @@ message RecoverRecycleBinFileReq{
 message RecoverRecycleBinFileResp{
 }
 
-message CreateZoneReq {
-  Zone zone = 1;
-}
-
-message CreateZoneResp {
-  string id = 1;
-}
-
-message GetZoneReq {
-  string id = 1;
-}
-
-message GetZoneResp {
-  Zone zone = 1;
-}
-
-message GetZonesReq {
-  string fatherId= 1;
-  optional basic.PaginationOptions paginationOptions = 2;
-}
-
-message GetZonesResp {
-  repeated Zone zones = 1;
-  int64 total = 2;
-  string token = 3;
-}
-
-message UpdateZoneReq {
-  Zone zone = 1;
-}
-
-message UpdateZoneResp {
-}
-
-message DeleteZoneReq {
-  string id = 1;
-}
-
-message DeleteZoneResp {
-}
-
 message CheckShareFileReq{
-  repeated string fileIds = 1;
-  string fileId = 2;
+  repeated string fileIds = 1; // 分享链接中的文件id列表
+  string id = 2; // 要保存到的目标文件夹id
+
 }
 
 message CheckShareFileResp{
@@ -222,7 +207,10 @@ message CheckShareFileResp{
 }
 
 message CreateShareCodeReq {
-  ShareFile shareFile = 1;
+  string userId = 1;
+  string name = 2;
+  int64 effectiveTime = 3;
+  repeated string fileList = 4;
 }
 
 message CreateShareCodeResp {
@@ -231,7 +219,7 @@ message CreateShareCodeResp {
 }
 
 message GetShareListReq {
-  optional ShareFileFilterOptions shareFileFilterOptions = 1;
+  optional ShareFileFilterOptions filterOptions = 1;
   optional basic.PaginationOptions paginationOptions = 2;
 }
 
@@ -242,7 +230,9 @@ message GetShareListResp {
 }
 
 message UpdateShareCodeReq {
-  ShareFile shareFile = 1;
+  string code = 1;
+  string name = 2;
+  int64 browseNumber = 3;
 }
 
 message UpdateShareCodeResp {
@@ -260,7 +250,14 @@ message ParsingShareCodeReq {
 }
 
 message ParsingShareCodeResp {
-  ShareFile shareFile = 1;
+  string userId = 1;
+  string name = 2;
+  int64  status = 3;
+  int64 effectiveTime = 4;
+  int64 browseNumber = 5;
+  int64 createAt = 6;
+  repeated string fileList = 7;
+  string key = 8;
 }
 
 message UpdateUserReq{
@@ -563,11 +560,6 @@ service ContentService {
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc EmptyRecycleBin(EmptyRecycleBinReq) returns(EmptyRecycleBinResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
-  rpc GetZone(GetZoneReq) returns(GetZoneResp);
-  rpc GetZones(GetZonesReq) returns(GetZonesResp);
-  rpc CreateZone(CreateZoneReq) returns(CreateZoneResp);
-  rpc UpdateZone(UpdateZoneReq) returns(UpdateZoneResp);
-  rpc DeleteZone(DeleteZoneReq) returns(DeleteZoneResp);
   rpc GetShareList(GetShareListReq) returns(GetShareListResp);
   rpc CheckShareFile(CheckShareFileReq) returns(CheckShareFileResp);
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp);
