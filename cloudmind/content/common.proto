@@ -76,6 +76,18 @@ enum Folder {
   Folder_Size = -1;
 }
 
+enum SearchSortType {
+  UnknowSearchSortType = 0;
+  ScoreSearchSortType = 1;
+  CreateTimeSearchSortType = 2;
+  SynthesisSearchSortType = 3;
+}
+
+message SearchOption {
+  optional string searchKeyword = 1;
+  SearchSortType searchSortType  = 2;
+}
+
 message Tag {
   string tagId = 1;
   string fatherTagId = 2;

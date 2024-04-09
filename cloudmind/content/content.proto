@@ -376,7 +376,7 @@ message GetPostResp{
 }
 
 message GetPostsReq{
-  optional string searchKeyword = 1;
+  optional SearchOption searchOption = 1;
   optional PostFilterOptions postFilterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
 }
