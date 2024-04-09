@@ -101,24 +101,6 @@ message File {
   int64 deleteAt = 17;
 }
 
-//message File {
-  string id = 1;
-  string userId = 2;
-  string name = 3;
-  string type = 4;
-  string path = 5;
-  string fatherId = 6;
-  int64 spaceSize = 7;
-  string md5 = 8;
-  int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  repeated string labels = 13;
-  int64 category = 14;
-  int64 auditStatus = 15;
-//}
-
 message FileParameter {
   string id = 1;
   string path = 2;
