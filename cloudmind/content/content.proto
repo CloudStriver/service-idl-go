@@ -26,14 +26,26 @@ message GetFileResp{
   int64 spaceSize = 6;
   string md5 = 7;
   int64 isDel = 8;
-  string zone = 9;
-  string subZone = 10;
-  string description = 11;
-  repeated string labels = 12;
-  int64 auditStatus = 13;
-  int64 createAt = 14;
-  int64 updateAt = 15;
-  int64 deleteAt = 16;
+  int64 createAt = 9;
+  int64 updateAt = 10;
+  int64 deleteAt = 11;
+}
+
+message GetPublicFileReq{
+  string id = 1;
+}
+
+message GetPublicFileResp{
+  string userId = 1;
+  string name = 2;
+  string type = 3;
+  int64 spaceSize = 4;
+  string md5 = 5;
+  string zone = 6;
+  string description = 7;
+  repeated string labels = 8;
+  int64 auditStatus = 9;
+  int64 createAt = 10;
 }
 
 message GetFilesByIdsReq{
@@ -42,6 +54,14 @@ message GetFilesByIdsReq{
 
 message GetFilesByIdsResp{
   repeated File files = 1;
+}
+
+message GetPublicFilesByIdsReq{
+  repeated string ids = 1;
+}
+
+message GetPublicFilesByIdsResp{
+  repeated PublicFile files = 1;
 }
 
 message GetFileListReq{
@@ -57,6 +77,19 @@ message GetFileListResp{
   string token = 3;
   string fatherNamePath = 4;
   string fatherIdPath = 5;
+}
+
+message GetPublicFileListReq{
+  optional SearchOptions searchOptions = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
+  optional SortOptions sortOptions = 4;
+}
+
+message GetPublicFileListResp{
+  repeated PublicFile files = 1;
+  int64 total = 2;
+  string token = 3;
 }
 
 message GetRecycleBinFilesReq{
@@ -147,9 +180,8 @@ message AddFileToPublicSpaceReq{
   string path = 2;
   int64 spaceSize = 3;
   string zone = 4;
-  string subZone = 5;
-  string description = 6;
-  repeated string labels = 7;
+  string description = 5;
+  repeated string labels = 6;
 }
 
 message AddFileToPublicSpaceResp{
@@ -567,6 +599,9 @@ service ContentService {
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp);
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp);
   rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp);
+  rpc GetPublicFile(GetPublicFileReq) returns(GetPublicFileResp);
+  rpc GetPublicFilesByIds(GetPublicFilesByIdsReq) returns(GetPublicFilesByIdsResp);
+  rpc GetPublicFileList(GetPublicFileListReq) returns(GetPublicFileListResp);
 
   // ---------------用户-----------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
