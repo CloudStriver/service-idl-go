@@ -65,7 +65,7 @@ message GetPublicFilesByIdsResp{
 }
 
 message GetFileListReq{
-  optional SearchOptions searchOptions = 1;
+  optional SearchOption searchOption = 1;
   optional FileFilterOptions filterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
   optional SortOptions sortOptions = 4;
@@ -80,7 +80,7 @@ message GetFileListResp{
 }
 
 message GetPublicFileListReq{
-  optional SearchOptions searchOptions = 1;
+  optional SearchOption searchOption = 1;
   optional FileFilterOptions filterOptions = 2;
   optional basic.PaginationOptions paginationOptions = 3;
   optional SortOptions sortOptions = 4;
@@ -177,15 +177,13 @@ message SaveFileToPrivateSpaceResp{
 
 message AddFileToPublicSpaceReq{
   string id = 1;
-  string path = 2;
-  int64 spaceSize = 3;
-  string zone = 4;
-  string description = 5;
-  repeated string labels = 6;
+  string zone = 2;
+  string description = 3;
+  repeated string labels = 4;
 }
 
 message AddFileToPublicSpaceResp{
-  repeated string ids = 1;
+  string id = 1;
 }
 
 message CompletelyRemoveFileReq {
@@ -206,9 +204,9 @@ message MakeFilePrivateResp{
 
 message DeleteFileReq{
   int64 deleteType = 1;
-  bool clearCommunity = 2;
+  string userId = 2;
   repeated FileParameter files = 3;
-  string userId = 4;
+
 }
 
 message DeleteFileResp{
