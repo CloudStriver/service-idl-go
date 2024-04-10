@@ -218,9 +218,8 @@ message SaveFileToPrivateSpaceResp{
 message AddFileToPublicSpaceReq{
   string id = 1;
   string zone = 2;
-  string subZone = 3;
-  string description = 4;
-  repeated string labels = 5;
+  string description = 3;
+  repeated string labels = 4;
 }
 
 message AddFileToPublicSpaceResp{
