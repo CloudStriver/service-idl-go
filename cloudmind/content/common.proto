@@ -168,15 +168,21 @@ message SearchOptions {
 
 message FileFilterOptions {
   optional string onlyUserId = 1;
-  optional string onlyFileId = 2;
-  optional string onlyFatherId = 3;
-  optional string onlyZone = 4; // 分区
-  optional int64 onlyIsDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
-  repeated string onlyType = 7;
-  optional string onlyLabelId = 8;
-  optional int64 onlyCategory = 9;
-  optional int64 onlyAuditStatus = 10;
+  optional string onlyFatherId = 2;
+  optional int64 onlyIsDel = 3; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  repeated string onlyType = 4;
+  optional int64 onlyCategory = 5;
 }
+
+message PublicFileFilterOptions {
+  optional string onlyUserId = 1;
+  optional string onlyFatherId = 2;
+  optional string onlyZone = 3; // 分区
+  repeated string onlyType = 4;
+  optional string onlyLabelId = 5;
+  optional int64 onlyAuditStatus = 6;
+}
+
 
 message ShareFileFilterOptions {
   optional string onlyCode = 1;
@@ -301,7 +307,6 @@ message LabelFilterOptions {
 //}
 //
 //
-
 
 message Item {
   string itemId = 1;
