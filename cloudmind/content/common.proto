@@ -128,18 +128,6 @@ message FileParameter {
   int64 spaceSize = 3;
 }
 
-message ShareFile {
-  string code = 1;
-  string userId = 2;
-  string name = 3;
-  int64  status = 4;
-  int64 effectiveTime = 5;
-  int64 browseNumber = 6;
-  int64 createAt = 7;
-  repeated string fileList = 8;
-  string key = 9;
-}
-
 message ShareCode {
   string code = 1;
   string name = 2;
@@ -176,13 +164,11 @@ message FileFilterOptions {
 
 message PublicFileFilterOptions {
   optional string onlyUserId = 1;
-  optional string onlyFatherId = 2;
   optional string onlyZone = 3; // 分区
   repeated string onlyType = 4;
   optional string onlyLabelId = 5;
   optional int64 onlyAuditStatus = 6;
 }
-
 
 message ShareFileFilterOptions {
   optional string onlyCode = 1;

@@ -83,17 +83,16 @@ message GetPublicFileResp{
 }
 
 message GetPrivateFilesReq{
-  optional string allFieldsKey = 1;
-  optional string name = 2;
-  optional string id = 3;
-  optional int64 sortType = 4;
-  optional string onlyFatherId = 5;
-  repeated string onlyType = 6;
+  optional string searchKeyword = 1;
+  optional int64 searchType = 2;
+  optional string onlyFatherId = 3;
+  repeated string onlyType = 4;
+  optional int64 onlyCategory = 5;
+  optional int64 sortType = 6;
   optional int64 limit = 7;
   optional string lastToken = 8;
   optional bool backward = 9;
   optional int64 offset = 10;
-  optional int64 onlyCategory = 11;
 }
 
 message GetPrivateFilesResp{
@@ -105,22 +104,18 @@ message GetPrivateFilesResp{
 }
 
 message GetPublicFilesReq{
-  optional string allFieldsKey = 1;
-  optional string name = 2;
-  optional string id = 3;
-  optional string description = 4;
-  optional int64 sortType = 5;
-  optional string onlyFatherId = 6;
-  repeated string onlyType = 7;
-  optional string onlyZone = 8;
-  optional string onlySubZone = 9;
-  optional string onlyLabelId = 10;
-  optional int64 limit = 11;
-  optional string lastToken = 12;
-  optional bool backward = 13;
-  optional int64 offset = 14;
-  optional int64 onlyCategory = 15;
-  optional int64 onlyAuditStatus = 16;
+  optional string searchKeyword = 1;
+  optional int64 searchType = 2;
+  optional string onlyUserId = 3;
+  repeated string onlyType = 4;
+  optional string onlyZone = 5;
+  optional string onlyLabelId = 6;
+  optional int64 onlyAuditStatus = 7;
+  optional int64 sortType = 8;
+  optional int64 limit = 9;
+  optional string lastToken = 10;
+  optional bool backward = 11;
+  optional int64 offset = 12;
 }
 
 message GetPublicFilesResp{
@@ -205,9 +200,7 @@ message MoveFileResp{
 message SaveFileToPrivateSpaceReq{
   string id = 1;
   string fatherId = 2;
-  DocumentType documentType = 3;
-  optional string code = 4;
-  optional string key = 5;
+  optional ShareField shareField = 3;
 }
 
 message SaveFileToPrivateSpaceResp{

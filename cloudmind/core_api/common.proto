@@ -185,16 +185,14 @@ message PublicFile {
   string name = 3;
   string type = 4;
   int64 spaceSize = 5;
-  int64 isDel = 6;
-  string zone = 7;
-  string subZone = 8;
-  string description = 9;
+  string zone = 6;
+  string description = 7;
+  int64 auditStatus = 8;
+  repeated Label labels = 9;
   int64 createAt = 10;
-  int64 updateAt = 11;
-  repeated Label labels = 12;
-  FileUser author = 13; // 作者信息
-  FileCount fileCount = 14; // 文章统计信息
-  FileRelation fileRelation = 15; // 文章关系信息
+  FileUser author = 11; // 作者信息
+  FileCount fileCount = 12; // 文章统计信息
+  FileRelation fileRelation = 13; // 文章关系信息
 }
 
 message SearchInfo {
@@ -210,27 +208,6 @@ message SearchInfo {
   string userId = 10;
   string userName = 11;
   string postUrl = 12;
-}
-
-message ShareFile {
-  string code = 1;
-  string userId = 2;
-  string name = 3;
-  int64 effectiveTime = 4;
-  int64 browseNumber = 5;
-  int64 createAt = 6;
-  repeated string fileList = 7;
-}
-
-message ShareFileInfo {
-  string code = 1;
-  string userId = 2;
-  string name = 3;
-  int64  status = 4;
-  int64 effectiveTime = 5;
-  int64 browseNumber = 6;
-  int64 createAt = 7;
-  repeated string fileList = 8;
 }
 
 message ShareCode {
@@ -257,6 +234,11 @@ message SearchOptions {
     string allFieldsKey = 1;
     SearchField multiFieldsKey = 2;
   }
+}
+
+message ShareField {
+  string code = 1;
+  string key = 2;
 }
 
 message FileFilterOptions {
