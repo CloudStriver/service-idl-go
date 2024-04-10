@@ -103,14 +103,23 @@ message File {
   int64 spaceSize = 7;
   string md5 = 8;
   int64 isDel = 9;
-  string zone = 10;
-  string subZone = 11;
-  string description = 12;
-  int64 auditStatus = 13;
-  repeated string labels = 14;
-  int64 createAt = 15;
-  int64 updateAt = 16;
-  int64 deleteAt = 17;
+  int64 createAt = 10;
+  int64 updateAt = 11;
+  int64 deleteAt = 12;
+}
+
+message PublicFile {
+  string id = 1;
+  string userId = 2;
+  string name = 3;
+  string type = 4;
+  int64 spaceSize = 5;
+  string md5 = 6;
+  string zone = 7;
+  string description = 8;
+  int64 auditStatus = 9;
+  repeated string labels = 10;
+  int64 createAt = 11;
 }
 
 message FileParameter {
@@ -162,13 +171,11 @@ message FileFilterOptions {
   optional string onlyFileId = 2;
   optional string onlyFatherId = 3;
   optional string onlyZone = 4; // 分区
-  optional string onlySubZone = 5; // 子分区
-  optional int64 onlyIsDel = 6; // 是否删除 1：未删除 2：软删除 3:彻底删除
-  optional int64 onlyDocumentType = 7; // 操作类型 1：个人空间文件 2：公共空间文件
-  repeated string onlyType = 8;
-  optional string onlyLabelId = 9;
-  optional int64 onlyCategory = 10;
-  optional int64 onlyAuditStatus = 11;
+  optional int64 onlyIsDel = 5; // 是否删除 1：未删除 2：软删除 3:彻底删除
+  repeated string onlyType = 7;
+  optional string onlyLabelId = 8;
+  optional int64 onlyCategory = 9;
+  optional int64 onlyAuditStatus = 10;
 }
 
 message ShareFileFilterOptions {
