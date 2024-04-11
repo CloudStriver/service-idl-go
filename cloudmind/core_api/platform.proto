@@ -10,10 +10,9 @@ message CreateCommentReq {
   string rootId = 2;
   string fatherId = 3;
   repeated string labelIds = 4; // 标签id列表：作者点赞，作者回复等
-  string userId = 5; // 评论者
-  string atUserId = 6; // @谁
-  string content = 7; // 内容
-  string meta = 8; // 皮肤，字体等
+  string atUserId = 5; // @谁
+  string content = 6; // 内容
+  string meta = 7; // 皮肤，字体等
 }
 
 message CreateCommentResp {
@@ -45,16 +44,15 @@ message GetCommentResp {
 message GetCommentsReq {
   optional string onlyUserId = 1;
   optional string onlyAtUserId = 2;
-  optional string onlyCommentId = 3;
-  optional string onlySubjectId = 4;
-  optional string onlyRootId = 5;
-  optional string onlyFatherId = 6;
-  optional int64 onlyState = 7;
-  optional int64 onlyAttrs = 8;
-  optional int64 limit = 9;
-  optional string lastToken = 10;
-  optional bool backward = 11;
-  optional int64 offset = 12;
+  optional string onlySubjectId = 3;
+  optional string onlyRootId = 4;
+  optional string onlyFatherId = 5;
+  optional int64 onlyState = 6;
+  optional int64 onlyAttrs = 7;
+  optional int64 limit = 8;
+  optional string lastToken = 9;
+  optional bool backward = 10;
+  optional int64 offset = 11;
 }
 
 message GetCommentsResp {
