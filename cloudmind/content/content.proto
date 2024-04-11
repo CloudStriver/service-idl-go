@@ -33,6 +33,7 @@ message GetFileResp{
 
 message GetPublicFileReq{
   string id = 1;
+  bool isGetSize = 2;
 }
 
 message GetPublicFileResp{
@@ -40,12 +41,13 @@ message GetPublicFileResp{
   string name = 2;
   string type = 3;
   int64 spaceSize = 4;
-  string md5 = 5;
-  string zone = 6;
-  string description = 7;
-  repeated string labels = 8;
-  int64 auditStatus = 9;
-  int64 createAt = 10;
+  string path = 5;
+  string md5 = 6;
+  string zone = 7;
+  string description = 8;
+  repeated string labels = 9;
+  int64 auditStatus = 10;
+  int64 createAt = 11;
 }
 
 message GetFilesByIdsReq{
@@ -90,6 +92,8 @@ message GetPublicFileListResp{
   repeated PublicFile files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetRecycleBinFilesReq{
@@ -136,13 +140,19 @@ message CreateFileResp{
 
 message UpdateFileReq{
   string id = 1;
-  string userId = 2;
-  string name = 3;
-  int64 auditStatus = 4;
+  string name = 2;
 }
 
 message UpdateFileResp{
   string name = 1;
+}
+
+message UpdatePublicFileReq{
+  string id = 1;
+  int64 auditStatus = 2;
+}
+
+message UpdatePublicFileResp{
 }
 
 message MoveFileReq{
@@ -158,7 +168,7 @@ message MoveFileReq{
 message MoveFileResp{
 }
 
-message SaveFileToPrivateSpaceReq{
+message SavePublicFileToPrivateSpaceReq{
   string id = 1;
   string userId = 2;
   string newPath = 3;
@@ -167,10 +177,25 @@ message SaveFileToPrivateSpaceReq{
   string type = 6;
   string fileMd5 = 7;
   int64 spaceSize = 8;
-  int64 documentType = 9;
 }
 
-message SaveFileToPrivateSpaceResp{
+message SavePublicFileToPrivateSpaceResp{
+  string id = 1;
+  string name = 2;
+}
+
+message SaveShareFileToPrivateSpaceReq{
+  string id = 1;
+  string userId = 2;
+  string newPath = 3;
+  string fatherId = 4;
+  string name = 5;
+  string type = 6;
+  string fileMd5 = 7;
+  int64 spaceSize = 8;
+}
+
+message SaveShareFileToPrivateSpaceResp{
   string id = 1;
   string name = 2;
 }
@@ -574,7 +599,7 @@ message GetOrdersResp{
 
 //service
 service ContentService {
-  // ---------------文件-----------------
+  // ---------------用户空间文件-----------------
   rpc GetFileIsExist(GetFileIsExistReq) returns(GetFileIsExistResp);
   rpc GetFile(GetFileReq) returns(GetFileResp);
   rpc GetFilesByIds(GetFilesByIdsReq) returns(GetFilesByIdsResp);
@@ -584,22 +609,28 @@ service ContentService {
   rpc UpdateFile(UpdateFileReq) returns(UpdateFileResp);
   rpc CreateFile(CreateFileReq) returns(CreateFileResp);
   rpc MoveFile(MoveFileReq) returns(MoveFileResp);
-  rpc SaveFileToPrivateSpace(SaveFileToPrivateSpaceReq) returns(SaveFileToPrivateSpaceResp);
-  rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
+  rpc SavePublicFileToPrivateSpace(SavePublicFileToPrivateSpaceReq) returns(SavePublicFileToPrivateSpaceResp);
+  rpc SaveShareFileToPrivateSpace(SaveShareFileToPrivateSpaceReq) returns(SaveShareFileToPrivateSpaceResp);
   rpc CompletelyRemoveFile(CompletelyRemoveFileReq) returns(CompletelyRemoveFileResp);
   rpc DeleteFile(DeleteFileReq) returns(DeleteFileResp);
   rpc EmptyRecycleBin(EmptyRecycleBinReq) returns(EmptyRecycleBinResp);
   rpc RecoverRecycleBinFile(RecoverRecycleBinFileReq) returns(RecoverRecycleBinFileResp);
+
+  // ---------------用户分享链接-----------------
   rpc GetShareList(GetShareListReq) returns(GetShareListResp);
   rpc CheckShareFile(CheckShareFileReq) returns(CheckShareFileResp);
   rpc CreateShareCode(CreateShareCodeReq) returns(CreateShareCodeResp);
   rpc UpdateShareCode(UpdateShareCodeReq) returns(UpdateShareCodeResp);
   rpc DeleteShareCode(DeleteShareCodeReq) returns(DeleteShareCodeResp);
   rpc ParsingShareCode(ParsingShareCodeReq) returns(ParsingShareCodeResp);
-  rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp);
+
+  // ---------------社区空间文件-----------------
   rpc GetPublicFile(GetPublicFileReq) returns(GetPublicFileResp);
   rpc GetPublicFilesByIds(GetPublicFilesByIdsReq) returns(GetPublicFilesByIdsResp);
   rpc GetPublicFileList(GetPublicFileListReq) returns(GetPublicFileListResp);
+  rpc UpdatePublicFile(UpdatePublicFileReq) returns(UpdatePublicFileResp);
+  rpc AddFileToPublicSpace(AddFileToPublicSpaceReq) returns(AddFileToPublicSpaceResp);
+  rpc MakeFilePrivate(MakeFilePrivateReq) returns(MakeFilePrivateResp);
 
   // ---------------用户-----------------
   rpc UpdateUser(UpdateUserReq) returns(UpdateUserResp);
