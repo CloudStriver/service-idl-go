@@ -83,9 +83,18 @@ enum SearchSortType {
   SynthesisSearchSortType = 3;
 }
 
+enum SearchTimeType {
+  UnknowSearchTimeType = 0;
+  DaySearchTimeType = 1;
+  WeekSearchTimeType = 2;
+  MonthSearchTimeType = 3;
+  YearSearchTimeType = 4;
+}
+
 message SearchOption {
   optional string searchKeyword = 1;
   SearchSortType searchSortType  = 2;
+  SearchTimeType searchTimeType = 3;
 }
 
 message Tag {
