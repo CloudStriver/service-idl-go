@@ -29,7 +29,6 @@ message SearchUserReq{
   optional int64 offset = 6;
 }
 
-
 message SearchUserResp{
   repeated User users = 1;
   string lastToken = 2;
@@ -577,7 +576,7 @@ message GetHotRanksResp{
 }
 
 message MakeFilePrivateReq{
-  string id = 1;
+  repeated string ids = 1;
 }
 
 message MakeFilePrivateResp{

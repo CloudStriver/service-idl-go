@@ -220,8 +220,7 @@ message CompletelyRemoveFileResp {
 }
 
 message MakeFilePrivateReq{
-  string id = 1;
-  string userId = 2;
+  repeated FileParameter files = 1;
 }
 
 message MakeFilePrivateResp{
