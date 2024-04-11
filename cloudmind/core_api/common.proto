@@ -184,15 +184,16 @@ message PublicFile {
   string userId = 2;
   string name = 3;
   string type = 4;
-  int64 spaceSize = 5;
-  string zone = 6;
-  string description = 7;
-  int64 auditStatus = 8;
-  repeated Label labels = 9;
-  int64 createAt = 10;
-  FileUser author = 11; // 作者信息
-  FileCount fileCount = 12; // 文章统计信息
-  FileRelation fileRelation = 13; // 文章关系信息
+  string path = 5;
+  int64 spaceSize = 6;
+  string zone = 7;
+  string description = 8;
+  int64 auditStatus = 9;
+  repeated Label labels = 10;
+  int64 createAt = 11;
+  FileUser author = 12; // 作者信息
+  FileCount fileCount = 13; // 文章统计信息
+  FileRelation fileRelation = 14; // 文章关系信息
 }
 
 message SearchInfo {

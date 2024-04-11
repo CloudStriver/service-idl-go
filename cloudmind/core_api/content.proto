@@ -59,17 +59,16 @@ message GetPublicFileResp{
   string userId = 1;
   string name = 2;
   string type = 3;
-  int64 spaceSize = 4;
-  int64 isDel = 5;
-  string zone = 6;
-  string subZone = 7;
+  string path = 4;
+  int64 spaceSize = 5;
+  int64 isDel = 6;
+  string zone = 7;
   string description = 8;
   int64 createAt = 9;
-  int64 updateAt = 10;
-  repeated Label labels = 11;
-  FileUser author = 12; // 作者信息
-  FileCount fileCount = 13; // 社区文件统计信息
-  FileRelation fileRelation = 14; // 社区文件关系信息
+  repeated Label labels = 10;
+  FileUser author = 11; // 作者信息
+  FileCount fileCount = 12; // 社区文件统计信息
+  FileRelation fileRelation = 13; // 社区文件关系信息
 }
 
 message GetPrivateFilesReq{
@@ -119,16 +118,21 @@ message GetPublicFilesResp{
 }
 
 message GetRecycleBinFilesReq{
-  optional int64 limit = 1;
-  optional string lastToken = 2;
-  optional bool backward = 3;
-  optional int64 offset = 4;
+  optional string searchKeyword = 1;
+  optional int64 searchType = 2;
+  optional int64  searchTimerType = 3;
+  optional int64 limit = 4;
+  optional string lastToken = 5;
+  optional bool backward = 6;
+  optional int64 offset = 7;
 }
 
 message GetRecycleBinFilesResp{
   repeated PrivateFile files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetFileBySharingCodeReq{
@@ -213,7 +217,6 @@ message AddFileToPublicSpaceResp{
 message DeleteFileReq{
   repeated string ids = 1;
   IsDel deleteType = 2;
-  bool clearCommunity = 3;
 }
 
 message DeleteFileResp{
@@ -261,14 +264,6 @@ message GetShareListResp {
   repeated ShareCode shareCodes = 1;
   int64 total = 2;
   string token = 3;
-}
-
-message UpdateShareCodeReq {
-  string code = 1;
-  int64 browseNumber = 2;
-}
-
-message UpdateShareCodeResp {
 }
 
 message DeleteShareCodeReq {
