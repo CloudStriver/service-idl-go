@@ -38,7 +38,6 @@ message SearchUserResp{
 
 message GetPrivateFileReq{
   string id = 1;
-  bool isGetSize = 2;
 }
 
 message GetPrivateFileResp{

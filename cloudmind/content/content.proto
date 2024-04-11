@@ -33,6 +33,7 @@ message GetFileResp{
 
 message GetPublicFileReq{
   string id = 1;
+  bool isGetSize = 2;
 }
 
 message GetPublicFileResp{
@@ -40,12 +41,13 @@ message GetPublicFileResp{
   string name = 2;
   string type = 3;
   int64 spaceSize = 4;
-  string md5 = 5;
-  string zone = 6;
-  string description = 7;
-  repeated string labels = 8;
-  int64 auditStatus = 9;
-  int64 createAt = 10;
+  string path = 5;
+  string md5 = 6;
+  string zone = 7;
+  string description = 8;
+  repeated string labels = 9;
+  int64 auditStatus = 10;
+  int64 createAt = 11;
 }
 
 message GetFilesByIdsReq{
@@ -90,6 +92,8 @@ message GetPublicFileListResp{
   repeated PublicFile files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetRecycleBinFilesReq{

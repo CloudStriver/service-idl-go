@@ -114,12 +114,13 @@ message PublicFile {
   string name = 3;
   string type = 4;
   int64 spaceSize = 5;
-  string md5 = 6;
-  string zone = 7;
-  string description = 8;
-  int64 auditStatus = 9;
-  repeated string labels = 10;
-  int64 createAt = 11;
+  string path = 6;
+  string md5 = 7;
+  string zone = 8;
+  string description = 9;
+  int64 auditStatus = 10;
+  repeated string labels = 11;
+  int64 createAt = 12;
 }
 
 message FileParameter {
