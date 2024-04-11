@@ -97,14 +97,17 @@ message GetPublicFileListResp{
 }
 
 message GetRecycleBinFilesReq{
-  optional FileFilterOptions filterOptions = 1;
-  optional basic.PaginationOptions paginationOptions = 2;
+  optional SearchOption searchOption = 1;
+  optional FileFilterOptions filterOptions = 2;
+  optional basic.PaginationOptions paginationOptions = 3;
 }
 
 message GetRecycleBinFilesResp{
   repeated File files = 1;
   int64 total = 2;
   string token = 3;
+  string fatherNamePath = 4;
+  string fatherIdPath = 5;
 }
 
 message GetFileBySharingCodeReq{
@@ -228,8 +231,7 @@ message MakeFilePrivateResp{
 
 message DeleteFileReq{
   int64 deleteType = 1;
-  string userId = 2;
-  repeated FileParameter files = 3;
+  repeated FileParameter files = 2;
 
 }
 
