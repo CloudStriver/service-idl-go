@@ -41,13 +41,12 @@ message Comment {
 message CommentFilterOptions {
   optional string onlyUserId = 1;
   optional string onlyAtUserId = 2;
-  optional string onlyCommentId = 3;
-  optional string onlySubjectId = 4;
-  optional string onlyRootId = 5;
-  optional string onlyFatherId = 6;
-  optional int64 onlyState = 7;
-  optional int64 onlyAttrs = 8;
-  repeated string onlyCommentIds = 9;
+  optional string onlySubjectId = 3;
+  optional string onlyRootId = 4;
+  optional string onlyFatherId = 5;
+  optional int64 onlyState = 6;
+  optional int64 onlyAttrs = 7;
+  repeated string onlyCommentIds = 8;
 }
 
 message LabelFilterOptions {
