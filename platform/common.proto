@@ -23,7 +23,7 @@ enum State {
 */
 
 message Comment {
-  string id = 1;
+  string commentId = 1;
   string subjectId = 2;
   string rootId = 3;
   string fatherId = 4;
@@ -53,7 +53,7 @@ message LabelFilterOptions {
 }
 
 message Subject {
-  string id = 1;
+  string subjectId = 1;
   string userId = 2;
   string TopCommentId = 3;
   int64 rootCount = 4;
@@ -63,7 +63,7 @@ message Subject {
 }
 
 message Label {
-  string id = 1;
+  string labelId = 1;
   string fatherId = 2;
   string value = 3;
 }

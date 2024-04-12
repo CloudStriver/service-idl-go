@@ -17,11 +17,11 @@ message CreateCommentReq {
 }
 
 message CreateCommentResp {
-  string id = 1;
+  string commentId = 1;
 }
 
 message GetCommentReq {
-  string id = 1;
+  string commentId = 1;
 }
 
 message GetCommentResp {
@@ -51,7 +51,7 @@ message GetCommentListResp {
 }
 
 message UpdateCommentReq {
-  string id = 1;
+  string commentId = 1;
   int64 state = 2; // 1: 正常, 2: 删除
   repeated string labelIds = 3; // 标签：作者点赞，作者回复等
   string meta = 4; // 皮肤，字体等
@@ -61,14 +61,14 @@ message UpdateCommentResp {
 }
 
 message DeleteCommentReq {
-  string id = 1;
+  string commentId = 1;
 }
 
 message DeleteCommentResp {
 }
 
 message SetCommentAttrsReq {
-  string id = 1;
+  string commentId = 1;
   int64 attrs = 2;
   string subjectId = 3;
   int64 sortTime = 4;
@@ -78,7 +78,7 @@ message SetCommentAttrsResp{
 }
 
 message GetCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
 }
 
 message GetCommentSubjectResp {
@@ -91,7 +91,7 @@ message GetCommentSubjectResp {
 }
 
 message CreateCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
   string userId = 2;
 }
 
@@ -99,7 +99,7 @@ message CreateCommentSubjectResp {
 }
 
 message UpdateCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
   optional int64 rootCount = 2;
   optional int64 allCount = 3;
   int64 state = 4; // 1: 正常, 2: 删除
@@ -111,7 +111,7 @@ message UpdateCommentSubjectResp {
 }
 
 message DeleteCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
   string userId = 2;
 }
 
@@ -119,7 +119,7 @@ message DeleteCommentSubjectResp {
 }
 
 message DeleteCommentByIdsReq {
-  repeated string ids = 1;
+  repeated string commentIds = 1;
 }
 
 message DeleteCommentByIdsResp {
@@ -131,18 +131,18 @@ message CreateLabelReq {
 }
 
 message CreateLabelResp {
-  string id = 1;
+  string labelId = 1;
 }
 
 message DeleteLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 
 message DeleteLabelResp {
 }
 
 message GetLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 
 message GetLabelResp {
@@ -150,7 +150,7 @@ message GetLabelResp {
 }
 
 message UpdateLabelReq {
-  string id = 1;
+  string labelId = 1;
   string fatherId = 2;
   string value = 3;
 }
@@ -171,7 +171,7 @@ message GetLabelsResp {
 }
 
 message GetLabelsInBatchReq {
-  repeated string ids = 1;
+  repeated string labelIds = 1;
 }
 
 message GetLabelsInBatchResp {
