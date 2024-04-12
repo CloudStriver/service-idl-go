@@ -321,7 +321,7 @@ message Notification {
   三级评论：rootId != fatherId != subjectId
 */
 message Comment {
-  string id = 1;
+  string commentId = 1;
   string subjectId = 2;
   string rootId = 3;
   string fatherId = 4;
@@ -329,14 +329,24 @@ message Comment {
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
   repeated string labels = 8; // 标签：作者点赞，作者回复等
-  string userId = 9; // 评论者
-  string atUserId = 10; // @谁
-  string content = 11; // 内容
-  string meta = 12; // 皮肤，字体等
-  int64 createTime = 13; // 创建时间
-  int64 like = 14; // 点赞数
-  SimpleUser author = 15; // 评论者信息
-  CommentRelation commentRelation = 16; // 评论关系信息
+  string atUserId = 9; // @谁
+  string content = 10; // 内容
+  string meta = 11; // 皮肤，字体等
+  int64 createTime = 12; // 创建时间
+  int64 like = 13; // 点赞数
+  SimpleUser author = 14; // 评论者信息
+  CommentRelation commentRelation = 15; // 评论关系信息
+}
+
+message CommentBlock {
+  Comment rootComment = 1;
+  ReplyList replyList = 2;
+}
+
+message ReplyList {
+  repeated Comment comments = 1;
+  int64 total = 2;
+  string token = 3;
 }
 
 message CommentFilterOptions {
