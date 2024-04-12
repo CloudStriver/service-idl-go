@@ -13,7 +13,7 @@ message GetFileIsExistResp {
 }
 
 message GetFileReq{
-  string id = 1;
+  string fileId = 1;
   bool isGetSize = 2;
 }
 
@@ -32,7 +32,7 @@ message GetFileResp{
 }
 
 message GetPublicFileReq{
-  string id = 1;
+  string fileId = 1;
   bool isGetSize = 2;
 }
 
@@ -51,7 +51,7 @@ message GetPublicFileResp{
 }
 
 message GetFilesByIdsReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
 }
 
 message GetFilesByIdsResp{
@@ -59,7 +59,7 @@ message GetFilesByIdsResp{
 }
 
 message GetPublicFilesByIdsReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
 }
 
 message GetPublicFilesByIdsResp{
@@ -111,7 +111,7 @@ message GetRecycleBinFilesResp{
 }
 
 message GetFileBySharingCodeReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
   optional string onlyFatherId = 2;
   optional basic.PaginationOptions paginationOptions = 3;
   optional SortOptions sortOptions = 4;
@@ -137,12 +137,12 @@ message CreateFileReq{
 }
 
 message CreateFileResp{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
 message UpdateFileReq{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
@@ -151,7 +151,7 @@ message UpdateFileResp{
 }
 
 message UpdatePublicFileReq{
-  string id = 1;
+  string fileId = 1;
   int64 auditStatus = 2;
 }
 
@@ -161,7 +161,7 @@ message UpdatePublicFileResp{
 message MoveFileReq{
   string fatherId = 1;
   string newPath = 2;
-  string id = 3;
+  string fileId = 3;
   string oldPath = 4;
   int64 spaceSize = 5;
   string name = 6;
@@ -172,7 +172,7 @@ message MoveFileResp{
 }
 
 message SavePublicFileToPrivateSpaceReq{
-  string id = 1;
+  string fileId = 1;
   string userId = 2;
   string newPath = 3;
   string fatherId = 4;
@@ -183,12 +183,12 @@ message SavePublicFileToPrivateSpaceReq{
 }
 
 message SavePublicFileToPrivateSpaceResp{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
 message SaveShareFileToPrivateSpaceReq{
-  string id = 1;
+  string fileId = 1;
   string userId = 2;
   string newPath = 3;
   string fatherId = 4;
@@ -199,19 +199,19 @@ message SaveShareFileToPrivateSpaceReq{
 }
 
 message SaveShareFileToPrivateSpaceResp{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
 message AddFileToPublicSpaceReq{
-  string id = 1;
+  string fileId = 1;
   string zone = 2;
   string description = 3;
   repeated string labels = 4;
 }
 
 message AddFileToPublicSpaceResp{
-  string id = 1;
+  string fileId = 1;
 }
 
 message CompletelyRemoveFileReq {
@@ -254,7 +254,7 @@ message RecoverRecycleBinFileResp{
 
 message CheckShareFileReq{
   repeated string fileIds = 1; // 分享链接中的文件id列表
-  string id = 2; // 要保存到的目标文件夹id
+  string fileId = 2; // 要保存到的目标文件夹id
 
 }
 

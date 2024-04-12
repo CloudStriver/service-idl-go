@@ -3,6 +3,7 @@ package cloudmind.core_api;
 option go_package = "cloudmind/core_api";
 import "basic/pagination.proto";
 import "cloudmind/core_api/common.proto";
+import "platform/common.proto";
 import "http/http.proto";
 
 message CreateCommentReq {
@@ -35,8 +36,8 @@ message GetCommentResp {
   string atUserId = 9; // @谁
   string content = 10; // 内容
   string meta = 11; // 皮肤，字体等
-  int64 createTime = 12; // 创建时间
-  int64 like = 13; // 点赞数
+  int64 createAt = 12; // 创建时间
+  int64 likedCount = 13; // 点赞数
   SimpleUser author = 14; // 评论者信息
   CommentRelation commentRelation = 15; // 评论关系信息
 }
@@ -56,6 +57,17 @@ message GetCommentsReq {
 }
 
 message GetCommentsResp {
+  repeated CommentList commentList = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+message CommentList {
+  Comment rootComment = 1;
+  ReplyList replyList = 2;
+}
+
+message ReplyList {
   repeated Comment comments = 1;
   int64 total = 2;
   string token = 3;
