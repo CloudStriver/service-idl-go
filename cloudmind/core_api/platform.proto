@@ -57,18 +57,22 @@ message GetCommentsReq {
 }
 
 message GetCommentsResp {
-  repeated CommentList commentList = 1;
+  repeated Comment comments = 1;
   int64 total = 2;
   string token = 3;
 }
 
-message CommentList {
-  Comment rootComment = 1;
-  ReplyList replyList = 2;
+message GetCommentBlocksReq {
+  string subjectId = 1;
+  string fatherId = 2;
+  optional int64 limit = 3;
+  optional string lastToken = 4;
+  optional bool backward = 5;
+  optional int64 offset = 6;
 }
 
-message ReplyList {
-  repeated Comment comments = 1;
+message GetCommentBlocksResp {
+  repeated CommentBlock commentBlocks = 1;
   int64 total = 2;
   string token = 3;
 }

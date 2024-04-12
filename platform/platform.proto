@@ -50,6 +50,18 @@ message GetCommentListResp {
   string token = 3;
 }
 
+message GetCommentBlocksReq {
+  string subjectId = 1;
+  string fatherId = 2;
+  optional basic.PaginationOptions pagination = 3;
+}
+
+message GetCommentBlocksResp {
+  repeated CommentBlock commentBlocks = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
 message UpdateCommentReq {
   string commentId = 1;
   int64 state = 2; // 1: 正常, 2: 删除
@@ -283,6 +295,7 @@ message GetRelationPathsCountResp{
 service PlatformService {
   rpc GetComment(GetCommentReq) returns (GetCommentResp);
   rpc GetCommentList(GetCommentListReq) returns (GetCommentListResp);
+  rpc GetCommentBlocks(GetCommentBlocksReq) returns (GetCommentBlocksResp);
   rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
   rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
   rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
