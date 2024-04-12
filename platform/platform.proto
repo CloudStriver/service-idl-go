@@ -123,8 +123,8 @@ message UpdateCommentSubjectResp {
 }
 
 message DeleteCommentSubjectReq {
-  string subjectId = 1;
-  string userId = 2;
+  string userId = 1;
+  string subjectId = 2;
 }
 
 message DeleteCommentSubjectResp {
