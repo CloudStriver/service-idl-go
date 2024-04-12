@@ -37,7 +37,7 @@ message SearchUserResp{
 }
 
 message GetPrivateFileReq{
-  string id = 1;
+  string fileId = 1;
 }
 
 message GetPrivateFileResp{
@@ -52,7 +52,7 @@ message GetPrivateFileResp{
 }
 
 message GetPublicFileReq{
-  string id = 1;
+  string fileId = 1;
 }
 
 message GetPublicFileResp{
@@ -164,12 +164,12 @@ message CreateFileReq{
 }
 
 message CreateFileResp{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
 message UpdateFileReq{
-  string id = 1;
+  string fileId = 1;
   string name = 2[(http.vd) = "len($) >= 1 && len($) <= 80"];
 }
 
@@ -178,7 +178,7 @@ message UpdateFileResp{
 }
 
 message CheckFileReq{
-  string id = 1;
+  string fileId = 1;
 }
 
 message CheckFileResp{
@@ -186,7 +186,7 @@ message CheckFileResp{
 }
 
 message MoveFileReq{
-  string id = 1;
+  string fileId = 1;
   string fatherId = 2;
 }
 
@@ -194,18 +194,18 @@ message MoveFileResp{
 }
 
 message SaveFileToPrivateSpaceReq{
-  string id = 1;
+  string fileId = 1;
   string fatherId = 2;
   optional ShareField shareField = 3;
 }
 
 message SaveFileToPrivateSpaceResp{
-  string id = 1;
+  string fileId = 1;
   string name = 2;
 }
 
 message AddFileToPublicSpaceReq{
-  string id = 1;
+  string fileId = 1;
   string zone = 2;
   string description = 3;
   repeated string labels = 4;
@@ -215,7 +215,7 @@ message AddFileToPublicSpaceResp{
 }
 
 message DeleteFileReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
   IsDel deleteType = 2;
 }
 
@@ -229,14 +229,14 @@ message EmptyRecycleBinResp{
 }
 
 message CompletelyRemoveFileReq {
-  repeated string ids = 1;
+  repeated string fileIds = 1;
 }
 
 message CompletelyRemoveFileResp {
 }
 
 message RecoverRecycleBinFileReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
 }
 
 message RecoverRecycleBinFileResp{
@@ -574,7 +574,7 @@ message GetHotRanksResp{
 }
 
 message MakeFilePrivateReq{
-  repeated string ids = 1;
+  repeated string fileIds = 1;
 }
 
 message MakeFilePrivateResp{

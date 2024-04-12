@@ -17,11 +17,11 @@ message CreateCommentReq {
 }
 
 message CreateCommentResp {
-  string id = 1;
+  string commentId = 1;
 }
 
 message GetCommentReq {
-  string id = 1;
+  string commentId = 1;
 }
 
 message GetCommentResp {
@@ -74,7 +74,7 @@ message ReplyList {
 }
 
 message UpdateCommentReq {
-  string id = 1;
+  string commentId = 1;
   State state = 2; // 1: 正常, 2: 删除
   repeated string labelIds = 3; // 标签：作者点赞，作者回复等
 }
@@ -83,7 +83,7 @@ message UpdateCommentResp {
 }
 
 message DeleteCommentReq {
-  string id = 1;
+  string commentId = 1;
 }
 
 message DeleteCommentResp {
@@ -98,7 +98,7 @@ message SetCommentAttrsResp{
 }
 
 message GetCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
 }
 
 message GetCommentSubjectResp {
@@ -111,7 +111,7 @@ message GetCommentSubjectResp {
 }
 
 message UpdateCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
   State state = 2; // 1: 正常, 2: 删除
   Attrs attrs = 3; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
 }
@@ -120,7 +120,7 @@ message UpdateCommentSubjectResp {
 }
 
 message DeleteCommentSubjectReq {
-  string id = 1;
+  string subjectId = 1;
 }
 
 message DeleteCommentSubjectResp {
@@ -132,18 +132,18 @@ message CreateLabelReq {
 }
 
 message CreateLabelResp {
-  string id = 1;
+  string labelId = 1;
 }
 
 message DeleteLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 
 message DeleteLabelResp {
 }
 
 message GetLabelReq {
-  string id = 1;
+  string labelId = 1;
 }
 
 message GetLabelResp {
@@ -151,7 +151,7 @@ message GetLabelResp {
 }
 
 message UpdateLabelReq {
-  string id = 1;
+  string labelId = 1;
   string fatherId = 2;
   string value = 3;
 }

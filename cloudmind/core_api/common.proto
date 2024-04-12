@@ -166,7 +166,7 @@ message UserDetail {
 }
 
 message PrivateFile {
-  string id = 1;
+  string fileId = 1;
   string userId = 2;
   string name = 3;
   string type = 4;
@@ -180,7 +180,7 @@ message PrivateFile {
 }
 
 message PublicFile {
-  string id = 1;
+  string fileId = 1;
   string userId = 2;
   string name = 3;
   string type = 4;
