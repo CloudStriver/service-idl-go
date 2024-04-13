@@ -52,7 +52,7 @@ message GetCommentListResp {
 
 message GetCommentBlocksReq {
   string subjectId = 1;
-  string fatherId = 2;
+  string rootId = 2;
   optional basic.PaginationOptions pagination = 3;
 }
 
@@ -119,7 +119,6 @@ message UpdateCommentSubjectReq {
 }
 
 message UpdateCommentSubjectResp {
-
 }
 
 message DeleteCommentSubjectReq {
@@ -190,65 +189,37 @@ message GetLabelsInBatchResp {
   repeated string labels = 1;
 }
 
-message CreateRelationByNeo4jReq{
+message CreateRelationReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
-  bool isOnly = 6;
 }
 
-message CreateRelationByNeo4jResp{
+message CreateRelationResp{
   bool ok = 1;
 }
 
-message CreateRelationByMongoReq{
+message GetRelationReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
-  bool isOnly = 6;
 }
-
-message CreateRelationByMongoResp{
-  string id = 1;
-}
-
-message GetRelationByMongoReq{
-  string relationId = 1;
-}
-
-message GetRelationByMongoResp{
+message GetRelationResp{
   bool ok = 1;
 }
 
-message GetRelationByNeo4jReq{
+message DeleteRelationReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
 }
-message GetRelationByNeo4jResp{
-  bool ok = 1;
-}
-
-message DeleteRelationByMongoReq{
-  string relationId = 1;
-}
-message DeleteRelationByMongoResp{
-}
-
-message DeleteRelationByNeo4jReq{
-  int64 fromType = 1;
-  string fromId = 2;
-  int64 toType = 3;
-  string toId = 4;
-  int64 relationType = 5;
-}
-message DeleteRelationByNeo4jResp{
+message DeleteRelationResp{
 }
 
 message FromFilterOptions{
@@ -274,6 +245,7 @@ message GetRelationsReq{
 message GetRelationsResp{
   repeated Relation relations = 1;
   int64 total = 2;
+  string token = 3;
 }
 
 message GetRelationCountReq{
@@ -299,22 +271,13 @@ message GetRelationPathsResp{
   repeated Relation relations = 1;
 }
 
-message DeleteNodeByNeo4jReq{
+message DeleteNodeReq{
   int64 nodeType = 1;
   string nodeId = 2;
 }
 
-message DeleteNodeByNeo4jResp{
+message DeleteNodeResp{
 }
-
-message DeleteNodeByMongoReq{
-  int64 nodeType = 1;
-  string nodeId = 2;
-}
-
-message DeleteNodeByMongoResp{
-}
-
 
 message GetRelationPathsCountReq{
   string fromId1 = 1;
@@ -350,18 +313,12 @@ service PlatformService {
   rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
   rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
 
-  rpc CreateRelationByMongo(CreateRelationByMongoReq) returns(CreateRelationByMongoResp);
-  rpc DeleteRelationByMongo(DeleteRelationByMongoReq) returns(DeleteRelationByMongoResp);
-  rpc GetRelationByMongo(GetRelationByMongoReq) returns(GetRelationByMongoResp);
-  rpc DeleteNodeByMongo(DeleteNodeByMongoReq) returns(DeleteNodeByMongoResp);
-
+  rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
+  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp);
+  rpc GetRelation(GetRelationReq) returns(GetRelationResp);
+  rpc DeleteNode(DeleteNodeReq) returns(DeleteNodeResp);
   rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);
   rpc GetRelationCount(GetRelationCountReq) returns(GetRelationCountResp);
   rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp);
   rpc GetRelationPathsCount(GetRelationPathsCountReq) returns(GetRelationPathsCountResp);
-
-  rpc CreateRelationByNeo4j(CreateRelationByNeo4jReq) returns(CreateRelationByMongoResp);
-  rpc DeleteRelationByNeo4j(DeleteRelationByNeo4jReq) returns(DeleteRelationByNeo4jResp);
-  rpc GetRelationByNeo4j(GetRelationByNeo4jReq) returns(GetRelationByNeo4jResp);
-  rpc DeleteNodeByNeo4j(DeleteNodeByNeo4jReq) returns(DeleteNodeByNeo4jResp);
 }
