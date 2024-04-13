@@ -64,7 +64,7 @@ message GetCommentsResp {
 
 message GetCommentBlocksReq {
   string subjectId = 1;
-  string fatherId = 2;
+  string rootId = 2;
   optional int64 limit = 3;
   optional string lastToken = 4;
   optional bool backward = 5;
