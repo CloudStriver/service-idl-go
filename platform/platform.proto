@@ -190,7 +190,7 @@ message GetLabelsInBatchResp {
   repeated string labels = 1;
 }
 
-message CreateRelationReq{
+message CreateRelationByNeo4jReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
@@ -199,29 +199,56 @@ message CreateRelationReq{
   bool isOnly = 6;
 }
 
-message CreateRelationResp{
+message CreateRelationByNeo4jResp{
   bool ok = 1;
 }
 
-message GetRelationReq{
+message CreateRelationByMongoReq{
+  int64 fromType = 1;
+  string fromId = 2;
+  int64 toType = 3;
+  string toId = 4;
+  int64 relationType = 5;
+  bool isOnly = 6;
+}
+
+message CreateRelationByMongoResp{
+  string id = 1;
+}
+
+message GetRelationByMongoReq{
+  string relationId = 1;
+}
+
+message GetRelationByMongoResp{
+  bool ok = 1;
+}
+
+message GetRelationByNeo4jReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
 }
-message GetRelationResp{
+message GetRelationByNeo4jResp{
   bool ok = 1;
 }
 
-message DeleteRelationReq{
+message DeleteRelationByMongoReq{
+  string relationId = 1;
+}
+message DeleteRelationByMongoResp{
+}
+
+message DeleteRelationByNeo4jReq{
   int64 fromType = 1;
   string fromId = 2;
   int64 toType = 3;
   string toId = 4;
   int64 relationType = 5;
 }
-message DeleteRelationResp{
+message DeleteRelationByNeo4jResp{
 }
 
 message FromFilterOptions{
@@ -229,6 +256,7 @@ message FromFilterOptions{
   string fromId = 2;
   int64 toType = 3;
 }
+
 message ToFilterOptions{
   int64 toType = 1;
   string toId = 2;
@@ -271,13 +299,22 @@ message GetRelationPathsResp{
   repeated Relation relations = 1;
 }
 
-message DeleteNodeReq{
+message DeleteNodeByNeo4jReq{
   int64 nodeType = 1;
   string nodeId = 2;
 }
 
-message DeleteNodeResp{
+message DeleteNodeByNeo4jResp{
 }
+
+message DeleteNodeByMongoReq{
+  int64 nodeType = 1;
+  string nodeId = 2;
+}
+
+message DeleteNodeByMongoResp{
+}
+
 
 message GetRelationPathsCountReq{
   string fromId1 = 1;
@@ -313,12 +350,18 @@ service PlatformService {
   rpc UpdateLabel(UpdateLabelReq) returns (UpdateLabelResp);
   rpc GetLabels(GetLabelsReq) returns (GetLabelsResp);
 
-  rpc CreateRelation(CreateRelationReq) returns(CreateRelationResp);
+  rpc CreateRelationByMongo(CreateRelationByMongoReq) returns(CreateRelationByMongoResp);
+  rpc DeleteRelationByMongo(DeleteRelationByMongoReq) returns(DeleteRelationByMongoResp);
+  rpc GetRelationByMongo(GetRelationByMongoReq) returns(GetRelationByMongoResp);
+  rpc DeleteNodeByMongo(DeleteNodeByMongoReq) returns(DeleteNodeByMongoResp);
+
   rpc GetRelations(GetRelationsReq) returns(GetRelationsResp);
   rpc GetRelationCount(GetRelationCountReq) returns(GetRelationCountResp);
-  rpc DeleteRelation(DeleteRelationReq) returns(DeleteRelationResp);
-  rpc GetRelation(GetRelationReq) returns(GetRelationResp);
   rpc GetRelationPaths(GetRelationPathsReq) returns(GetRelationPathsResp);
-  rpc DeleteNode(DeleteNodeReq) returns(DeleteNodeResp);
   rpc GetRelationPathsCount(GetRelationPathsCountReq) returns(GetRelationPathsCountResp);
+
+  rpc CreateRelationByNeo4j(CreateRelationByNeo4jReq) returns(CreateRelationByMongoResp);
+  rpc DeleteRelationByNeo4j(DeleteRelationByNeo4jReq) returns(DeleteRelationByNeo4jResp);
+  rpc GetRelationByNeo4j(GetRelationByNeo4jReq) returns(GetRelationByNeo4jResp);
+  rpc DeleteNodeByNeo4j(DeleteNodeByNeo4jReq) returns(DeleteNodeByNeo4jResp);
 }
