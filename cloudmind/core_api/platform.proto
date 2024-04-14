@@ -14,7 +14,7 @@ message CreateCommentReq {
   string atUserId = 5; // @谁
   string content = 6; // 内容
   string meta = 7; // 皮肤，字体等
-  int64  type = 8;
+  TargetType itemType = 8;
 }
 
 message CreateCommentResp {
@@ -42,7 +42,7 @@ message GetCommentResp {
   int64 hatedCount = 14;
   SimpleUser author = 15; // 评论者信息
   CommentRelation commentRelation = 16; // 评论关系信息
-  int64 type = 17;
+  TargetType itemType = 17;
 }
 
 message GetCommentsReq {
