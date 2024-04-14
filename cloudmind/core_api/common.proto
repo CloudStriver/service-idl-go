@@ -334,8 +334,12 @@ message Comment {
   string meta = 11; // 皮肤，字体等
   int64 createTime = 12; // 创建时间
   int64 like = 13; // 点赞数
-  SimpleUser author = 14; // 评论者信息
-  CommentRelation commentRelation = 15; // 评论关系信息
+  int64 hate = 14;
+  SimpleUser author = 15; // 评论者信息
+  CommentRelation commentRelation = 16; // 评论关系信息
+  string itemTitle = 17; // 我评论的内容的标题
+  TargetType itemType = 18; // 我评论的内容的类型
+  string itemUserId = 19; // 我评论的内容所属的用户ID
 }
 
 message CommentBlock {

@@ -38,8 +38,9 @@ message GetCommentResp {
   string meta = 11; // 皮肤，字体等
   int64 createAt = 12; // 创建时间
   int64 likedCount = 13; // 点赞数
-  SimpleUser author = 14; // 评论者信息
-  CommentRelation commentRelation = 15; // 评论关系信息
+  int64 hatedCount = 14;
+  SimpleUser author = 15; // 评论者信息
+  CommentRelation commentRelation = 16; // 评论关系信息
 }
 
 message GetCommentsReq {
