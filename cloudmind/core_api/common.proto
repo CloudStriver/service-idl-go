@@ -379,22 +379,7 @@ message Subject {
   optional int64 allCount = 5;
   State state = 6; // 1: 正常, 2: 删除
   Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-}
-
-message SubjectDetails {
-  string id = 1;
-  string userId = 2;
-  string TopCommentId = 3;
-  int64 rootCount = 4;
-  int64 allCount = 5;
-  int64 state = 6; // 1: 正常, 2: 删除
-  int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
-}
-
-message SubjectInfo {
-  string id = 1;
-  string userId = 2;
-  int64 attrs = 3; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  TargetType itemType = 8;
 }
 
 message Label {
