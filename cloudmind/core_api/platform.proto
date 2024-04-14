@@ -48,15 +48,12 @@ message GetCommentResp {
 message GetCommentsReq {
   optional string onlyUserId = 1;
   optional string onlyAtUserId = 2;
-  optional string onlySubjectId = 3;
-  optional string onlyRootId = 4;
-  optional string onlyFatherId = 5;
-  optional int64 onlyState = 6;
-  optional int64 onlyAttrs = 7;
-  optional int64 limit = 8;
-  optional string lastToken = 9;
-  optional bool backward = 10;
-  optional int64 offset = 11;
+  optional int64 onlyState = 3;
+  optional int64 onlyAttrs = 4;
+  optional int64 limit = 5;
+  optional string lastToken = 6;
+  optional bool backward = 7;
+  optional int64 offset = 8;
 }
 
 message GetCommentsResp {
