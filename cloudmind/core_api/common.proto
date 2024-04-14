@@ -336,6 +336,7 @@ message Comment {
   int64 like = 13; // 点赞数
   SimpleUser author = 14; // 评论者信息
   CommentRelation commentRelation = 15; // 评论关系信息
+  int64 type = 16;
 }
 
 message CommentBlock {
@@ -375,6 +376,7 @@ message Subject {
   optional int64 allCount = 5;
   State state = 6; // 1: 正常, 2: 删除
   Attrs attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  int64 type = 8;
 }
 
 message SubjectDetails {

@@ -36,6 +36,7 @@ message Comment {
   string content = 11; // 内容
   string meta = 12; // 皮肤，字体等
   int64 createTime = 13;
+  int64 type = 14;
 }
 
 message CommentBlock {
@@ -67,6 +68,7 @@ message Subject {
   int64 allCount = 5;
   int64 state = 6; // 1: 正常, 2: 删除
   int64 attrs = 7; // 1: 无, 2: 置顶, 3: 精华, 4: 置顶+精华
+  int64 type = 8;
 }
 
 message Label {
