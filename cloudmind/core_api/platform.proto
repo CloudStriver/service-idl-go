@@ -39,9 +39,10 @@ message GetCommentResp {
   string meta = 11; // 皮肤，字体等
   int64 createAt = 12; // 创建时间
   int64 likedCount = 13; // 点赞数
-  SimpleUser author = 14; // 评论者信息
-  CommentRelation commentRelation = 15; // 评论关系信息
-  int64 type = 16;
+  int64 hatedCount = 14;
+  SimpleUser author = 15; // 评论者信息
+  CommentRelation commentRelation = 16; // 评论关系信息
+  int64 type = 17;
 }
 
 message GetCommentsReq {
@@ -198,7 +199,7 @@ message Relation {
 }
 message CreateRelationReq{
   string toId = 1;
-  TargetType toType = 2[(http.vd) = "$ >= 1 && $ <= 3"];
+  TargetType toType = 2[(http.vd) = "$ >= 1 && $ <= 4"];
   RelationType relationType = 3[(http.vd) = "$ >= 1 && $ <= 10"];
 }
 message CreateRelationResp{
@@ -206,8 +207,8 @@ message CreateRelationResp{
 
 message GetFromRelationsReq{
   string fromId = 1;
-  int64 fromType = 2[(http.vd) = "$ >= 1 && $ <= 3"];
-  TargetType toType = 3[(http.vd) = "$ >= 1 && $ <= 3"];
+  int64 fromType = 2[(http.vd) = "$ >= 1 && $ <= 4"];
+  TargetType toType = 3[(http.vd) = "$ >= 1 && $ <= 4"];
   int64 relationType = 4[(http.vd) = "$ >= 1 && $ <= 10"];
   optional int64 limit = 5;
   optional int64 offset = 6;
@@ -219,7 +220,7 @@ message GetFromRelationsResp{
 }
 
 message GetToRelationsReq{
-  int64 toType = 1[(http.vd) = "$ >= 1 && $ <= 3"];
+  int64 toType = 1[(http.vd) = "$ >= 1 && $ <= 4"];
   string toId = 2;
   TargetType fromType = 3[(http.vd) = "$ == 1"];
   int64 relationType = 4[(http.vd) = "$ >= 1 && $ <= 10"];
@@ -233,9 +234,9 @@ message GetToRelationsResp{
 
 message GetRelationReq{
   string fromId = 1;
-  int64 fromType = 2[(http.vd) = "$ >= 1 && $ <= 3"];
+  int64 fromType = 2[(http.vd) = "$ >= 1 && $ <= 4"];
   string toId = 3;
-  int64 toType = 4[(http.vd) = "$ >= 1 && $ <= 3"];
+  int64 toType = 4[(http.vd) = "$ >= 1 && $ <= 4"];
   int64 relationType = 5[(http.vd) = "$ >= 1 && $ <= 10"];
 }
 
@@ -245,7 +246,7 @@ message GetRelationResp{
 
 message DeleteRelationReq{
   string toId = 1;
-  int64 toType = 2[(http.vd) = "$ >= 1 && $ <= 3"];
+  int64 toType = 2[(http.vd) = "$ >= 1 && $ <= 4"];
   int64 relationType = 3[(http.vd) = "$ >= 1 && $ <= 10"];
 }
 message DeleteRelationResp{
