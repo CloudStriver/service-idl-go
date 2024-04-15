@@ -13,7 +13,8 @@ message UpdateUserReq{
   string description = 5;
   repeated string labelIds  = 6;
   string url = 7;
-  bool isSure = 8;
+  string backgroundUrl = 8;
+  bool isSure = 9;
 }
 
 message UpdateUserResp{
@@ -323,6 +324,7 @@ message GetUserResp{
   bool followed = 8;
   int64 followedCount = 9;
   int64 followCount = 10;
+  string backgroundUrl = 11;
 }
 
 message CreateUserReq{
@@ -463,7 +465,6 @@ message GetLatestRecommendReq{
 message GetLatestRecommendResp{
     Recommends recommends = 1;
 }
-
 
 message GetRecommendByItemReq{
   string itemId = 1;

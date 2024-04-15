@@ -325,6 +325,7 @@ message UpdateUserReq{
   string description = 6;
   string url = 7;
   repeated string labels  = 8;
+  string backgroundUrl = 9;
 }
 message UpdateUserResp{
 }
@@ -342,7 +343,8 @@ message GetUserResp{
   string url = 6;
   int64 createTime = 7;
   int64 updateTime = 8;
-  repeated string labels  = 9;
+  repeated string labels = 9;
+  string backgroundUrl = 10;
 }
 
 message GetUsersReq{
@@ -408,6 +410,7 @@ message UpdatePostReq{
   repeated string labelIds = 4;
   int64 status = 5;
   string url = 6;
+  string backgroundUrl = 7;
 }
 
 message UpdatePostResp{
