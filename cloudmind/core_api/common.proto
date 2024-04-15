@@ -151,7 +151,8 @@ message HotComment {
   string content = 2;
   string userId = 3;
   string itemId = 4;
-  int64 createTime = 5;
+  string userName = 5;
+  int64 createTime = 6;
 }
 
 
