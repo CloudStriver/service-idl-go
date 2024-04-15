@@ -367,7 +367,8 @@ message CommentNode {
   int64 like = 13; // 点赞数
   int64 hate = 14;
   SimpleUser author = 15; // 评论者信息
-  CommentRelation commentRelation = 16; // 评论关系信息
+  SimpleUser atUser = 16; // 评论者信息
+  CommentRelation commentRelation = 17; // 评论关系信息
 }
 
 
