@@ -55,6 +55,7 @@ message CommentFilterOptions {
   optional string onlyAtUserId = 2;
   optional int64 onlyState = 3;
   optional int64 onlyAttrs = 4;
+  repeated string onlyCommentIds = 5;
 }
 
 message LabelFilterOptions {

@@ -568,10 +568,12 @@ message GetHotRanksReq{
   int64 offset = 3;
 }
 
+
 message GetHotRanksResp{
   repeated HotPost posts = 1;
   repeated HotUser users = 2;
   repeated HotFile files = 3;
+  repeated HotComment comments = 4;
 }
 
 message MakeFilePrivateReq{

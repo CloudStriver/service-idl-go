@@ -146,6 +146,15 @@ message HotFile {
   string type = 3;
 }
 
+message HotComment {
+  string commentId = 1;
+  string content = 2;
+  string userId = 3;
+  string itemId = 4;
+  int64 createTime = 5;
+}
+
+
 message RecommendUser {
   string userId = 1;
   string name = 2;
